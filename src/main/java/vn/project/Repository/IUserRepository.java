@@ -16,12 +16,11 @@ public interface IUserRepository extends JpaRepository<Users, Integer>{
 	
 	Optional<User> findByIdOrName(Long id, String name);
 	
-	List<Users> findByUsername(String username);
-	
 	List<Users> findById(int id);
 	
 	List<Users> findByFullname(String fullname);
 	
+	List<Users> findByUsername(String username);
 	
 
 }

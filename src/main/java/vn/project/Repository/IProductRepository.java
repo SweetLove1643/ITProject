@@ -15,4 +15,5 @@ public interface IProductRepository extends JpaRepository<Products, Integer>{
 	List<Products> findByProductname(String productname);
 	
 	List<Products> findByPrice(long price);
+	
 }

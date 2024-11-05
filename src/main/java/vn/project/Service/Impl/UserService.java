@@ -1,13 +1,16 @@
 package vn.project.Service.Impl;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import vn.project.Entity.Users;
 import vn.project.Repository.IUserRepository;
 import vn.project.Service.IUserService;
 
+@Service
 public class UserService implements IUserService {
 
 	@Autowired
@@ -73,6 +76,12 @@ public class UserService implements IUserService {
 		if (u == null) {
 			userreposiory.save(user);
 		}
+	}
+
+	@Override
+	public Optional<Users> findbyOptional(String username) {
+		// TODO Auto-generated method stub
+		return Optional.ofNullable(userreposiory.findByUsername(username).getFirst());
 	}
 
 }

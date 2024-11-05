@@ -1,6 +1,7 @@
 package vn.project.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -26,4 +27,6 @@ public interface IUserService {
 	public List<Users> findbyUsername(String username);
 	
 	public void createUser(Users user);
+	
+	public Optional<Users> findbyOptional(String username);
 }

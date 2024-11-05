@@ -1,6 +1,7 @@
 package vn.project.Repository.Impl;
 
 import java.util.List;
+
 import java.util.Optional;
 import java.util.function.Function;
 
@@ -12,7 +13,6 @@ import org.springframework.data.repository.query.FluentQuery.FetchableFluentQuer
 import org.springframework.stereotype.Repository;
 
 import vn.project.Entity.Brands;
-import vn.project.Entity.Products;
 import vn.project.Repository.IBrandRepository;
 
 @Repository
