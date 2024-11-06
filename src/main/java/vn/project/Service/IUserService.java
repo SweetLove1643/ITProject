@@ -1,32 +1,31 @@
 package vn.project.Service;
 
 import java.util.List;
+
 import java.util.Optional;
 
-import org.springframework.stereotype.Service;
 
 import vn.project.Entity.Users;
 
-@Service
+
 public interface IUserService {
 
-	public <S extends Users> S save(S entity);
+	long count();
 
-	public List<Users> findAll();
+	Optional<Users> findById(Integer id);
 
-	public void deleteById(int id);
+	List<Users> findAll();
 
-	public void delete(Users user);
+	<S extends Users> S save(S entity);
 
-	public void deleteAll();
+	Optional<Users> findByUsername(String keyword);
 
-	public List<Users> findByName(String name);
+	List<Users> findByFullnameContaining(String fullname);
 
-	public Users findById(int id);
+	Optional<Users> findByIdOrUsername(Integer id, String name);
+
 	
-	public List<Users> findbyUsername(String username);
 	
-	public void createUser(Users user);
 	
-	public Optional<Users> findbyOptional(String username);
+	
 }
