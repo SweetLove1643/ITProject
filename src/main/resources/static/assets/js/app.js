@@ -196,10 +196,10 @@
         var options = {
           type: "double",
           min: min || 0,
-          max: max || 1000,
-          from: from || 200,
-          to: to || 800,
-          prefix: "$"
+          max: max || 10000000,
+          from: from || 1000000,
+          to: to || 8000000,
+          postfix: '₫'
         };
 
         a.ionRangeSlider(options);
