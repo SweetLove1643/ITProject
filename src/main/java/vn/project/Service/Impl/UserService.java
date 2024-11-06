@@ -13,75 +13,53 @@ import vn.project.Service.IUserService;
 @Service
 public class UserService implements IUserService {
 
-	@Autowired
-	private IUserRepository userreposiory;
+	
+	@Override
+	public Optional<Users> findByIdOrUsername(Integer id, String name) {
+		return userRepository.findByIdOrUsername(id, name);
+	}
+
+	@Override
+	public List<Users> findByFullnameContaining(String fullname) {
+		return userRepository.findByFullnameContaining(fullname);
+	}
+
+	@Autowired(required=true)
+	IUserRepository userRepository;
+
+	public UserService(IUserRepository userRepository) {
+		this.userRepository = userRepository;
+	}
+
+	@Override
+	public Optional<Users> findByUsername(String keyword) {
+		return userRepository.findByUsername(keyword);
+	}
 
 	@Override
 	public <S extends Users> S save(S entity) {
-
-		return userreposiory.save(entity);
+		return userRepository.save(entity);
 	}
 
 	@Override
 	public List<Users> findAll() {
-
-		return userreposiory.findAll();
+		return userRepository.findAll();
 	}
 
 	@Override
-	public void deleteById(int id) {
-		Users u = userreposiory.findById(id).getFirst();
-
-		if (u != null) {
-			userreposiory.deleteById(id);
-		}
+	public Optional<Users> findById(Integer id) {
+		return userRepository.findById(id);
 	}
 
 	@Override
-	public void delete(Users user) {
-		Users u = userreposiory.findById(user.getId()).getFirst();
-
-		if (u != null) {
-			userreposiory.delete(user);
-		}
+	public long count() {
+		return userRepository.count();
 	}
 
-	@Override
-	public void deleteAll() {
-		userreposiory.deleteAll();
-	}
+	
 
-	@Override
-	public List<Users> findByName(String name) {
-		// TODO Auto-generated method stub
-		return userreposiory.findByFullname(name);
-	}
 
-	@Override
-	public Users findById(int id) {
-		// TODO Auto-generated method stub
-		return userreposiory.findById(id).getFirst();
-	}
 
-	@Override
-	public List<Users> findbyUsername(String username) {
-		// TODO Auto-generated method stub
-		return userreposiory.findByUsername(username);
-	}
-
-	@Override
-	public void createUser(Users user) {
-		Users u = userreposiory.findByUsername(user.getUsername()).getFirst();
-
-		if (u == null) {
-			userreposiory.save(user);
-		}
-	}
-
-	@Override
-	public Optional<Users> findbyOptional(String username) {
-		// TODO Auto-generated method stub
-		return Optional.ofNullable(userreposiory.findByUsername(username).getFirst());
-	}
+	
 
 }

@@ -2,6 +2,7 @@ package vn.project.Controllers;
 
 import java.util.Optional;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,21 +29,19 @@ public class LoginController {
 	}
 	
 	@PostMapping("")
-    public String login(@RequestParam("email") String email, 
-                        @RequestParam("password") String password, 
+    public String login(@RequestParam String email, 
+                        @RequestParam String password, 
                         Model model) {
 		boolean isAuthenticated = false;
         // Xử lí logic
 		
-		Optional<Users> optinalusers = userservice.findbyOptional(email);
-		if(optinalusers.isPresent()) {
-			Users u = optinalusers.get();
-			
-			if(u.getPassword().equals(password)) {
-				isAuthenticated = true;
-			}
-		}
+		Optional<Users> optinalusers = userservice.findByUsername(email);
 		
+		  if(!optinalusers.isEmpty()) { Users u = optinalusers.get();
+		  
+		  
+		  if(u.getPassword().equals(password)) { isAuthenticated = true; } }
+		 		
         
         if (isAuthenticated) {
             model.addAttribute("message", "Đăng nhập thành công!");

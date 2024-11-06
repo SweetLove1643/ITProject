@@ -32,13 +32,13 @@ public class Users {
 	@Column(name = "Email")
 	private String email;
 	
-	@Column(name = "FullName")
+	@Column(name = "Fullname")
 	private String fullname;
 	
 	@Column(name = "Address")
 	private String address;
 	
-	@Column(name = "PhoneNumber")
+	@Column(name = "Phonenumber")
 	private String phonenumber;
 	
 	@Column(name = "RoleID", nullable = false)
