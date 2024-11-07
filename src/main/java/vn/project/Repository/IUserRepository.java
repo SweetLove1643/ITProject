@@ -11,13 +11,13 @@ import vn.project.Entity.Users;
 
 @Repository
 public interface IUserRepository extends JpaRepository<Users, Integer>{
-	
  	  
 	  Optional<Users> findByIdOrUsername(Integer id, String name);
-//	  
-//	  
+	  
 	  List<Users> findByFullnameContaining(String fullname);
-//	  
+	  
 	  Optional<Users> findByUsername(String keyword);
+	  
+	  
 	 
 }
