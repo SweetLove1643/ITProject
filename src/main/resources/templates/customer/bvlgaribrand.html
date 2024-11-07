@@ -6,13 +6,13 @@
     <link rel="stylesheet" href="assets/css/vendor.css" />
     <link rel="stylesheet" href="assets/css/style.css" />
 
-    <title>Nước hoa Unisex</title>
+    <title>Thương hiệu Bvlgari</title>
   </head>
   <body>
 
   <header th:replace="home/header :: header"></header>
 
-	<section style="padding: 2.5rem 0;"></section>
+  <section style="padding: 2.5rem 0;"></section>
 	
     <!-- breadcrumbs -->
     <section class="breadcrumbs bg-light">
@@ -21,8 +21,8 @@
           <div class="col">
             <nav aria-label="breadcrumb">
               <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="#!">Trang chủ</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Nước hoa Unisex</li>
+                <li class="breadcrumb-item"><a href="/home">Trang chủ</a></li>
+                <li class="breadcrumb-item active" aria-current="page">BVLGARI</li>
               </ol>
             </nav>
           </div>
@@ -30,17 +30,41 @@
       </div>
     </section>
 
-  <section class="pt-6">
-    <div class="container">
 
-      <div class="row gutter-4">
-    <div th:replace="home/filter :: filter"></div>
+    <!-- listing -->
+    <section class="pt-6">
+      <div class="container">
+
+        <div class="row gutter-4">
+
+          <!-- sidebar -->
+          <aside class="col-lg-3 sidebar" th:fragment="filter"  xmlns:th="https://www.thymeleaf.org">
+            <div class="widget">
+              <span class="widget-title">Bộ lọc <!-- <a href="" class="small text-red">clear</a> --></span>
+              <div class="accordion" id="accordion-1">
+                <div class="card">
+                  <div class="card-header" id="heading-1-4">
+                    <h5 class="mb-0">
+                      <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse-1-4" aria-expanded="false" aria-controls="collapse-1-4">
+                        Mức giá
+                      </button>
+                    </h5>
+                  </div>
+                  <div id="collapse-1-4" class="collapse" aria-labelledby="heading-1-4">
+                    <div class="card-body">
+                      <input type="text" class="rangeslider" name="Range Slider" value="" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </aside>
 
           <!-- content -->
           <div class="col-lg-9">
             <div class="row gutter-1 align-items-end">
               <div class="col-md-6">
-                <h1>Nước hoa Unisex</h1>
+                <h1>BVLGARI</h1>
               </div>
               <div class="col-md-6 text-md-right">
                 <ul class="list list--horizontal list--separated text-muted fs-14">
@@ -124,7 +148,7 @@
                     <a href="#!">
                       <img src="assets/images/demo/product-listing-4.jpg" alt="Image">
                       <img src="assets/images/demo/product-listing-4-1.jpg" alt="Image">
-                    </a>           
+                    </a>
                   </figure>
                   <div class="card-footer">
                     <h3 class="card-title"><a href="">Blue Stripe Dress</a></h3>
@@ -189,8 +213,7 @@
     </section>
 
 
-    <footer th:replace="home/footer :: footer"></footer>
-
+  <footer th:replace="home/footer :: footer"></footer>
 
     <script src="assets/js/vendor.min.js"></script>
     <script src="assets/js/app.js"></script>

@@ -5,13 +5,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/forgotpass")
-public class ForgotPasswordController {
+@RequestMapping("/bvlgari")
+public class BvlgariBrand {
 
-	@GetMapping
-	
-	public String index() {
-		return "customer/forgotpass";
-	}
-	
+    @GetMapping
+
+    public String index() {
+        return "customer/bvlgaribrand";
+    }
 }

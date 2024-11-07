@@ -1,8 +1,7 @@
  <!-- header -->
-   <header class="header header-absolute">
-     
+   <header class="header header-absolute" th:fragment="header"  xmlns:th="https://www.thymeleaf.org">
       <div class="container-fluid">
-        <nav class="navbar navbar-expand-lg navbar-light">    
+        <nav class="navbar navbar-expand-lg navbar-light">
         <!-- logo -->
           <a href="/home" class="navbar-brand order-1 order-lg-2">
           <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
@@ -48,17 +47,17 @@ m245 91 l0 -30 -72 -3 -73 -3 0 36 0 36 73 -3 72 -3 0 -30z m29 -131 c10 -25
 </svg>
           </a>
 		<!-- logo -->
-	
+
           <div class="collapse navbar-collapse order-4 order-lg-1" id="navbarMenu">
             <ul class="navbar-nav mr-auto">
-              <li class="nav-item dropdown dropdown-sm dropdown-hover">
-                <a class="nav-link dropdown-toggle" href="/templates/index" id="navbarDropdown-1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <li class="nav-item">
+                <a class="nav-link" href="/home">
                   Trang chủ
                 </a>
               </li>
-              
+
               <li class="nav-item dropdown dropdown-lg dropdown-hover">
-                <a class="nav-link dropdown-toggle" href="#!" id="navbarDropdown-2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link dropdown-toggle" href="#!" id="navbarDropdown-20" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   Thương hiệu
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown-2">
@@ -66,38 +65,38 @@ m245 91 l0 -30 -72 -3 -73 -3 0 36 0 36 73 -3 72 -3 0 -30z m29 -131 c10 -25
                     <div class="row ">
                       <div class="col">
                       	<ul class="menu-list">
-                      		<li class="menu-list-item"><a href="" class="menu-list-link">BVLGARI	</a>
-                      		<li class="menu-list-item"><a href="" class="menu-list-link">KILIAN	</a>
-                      		
+                      		<li class="menu-list-item"><a href="/bvlgari" class="menu-list-link">BVLGARI	</a>
+                      		<li class="menu-list-item"><a href="/kilian" class="menu-list-link">KILIAN	</a>
+
                       	</ul>
                       </div>
                       <div class="col">
                       	<ul class="menu-list">
-                      		<li class="menu-list-item"><a href="" class="menu-list-link">YVES SAINT LAURENT	</a>
-                      		<li class="menu-list-item"><a href="" class="menu-list-link">VERSACE	</a>
-                      		
+                      		<li class="menu-list-item"><a href="/yves" class="menu-list-link">YVES SAINT LAURENT	</a>
+                      		<li class="menu-list-item"><a href="/versace" class="menu-list-link">VERSACE	</a>
+
                       	</ul>
                       </div>
                        <div class="col">
                       	<ul class="menu-list">
-                      		<li class="menu-list-item"><a href="" class="menu-list-link">CHANEL	</a>
-                      		<li class="menu-list-item"><a href="" class="menu-list-link">JEAN PAUL GAULTIER	</a>
-                      		
+                      		<li class="menu-list-item"><a href="/chanel" class="menu-list-link">CHANEL	</a>
+                      		<li class="menu-list-item"><a href="/jean" class="menu-list-link">JEAN PAUL GAULTIER	</a>
+
                       	</ul>
                       </div>
                        <div class="col">
                       	<ul class="menu-list">
-                      		<li class="menu-list-item"><a href="" class="menu-list-link">DIOR	</a>
-                      		<li class="menu-list-item"><a href="" class="menu-list-link">TOM FORD	</a>
-                      		
+                      		<li class="menu-list-item"><a href="/dior" class="menu-list-link">DIOR	</a>
+                      		<li class="menu-list-item"><a href="/tomford" class="menu-list-link">TOM FORD	</a>
+
                       	</ul>
                       </div>
                     </div>
                   </div>
                 </div>
               </li>
-              
-           
+
+
               <li class="nav-item dropdown dropdown-sm dropdown-hover">
                 <a class="nav-link dropdown-toggle" href="#!" id="navbarDropdown-2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   Sản phẩm
@@ -107,33 +106,33 @@ m245 91 l0 -30 -72 -3 -73 -3 0 36 0 36 73 -3 72 -3 0 -30z m29 -131 c10 -25
               	  	<div class="row ">
                       <div class="col">
                      	<span class="eyebrow text-muted mb-1">Nước Hoa</span>
-                      	<ul class="menu-list">         	
-                      		<li class="menu-list-item"><a href="" class="menu-list-link">Nam</a>
-                      		<li class="menu-list-item"><a href="" class="menu-list-link"> Nữ</a>
-                      		<li class="menu-list-item"><a href="" class="menu-list-link">Unisex</a>
-                      		<li class="menu-list-item"><a href="" class="menu-list-link"> Mini</a>
-                      		<li class="menu-list-item"><a href="" class="menu-list-link"> NICHE</a>
+                      	<ul class="menu-list">
+                      		<li class="menu-list-item"><a href="/menproduct" class="menu-list-link">Nam</a>
+                      		<li class="menu-list-item"><a href="/womenproduct" class="menu-list-link"> Nữ</a>
+                      		<li class="menu-list-item"><a href="/unisexproduct" class="menu-list-link">Unisex</a>
+                      		<li class="menu-list-item"><a href="/miniproduct" class="menu-list-link"> Mini</a>
+                      		<li class="menu-list-item"><a href="/nicheproduct" class="menu-list-link"> NICHE</a>
                       	</ul>
                       </div>
                      </div>
               	  </div>
               	 </div>
               </li>
-              
+
               <li class="nav-item dropdown-sm dropdown-hover">
                 <a class="nav-link dropdown-toggle" href="#!" id="navbarDropdown-3" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   Liên hệ
                 </a>
               </li>
             </ul>
-          </div>  
-           
+          </div>
+
 
           <div class="collapse navbar-collapse order-5 order-lg-3" id="navbarMenu2">
             <ul class="navbar-nav ml-auto position-relative">
-			
+
               <!-- search -->
-              <li class="nav-item dropdown dropdown-md dropdown-hover">          
+              <li class="nav-item dropdown dropdown-md dropdown-hover">
                 <a class="nav-icon dropdown-toggle" id="navbarDropdown-4" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <i class="icon-search d-none d-lg-inline-block"></i>
                   <span class="d-inline-block d-lg-none">Search</span>
@@ -145,7 +144,7 @@ m245 91 l0 -30 -72 -3 -73 -3 0 36 0 36 73 -3 72 -3 0 -30z m29 -131 c10 -25
                 </div>
               </li>
 
-				
+
               <!-- users -->
               <li class="nav-item dropdown dropdown-sm dropdown-hover">
                 <a class="nav-icon dropdown-toggle" id="navbarDropdown-6" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -155,7 +154,7 @@ m245 91 l0 -30 -72 -3 -73 -3 0 36 0 36 73 -3 72 -3 0 -30z m29 -131 c10 -25
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown-6">
                   <div class="row gutter-2">
                     <div class="col-12">
-                    	<ul class="menu-list">         	
+                    	<ul class="menu-list">
                       		<li class="menu-list-item"><a href="/login" class="menu-list-link">Đăng nhập</a>
                       		<li class="menu-list-item"><a href="/register" class="menu-list-link">Tạo tài khoản</a>
                       	</ul>
@@ -165,8 +164,8 @@ m245 91 l0 -30 -72 -3 -73 -3 0 36 0 36 73 -3 72 -3 0 -30z m29 -131 c10 -25
               </li>
 
               <!-- favourites -->
-              <li class="d-none d-lg-inline nav-item dropdown dropdown-md dropdown-hover">
-                <a class="nav-icon" id="navbarDropdown-7" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="icon-heart"></i></a>
+              <li class="d-none d-lg-inline nav-item">
+                <a href="/favourite" class="nav-icon"   role="button"  aria-haspopup="true" aria-expanded="false"><i class="icon-heart"></i></a>
               </li>
 
               <!-- cart -->

@@ -1,0 +1,68 @@
+<!-- sidebar -->
+<aside class="col-lg-3 sidebar" th:fragment="filter"  xmlns:th="https://www.thymeleaf.org">
+    <div class="widget">
+        <span class="widget-title">Bộ lọc <!-- <a href="" class="small text-red">clear</a> --></span>
+        <div class="accordion" id="accordion-1">
+            <div class="card">
+                <div class="card-header" id="heading-1-1">
+                    <h5 class="mb-0">
+                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse-1-1" aria-expanded="false" aria-controls="collapse-1-1">
+                            Thương hiệu
+                        </button>
+                    </h5>
+                </div>
+                <div id="collapse-1-1" class="collapse" aria-labelledby="heading-1-1">
+                    <div class="card-body">
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input">
+                            <label class="custom-control-label">Bvlgari</label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input">
+                            <label class="custom-control-label">Yves Saint Laurent</label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input">
+                            <label class="custom-control-label">Chanel</label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input">
+                            <label class="custom-control-label">Dior</label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input">
+                            <label class="custom-control-label">Kilian</label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input">
+                            <label class="custom-control-label">Versace</label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input">
+                            <label class="custom-control-label">Jean Paul Gaultier</label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input">
+                            <label class="custom-control-label">Tom Ford</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header" id="heading-1-4">
+                    <h5 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse-1-4" aria-expanded="false" aria-controls="collapse-1-4">
+                            Mức giá
+                        </button>
+                    </h5>
+                </div>
+                <div id="collapse-1-4" class="collapse" aria-labelledby="heading-1-4">
+                    <div class="card-body">
+                        <input type="text" class="rangeslider" name="Range Slider" value="" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</aside>
