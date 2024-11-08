@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class FavouriteController {
 
     @GetMapping("")
-
     public String index() {
         return "customer/favourite";
     }

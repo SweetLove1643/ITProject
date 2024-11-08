@@ -24,8 +24,12 @@ public interface IUserService {
 
 	Optional<Users> findByIdOrUsername(Integer id, String name);
 
-	
-	
+	void deleteAll();
+
+	void deleteByUsername(String username);
+
+	void deleteById(int id);
+
 	
 	
 }
