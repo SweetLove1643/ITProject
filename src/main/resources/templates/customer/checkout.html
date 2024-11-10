@@ -1,23 +1,23 @@
 <!doctype html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="assets/css/vendor.css" />
     <link rel="stylesheet" href="assets/css/style.css" />
 
-    <title>Checkout</title>
+    <title>Thanh Toán</title>
 </head>
 <body class="bg-light">
 
 <header th:replace="home/header :: header"></header>
 
 <!-- checkout -->
-<section  class="sectionCart">
+<section class="sectionCart">
     <div class="container">
         <div class="row">
             <div class="col">
-                <h1>Thanh toán</h1>
+                <h1>Thanh Toán</h1>
             </div>
         </div>
         <div class="row gutter-1">
@@ -28,7 +28,7 @@
                 <div class="bg-white p-2 p-lg-3 mb-1">
                     <div class="row gutter-1 align-items-center">
                         <div class="col-md-6">
-                            <h2 class="text-uppercase fs-20">Thông tin giao hàng</h2>
+                            <h2 class="text-uppercase fs-20">Thông Tin Giao Hàng</h2>
                         </div>
                     </div>
 
@@ -36,102 +36,58 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="form-label-group">
-                                    <input type="text" id="inputName2" class="form-control form-control-lg" placeholder="Name" required="" value="Dumitru">
-                                    <label for="inputName">First Name</label>
+                                    <input type="text" id="inputFullName" class="form-control form-control-lg" placeholder="Họ và Tên" required="" value="Dumitru">
+                                    <label for="inputFullName">Họ và Tên</label>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-12">
                                 <div class="form-label-group">
-                                    <input type="text" id="inputSurname2" class="form-control form-control-lg" placeholder="Surname" required="">
-                                    <label for="inputSurname">Surname</label>
-                                </div>
-                            </div>
-                        </div>
-                    </fieldset>
-
-                    <fieldset class="mb-2">
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="form-label-group">
-                                    <input type="text" id="inputAddress" class="form-control form-control-lg" placeholder="Address" required="" value="">
-                                    <label for="inputAddress">Address</label>
+                                    <input type="text" id="inputAddress" class="form-control form-control-lg" placeholder="Địa Chỉ" required="">
+                                    <label for="inputAddress">Địa Chỉ</label>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-12">
                                 <div class="form-label-group">
-                                    <input type="text" id="inputApt" class="form-control form-control-lg" placeholder="Apt, Suite, etc. (optional)" required="">
-                                    <label for="inputApt">Apt, Suite, etc. (optional)</label>
-                                </div>
-                            </div>
-                        </div>
-                    </fieldset>
-
-                    <fieldset class="mb-2">
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="form-label-group">
-                                    <input type="text" id="inputCity" class="form-control form-control-lg" placeholder="City" required="">
-                                    <label for="inputCity">City</label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-6">
-                                <div class="select-frame">
-                                    <select class="custom-select custom-select-lg" id="customSelect1" data-placeholder="State">
-                                        <option label="state"></option>
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="form-label-group">
-                                    <input type="text" id="inputZip" class="form-control form-control-lg" placeholder="Zip" required="">
-                                    <label for="inputZip">Zip</label>
+                                    <input type="email" id="inputEmail" class="form-control form-control-lg" placeholder="Email" required="">
+                                    <label for="inputEmail">Email</label>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <div class="select-frame">
-                                    <select class="custom-select custom-select-lg" id="customSelect3" data-placeholder="Year">
-                                        <option label="year"></option>
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                    </select>
+                                <div class="form-label-group">
+                                    <input type="text" id="inputPhoneNumber" class="form-control form-control-lg" placeholder="Số Điện Thoại" required="">
+                                    <label for="inputPhoneNumber">Số Điện Thoại</label>
                                 </div>
                             </div>
                         </div>
                     </fieldset>
                 </div>
 
-                <!-- options -->
+                <!-- delivery options -->
                 <div class="bg-white p-2 p-lg-3 mb-1">
-                    <h2 class="mb-3 text-uppercase fs-20">Delivery Options</h2>
+                    <h2 class="mb-3 text-uppercase fs-20">Phương Thức Giao Hàng</h2>
                     <div class="custom-control custom-choice">
                         <input type="radio" name="choice-shipping" class="custom-control-input" id="custom-choice-1">
                         <label class="custom-control-label text-dark d-flex justify-content-between align-items-center" for="custom-choice-1">
-                  <span>
-                    <h4 class="custom-choice-title">Standard</h4>
-                    <span class="text-muted fs-14">Estimated delivery: Tue, 09/04</span>
-                  </span>
-                            <span class="text-uppercase">Free</span>
+                            <span>
+                                <h4 class="custom-choice-title">Tiêu Chuẩn</h4>
+                                <span class="text-muted fs-14">Dự kiến: 3-5 ngày làm việc</span>
+                            </span>
+                            <span class="text-uppercase">Miễn Phí</span>
                         </label>
                     </div>
                     <div class="custom-control custom-choice">
                         <input type="radio" name="choice-shipping" class="custom-control-input" id="custom-choice-2">
                         <label class="custom-control-label text-dark d-flex justify-content-between align-items-center" for="custom-choice-2">
-                  <span>
-                    <h4 class="custom-choice-title">Express</h4>
-                    <span class="text-muted fs-14">Estimated delivery: Tue, 09/04</span>
-                  </span>
+                            <span>
+                                <h4 class="custom-choice-title">Nhanh</h4>
+                                <span class="text-muted fs-14">Dự kiến: 1-2 ngày làm việc</span>
+                            </span>
                             <span class="text-uppercase">$8.00</span>
                         </label>
                     </div>
@@ -139,15 +95,16 @@
 
                 <!-- payment -->
                 <div class="bg-white p-2 p-lg-3 mb-1">
-                    <h2 class="mb-2 text-uppercase fs-20">Payment</h2>
+                    <h2 class="mb-2 text-uppercase fs-20">Thanh Toán</h2>
 
                     <fieldset class="mb-2">
                         <div class="row">
                             <div class="col">
                                 <div class="select-frame">
                                     <select class="custom-select custom-select-lg" id="customPayment">
-                                        <option value="1">Credit / Debit Card</option>
+                                        <option value="1">Thẻ Tín Dụng / Ghi Nợ</option>
                                         <option value="2">Paypal</option>
+                                        <option value="3">Thanh Toán Khi Nhận Hàng</option>
                                     </select>
                                 </div>
                             </div>
@@ -158,16 +115,16 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="form-label-group">
-                                    <input type="text" id="inputCardNumber" class="form-control form-control-lg" placeholder="Card Number" required="">
-                                    <label for="inputCardNumber">Card Number</label>
+                                    <input type="text" id="inputCardNumber" class="form-control form-control-lg" placeholder="Số Thẻ" required="">
+                                    <label for="inputCardNumber">Số Thẻ</label>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-6">
                                 <div class="form-label-group">
-                                    <input type="text" id="inputExpiryDate" class="form-control form-control-lg" placeholder="Expiry Date (MM/YY)" required="">
-                                    <label for="inputExpiryDate">Expiry date (MM/YY)</label>
+                                    <input type="text" id="inputExpiryDate" class="form-control form-control-lg" placeholder="Ngày Hết Hạn (MM/YY)" required="">
+                                    <label for="inputExpiryDate">Ngày Hết Hạn (MM/YY)</label>
                                 </div>
                             </div>
                             <div class="col-6">
@@ -177,43 +134,33 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="form-label-group">
-                                    <input type="text" id="inputCardName" class="form-control form-control-lg" placeholder="Name on card" required="">
-                                    <label for="inputCardName">Name on card</label>
-                                </div>
-                            </div>
-                        </div>
                     </fieldset>
 
-                    <h3 class="mb-2 text-uppercase fs-16">We Accept</h3>
+                    <h3 class="mb-2 text-uppercase fs-16">Chúng Tôi Chấp Nhận</h3>
                     <ul class="list list--horizontal">
-                        <li><img src="assets/images/demo/visa-1.svg" class="payment" alt="Image"></li>
-                        <li><img src="assets/images/demo/master-card-1.svg" class="payment" alt="Image"></li>
-                        <li><img src="assets/images/demo/amex-1.svg" class="payment" alt="Image"></li>
+                        <li><img src="assets/images/demo/visa-1.svg" class="payment" alt="Visa"></li>
+                        <li><img src="assets/images/demo/master-card-1.svg" class="payment" alt="MasterCard"></li>
+                        <li><img src="assets/images/demo/amex-1.svg" class="payment" alt="American Express"></li>
                     </ul>
                 </div>
 
                 <!-- place order -->
                 <div class="bg-white p-2 p-md-3">
-                    <a href="" class="btn btn-lg btn-primary btn-block mb-2">Hoàn tất đơn hàng</a>
-                    <small class="text-muted">By placing your order you agree to our <a href="">Terms & Conditions</a>, privacy and returns policies. You also consent to some of your data being stored by SHOPY, which may be used to make future shopping experiences better for you.</small>
+                    <button type="submit" class="btn btn-lg btn-primary btn-block mb-2">Hoàn Tất Đơn Hàng</button>
+                    <small class="text-muted">Bằng cách đặt hàng, bạn đồng ý với <a href="">Điều Khoản & Điều Kiện</a>, chính sách bảo mật và đổi trả của chúng tôi. Dữ liệu của bạn sẽ được lưu trữ để cải thiện trải nghiệm mua sắm trong tương lai.</small>
                 </div>
-
             </div>
-
 
             <!-- sidebar -->
             <aside class="col-lg-5">
                 <div class="bg-white p-2 p-lg-3">
-                    <h2 class="mb-3 text-uppercase fs-20">Order total</h2>
+                    <h2 class="mb-3 text-uppercase fs-20">Tổng Đơn Hàng</h2>
                     <div class="cart-item">
-                        <a href="#!" class="cart-item-image"><img src="assets/images/demo/product-1.jpg" alt="Image"></a>
+                        <a href="#!" class="cart-item-image"><img src="assets/images/demo/product-1.jpg" alt="Áo Blouse"></a>
                         <div class="cart-item-body">
                             <div class="row">
                                 <div class="col-9">
-                                    <h5 class="cart-item-title">Blouse</h5>
+                                    <h5 class="cart-item-title">Áo Blouse</h5>
                                     <ul class="list list--horizontal fs-14">
                                         <li><s>$29.00</s></li>
                                         <li class="text-red">$19.00</li>
@@ -228,52 +175,15 @@
                         </div>
                     </div>
                     <div class="cart-item">
-                        <a href="#!" class="cart-item-image"><img src="assets/images/demo/product-3.jpg" alt="Image"></a>
+                        <a href="#!" class="cart-item-image"><img src="assets/images/demo/product-3.jpg" alt="Váy"></a>
                         <div class="cart-item-body">
                             <div class="row">
                                 <div class="col-9">
-                                    <h5 class="cart-item-title">Skirt</h5>
+                                    <h5 class="cart-item-title">Váy</h5>
                                     <ul class="list list--horizontal fs-14">
                                         <li><s>$39.00</s></li>
                                         <li class="text-red">$29.00</li>
                                     </ul>
                                 </div>
                                 <div class="col-3 text-right">
-                                    <ul class="cart-item-options">
-                                        <li><a href="" class="icon-x"></a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <hr class="my-3"/>
-                    <ul class="list-group list-group-minimal">
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            Items
-                            <span>$84.00</span>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            Shipping
-                            <span>$8.00</span>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center text-red">
-                            Discount
-                            <span class="text-red">-$14.00</span>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center text-uppercase font-weight-bold">
-                            Total to pay
-                            <span>$78.00</span>
-                        </li>
-                    </ul>
-                </div>
-            </aside>
-        </div>
-    </div>
-</section>
-
-<footer th:replace="home/footer :: footer"></footer>
-
-<script src="assets/js/vendor.min.js"></script>
-<script src="assets/js/app.js"></script>
-</body>
-</html>
+                                    <
