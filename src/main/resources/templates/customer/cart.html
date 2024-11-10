@@ -26,50 +26,8 @@
             <!-- content -->
             <div class="col">
                 <div class="bg-white cart-item-list p-2 p-lg-3 mb-1">
+                    <div th:replace="home/order-cart :: order-cart"></div>
 
-                    <div class="cart-item">
-                        <a href="#!" class="cart-item-image"><img src="assets/images/demo/product-1.jpg" alt="Image"></a>
-                        <div class="cart-item-body">
-                            <div class="row">
-                                <div class="col-10">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <h5 class="cart-item-title">Black Blouse</h5>
-                                            <small class="cart-item-subtitle">Fred Perry</small>
-                                            <ul class="cart-item-meta">
-                                                <li><s>$29.00</s></li>
-                                                <li class="text-red">$19.00</li>
-                                            </ul>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <ul class="list list--horizontal">
-                                                <li>
-                                                   <!-- <div th:replace="home/quantity :: quantity" ></div>-->
-                                                    <div class="dropdown">
-                                                        <a class="dropdown-toggle" href="#!" role="button" id="dropdown-2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                            Số lượng <span>1</span>
-                                                        </a>
-                                                        <div class="dropdown-menu" aria-labelledby="dropdown-2">
-                                                            <a class="dropdown-item active" href="#!">1</a>
-                                                            <a class="dropdown-item" href="#!">2</a>
-                                                            <a class="dropdown-item" href="#!">3</a>
-                                                            <a class="dropdown-item" href="#!">4</a>
-                                                            <a class="dropdown-item" href="#!">5</a>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-2 text-right">
-                                    <ul class="cart-item-options">
-                                        <li><a href="" class="icon-x"></a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 
                     <div class="cart-item">
                         <a href="#!" class="cart-item-image"><img src="assets/images/demo/product-3.jpg" alt="Image"></a>
