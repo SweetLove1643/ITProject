@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class CartController {
 
     @GetMapping
-
     public String index() {
         return "customer/cart";
     }
