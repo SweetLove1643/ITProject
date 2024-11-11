@@ -27,10 +27,6 @@ public class LoginController {
 	public String index() {
 		return "customer/login";
 	}
-	@GetMapping("/index")
-	public String index1() {
-		return "index";
-	}
 	
 	@PostMapping("")
     public String login(@RequestParam String email, 

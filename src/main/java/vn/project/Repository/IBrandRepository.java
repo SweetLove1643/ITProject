@@ -14,4 +14,6 @@ public interface IBrandRepository extends JpaRepository<Brands, Integer>{
 	
 	List<Brands> findByBrandid(int brandid);
 	
+	List<Brands> findByBrandnameContaining(String brandname);
+	
 }
