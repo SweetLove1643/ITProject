@@ -1,0 +1,21 @@
+<!-- Vòng lặp Thymeleaf để tạo sản phẩm từ dữ liệu -->
+<div class="row gutter-1" >
+    <div class="col-6 col-md-4" th:fragment="product-listing" xmlns:th="https://www.thymeleaf.org" th:each="product : ${products}">
+        <div class="card card-product">
+            <figure class="card-image">
+                <a href="#!" class="action"><i class="icon-heart"></i></a>
+                <a th:href="@{/product/{id}(id=${product.id})}">
+                    <img th:src="@{${product.imageUrl}}" alt="Image">
+                    <img th:src="@{${product.secondaryImageUrl}}" alt="Image">
+                </a>
+                <span th:if="${product.isNew}" class="badge badge-success">New</span>
+            </figure>
+            <div class="card-footer">
+                <h3 class="card-title"><a th:href="@{/product/{id}(id=${product.id})}" th:text="${product.name}">Product Name</a></h3>
+                <span class="brand" th:text="${product.brand}">Brand</span>
+                <span class="price" th:if="${product.discountedPrice}" th:text="${product.discountedPrice}">Discounted Price</span>
+                <span class="price" th:unless="${product.discountedPrice}" th:text="${product.price}">Price</span>
+            </div>
+        </div>
+    </div>
+</div>
