@@ -35,6 +35,6 @@ public class Invoices {
 	@Column(name = "TotalAmount", nullable = false)
 	private long totalamount;
 	
-	@Column(name = "PaymentMethod", nullable = false)
+	@Column(name = "PaymentMethod", nullable = false, columnDefinition = "nvarchar(255)")
 	private String paymentmethod;
 }

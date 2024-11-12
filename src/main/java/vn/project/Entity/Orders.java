@@ -35,16 +35,16 @@ public class Orders {
 	@Column(name = "TotalAmount", nullable = false)
 	private long totalamount;
 	
-	@Column(name = "PaymentStatus", nullable = false)
+	@Column(name = "PaymentStatus", nullable = false, columnDefinition = "nvarchar(255)")
 	private String paymentstatus;
 	
-	@Column(name = "PaymentMethod", nullable = false)
+	@Column(name = "PaymentMethod", nullable = false, columnDefinition = "nvarchar(255)")
 	private String paymentmethod;
 	
 	@Column(name = "DiscountID")
 	private int discountid;
 	
-	@Column(name = "DeliveryStatus", nullable = false)
+	@Column(name = "DeliveryStatus", nullable = false, columnDefinition = "nvarchar(255)")
 	private String deliverystatus;
 	
 }

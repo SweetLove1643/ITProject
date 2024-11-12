@@ -24,7 +24,7 @@ public class Brands {
 	@Column(name = "BrandID", nullable = false, unique = true)
 	private int brandid;
 	
-	@Column(name = "BrandName", nullable = false)
+	@Column(name = "BrandName", nullable = false, columnDefinition = "nvarchar(255)")
 	private String brandname;
 
 }
