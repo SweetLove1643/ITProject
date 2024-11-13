@@ -3,10 +3,10 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" th:href="assets/css/vendor.css" />
-    <link rel="stylesheet" th:href="assets/css/style.css" />
+    <link th:href="@{/assets/css/vendor.css}" rel="stylesheet" />
+    <link th:href="@{/assets/css/style.css}" rel="stylesheet" />
 
-    <title>Yêu thích</title>
+    <title th:text="|Yêu thích|">Yêu thích</title>
 </head>
 <body class="bg-light">
 
@@ -18,11 +18,16 @@
         <div class="row gutter-1 gutter-md-2">
             <div class="col-lg-4">
                 <aside class="bg-white p-2 p-md-3">
-                    <h3 class="fs-20 text-uppercase text-muted mb-2">Welcome to BBPerfume!</h3>
+                    <h3 class="fs-20 text-uppercase text-muted mb-2" th:text="|Welcome to BBPerfume!|">Welcome to BBPerfume!</h3>
                     <div class="nav nav-menu flex-column lavalamp" id="sidebar-1" role="tablist">
-                        <a class="nav-link" data-toggle="tab" th:href="#sidebar-1-1" role="tab"  aria-controls="sidebar-1" aria-selected="false"><i class="fs-24 icon-box"></i>Đơn hàng</a>
-                        <a class="nav-link active" data-toggle="tab" th:href="#sidebar-1-2" role="tab" aria-controls="sidebar-1-2" aria-selected="true"><i class="fs-24 icon-heart"></i>Yêu thích</a>
-
+                        <a class="nav-link" data-toggle="tab" href="#sidebar-1-1" role="tab" aria-controls="sidebar-1" aria-selected="false">
+                            <i class="fs-24 icon-box"></i>
+                            <span th:text="|Đơn hàng|">Đơn hàng</span>
+                        </a>
+                        <a class="nav-link active" data-toggle="tab" href="#sidebar-1-2" role="tab" aria-controls="sidebar-1-2" aria-selected="true">
+                            <i class="fs-24 icon-heart"></i>
+                            <span th:text="|Yêu thích|">Yêu thích</span>
+                        </a>
                     </div>
                 </aside>
             </div>
@@ -42,7 +47,7 @@
 
 <footer th:replace="home/footer :: footer"></footer>
 
-<script src="assets/js/vendor.min.js"></script>
-<script src="assets/js/app.js"></script>
+<script th:src="@{/assets/js/vendor.min.js}"></script>
+<script th:src="@{/assets/js/app.js}"></script>
 </body>
 </html>

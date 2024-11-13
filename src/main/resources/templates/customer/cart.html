@@ -3,10 +3,10 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" th:href="assets/css/vendor.css" />
-    <link rel="stylesheet" th:href="assets/css/style.css" />
+    <link th:href="@{/assets/css/vendor.css}" rel="stylesheet" />
+    <link th:href="@{/assets/css/style.css}" rel="stylesheet" />
 
-    <title>Cart</title>
+    <title th:text="|Cart|">Cart</title>
 </head>
 <body class="bg-light">
 
@@ -17,7 +17,7 @@
     <div class="container">
         <div class="row">
             <div class="col">
-                <h1>Giỏ hàng</h1>
+                <h1 th:text="|Giỏ hàng|">Giỏ hàng</h1>
             </div>
         </div>
 
@@ -29,38 +29,38 @@
                     <div th:replace="home/order-cart :: order-cart"></div>
                 </div>
 
-                <a th:href="" class="underlined">Tiếp tục mua hàng</a>
+                <a th:href="@{/shop}" class="underlined">Tiếp tục mua hàng</a>
             </div>
 
 
             <!-- sidebar -->
             <aside class="col-lg-4">
                 <div class="bg-white p-2 p-lg-3">
-                    <h2 class="mb-3 text-uppercase fs-20">Tổng hóa đơn</h2>
+                    <h2 class="mb-3 text-uppercase fs-20" th:text="|Tổng hóa đơn|">Tổng hóa đơn</h2>
                     <div class="input-combined mb-2">
                         <input type="text" class="form-control" placeholder="Mã giảm giá" aria-label="Promo code" aria-describedby="button-addon2">
-                        <button class="btn btn-white" type="button" id="button-addon2">Áp dụng</button>
+                        <button class="btn btn-white" type="button" id="button-addon2" th:text="|Áp dụng|">Áp dụng</button>
                         <span class="input-combined_indicator"></span>
                     </div>
                     <ul class="list-group list-group-minimal mb-3">
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             Tạm tính
-                            <span>$84.00</span>
+                            <span th:text="${cart.subtotal}">$84.00</span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             Phí vận chuyển
-                            <span>$8.00</span>
+                            <span th:text="${cart.shippingFee}">$8.00</span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center text-red">
                             Giảm giá
-                            <span class="text-red">-$14.00</span>
+                            <span class="text-red" th:text="${cart.discount}">-$14.00</span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center text-uppercase font-weight-bold">
                             Tổng thanh toán
-                            <span>$78.00</span>
+                            <span th:text="${cart.total}">$78.00</span>
                         </li>
                     </ul>
-                    <a th:href="" class="btn btn-primary btn-block">Thanh toán</a>
+                    <a th:href="@{/checkout}" class="btn btn-primary btn-block">Thanh toán</a>
                 </div>
             </aside>
         </div>
@@ -69,8 +69,8 @@
 
 <footer th:replace="home/footer :: footer"></footer>
 
-<script src="assets/js/vendor.min.js"></script>
-<script src="assets/js/app.js"></script>
+<script th:src="@{/assets/js/vendor.min.js}"></script>
+<script th:src="@{/assets/js/app.js}"></script>
 
 </body>
 </html>

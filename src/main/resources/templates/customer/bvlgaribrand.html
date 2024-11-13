@@ -3,9 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link rel="stylesheet" th:href="assets/css/vendor.css" />
-  <link rel="stylesheet" th:href="assets/css/style.css" />
-  <title>Thương hiệu Bvlgari</title>
+  <link th:href="@{/assets/css/vendor.css}" rel="stylesheet" />
+  <link th:href="@{/assets/css/style.css}" rel="stylesheet" />
+  <title th:text="|Thương hiệu Bvlgari|">Thương hiệu Bvlgari</title>
 </head>
 <body>
 
@@ -20,7 +20,7 @@
       <div class="col">
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a th:href="/home">Trang chủ</a></li>
+            <li class="breadcrumb-item"><a th:href="@{/home}">Trang chủ</a></li>
             <li class="breadcrumb-item active" aria-current="page">BVLGARI</li>
           </ol>
         </nav>
@@ -35,7 +35,7 @@
     <div class="row gutter-4">
 
       <!-- sidebar -->
-      <aside class="col-lg-3 sidebar" th:fragment="filter" xmlns:th="https://www.thymeleaf.org">
+      <aside class="col-lg-3 sidebar" th:fragment="filter">
         <div class="widget">
           <span class="widget-title">Bộ lọc</span>
           <div class="accordion" id="accordion-1">
@@ -49,7 +49,7 @@
               </div>
               <div id="collapse-1-4" class="collapse" aria-labelledby="heading-1-4">
                 <div class="card-body">
-                  <input type="text" class="rangeslider" name="Range Slider" value="" />
+                  <input type="text" class="rangeslider" name="Range Slider" th:value="" />
                 </div>
               </div>
             </div>
@@ -61,11 +61,10 @@
       <div class="col-lg-9">
         <div class="row gutter-1 align-items-end">
           <div class="col-md-6">
-            <h1>BVLGARI</h1>
+            <h1 th:text="BVLGARI">BVLGARI</h1>
           </div>
           <div th:replace="home/sortby :: sortby"></div>
         </div>
-
 
         <div th:replace="home/product-listing :: product-listing"></div>
 
@@ -78,7 +77,7 @@
 
 <footer th:replace="home/footer :: footer"></footer>
 
-<script src="assets/js/vendor.min.js"></script>
-<script src="assets/js/app.js"></script>
+<script th:src="@{/assets/js/vendor.min.js}"></script>
+<script th:src="@{/assets/js/app.js}"></script>
 </body>
 </html>

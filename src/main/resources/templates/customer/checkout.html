@@ -3,10 +3,10 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" th:href="assets/css/vendor.css" />
-    <link rel="stylesheet" th:href="assets/css/style.css" />
+    <link rel="stylesheet" th:href="@{/assets/css/vendor.css}" />
+    <link rel="stylesheet" th:href="@{/assets/css/style.css}" />
 
-    <title>Thanh Toán</title>
+    <title th:text="'Thanh Toán'"></title>
 </head>
 <body class="bg-light">
 
@@ -17,7 +17,7 @@
     <div class="container">
         <div class="row">
             <div class="col">
-                <h1>Thanh Toán</h1>
+                <h1 th:text="'Thanh Toán'"></h1>
             </div>
         </div>
         <div class="row gutter-1">
@@ -28,7 +28,7 @@
                 <div class="bg-white p-2 p-lg-3 mb-1">
                     <div class="row gutter-1 align-items-center">
                         <div class="col-md-6">
-                            <h2 class="text-uppercase fs-20">Thông Tin Giao Hàng</h2>
+                            <h2 class="text-uppercase fs-20" th:text="'Thông Tin Giao Hàng'"></h2>
                         </div>
                     </div>
 
@@ -36,32 +36,32 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="form-label-group">
-                                    <input type="text" id="inputFullName" class="form-control form-control-lg" placeholder="Họ và Tên" required="" value="Dumitru">
-                                    <label for="inputFullName">Họ và Tên</label>
+                                    <input type="text" id="inputFullName" class="form-control form-control-lg" th:placeholder="'Họ và Tên'" th:field="*{fullName}" required="">
+                                    <label for="inputFullName" th:text="'Họ và Tên'"></label>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-12">
                                 <div class="form-label-group">
-                                    <input type="text" id="inputAddress" class="form-control form-control-lg" placeholder="Địa Chỉ" required="">
-                                    <label for="inputAddress">Địa Chỉ</label>
+                                    <input type="text" id="inputAddress" class="form-control form-control-lg" th:placeholder="'Địa Chỉ'" th:field="*{address}" required="">
+                                    <label for="inputAddress" th:text="'Địa Chỉ'"></label>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-12">
                                 <div class="form-label-group">
-                                    <input type="email" id="inputEmail" class="form-control form-control-lg" placeholder="Email" required="">
-                                    <label for="inputEmail">Email</label>
+                                    <input type="email" id="inputEmail" class="form-control form-control-lg" th:placeholder="'Email'" th:field="*{email}" required="">
+                                    <label for="inputEmail" th:text="'Email'"></label>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-12">
                                 <div class="form-label-group">
-                                    <input type="text" id="inputPhoneNumber" class="form-control form-control-lg" placeholder="Số Điện Thoại" required="">
-                                    <label for="inputPhoneNumber">Số Điện Thoại</label>
+                                    <input type="text" id="inputPhoneNumber" class="form-control form-control-lg" th:placeholder="'Số Điện Thoại'" th:field="*{phoneNumber}" required="">
+                                    <label for="inputPhoneNumber" th:text="'Số Điện Thoại'"></label>
                                 </div>
                             </div>
                         </div>
@@ -70,28 +70,29 @@
 
                 <!-- delivery options -->
                 <div class="bg-white p-2 p-lg-3 mb-1">
-                    <h2 class="mb-3 text-uppercase fs-20">Phương Thức Giao Hàng</h2>
+                    <h2 class="mb-3 text-uppercase fs-20" th:text="'Phương Thức Giao Hàng'"></h2>
                     <div class="custom-control custom-choice">
-                        <input type="radio" name="choice-shipping" class="custom-control-input" id="custom-choice-1">
+                        <input type="radio" name="choice-shipping" class="custom-control-input" id="custom-choice-1" th:value="'standard'" th:checked="${shippingOption == 'standard'}">
                         <label class="custom-control-label text-dark d-flex justify-content-between align-items-center" for="custom-choice-1">
                             <span>
-                                <h4 class="custom-choice-title">Tiêu Chuẩn</h4>
-                                <span class="text-muted fs-14">Dự kiến: 3-5 ngày làm việc</span>
+                                <h4 class="custom-choice-title" th:text="'Tiêu Chuẩn'"></h4>
+                                <span class="text-muted fs-14" th:text="'Dự kiến: 3-5 ngày làm việc'"></span>
                             </span>
-                            <span class="text-uppercase">Miễn Phí</span>
+                            <span class="text-uppercase" th:text="'Miễn Phí'"></span>
                         </label>
                     </div>
                     <div class="custom-control custom-choice">
-                        <input type="radio" name="choice-shipping" class="custom-control-input" id="custom-choice-2">
+                        <input type="radio" name="choice-shipping" class="custom-control-input" id="custom-choice-2" th:value="'express'" th:checked="${shippingOption == 'express'}">
                         <label class="custom-control-label text-dark d-flex justify-content-between align-items-center" for="custom-choice-2">
                             <span>
-                                <h4 class="custom-choice-title">Nhanh</h4>
-                                <span class="text-muted fs-14">Dự kiến: 1-2 ngày làm việc</span>
+                                <h4 class="custom-choice-title" th:text="'Nhanh'"></h4>
+                                <span class="text-muted fs-14" th:text="'Dự kiến: 1-2 ngày làm việc'"></span>
                             </span>
-                            <span class="text-uppercase">$8.00</span>
+                            <span class="text-uppercase" th:text="'$8.00'"></span>
                         </label>
                     </div>
                 </div>
+
 
                 <!-- payment -->
                 <div class="bg-white p-2 p-lg-3 mb-1">
@@ -146,46 +147,32 @@
 
                 <!-- place order -->
                 <div class="bg-white p-2 p-md-3">
-                    <button type="submit" class="btn btn-lg btn-primary btn-block mb-2">Hoàn Tất Đơn Hàng</button>
-                    <small class="text-muted">Bằng cách đặt hàng, bạn đồng ý với <a th:href="">Điều Khoản & Điều Kiện</a>, chính sách bảo mật và đổi trả của chúng tôi. Dữ liệu của bạn sẽ được lưu trữ để cải thiện trải nghiệm mua sắm trong tương lai.</small>
+                    <button type="submit" class="btn btn-lg btn-primary btn-block mb-2" th:text="'Hoàn Tất Đơn Hàng'"></button>
+                    <small class="text-muted" th:text="'Bằng cách đặt hàng, bạn đồng ý với '"></small>
+                    <a th:href="@{/terms}" th:text="'Điều Khoản & Điều Kiện'"></a>
+                    <small class="text-muted" th:text="', chính sách bảo mật và đổi trả của chúng tôi. Dữ liệu của bạn sẽ được lưu trữ để cải thiện trải nghiệm mua sắm trong tương lai.'"></small>
                 </div>
             </div>
 
             <!-- sidebar -->
             <aside class="col-lg-5">
                 <div class="bg-white p-2 p-lg-3">
-                    <h2 class="mb-3 text-uppercase fs-20">Tổng Đơn Hàng</h2>
-                    <div class="cart-item">
-                        <a th:href="#!" class="cart-item-image"><img src="assets/images/demo/product-1.jpg" alt="Áo Blouse"></a>
+                    <h2 class="mb-3 text-uppercase fs-20" th:text="'Tổng Đơn Hàng'"></h2>
+                    <div class="cart-item" th:each="item : ${cartItems}">
+                        <a th:href="@{/product/{id}(id=${item.productId})}" class="cart-item-image"><img th:src="${item.image}" th:alt="${item.name}"></a>
                         <div class="cart-item-body">
                             <div class="row">
                                 <div class="col-9">
-                                    <h5 class="cart-item-title">Áo Blouse</h5>
+                                    <h5 class="cart-item-title" th:text="${item.name}"></h5>
                                     <ul class="list list--horizontal fs-14">
-                                        <li><s>$29.00</s></li>
-                                        <li class="text-red">$19.00</li>
+                                        <li><s th:text="${item.originalPrice}"></s></li>
+                                        <li class="text-red" th:text="${item.discountedPrice}"></li>
                                     </ul>
                                 </div>
                                 <div class="col-3 text-right">
                                     <ul class="cart-item-options">
-                                        <li><a th:href="" class="icon-x"></a></li>
+                                        <li><a th:href="@{/cart/remove/{id}(id=${item.productId})}" class="icon-x"></a></li>
                                     </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="cart-item">
-                        <a th:href="#!" class="cart-item-image"><img src="assets/images/demo/product-3.jpg" alt="Váy"></a>
-                        <div class="cart-item-body">
-                            <div class="row">
-                                <div class="col-9">
-                                    <h5 class="cart-item-title">Váy</h5>
-                                    <ul class="list list--horizontal fs-14">
-                                        <li><s>$39.00</s></li>
-                                        <li class="text-red">$29.00</li>
-                                    </ul>
-                                </div>
-                                <div class="col-3 text-right">
                                 </div>
                             </div>
                         </div>

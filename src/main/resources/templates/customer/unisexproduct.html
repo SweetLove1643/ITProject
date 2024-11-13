@@ -1,64 +1,64 @@
 <!doctype html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" th:href="assets/css/vendor.css" />
-    <link rel="stylesheet" th:href="assets/css/style.css" />
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link th:href="@{/assets/css/vendor.css}" rel="stylesheet" />
+  <link th:href="@{/assets/css/style.css}" rel="stylesheet" />
 
-    <title>Nước hoa Unisex</title>
-  </head>
-  <body>
+  <title th:text="|Nước hoa Unisex|">Nước hoa Unisex</title>
+</head>
+<body>
 
-  <header th:replace="home/header :: header"></header>
+<header th:replace="home/header :: header"></header>
 
-	<section style="padding: 2.5rem 0;"></section>
-	
-    <!-- breadcrumbs -->
-    <section class="breadcrumbs bg-light">
-      <div class="container">
-        <div class="row">
-          <div class="col">
-            <nav aria-label="breadcrumb">
-              <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a th:href="#!">Trang chủ</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Nước hoa Unisex</li>
-              </ol>
-            </nav>
-          </div>
-        </div>
+<section style="padding: 2.5rem 0;"></section>
+
+<!-- breadcrumbs -->
+<section class="breadcrumbs bg-light">
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a th:href="@{/home}">Trang chủ</a></li>
+            <li class="breadcrumb-item active" aria-current="page" th:text="|Nước hoa Unisex|">Nước hoa Unisex</li>
+          </ol>
+        </nav>
       </div>
-    </section>
+    </div>
+  </div>
+</section>
 
-  <section class="pt-6">
-    <div class="container">
+<section class="pt-6">
+  <div class="container">
 
-      <div class="row gutter-4">
-    <div th:replace="home/filter :: filter"></div>
+    <div class="row gutter-4">
+      <div th:replace="home/filter :: filter"></div>
 
-          <!-- content -->
-          <div class="col-lg-9">
-            <div class="row gutter-1 align-items-end">
-              <div class="col-md-6">
-                <h1>Nước hoa Unisex</h1>
-              </div>
-              <div th:replace="home/sortby :: sortby"></div>
-            </div>
-
-            <div th:replace="home/product-listing :: product-listing"></div>
-
-            <div th:replace="home/paging :: paging"></div>
-
+      <!-- content -->
+      <div class="col-lg-9">
+        <div class="row gutter-1 align-items-end">
+          <div class="col-md-6">
+            <h1 th:text="|Nước hoa Unisex|">Nước hoa Unisex</h1>
           </div>
+          <div th:replace="home/sortby :: sortby"></div>
         </div>
+
+        <div th:replace="home/product-listing :: product-listing"></div>
+
+        <div th:replace="home/paging :: paging"></div>
+
       </div>
-    </section>
+    </div>
+  </div>
+</section>
 
 
-    <footer th:replace="home/footer :: footer"></footer>
+<footer th:replace="home/footer :: footer"></footer>
 
 
-    <script src="assets/js/vendor.min.js"></script>
-    <script src="assets/js/app.js"></script>
-  </body>
+<script th:src="@{/assets/js/vendor.min.js}"></script>
+<script th:src="@{/assets/js/app.js}"></script>
+</body>
 </html>
