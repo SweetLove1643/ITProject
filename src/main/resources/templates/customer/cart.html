@@ -3,8 +3,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="assets/css/vendor.css" />
-    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" th:href="assets/css/vendor.css" />
+    <link rel="stylesheet" th:href="assets/css/style.css" />
 
     <title>Cart</title>
 </head>
@@ -29,7 +29,7 @@
                     <div th:replace="home/order-cart :: order-cart"></div>
                 </div>
 
-                <a href="" class="underlined">Tiếp tục mua hàng</a>
+                <a th:href="" class="underlined">Tiếp tục mua hàng</a>
             </div>
 
 
@@ -60,7 +60,7 @@
                             <span>$78.00</span>
                         </li>
                     </ul>
-                    <a href="" class="btn btn-primary btn-block">Thanh toán</a>
+                    <a th:href="" class="btn btn-primary btn-block">Thanh toán</a>
                 </div>
             </aside>
         </div>

@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="assets/css/vendor.css" />
-    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" th:href="assets/css/vendor.css" />
+    <link rel="stylesheet" th:href="assets/css/style.css" />
 
     <title>Đăng nhập</title>
   </head>
@@ -21,7 +21,7 @@
           <div class="card-header">
             <ul class="nav nav-tabs nav-fill card-header-tabs lavalamp" id="component-1" role="tablist">
               <li class="nav-item">
-                <a class="nav-link active" data-toggle="tab" href="#component-1-1" role="tab" aria-controls="component-1-1" aria-selected="false">Đăng nhập</a>
+                <a class="nav-link active" data-toggle="tab" th:href="#component-1-1" role="tab" aria-controls="component-1-1" aria-selected="false">Đăng nhập</a>
               </li>
             </ul>
           </div>
@@ -51,7 +51,7 @@
                       </fieldset>
                     </div>
                     <div class="col-12 text-center">
-                      <a href="/forgotpass" class="underline fs-14">Quên mật khẩu ?</a>
+                      <a th:href="/forgotpass" class="underline fs-14">Quên mật khẩu ?</a>
                     </div>
                     <div class="col-12">
                       <button type="submit" class="btn btn-primary btn-block">Đăng nhập</button>

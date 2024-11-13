@@ -5,8 +5,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="assets/css/vendor.css" />
-    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" th:href="assets/css/vendor.css" />
+    <link rel="stylesheet" th:href="assets/css/style.css" />
     <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-176058743-2"></script>
 <script>
@@ -39,7 +39,7 @@
       <div class="container-fluid">
         <nav class="navbar navbar-expand-lg navbar-light">    
         <!-- logo -->
-          <a href="index.html" class="navbar-brand order-1 order-lg-2">
+          <a th:href="index.html" class="navbar-brand order-1 order-lg-2">
           <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
  width="200.000000pt" height="35.000000pt" viewBox="0 0 562.000000 73.000000"
  preserveAspectRatio="xMidYMid meet">
@@ -87,13 +87,13 @@ m245 91 l0 -30 -72 -3 -73 -3 0 36 0 36 73 -3 72 -3 0 -30z m29 -131 c10 -25
           <div class="collapse navbar-collapse order-4 order-lg-1" id="navbarMenu">
             <ul class="navbar-nav mr-auto">
               <li class="nav-item dropdown dropdown-sm dropdown-hover">
-                <a class="nav-link dropdown-toggle" href="/templates/index" id="navbarDropdown-1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link dropdown-toggle" th:href="/templates/index" id="navbarDropdown-1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   Trang chủ
                 </a>
               </li>
               
               <li class="nav-item dropdown dropdown-lg dropdown-hover">
-                <a class="nav-link dropdown-toggle" href="#!" id="navbarDropdown-2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link dropdown-toggle" th:href="#!" id="navbarDropdown-2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   Thương hiệu
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown-2">
@@ -101,29 +101,29 @@ m245 91 l0 -30 -72 -3 -73 -3 0 36 0 36 73 -3 72 -3 0 -30z m29 -131 c10 -25
                     <div class="row ">
                       <div class="col">
                       	<ul class="menu-list">
-                      		<li class="menu-list-item"><a href="" class="menu-list-link">BVLGARI	</a>
-                      		<li class="menu-list-item"><a href="" class="menu-list-link">KILIAN	</a>
+                      		<li class="menu-list-item"><a th:href="" class="menu-list-link">BVLGARI	</a>
+                      		<li class="menu-list-item"><a th:href="" class="menu-list-link">KILIAN	</a>
                       		
                       	</ul>
                       </div>
                       <div class="col">
                       	<ul class="menu-list">
-                      		<li class="menu-list-item"><a href="" class="menu-list-link">YVES SAINT LAURENT	</a>
-                      		<li class="menu-list-item"><a href="" class="menu-list-link">VERSACE	</a>
+                      		<li class="menu-list-item"><a th:href="" class="menu-list-link">YVES SAINT LAURENT	</a>
+                      		<li class="menu-list-item"><a th:href="" class="menu-list-link">VERSACE	</a>
                       		
                       	</ul>
                       </div>
                        <div class="col">
                       	<ul class="menu-list">
-                      		<li class="menu-list-item"><a href="" class="menu-list-link">CHANEL	</a>
-                      		<li class="menu-list-item"><a href="" class="menu-list-link">JEAN PAUL GAULTIER	</a>
+                      		<li class="menu-list-item"><a th:href="" class="menu-list-link">CHANEL	</a>
+                      		<li class="menu-list-item"><a th:href="" class="menu-list-link">JEAN PAUL GAULTIER	</a>
                       		
                       	</ul>
                       </div>
                        <div class="col">
                       	<ul class="menu-list">
-                      		<li class="menu-list-item"><a href="" class="menu-list-link">DIOR	</a>
-                      		<li class="menu-list-item"><a href="" class="menu-list-link">TOM FORD	</a>
+                      		<li class="menu-list-item"><a th:href="" class="menu-list-link">DIOR	</a>
+                      		<li class="menu-list-item"><a th:href="" class="menu-list-link">TOM FORD	</a>
                       		
                       	</ul>
                       </div>
@@ -134,7 +134,7 @@ m245 91 l0 -30 -72 -3 -73 -3 0 36 0 36 73 -3 72 -3 0 -30z m29 -131 c10 -25
               
            
               <li class="nav-item dropdown dropdown-sm dropdown-hover">
-                <a class="nav-link dropdown-toggle" href="#!" id="navbarDropdown-2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link dropdown-toggle" th:href="#!" id="navbarDropdown-2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   Sản phẩm
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown-2">
@@ -143,11 +143,11 @@ m245 91 l0 -30 -72 -3 -73 -3 0 36 0 36 73 -3 72 -3 0 -30z m29 -131 c10 -25
                       <div class="col">
                      	<span class="eyebrow text-muted mb-1">Nước Hoa</span>
                       	<ul class="menu-list">         	
-                      		<li class="menu-list-item"><a href="" class="menu-list-link">Nam</a>
-                      		<li class="menu-list-item"><a href="" class="menu-list-link"> Nữ</a>
-                      		<li class="menu-list-item"><a href="" class="menu-list-link">Unisex</a>
-                      		<li class="menu-list-item"><a href="" class="menu-list-link"> Mini</a>
-                      		<li class="menu-list-item"><a href="" class="menu-list-link"> NICHE</a>
+                      		<li class="menu-list-item"><a th:href="" class="menu-list-link">Nam</a>
+                      		<li class="menu-list-item"><a th:href="" class="menu-list-link"> Nữ</a>
+                      		<li class="menu-list-item"><a th:href="" class="menu-list-link">Unisex</a>
+                      		<li class="menu-list-item"><a th:href="" class="menu-list-link"> Mini</a>
+                      		<li class="menu-list-item"><a th:href="" class="menu-list-link"> NICHE</a>
                       	</ul>
                       </div>
                      </div>
@@ -156,7 +156,7 @@ m245 91 l0 -30 -72 -3 -73 -3 0 36 0 36 73 -3 72 -3 0 -30z m29 -131 c10 -25
               </li>
               
               <li class="nav-item dropdown-sm dropdown-hover">
-                <a class="nav-link dropdown-toggle" href="#!" id="navbarDropdown-3" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link dropdown-toggle" th:href="#!" id="navbarDropdown-3" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   Liên hệ
                 </a>
               </li>
@@ -191,8 +191,8 @@ m245 91 l0 -30 -72 -3 -73 -3 0 36 0 36 73 -3 72 -3 0 -30z m29 -131 c10 -25
                   <div class="row gutter-2">
                     <div class="col-12">
                     	<ul class="menu-list">         	
-                      		<li class="menu-list-item"><a href="/login" class="menu-list-link">Đăng nhập</a>
-                      		<li class="menu-list-item"><a href="" class="menu-list-link">Tạo tài khoản</a>
+                      		<li class="menu-list-item"><a th:href="/login" class="menu-list-link">Đăng nhập</a>
+                      		<li class="menu-list-item"><a th:href="" class="menu-list-link">Tạo tài khoản</a>
                       	</ul>
                     </div>
                   </div>
@@ -229,8 +229,8 @@ m245 91 l0 -30 -72 -3 -73 -3 0 36 0 36 73 -3 72 -3 0 -30z m29 -131 c10 -25
                       </ul>
                     </div>
                     <div class="col-12">
-                      <a href="" class="btn btn-outline-secondary btn-block">Xem giỏ hàng</a>
-                      <a href="" class="btn btn-primary btn-block">Thanh toán</a>
+                      <a th:href="" class="btn btn-outline-secondary btn-block">Xem giỏ hàng</a>
+                      <a th:href="" class="btn btn-primary btn-block">Thanh toán</a>
                     </div>
                   </div>
                 </div>
@@ -243,17 +243,17 @@ m245 91 l0 -30 -72 -3 -73 -3 0 36 0 36 73 -3 72 -3 0 -30z m29 -131 c10 -25
 
               <!-- search -->
               <li class="nav-item">
-                <a href="" class="nav-icon"><i class="icon-search"></i></a>
+                <a th:href="" class="nav-icon"><i class="icon-search"></i></a>
               </li>
 
               <!-- cart -->
               <li class="nav-item dropdown dropdown-md dropdown-hover">
-                <a href="" class="nav-icon"><i class="icon-shopping-bag"></i></a>
+                <a th:href="" class="nav-icon"><i class="icon-shopping-bag"></i></a>
               </li>
 
               <!-- menu -->
               <li class="nav-item dropdown dropdown-md dropdown-hover">
-                <a href="" class="nav-icon" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarMenu" aria-expanded="false" aria-label="Toggle navigation">
+                <a th:href="" class="nav-icon" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarMenu" aria-expanded="false" aria-label="Toggle navigation">
                   <i class="icon-menu"></i>
                 </a>
               </li>
@@ -276,7 +276,7 @@ m245 91 l0 -30 -72 -3 -73 -3 0 36 0 36 73 -3 72 -3 0 -30z m29 -131 c10 -25
               <div class="col-lg-8 text-white" data-swiper-parallax-x="-100%">
                 <span class="eyebrow">Bộ sưu tập mới</span>
                 <h1 class="mb-3 text-uppercase">MANCERA PARIS</h1>
-                <a href="listing-full.html" class="btn btn-outline-white">Xem thêm</a>
+                <a th:href="listing-full.html" class="btn btn-outline-white">Xem thêm</a>
               </div>
             </div>
           </div>
@@ -290,7 +290,7 @@ m245 91 l0 -30 -72 -3 -73 -3 0 36 0 36 73 -3 72 -3 0 -30z m29 -131 c10 -25
               <div class="col-lg-8 text-white" data-swiper-parallax-x="-100%">
                 <span class="eyebrow">Sản phẩm mới</span>
                 <h1>AQVA POUR HOMME</h1>
-                <a href="listing-full.html" class="btn btn-outline-white">Mua ngay</a>
+                <a th:href="listing-full.html" class="btn btn-outline-white">Mua ngay</a>
               </div>
             </div>
           </div>
@@ -327,7 +327,7 @@ m245 91 l0 -30 -72 -3 -73 -3 0 36 0 36 73 -3 72 -3 0 -30z m29 -131 c10 -25
               <div class="card-footer p-lg-5">
                 <div class="bg-white d-inline-block p-1">
                   <h2 class="card-title">Nước Hoa Nam</h2>
-                  <a href="" class="underlined">Xem thêm</a>
+                  <a th:href="" class="underlined">Xem thêm</a>
                 </div>
               </div>
             </div>
@@ -342,7 +342,7 @@ m245 91 l0 -30 -72 -3 -73 -3 0 36 0 36 73 -3 72 -3 0 -30z m29 -131 c10 -25
               <div class="card-footer p-lg-5">
                 <div class="bg-white d-inline-block p-1">
                   <h2 class="card-title">Nước Hoa Nữ</h2>
-                  <a href="" class="underlined">Xem thêm</a>
+                  <a th:href="" class="underlined">Xem thêm</a>
                 </div>
               </div>
             </div>
@@ -379,13 +379,13 @@ m245 91 l0 -30 -72 -3 -73 -3 0 36 0 36 73 -3 72 -3 0 -30z m29 -131 c10 -25
                 <!-- https://orchard.vn/san-pham/tom-ford-oud-wood/ -->
                   <div class="card card-product">
                     <figure class="card-image">
-                      <a href="#!" class="action"><i class="icon-heart"></i></a>
-                      <a href="#!">
+                      <a th:href="#!" class="action"><i class="icon-heart"></i></a>
+                      <a th:href="#!">
                         <img src="assets/images/demo/unisex3.jpg" height="534" alt="Image">
                         <img src="assets/images/demo/unisex3-1.jpg" height="534" alt="Image">
                       </a>
                     </figure>
-                    <a href="" class="card-body">
+                    <a th:href="" class="card-body">
                       <h3 class="card-title">Tom Ford Oud Wood</h3>
                       <span class="price">6.180.000 ₫</span>
                     </a>
@@ -394,13 +394,13 @@ m245 91 l0 -30 -72 -3 -73 -3 0 36 0 36 73 -3 72 -3 0 -30z m29 -131 c10 -25
                   <!--https://orchard.vn/san-pham/tom-ford-lost-cherry/  -->
                   <div class="card card-product">
                     <figure class="card-image">
-                      <a href="#!" class="action"><i class="icon-heart"></i></a>
-                      <a href="#!">
+                      <a th:href="#!" class="action"><i class="icon-heart"></i></a>
+                      <a th:href="#!">
                         <img src="assets/images/demo/u2-1.png" height="534" alt="Image">
                         <img src="assets/images/demo/u2-2.png" height="534" alt="Image">
                       </a>
                     </figure>
-                    <a href="" class="card-body">
+                    <a th:href="" class="card-body">
                       <h3 class="card-title">Tom Ford Lost Cherry</h3>
                       <span class="price">5.980.000 ₫</span>
                     </a>
@@ -409,13 +409,13 @@ m245 91 l0 -30 -72 -3 -73 -3 0 36 0 36 73 -3 72 -3 0 -30z m29 -131 c10 -25
                   <!-- https://orchard.vn/san-pham/kilian-black-phantom/ -->
                   <div class="card card-product">
                     <figure class="card-image">
-                      <a href="#!" class="action"><i class="icon-heart"></i></a>
-                      <a href="#!">
+                      <a th:href="#!" class="action"><i class="icon-heart"></i></a>
+                      <a th:href="#!">
                         <img src="assets/images/demo/unisex2.jpg" height="534" alt="Image">
                         <img src="assets/images/demo/unisex2-1.jpg" height="534" alt="Image">
                       </a>
                     </figure>
-                    <a href="" class="card-body">
+                    <a th:href="" class="card-body">
                       <h3 class="card-title">Kilian Black Phantomh</h3>
                       <span class="price">5.780.000 ₫</span>
                     </a>
@@ -430,13 +430,13 @@ m245 91 l0 -30 -72 -3 -73 -3 0 36 0 36 73 -3 72 -3 0 -30z m29 -131 c10 -25
                 <!-- https://orchard.vn/san-pham/tom-ford-black-orchid-parfum/ -->
                   <div class="card card-product">
                     <figure class="card-image">
-                      <a href="#!" class="action"><i class="icon-heart"></i></a>
-                      <a href="#!">
+                      <a th:href="#!" class="action"><i class="icon-heart"></i></a>
+                      <a th:href="#!">
                         <img src="assets/images/demo/niche1.jpg" height="534" alt="Image">
                         <img src="assets/images/demo/niche1-1.jpg" height="534" alt="Image">
                       </a>
                     </figure>
-                    <a href="" class="card-body">
+                    <a th:href="" class="card-body">
                       <h3 class="card-title">Tom Ford Black Orchid Parfum</h3>
                       <span class="price">4.080.000 ₫</span>
                     </a>
@@ -445,13 +445,13 @@ m245 91 l0 -30 -72 -3 -73 -3 0 36 0 36 73 -3 72 -3 0 -30z m29 -131 c10 -25
                   <!-- https://orchard.vn/san-pham/kilian-angels-share-by-kilian-edp/ -->
                   <div class="card card-product">
                     <figure class="card-image">
-                      <a href="#!" class="action"><i class="icon-heart"></i></a>
-                      <a href="#!">
+                      <a th:href="#!" class="action"><i class="icon-heart"></i></a>
+                      <a th:href="#!">
                         <img src="assets/images/demo/ni2-1.png" height="534" alt="Image">
                         <img src="assets/images/demo/ni2-2.png" height="534" alt="Image">
                       </a>
                     </figure>
-                    <a href="" class="card-body">
+                    <a th:href="" class="card-body">
                       <h3 class="card-title">Kilian Angels’ Share</h3>
                       <span class="price">4.280.000 ₫</span>
                     </a>
@@ -460,13 +460,13 @@ m245 91 l0 -30 -72 -3 -73 -3 0 36 0 36 73 -3 72 -3 0 -30z m29 -131 c10 -25
                   <!-- https://orchard.vn/san-pham/kilian-good-girl-gone-bad/ -->
                   <div class="card card-product">
                     <figure class="card-image">
-                      <a href="#!" class="action"><i class="icon-heart"></i></a>
-                      <a href="#!">
+                      <a th:href="#!" class="action"><i class="icon-heart"></i></a>
+                      <a th:href="#!">
                         <img src="assets/images/demo/niche3.jpg" height="534" alt="Image">
                         <img src="assets/images/demo/niche3-1.jpg" height="534" alt="Image">
                       </a>
                     </figure>
-                    <a href="" class="card-body">
+                    <a th:href="" class="card-body">
                       <h3 class="card-title">Kilian Good Girl Gone Bad (with Coffret)</h3>
                       <span class="price">6.080.000 ₫</span>
                     </a>
@@ -481,13 +481,13 @@ m245 91 l0 -30 -72 -3 -73 -3 0 36 0 36 73 -3 72 -3 0 -30z m29 -131 c10 -25
                 <!-- https://orchard.vn/san-pham/versace-pour-homme-mini/ -->
                   <div class="card card-product">
                     <figure class="card-image">
-                      <a href="#!" class="action"><i class="icon-heart"></i></a>
-                      <a href="#!">
+                      <a th:href="#!" class="action"><i class="icon-heart"></i></a>
+                      <a th:href="#!">
                         <img src="assets/images/demo/mi-1.png" height="534" alt="Image">
                         <img src="assets/images/demo/mi-2.png" height="534" alt="Image">
                       </a>
                     </figure>
-                    <a href="" class="card-body">
+                    <a th:href="" class="card-body">
                       <h3 class="card-title">Versace Pour Homme Mini</h3>
                       <span class="price">280.000 ₫</span>
                     </a>
@@ -496,13 +496,13 @@ m245 91 l0 -30 -72 -3 -73 -3 0 36 0 36 73 -3 72 -3 0 -30z m29 -131 c10 -25
                   <!-- https://orchard.vn/san-pham/dior-jadore-infinissime-edp-mini/ -->
                   <div class="card card-product">
                     <figure class="card-image">
-                      <a href="#!" class="action"><i class="icon-heart"></i></a>
-                      <a href="#!">
+                      <a th:href="#!" class="action"><i class="icon-heart"></i></a>
+                      <a th:href="#!">
                         <img src="assets/images/demo/mi2-1.png" height="534" alt="Image">
                         <img src="assets/images/demo/mi-2-2.png" height="534" alt="Image">
                       </a>
                     </figure>
-                    <a href="" class="card-body">
+                    <a th:href="" class="card-body">
                       <h3 class="card-title">Dior J’Adore Mini</h3>
                       <span class="price">380.000 ₫</span>
                     </a>
@@ -511,13 +511,13 @@ m245 91 l0 -30 -72 -3 -73 -3 0 36 0 36 73 -3 72 -3 0 -30z m29 -131 c10 -25
                   <!-- https://orchard.vn/san-pham/jean-paul-gaultier-scandal-mini/ -->
                   <div class="card card-product">
                     <figure class="card-image">
-                      <a href="#!" class="action"><i class="icon-heart"></i></a>
-                      <a href="#!">
+                      <a th:href="#!" class="action"><i class="icon-heart"></i></a>
+                      <a th:href="#!">
                         <img src="assets/images/demo/mi3-1.png" height="534" alt="Image">
                         <img src="assets/images/demo/mi3-2.png" height="534" alt="Image">
                       </a>
                     </figure>
-                    <a href="" class="card-body">
+                    <a th:href="" class="card-body">
                       <h3 class="card-title">Jean Paul Gaultier Scandal Mini</h3>
                       <span class="price">420.000 ₫</span>
                     </a>
@@ -541,14 +541,14 @@ m245 91 l0 -30 -72 -3 -73 -3 0 36 0 36 73 -3 72 -3 0 -30z m29 -131 c10 -25
             <h2>Thương Hiệu</h2>
           </div>
           <div class="col-4 col-md-6 text-right">
-            <a href="" class="underlined">Xem thêm</a>
+            <a th:href="" class="underlined">Xem thêm</a>
           </div>
         </div>
         
        	<!-- https://cdn.orchard.vn/wp-content/uploads/2024/06/fragnance-logo-text-bvlgary.webp -->
         <div class="row gutter-3">
           <div class="col-6 col-lg-3 margin-logo">
-            <a href="">
+            <a th:href="">
               <figure class="category category--alt">
                 <div class="equal"><span class="background-img-logo" style="background-image: url(assets/images/demo/logo1.png)"></span>
                 </div>
@@ -559,7 +559,7 @@ m245 91 l0 -30 -72 -3 -73 -3 0 36 0 36 73 -3 72 -3 0 -30z m29 -131 c10 -25
           
           <!-- https://cdn.orchard.vn/wp-content/uploads/2024/06/fragnance-logo-text-ysl.webp -->
           <div class="col-6 col-lg-3 margin-logo">
-            <a href="">
+            <a th:href="">
               <figure class="category category--alt">
                 <div class="equal"><span class="background-img-logo" style="background-image: url(assets/images/demo/logo13.webp)"></span></div>
                 <figcaption>Yves Saint Laurent</figcaption>
@@ -569,7 +569,7 @@ m245 91 l0 -30 -72 -3 -73 -3 0 36 0 36 73 -3 72 -3 0 -30z m29 -131 c10 -25
           
           <!-- https://cdn.orchard.vn/wp-content/uploads/2024/06/fragnance-logo-text-chanel.webp -->
           <div class="col-6 col-lg-3 margin-logo">
-            <a href="">
+            <a th:href="">
               <figure class="category category--alt">
                 <div class="equal"><span class="background-img-logo" style="background-image: url(assets/images/demo/logo3.png)"></span></div>
                 <figcaption>Chanel</figcaption>
@@ -579,7 +579,7 @@ m245 91 l0 -30 -72 -3 -73 -3 0 36 0 36 73 -3 72 -3 0 -30z m29 -131 c10 -25
           
           <!-- https://cdn.orchard.vn/wp-content/uploads/2024/06/fragnance-logo-text-dior.webp -->
           <div class="col-6 col-lg-3 margin-logo">
-            <a href="">
+            <a th:href="">
               <figure class="category category--alt">
                 <div class="equal"><span class="background-img-logo" style="background-image: url(assets/images/demo/logo4.png)"></span></div>
                 <figcaption>Dior</figcaption>
@@ -589,7 +589,7 @@ m245 91 l0 -30 -72 -3 -73 -3 0 36 0 36 73 -3 72 -3 0 -30z m29 -131 c10 -25
           
           <!-- https://cdn.orchard.vn/wp-content/uploads/2024/06/fragnance-logo-text-kilian.webp -->
           <div class="col-6 col-lg-3 margin-logo-bottom">
-            <a href="">
+            <a th:href="">
               <figure class="category category--alt">
                 <div class="equal"><span class="background-img-logo" style="background-image: url(assets/images/demo/logo11.webp)"></span></div>
                 <figcaption>Kilian</figcaption>
@@ -599,7 +599,7 @@ m245 91 l0 -30 -72 -3 -73 -3 0 36 0 36 73 -3 72 -3 0 -30z m29 -131 c10 -25
           
           <!-- https://cdn.orchard.vn/wp-content/uploads/2024/06/fragnance-logo-text-versace.webp -->
           <div class="col-6 col-lg-3 margin-logo-bottom">
-            <a href="">
+            <a th:href="">
               <figure class="category category--alt">
                 <div class="equal"><span class="background-img-logo" style="background-image: url(assets/images/demo/logo6.png)"></span></div>
                 <figcaption>Versace</figcaption>
@@ -609,7 +609,7 @@ m245 91 l0 -30 -72 -3 -73 -3 0 36 0 36 73 -3 72 -3 0 -30z m29 -131 c10 -25
           
           <!-- https://cdn.orchard.vn/wp-content/uploads/2024/06/fragnance-logo-text-jean-paul-gaultier.webp -->
           <div class="col-6 col-lg-3 margin-logo-bottom">
-            <a href="">
+            <a th:href="">
               <figure class="category category--alt">
                 <div class="equal"><span class="background-img-logo" style="background-image: url(assets/images/demo/logo7.png)"></span></div>
                 <figcaption>Jean Paul Gaultier</figcaption>
@@ -619,7 +619,7 @@ m245 91 l0 -30 -72 -3 -73 -3 0 36 0 36 73 -3 72 -3 0 -30z m29 -131 c10 -25
           
           <!-- https://cdn.orchard.vn/wp-content/uploads/2024/06/fragnance-logo-text-tom-ford.webp -->
           <div class="col-6 col-lg-3  margin-logo-bottom">
-            <a href="">
+            <a th:href="">
               <figure class="category category--alt">
                 <div class="equal"><span class="background-img-logo" style="background-image: url(assets/images/demo/logo8.png)"></span></div>
                 <figcaption>Tom Ford</figcaption>
@@ -642,16 +642,16 @@ m245 91 l0 -30 -72 -3 -73 -3 0 36 0 36 73 -3 72 -3 0 -30z m29 -131 c10 -25
               <div class="col">
                 <h4 class="eyebrow mb-1">BB Perfume</h4>
                 <ul class="menu-list">
-                  <li class="menu-list-item"><a href="" class="menu-list-link">Liên hệ</a></li>
+                  <li class="menu-list-item"><a th:href="" class="menu-list-link">Liên hệ</a></li>
                 </ul>
               </div>
               <div class="col">
                 <h4 class="eyebrow mb-1">Hỗ trợ</h4>
                 <ul class="menu-list">
-               	 <li class="menu-list-item"><a href="" class="menu-list-link">Cách thức mua hàng</a></li>
-                  <li class="menu-list-item"><a href="" class="menu-list-link">Hướng dẫn đặt hàng</a></li>
-                  <li class="menu-list-item"><a href="" class="menu-list-link">Phương thức thanh toán</a></li>
-                  <li class="menu-list-item"><a href="" class="menu-list-link">Theo dõi đơn hàng</a></li>       
+               	 <li class="menu-list-item"><a th:href="" class="menu-list-link">Cách thức mua hàng</a></li>
+                  <li class="menu-list-item"><a th:href="" class="menu-list-link">Hướng dẫn đặt hàng</a></li>
+                  <li class="menu-list-item"><a th:href="" class="menu-list-link">Phương thức thanh toán</a></li>
+                  <li class="menu-list-item"><a th:href="" class="menu-list-link">Theo dõi đơn hàng</a></li>       
                 </ul>
               </div>
             </div>
@@ -662,8 +662,8 @@ m245 91 l0 -30 -72 -3 -73 -3 0 36 0 36 73 -3 72 -3 0 -30z m29 -131 c10 -25
             <h4 class="eyebrow mb-1">Kết nối cùng BBPerfume</h4>
             <div>
             <ul class="list list--horizontal">
-              <li><a href="#!" class="text-hover-facebook"><i class="fs-28 icon-facebook-square-brands"></i></a></li>
-              <li><a href="#!" class="text-hover-instagram"><i class="fs-28 icon-instagram-square-brands"></i></a></li>
+              <li><a th:href="#!" class="text-hover-facebook"><i class="fs-28 icon-facebook-square-brands"></i></a></li>
+              <li><a th:href="#!" class="text-hover-instagram"><i class="fs-28 icon-instagram-square-brands"></i></a></li>
             </ul>
             </div>
           </div>

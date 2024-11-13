@@ -4,8 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link rel="stylesheet" href="assets/css/vendor.css" />
-<link rel="stylesheet" href="assets/css/style.css" />
+<link rel="stylesheet" th:href="assets/css/vendor.css" />
+<link rel="stylesheet" th:href="assets/css/style.css" />
 
 <title>Đăng ký</title>
 </head>
@@ -24,7 +24,7 @@
 							<ul class="nav nav-tabs nav-fill card-header-tabs lavalamp"
 								id="component-1" role="tablist">
 								<li class="nav-item"><a class="nav-link active"
-									data-toggle="tab" href="#component-1-1" role="tab"
+									data-toggle="tab" th:href="#component-1-1" role="tab"
 									aria-controls="component-1-1" aria-selected="true">Đăng ký</a>
 								</li>
 							</ul>
@@ -136,7 +136,7 @@
 														name="argeement" class="custom-control-input"> <label
 														class="custom-control-label text-muted"
 														for="customCheckbox1">Yes, I agree to the <a
-														href="" class="underline">Terms and Conditions</a></label>
+														th:href="" class="underline">Terms and Conditions</a></label>
 												</div>
 											</div>
 											<div class="col-12">

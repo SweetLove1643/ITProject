@@ -3,8 +3,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="assets/css/vendor.css" />
-    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" th:href="assets/css/vendor.css" />
+    <link rel="stylesheet" th:href="assets/css/style.css" />
 
     <title>Thanh Toán</title>
 </head>
@@ -147,7 +147,7 @@
                 <!-- place order -->
                 <div class="bg-white p-2 p-md-3">
                     <button type="submit" class="btn btn-lg btn-primary btn-block mb-2">Hoàn Tất Đơn Hàng</button>
-                    <small class="text-muted">Bằng cách đặt hàng, bạn đồng ý với <a href="">Điều Khoản & Điều Kiện</a>, chính sách bảo mật và đổi trả của chúng tôi. Dữ liệu của bạn sẽ được lưu trữ để cải thiện trải nghiệm mua sắm trong tương lai.</small>
+                    <small class="text-muted">Bằng cách đặt hàng, bạn đồng ý với <a th:href="">Điều Khoản & Điều Kiện</a>, chính sách bảo mật và đổi trả của chúng tôi. Dữ liệu của bạn sẽ được lưu trữ để cải thiện trải nghiệm mua sắm trong tương lai.</small>
                 </div>
             </div>
 
@@ -156,7 +156,7 @@
                 <div class="bg-white p-2 p-lg-3">
                     <h2 class="mb-3 text-uppercase fs-20">Tổng Đơn Hàng</h2>
                     <div class="cart-item">
-                        <a href="#!" class="cart-item-image"><img src="assets/images/demo/product-1.jpg" alt="Áo Blouse"></a>
+                        <a th:href="#!" class="cart-item-image"><img src="assets/images/demo/product-1.jpg" alt="Áo Blouse"></a>
                         <div class="cart-item-body">
                             <div class="row">
                                 <div class="col-9">
@@ -168,14 +168,14 @@
                                 </div>
                                 <div class="col-3 text-right">
                                     <ul class="cart-item-options">
-                                        <li><a href="" class="icon-x"></a></li>
+                                        <li><a th:href="" class="icon-x"></a></li>
                                     </ul>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="cart-item">
-                        <a href="#!" class="cart-item-image"><img src="assets/images/demo/product-3.jpg" alt="Váy"></a>
+                        <a th:href="#!" class="cart-item-image"><img src="assets/images/demo/product-3.jpg" alt="Váy"></a>
                         <div class="cart-item-body">
                             <div class="row">
                                 <div class="col-9">
