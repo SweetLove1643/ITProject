@@ -8,14 +8,13 @@
                     <img th:src="@{${product.imageurl}}" alt="Image">
                     <img th:src="@{${product.imageurl}}" alt="Image">
                 </a>
-                <!-- <span th:if="${product.isNew}" class="badge badge-success">New</span> -->
+                <span th:if="${product.isNew}" class="badge badge-success">New</span>
             </figure>
             <div class="card-footer">
                 <h3 class="card-title"><a th:href="@{/product/{productid}(id=${product.productid})}" th:text="${product.productname}">Product Name</a></h3>
                 <span class="brand" th:text="${product.brand}">Brand</span>
-                <!-- <span class="price" th:if="${product.discountedPrice}" th:text="${product.discountedPrice}">Discounted Price</span>
-                <span class="price" th:unless="${product.discountedPrice}" th:text="${product.price}">Price</span> -->
-                <h3 class="price" th:text="${product.price}">Price</h3>
+                <span class="price" th:if="${product.discountedPrice}" th:text="${product.discountedPrice}">Discounted Price</span>
+                <span class="price" th:unless="${product.discountedPrice}" th:text="${product.price}">Price</span>
             </div>
         </div>
     </div>
