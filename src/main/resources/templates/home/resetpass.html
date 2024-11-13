@@ -1,8 +1,7 @@
-<!-- change password -->
-<div class="tab-pane fade" id="sidebar-1-4" role="tabpanel" aria-labelledby="sidebar-1-4" th:fragment="resetpass"  xmlns:th="https://www.thymeleaf.org">
+<div class="tab-pane fade" id="sidebar-1-4" role="tabpanel" aria-labelledby="sidebar-1-4" th:fragment="resetpass" xmlns:th="https://www.thymeleaf.org">
     <div class="row">
         <div class="col">
-            <h2>Change Password</h2>
+            <h2 th:text="|Change Password|">Change Password</h2>
         </div>
     </div>
 
@@ -10,16 +9,18 @@
         <div class="row">
             <div class="col-12">
                 <div class="form-label-group">
-                    <input type="password" id="inputPassword" class="form-control form-control-lg" placeholder="Current Password" required="" value="$120-N<>&^9">
-                    <label for="inputPassword">Current Password</label>
+                    <input type="password" id="inputPassword" name="currentPassword" class="form-control form-control-lg" placeholder="Current Password" required
+                           th:placeholder="|Current Password|">
+                    <label for="inputPassword" th:text="|Current Password|">Current Password</label>
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col-12">
                 <div class="form-label-group">
-                    <input type="password" id="inputPassword2" class="form-control form-control-lg" placeholder="New Password" required="">
-                    <label for="inputPassword2">New Password</label>
+                    <input type="password" id="inputPassword2" name="newPassword" class="form-control form-control-lg" placeholder="New Password" required
+                           th:placeholder="|New Password|">
+                    <label for="inputPassword2" th:text="|New Password|">New Password</label>
                 </div>
             </div>
         </div>
@@ -27,7 +28,7 @@
 
     <div class="row">
         <div class="col">
-            <a th:href="" class="btn btn-primary">Save Password</a>
+            <button type="submit" class="btn btn-primary" th:text="|Save Password|">Save Password</button>
         </div>
     </div>
 </div>

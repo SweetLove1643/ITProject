@@ -2,13 +2,15 @@
     <div class="col">
         <nav aria-label="Page navigation">
             <ul class="pagination">
-                <li class="page-item"><a class="page-link" th:href="#!">Previous</a></li>
-                <li class="page-item active"><a class="page-link" th:href="#!">1</a></li>
-                <li class="page-item"><a class="page-link" th:href="#!">2</a></li>
-                <li class="page-item"><a class="page-link" th:href="#!">3</a></li>
-                <li class="page-item"><a class="page-link" th:href="#!">4</a></li>
-                <li class="page-item"><a class="page-link" th:href="#!">5</a></li>
-                <li class="page-item"><a class="page-link" th:href="#!">Next</a></li>
+                <li class="page-item" th:classappend="${page.number == 1} ? 'disabled'">
+                    <a class="page-link" th:href="@{'?page=' + ${page.number - 1}}" th:aria-disabled="${page.number == 1}" th:text="|Previous|">Previous</a>
+                </li>
+                <li class="page-item" th:each="pageNumber : ${#numbers.sequence(1, page.totalPages)}" th:classappend="${pageNumber == page.number} ? 'active'">
+                    <a class="page-link" th:href="@{'?page=' + ${pageNumber}}" th:text="${pageNumber}">1</a>
+                </li>
+                <li class="page-item" th:classappend="${page.number == page.totalPages} ? 'disabled'">
+                    <a class="page-link" th:href="@{'?page=' + ${page.number + 1}}" th:aria-disabled="${page.number == page.totalPages}" th:text="|Next|">Next</a>
+                </li>
             </ul>
         </nav>
     </div>

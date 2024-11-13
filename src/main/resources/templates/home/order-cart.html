@@ -1,33 +1,32 @@
 <div class="cart-item" th:fragment="order-cart" xmlns:th="https://www.thymeleaf.org">
     <div class="custom-control custom-checkbox">
-        <input type="checkbox" class="custom-control-input">
+        <input type="checkbox" class="custom-control-input" th:id="'cart-item-' + ${item.id}" th:checked="${item.checked}">
+        <label class="custom-control-label" th:for="'cart-item-' + ${item.id}"></label>
     </div>
-    <a th:href="#!" class="cart-item-image"><img src="assets/images/demo/product-1.jpg" alt="Image"></a>
+    <a th:href="@{'/product/' + ${item.product.id}}" class="cart-item-image">
+        <img th:src="${item.product.image}" th:alt="${item.product.name}">
+    </a>
     <div class="cart-item-body">
         <div class="row">
             <div class="col-10">
                 <div class="row">
                     <div class="col-md-6">
-                        <h5 class="cart-item-title">Black Blouse</h5>
-                        <small class="cart-item-subtitle">Fred Perry</small>
+                        <h5 class="cart-item-title" th:text="${item.product.name}">Black Blouse</h5>
+                        <small class="cart-item-subtitle" th:text="${item.product.brand}">Fred Perry</small>
                         <ul class="cart-item-meta">
-                            <li><s>$29.00</s></li>
-                            <li class="text-red">$19.00</li>
+                            <li><s th:text="${item.product.originalPrice}">$29.00</s></li>
+                            <li class="text-red" th:text="${item.product.salePrice}">$19.00</li>
                         </ul>
                     </div>
                     <div class="col-md-6">
                         <ul class="list list--horizontal">
                             <li>
                                 <div class="dropdown">
-                                    <a class="dropdown-toggle" th:href="#!" role="button" id="dropdown-2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        Số lượng <span>1</span>
+                                    <a class="dropdown-toggle" th:href="#" role="button" th:id="'dropdown-' + ${item.id}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Số lượng <span th:text="${item.quantity}">1</span>
                                     </a>
-                                    <div class="dropdown-menu" aria-labelledby="dropdown-2">
-                                        <a class="dropdown-item active" th:href="#!">1</a>
-                                        <a class="dropdown-item" th:href="#!">2</a>
-                                        <a class="dropdown-item" th:href="#!">3</a>
-                                        <a class="dropdown-item" th:href="#!">4</a>
-                                        <a class="dropdown-item" th:href="#!">5</a>
+                                    <div class="dropdown-menu" th:aria-labelledby="'dropdown-' + ${item.id}">
+                                        <a class="dropdown-item" th:each="quantity : ${#numbers.sequence(1, 5)}" th:classappend="${quantity == item.quantity} ? 'active' : ''" th:href="@{'/cart/update/' + ${item.id} + '?quantity=' + ${quantity}}" th:text="${quantity}">1</a>
                                     </div>
                                 </div>
                             </li>
@@ -37,7 +36,9 @@
             </div>
             <div class="col-2 text-right">
                 <ul class="cart-item-options">
-                    <li><a th:href="" class="icon-x"></a></li>
+                    <li>
+                        <a th:href="@{'/cart/remove/' + ${item.id}}" class="icon-x"></a>
+                    </li>
                 </ul>
             </div>
         </div>
