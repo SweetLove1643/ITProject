@@ -32,10 +32,10 @@ public class Users {
 	@Column(name = "Email")
 	private String email;
 	
-	@Column(name = "Fullname")
+	@Column(name = "Fullname", columnDefinition = "nvarchar(255)")
 	private String fullname;
 	
-	@Column(name = "Address")
+	@Column(name = "Address", columnDefinition = "nvarchar(255)")
 	private String address;
 	
 	@Column(name = "Phonenumber")

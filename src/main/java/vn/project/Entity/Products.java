@@ -24,7 +24,7 @@ public class Products {
 	@Column(name = "ProductID", nullable = false, unique = true)
 	private int productid;
 	
-	@Column(name = "ProductName", nullable = false)
+	@Column(name = "ProductName", nullable = false, columnDefinition = "nvarchar(255)")
 	private String productname;
 	
 	@Column(name = "CategoryID")
@@ -39,7 +39,7 @@ public class Products {
 	@Column(name = "Price", nullable = false)
 	private long price;
 	
-	@Column(name = "Description")
+	@Column(name = "Description", columnDefinition = "nvarchar(255)")
 	private String description;
 	
 	@Column(name = "ImageURL")

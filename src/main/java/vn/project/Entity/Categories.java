@@ -24,6 +24,6 @@ public class Categories {
 	@Column(name = "Category", nullable = false, unique = true)
 	private int categoryid;
 	
-	@Column(name = "CategoryName", nullable = true)
+	@Column(name = "CategoryName", nullable = true, columnDefinition = "nvarchar(255)")
 	private String categoryname;
 }

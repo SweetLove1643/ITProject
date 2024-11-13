@@ -24,10 +24,10 @@ public class Suppliers {
 	@Column(name = "SupplierID", nullable = false, unique = true)
 	private int supplierid;
 	
-	@Column(name = "SupplierName", nullable = false)
+	@Column(name = "SupplierName", nullable = false, columnDefinition = "nvarchar(255)")
 	private String suppliername;
 	
-	@Column(name = "Address")
+	@Column(name = "Address", columnDefinition = "nvarchar(255)")
 	private String address;
 	
 	@Column(name = "PhoneNumber")
