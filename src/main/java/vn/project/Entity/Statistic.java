@@ -45,4 +45,70 @@ public class Statistic {
 	@Column(name = "StockRemaining")
 	private int stockremaining;
 
+	public int getStatisticID() {
+		return statisticID;
+	}
+
+	public void setStatisticID(int statisticID) {
+		this.statisticID = statisticID;
+	}
+
+	public int getProductid() {
+		return productid;
+	}
+
+	public void setProductid(int productid) {
+		this.productid = productid;
+	}
+
+	public int getSupplierid() {
+		return supplierid;
+	}
+
+	public void setSupplierid(int supplierid) {
+		this.supplierid = supplierid;
+	}
+
+	public int getBrandid() {
+		return brandid;
+	}
+
+	public void setBrandid(int brandid) {
+		this.brandid = brandid;
+	}
+
+	public int getMonthlysales() {
+		return monthlysales;
+	}
+
+	public void setMonthlysales(int monthlysales) {
+		this.monthlysales = monthlysales;
+	}
+
+	public int getQuarterlysales() {
+		return quarterlysales;
+	}
+
+	public void setQuarterlysales(int quarterlysales) {
+		this.quarterlysales = quarterlysales;
+	}
+
+	public int getYearlysales() {
+		return yearlysales;
+	}
+
+	public void setYearlysales(int yearlysales) {
+		this.yearlysales = yearlysales;
+	}
+
+	public int getStockremaining() {
+		return stockremaining;
+	}
+
+	public void setStockremaining(int stockremaining) {
+		this.stockremaining = stockremaining;
+	}
+	
+	
+
 }

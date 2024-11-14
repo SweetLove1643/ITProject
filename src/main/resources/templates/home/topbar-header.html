@@ -1,0 +1,122 @@
+<!-- Header -->
+<header class="header header-absolute" th:fragment="header" xmlns:th="https://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+    <div class="py-1 bg-dark" th:fragment="topbar" xmlns:th="https://www.thymeleaf.org">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col">
+                    <!-- Sửa lỗi th:data-items -->
+<div class="owl-carousel owl-carousel-promo" th:data-loop="true" th:data-items="${owlItems}" th:data-margin="10" th:data-nav="true">
+                        <h6 class="fs-14 text-uppercase text-center text-white m-0">
+                            <i class="icon-truck mr-1 text-opaque"></i>
+                            <span th:text="|FREESHIP CHO MỌI ĐƠN HÀNG|">FREESHIP CHO MỌI ĐƠN HÀNG</span>
+                        </h6>
+                        <h6 class="fs-14 text-uppercase text-center text-white m-0">
+                            <i class="icon-award mr-1 text-opaque"></i>
+                            <span th:text="|THƯƠNG HIỆU NƯỚC HOA UY TÍN TỪ 2023|">THƯƠNG HIỆU NƯỚC HOA UY TÍN TỪ 2023</span>
+                        </h6>
+                        <h6 class="fs-14 text-uppercase text-center text-white m-0">
+                            <i class="icon-shield mr-1 text-opaque"></i>
+                            <span th:text="|ĐẢM BẢO HOÀN TIỀN TRONG 30 NGÀY|">ĐẢM BẢO HOÀN TIỀN TRONG 30 NGÀY</span>
+                        </h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <!-- Logo -->
+            <a th:href="@{/home}" class="navbar-brand order-1 order-lg-2">
+                <!-- Thay logo SVG -->
+                <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="200.000000pt" height="35.000000pt" viewBox="0 0 562.000000 73.000000" preserveAspectRatio="xMidYMid meet">
+                    <g transform="translate(0.000000,73.000000) scale(0.100000,-0.100000)" fill="#000000" stroke="none">
+                        <path d="M170 345 l0 -205 128 0 c200 0 242 22 242 127 ..."></path>
+                    </g>
+                </svg>
+            </a>
+            <!-- Logo -->
+
+            <div class="collapse navbar-collapse order-4 order-lg-1" id="navbarMenu">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/home}" th:text="|Trang chủ|">Trang chủ</a>
+                    </li>
+                    <li class="nav-item dropdown dropdown-lg dropdown-hover">
+<a class="nav-link dropdown-toggle" th:href="@{/}" id="navbarDropdown-20" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" th:text="|Thương hiệu|">Thương hiệu</a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown-20">
+                            <div class="container-md">
+                                <div class="row">
+                                    <!-- Menu thương hiệu -->
+                                    <div class="col">
+                                        <ul class="menu-list">
+                                            <li class="menu-list-item">
+                                                <a th:href="@{/bvlgari}" th:text="|BVLGARI|" class="menu-list-link">BVLGARI</a>
+                                            </li>
+                                            <li class="menu-list-item">
+                                                <a th:href="@{/kilian}" th:text="|KILIAN|" class="menu-list-link">KILIAN</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="col">
+                                        <ul class="menu-list">
+                                            <li class="menu-list-item">
+                                                <a th:href="@{/ysl}" th:text="|YVES SAINT LAURENT|" class="menu-list-link">YVES SAINT LAURENT</a>
+                                            </li>
+                                            <li class="menu-list-item">
+                                                <a th:href="@{/versace}" th:text="|VERSACE|" class="menu-list-link">VERSACE</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="col">
+                                        <ul class="menu-list">
+                                            <li class="menu-list-item">
+                                                <a th:href="@{/chanel}" th:text="|CHANEL|" class="menu-list-link">CHANEL</a>
+                                            </li>
+                                            <li class="menu-list-item">
+                                                <a th:href="@{/jpg}" th:text="|JEAN PAUL GAULTIER|" class="menu-list-link">JEAN PAUL GAULTIER</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="col">
+                                        <ul class="menu-list">
+                                            <li class="menu-list-item">
+                                                <a th:href="@{/dior}" th:text="|DIOR|" class="menu-list-link">DIOR</a>
+                                            </li>
+                                            <li class="menu-list-item">
+                                                <a th:href="@{/tomford}" th:text="|TOM FORD|" class="menu-list-link">TOM FORD</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown dropdown-sm dropdown-hover">
+                        <a class="nav-link dropdown-toggle" th:href="@{/}" id="navbarDropdown-2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" th:text="|Sản phẩm|">Sản phẩm</a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown-2">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col">
+                                        <span class="eyebrow text-muted mb-1" th:text="|Nước Hoa|">Nước Hoa</span>
+                                        <ul class="menu-list">
+                                            <li class="menu-list-item">
+                                                <a th:href="@{/menproduct}" th:text="|Nam|" class="menu-list-link">Nam</a>
+                                            </li>
+                                            <li class="menu-list-item">
+                                                <a th:href="@{/womenproduct}" th:text="|Nữ|" class="menu-list-link">Nữ</a>
+                                            </li>
+                                            <li class="menu-list-item">
+                                                <a th:href="@{/unisexproduct}" th:text="|Unisex|" class="menu-list-link">Unisex</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+</header>

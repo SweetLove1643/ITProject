@@ -37,4 +37,45 @@ public class Invoices {
 	
 	@Column(name = "PaymentMethod", nullable = false, columnDefinition = "nvarchar(255)")
 	private String paymentmethod;
+
+	public int getInvoiceid() {
+		return invoiceid;
+	}
+
+	public void setInvoiceid(int invoiceid) {
+		this.invoiceid = invoiceid;
+	}
+
+	public int getOrderid() {
+		return orderid;
+	}
+
+	public void setOrderid(int orderid) {
+		this.orderid = orderid;
+	}
+
+	public LocalDate getInvoicedate() {
+		return invoicedate;
+	}
+
+	public void setInvoicedate(LocalDate invoicedate) {
+		this.invoicedate = invoicedate;
+	}
+
+	public long getTotalamount() {
+		return totalamount;
+	}
+
+	public void setTotalamount(long totalamount) {
+		this.totalamount = totalamount;
+	}
+
+	public String getPaymentmethod() {
+		return paymentmethod;
+	}
+
+	public void setPaymentmethod(String paymentmethod) {
+		this.paymentmethod = paymentmethod;
+	}
+	
 }

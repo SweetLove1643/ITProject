@@ -32,4 +32,38 @@ public class Suppliers {
 	
 	@Column(name = "PhoneNumber")
 	private String phonenumber;
+
+	public int getSupplierid() {
+		return supplierid;
+	}
+
+	public void setSupplierid(int supplierid) {
+		this.supplierid = supplierid;
+	}
+
+	public String getSuppliername() {
+		return suppliername;
+	}
+
+	public void setSuppliername(String suppliername) {
+		this.suppliername = suppliername;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public String getPhonenumber() {
+		return phonenumber;
+	}
+
+	public void setPhonenumber(String phonenumber) {
+		this.phonenumber = phonenumber;
+	}
+	
+	
 }
