@@ -163,7 +163,7 @@ m245 91 l0 -30 -72 -3 -73 -3 0 36 0 36 73 -3 72 -3 0 -30z m29 -131 c10 -25
                          <div class="dropdown-menu" aria-labelledby="navbarDropdown-6">
                              <div class="row gutter-2">
                                  <div class="col-12">
-                                     <sec:authorize access="hasRole('customer')">
+                                     <sec:authorize access="anyRole('customer')">
                                          <ul class="menu-list">
                                              <li class="menu-list-item">
                                                  <a th:href="@{/login}" th:text="|Đăng nhập|" class="menu-list-link">Đăng nhập</a>
