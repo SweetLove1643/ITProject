@@ -1,20 +1,22 @@
-<div class="col-md-6 text-md-right" th:fragment="sortby" xmlns:th="https://www.thymeleaf.org">
+<div class="col-md-6 text-md-right" th:fragment="sortby"  xmlns:th="https://www.thymeleaf.org">
     <ul class="list list--horizontal list--separated text-muted fs-14">
         <li>
-            <span th:text="${currentPageSize} + ' from ' + ${totalItems} + ' items'">15 from 90 items</span>
+            <span>15 from 90 items</span>
         </li>
         <li>
-            <span th:text="|Sắp xếp theo|">Sắp xếp theo</span>
-            <span class="dropdown">
-                <a class="dropdown-toggle underline" th:href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" th:text="${currentSortOption}">
-                    Sản phẩm nổi bật
-                </a>
-                <span class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                    <a class="dropdown-item" th:each="sortOption : ${sortOptions}" th:classappend="${sortOption.active} ? 'active' : ''" th:href="@{'?sort=' + ${sortOption.value}}" th:text="${sortOption.label}">
-                        Sản phẩm nổi bật
-                    </a>
-                </span>
-            </span>
+                      <span>Sắp xếp theo
+                      <span class="dropdown">
+                        <a class="dropdown-toggle underline" href="#!" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          Sản phẩm nổi bật
+                        </a>
+
+                        <span class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <a class="dropdown-item active" href="#!">Sản phẩm nổi bật</a>
+                          <a class="dropdown-item" href="#!">Giá tăng dần</a>
+                          <a class="dropdown-item" href="#!">Giá giảm dần</a>
+                        </span>
+                      </span>
+                    </span>
         </li>
     </ul>
 </div>

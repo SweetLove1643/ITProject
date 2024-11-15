@@ -2,45 +2,36 @@
 <div class="tab-pane fade show active" id="sidebar-1-2" role="tabpanel" aria-labelledby="sidebar-1-2" th:fragment="favor"  xmlns:th="https://www.thymeleaf.org">
     <div class="row align-items-end">
         <div class="col">
-            <h2 th:text="|Yêu thích|">Yêu thích</h2>
+            <h2> Yêu thích </h2>
         </div>
         <div class="col text-right">
-            <a th:href="@{/add-all-to-cart}" class="underline">
-                <i class="icon-plus"></i>
-                <span th:text="|Thêm tất cả vào giỏ hàng|">Thêm tất cả vào giỏ hàng</span>
-            </a>
+            <a href="" class="underline"><i class="icon-plus"></i> Thêm tất cả vào giỏ hàng</a>
         </div>
     </div>
     <div class="row gutter-2">
-        <div class="col-md-6" th:each="product : ${favoriteProducts}">
+        <div class="col-md-6">
             <div class="card card-product">
                 <figure class="card-image">
-                    <a th:href="@{/remove-from-favorites/{id}(id=${product.id})}" class="action">
-                        <i class="icon-x"></i>
-                    </a>
-                    <a th:href="@{/product/{id}(id=${product.id})}">
-                        <img th:src="${product.image1}" alt="Image">
-                        <img th:src="${product.image2}" alt="Image">
+                    <a href="#!" class="action"><i class="icon-x"></i></a>
+                    <a href="#!">
+                        <img src="assets/images/demo/product-1.jpg" alt="Image">
+                        <img src="assets/images/demo/product-1-2.jpg" alt="Image">
                     </a>
                 </figure>
                 <div class="card-footer">
-                    <h3 class="card-title">
-                        <a th:href="@{/product/{id}(id=${product.id})}" th:text="${product.name}">Black IC Pendant Light</a>
-                    </h3>
-                    <span class="price" th:text="${product.price}">$410</span>
+                    <h3 class="card-title"><a href="">Black IC Pendant Light</a></h3>
+                    <span class="price">$410</span>
                 </div>
             </div>
             <fieldset class="my-1">
                 <div class="row">
                     <div class="col-12">
                         <div class="select-frame">
-                            <select class="custom-select custom-select-lg"
-                                    th:id="'custom-select-' + ${product.id}"
-                                    data-placeholder="Select colour">
+                            <select class="custom-select custom-select-lg" id="custom-select-1" data-placeholder="Select colour">
                                 <option label="color"></option>
-                                <option th:each="color : ${product.colors}"
-                                        th:value="${color}"
-                                        th:text="${color}"></option>
+                                <option value="1">Red</option>
+                                <option value="2">Green</option>
+                                <option value="3">Blue</option>
                             </select>
                         </div>
                     </div>
@@ -48,21 +39,61 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="select-frame">
-                            <select class="custom-select custom-select-lg"
-                                    th:id="'custom-select-' + ${product.id} + '-size'"
-                                    data-placeholder="Size">
+                            <select class="custom-select custom-select-lg" id="custom-select-1-2" data-placeholder="Size">
                                 <option label="size"></option>
-                                <option th:each="size : ${product.sizes}"
-                                        th:value="${size}"
-                                        th:text="${size}"></option>
+                                <option value="1">S</option>
+                                <option value="2">M</option>
+                                <option value="3">L</option>
+                                <option value="4">XL</option>
                             </select>
                         </div>
                     </div>
                 </div>
             </fieldset>
-            <a th:href="@{/add-to-cart/{id}(id=${product.id})}" class="btn btn-block btn-primary">
-                <span th:text="|Thêm vào vào giỏ hàng|">Thêm vào vào giỏ hàng</span>
-            </a>
+            <a href="" class="btn btn-block btn-primary">Thêm vào vào giỏ hàng </a>
+        </div>
+        <div class="col-md-6">
+            <div class="card card-product">
+                <figure class="card-image">
+                    <a href="#!" class="action"><i class="icon-x"></i></a>
+                    <a href="#!">
+                        <img src="assets/images/demo/product-2.jpg" alt="Image">
+                        <img src="assets/images/demo/product-2-2.jpg" alt="Image">
+                    </a>
+                </figure>
+                <div class="card-footer">
+                    <h3 class="card-title"><a href="">Black IC Pendant Light</a></h3>
+                    <span class="price">$410</span>
+                </div>
+            </div>
+            <fieldset class="my-1">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="select-frame">
+                            <select class="custom-select custom-select-lg" id="custom-select-2" data-placeholder="Select colour">
+                                <option label="color"></option>
+                                <option value="1">Red</option>
+                                <option value="2">Green</option>
+                                <option value="3">Blue</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="select-frame">
+                            <select class="custom-select custom-select-lg" id="custom-select-2-2" data-placeholder="Size">
+                                <option label="size"></option>
+                                <option value="1">S</option>
+                                <option value="2">M</option>
+                                <option value="3">L</option>
+                                <option value="4">XL</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+            <a href="" class="btn btn-block btn-primary">Thêm vào vào giỏ hàng</a>
         </div>
     </div>
 </div>

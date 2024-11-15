@@ -2,112 +2,47 @@
 
 <html lang="en" xmlns:th="https://www.thymeleaf.org">
 
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" th:href="@{assets/css/vendor.css}" />
-    <link rel="stylesheet" th:href="@{assets/css/style.css}" />
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-176058743-2"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="assets/css/vendor.css" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-176058743-2"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
 
-  gtag('config', 'UA-176058743-2');
-</script>
+    gtag('config', 'UA-176058743-2');
+  </script>
 
-    <title>Trang chủ</title>
-  </head>
-  <body>
+  <title>Trang chủ</title>
+</head>
+<body>
 
   <header th:replace="~{decorator/topbar_header :: topbarheader}"></header>
 
-    <!-- swiper -->
-    <div class="swiper-container">
-      <div class="swiper-wrapper">
-        <div class="swiper-slide">
-          <div class="image" style="background-image:url(assets/images/demo/sw1.jpg)"></div>
-          <div class="container">
-            <div class="row align-items-end vh-100">
-              <div class="col-lg-8 text-white" data-swiper-parallax-x="-100%">
-                <span class="eyebrow">Bộ sưu tập mới</span>
-                <h1 class="mb-3 text-uppercase">MANCERA PARIS</h1>
-                <a th:href="@{/productdetail}" class="btn btn-outline-white">Xem thêm</a>
-              </div>
-            </div>
-          </div>
-        </div>
 
-		<!-- https://orchard.vn/san-pham/bvlgari-aqva-pour-homme/ -->
-        <div class="swiper-slide">
-          <div class="image image--overlay" style="background-image:url(assets/images/demo/swi1.png)"></div>
-          <div class="container">
-            <div class="row align-items-end vh-100">
-              <div class="col-lg-8 text-white" data-swiper-parallax-x="-100%">
-                <span class="eyebrow">Sản phẩm mới</span>
-                <h1>AQVA POUR HOMME</h1>
-                <a th:href="@{/productdetail}" class="btn btn-outline-white">Mua ngay</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="swiper-footer">
-        <div class="container">
-          <div class="row justify-content-end align-items-center">
-            <div class="col-lg-6 text-right">
-              <div class="swiper-navigation">
-                <div class="swiper-button-prev"></div>
-                <div class="swiper-pagination"></div>
-                <div class="swiper-button-next"></div>
-              </div>
-            </div>
+<!-- swiper -->
+<div class="swiper-container">
+  <div class="swiper-wrapper">
+    <div class="swiper-slide">
+      <div class="image" style="background-image:url(assets/images/demo/sw1.jpg)"></div>
+      <div class="container">
+        <div class="row align-items-end vh-100">
+          <div class="col-lg-8 text-white" data-swiper-parallax-x="-100%">
+            <span class="eyebrow">Bộ sưu tập mới</span>
+            <h1 class="mb-3 text-uppercase">MANCERA PARIS</h1>
+            <a href="/productdetail" class="btn btn-outline-white">Xem thêm</a>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- nam và nữ -->
-    <section class="py-1">
-    
-    <!-- https://orchard.vn/san-pham/yves-saint-laurent-la-nuit-de-lhomme-edt/ -->
-      <div class="container-full">
-        <div class="row gutter-1">
-          <div class="col-md-6">
-            <div class="card card-tile">
-              <figure class="card-image equal vh-75">
-                <span class="image" style="background-image: url(assets/images/demo/spnam1.jpg)"></span>
-              </figure>
-              <div class="card-footer p-lg-5">
-                <div class="bg-white d-inline-block p-1">
-                  <h2 class="card-title">Nước Hoa Nam</h2>
-                  <a th:href="@{/menproduct}" class="underlined">Xem thêm</a>
-                </div>
-              </div>
-            </div>
-          </div>
-          
-          <!-- https://orchard.vn/san-pham/chanel-coco-mademoiselle-intense-edp/ -->
-          <div class="col-md-6">
-            <div class="card card-tile">
-              <figure class="card-image equal vh-75">
-                <span class="image" style="background-image: url(assets/images/demo/womanper.jpg)"></span>
-              </figure>
-              <div class="card-footer p-lg-5">
-                <div class="bg-white d-inline-block p-1">
-                  <h2 class="card-title">Nước Hoa Nữ</h2>
-                  <a th:href="@{/womenproduct}" class="underlined">Xem thêm</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- sản phẩm khác -->
-    <section class="py-lg-0 no-overflow">
+    <!-- https://orchard.vn/san-pham/bvlgari-aqva-pour-homme/ -->
+    <div class="swiper-slide">
+      <div class="image image--overlay" style="background-image:url(assets/images/demo/swi1.png)"></div>
       <div class="container">
         <div class="row align-items-center gutter-1">
           <div class="col-lg-3">
@@ -279,113 +214,32 @@
                 </div>
               </div>
             </div>
-
           </div>
         </div>
       </div>
-    </section>
+    </div>
 
-    <!-- thương hiệu -->
-    <section>
-      <div class="container">
-        <div class="row align-items-end">
-          <div class="col-8 col-md-6">
-            
-            <h2>Thương Hiệu</h2>
-          </div>
-          <div class="col-4 col-md-6 text-right">
 
-          </div>
-        </div>
-        
-       	<!-- https://cdn.orchard.vn/wp-content/uploads/2024/06/fragnance-logo-text-bvlgary.webp -->
-        <div class="row gutter-3">
-          <div class="col-6 col-lg-3 margin-logo">
-            <a th:href="@{/bvlgari}">
-              <figure class="category category--alt">
-                <div class="equal"><span class="background-img-logo" style="background-image: url(assets/images/demo/logo1.png)"></span>
-                </div>
-                <figcaption>Bvlgari</figcaption>
-              </figure>
-            </a>
-          </div>
-          
-          <!-- https://cdn.orchard.vn/wp-content/uploads/2024/06/fragnance-logo-text-ysl.webp -->
-          <div class="col-6 col-lg-3 margin-logo">
-            <a th:href="@{/yves}">
-              <figure class="category category--alt">
-                <div class="equal"><span class="background-img-logo" style="background-image: url(assets/images/demo/logo13.webp)"></span></div>
-                <figcaption>Yves Saint Laurent</figcaption>
-              </figure>
-            </a>
-          </div>
-          
-          <!-- https://cdn.orchard.vn/wp-content/uploads/2024/06/fragnance-logo-text-chanel.webp -->
-          <div class="col-6 col-lg-3 margin-logo">
-            <a th:href="@{/chanel}">
-              <figure class="category category--alt">
-                <div class="equal"><span class="background-img-logo" style="background-image: url(assets/images/demo/logo3.png)"></span></div>
-                <figcaption>Chanel</figcaption>
-              </figure>
-            </a>
-          </div>
-          
-          <!-- https://cdn.orchard.vn/wp-content/uploads/2024/06/fragnance-logo-text-dior.webp -->
-          <div class="col-6 col-lg-3 margin-logo">
-            <a th:href="@{/dior}">
-              <figure class="category category--alt">
-                <div class="equal"><span class="background-img-logo" style="background-image: url(assets/images/demo/logo4.png)"></span></div>
-                <figcaption>Dior</figcaption>
-              </figure>
-            </a>
-          </div>
-          
-          <!-- https://cdn.orchard.vn/wp-content/uploads/2024/06/fragnance-logo-text-kilian.webp -->
-          <div class="col-6 col-lg-3 margin-logo-bottom">
-            <a th:href="@{/kilian}">
-              <figure class="category category--alt">
-                <div class="equal"><span class="background-img-logo" style="background-image: url(assets/images/demo/logo11.webp)"></span></div>
-                <figcaption>Kilian</figcaption>
-              </figure>
-            </a>
-          </div>
-          
-          <!-- https://cdn.orchard.vn/wp-content/uploads/2024/06/fragnance-logo-text-versace.webp -->
-          <div class="col-6 col-lg-3 margin-logo-bottom">
-            <a th:href="@{/versace}">
-              <figure class="category category--alt">
-                <div class="equal"><span class="background-img-logo" style="background-image: url(assets/images/demo/logo6.png)"></span></div>
-                <figcaption>Versace</figcaption>
-              </figure>
-            </a>
-          </div>
-          
-          <!-- https://cdn.orchard.vn/wp-content/uploads/2024/06/fragnance-logo-text-jean-paul-gaultier.webp -->
-          <div class="col-6 col-lg-3 margin-logo-bottom">
-            <a th:href="@{/jean}">
-              <figure class="category category--alt">
-                <div class="equal"><span class="background-img-logo" style="background-image: url(assets/images/demo/logo7.png)"></span></div>
-                <figcaption>Jean Paul Gaultier</figcaption>
-              </figure>
-            </a>
-          </div>
-          
-          <!-- https://cdn.orchard.vn/wp-content/uploads/2024/06/fragnance-logo-text-tom-ford.webp -->
-          <div class="col-6 col-lg-3  margin-logo-bottom">
-            <a th:href="@{/tomford}">
-              <figure class="category category--alt">
-                <div class="equal"><span class="background-img-logo" style="background-image: url(assets/images/demo/logo8.png)"></span></div>
-                <figcaption>Tom Ford</figcaption>
-              </figure>
-            </a>
+  </div>
+  <div class="swiper-footer">
+    <div class="container">
+      <div class="row justify-content-end align-items-center">
+        <div class="col-lg-6 text-right">
+          <div class="swiper-navigation">
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-pagination"></div>
+            <div class="swiper-button-next"></div>
           </div>
         </div>
       </div>
-    </section>
+    </div>
+  </div>
+</div>
 
   <footer th:replace="~{decorator/footer :: footer}"></footer>
 
     <!-- <script th:src="~{assets/js/vendor.min.js}"></script> -->
     <!-- <script th:src="~{assets/js/app.js}"></script> -->
   </body>
+
 </html>
