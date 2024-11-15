@@ -1,59 +1,150 @@
-<div class="tab-pane fade" id="sidebar-1-1" role="tabpanel" aria-labelledby="sidebar-1-1" th:fragment="orders" xmlns:th="https://www.thymeleaf.org">
+<!-- orders -->
+<div class="tab-pane fade" id="sidebar-1-1" role="tabpanel" aria-labelledby="sidebar-1-1" th:fragment="orders"  xmlns:th="https://www.thymeleaf.org">
     <div class="row">
         <div class="col">
-            <h2 th:text="|Orders|">Orders</h2>
+            <h2>Orders</h2>
         </div>
     </div>
     <div class="row gutter-2">
-        <div class="col-12" th:each="order : ${orders}">
+        <div class="col-12">
             <div class="card card-data bordered">
                 <div class="card-header">
                     <div class="row align-items-center">
                         <div class="col">
-                            <h2 class="card-title fs-18">
-                                <a th:href="@{'/order/' + ${order.id}}" th:text="'Order ' + ${order.id}">Order 12339201</a>
-                            </h2>
+                            <h2 class="card-title fs-18"><a href="">Order 12339201</a></h2>
                         </div>
                         <div class="col text-right">
-                            <span class="dropdown">
-                                <button class="btn btn-lg btn-white btn-ico" th:id="'dropdown-' + ${order.id}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" type="button">
-                                    <i class="icon-more-vertical"></i>
-                                </button>
-                                <span class="dropdown-menu" th:aria-labelledby="'dropdown-' + ${order.id}">
-                                    <a class="dropdown-item" th:href="@{'/order/action/' + ${order.id}}" th:text="|Action|">Action</a>
-                                    <a class="dropdown-item" th:href="@{'/order/another-action/' + ${order.id}}" th:text="|Another action|">Another action</a>
-                                    <a class="dropdown-item" th:href="@{'/order/something-else/' + ${order.id}}" th:text="|Something else here|">Something else here</a>
+                              <span class="dropdown">
+                                <button class="btn btn-lg btn-white btn-ico" id="dropdown-1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" type="button"><i class="icon-more-vertical"></i></button>
+                                <span class="dropdown-menu" aria-labelledby="dropdown-1">
+                                  <a class="dropdown-item" href="#!">Action</a>
+                                  <a class="dropdown-item" href="#!">Another action</a>
+                                  <a class="dropdown-item" href="#!">Something else here</a>
                                 </span>
-                            </span>
+                              </span>
                         </div>
                     </div>
                 </div>
                 <div class="card-body">
                     <ul class="order-preview">
-                        <li th:each="product : ${order.products}">
-                            <a th:href="@{'/product/' + ${product.id}}" th:title="${product.name}" data-toggle="tooltip" data-placement="top">
-                                <img th:src="${product.image}" th:alt="${product.name}">
-                            </a>
-                        </li>
+                        <li><a href="product-1.html" title="Fawn Wool / Natural Mammoth Chair" data-toggle="tooltip" data-placement="top"><img src="assets/images/demo/product-1.jpg" alt="Fawn Wool / Natural Mammoth Chair"></a></li>
+                        <li><a href="product-1.html" title="Dark Stained NY11 Dining Chair" data-toggle="tooltip" data-placement="top"><img src="assets/images/demo/product-2.jpg" alt="Dark Stained NY11 Dining Chair"></a></li>
+                        <li><a href="product-1.html" title="Dark Stained NY11 Dining Chair" data-toggle="tooltip" data-placement="top"><img src="assets/images/demo/product-3.jpg" alt="Dark Stained NY11 Dining Chair"></a></li>
                     </ul>
                 </div>
                 <div class="card-body">
                     <ul class="order-meta">
                         <li>
-                            <h5 class="order-meta-title" th:text="|Order #|">Order #</h5>
-                            <span th:text="${order.id}">12339201</span>
+                            <h5 class="order-meta-title">Order #</h5>
+                            <span>12339201</span>
                         </li>
                         <li>
-                            <h5 class="order-meta-title" th:text="|Shipped Date|">Shipped Date</h5>
-                            <span th:text="${order.shippedDate}">23 March 2019</span>
+                            <h5 class="order-meta-title">Shipped Date</h5>
+                            <span>23 March 2019</span>
                         </li>
                         <li>
-                            <h5 class="order-meta-title" th:text="|Total|">Total</h5>
-                            <span th:text="${order.total}">$78.00</span>
+                            <h5 class="order-meta-title">Total</h5>
+                            <span>$78.00</span>
                         </li>
                         <li>
-                            <h5 class="order-meta-title" th:text="|Status|">Status</h5>
-                            <span th:classappend="${order.statusClass}" th:text="${order.status}">Processing</span>
+                            <h5 class="order-meta-title">Status</h5>
+                            <span class="text-muted">Processing</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="card card-data bordered">
+                <div class="card-header">
+                    <div class="row align-items-center">
+                        <div class="col">
+                            <h2 class="card-title fs-18"><a href="">Order 12339201</a></h2>
+                        </div>
+                        <div class="col text-right">
+                              <span class="dropdown">
+                                <button class="btn btn-lg btn-white btn-ico" id="dropdown-2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" type="button"><i class="icon-more-vertical"></i></button>
+                                <span class="dropdown-menu" aria-labelledby="dropdown-2">
+                                  <a class="dropdown-item" href="#!">Action</a>
+                                  <a class="dropdown-item" href="#!">Another action</a>
+                                  <a class="dropdown-item" href="#!">Something else here</a>
+                                </span>
+                              </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <ul class="order-preview">
+                        <li><a href="product-1.html" title="Fawn Wool / Natural Mammoth Chair" data-toggle="tooltip" data-placement="top"><img src="assets/images/demo/product-1.jpg" alt="Fawn Wool / Natural Mammoth Chair"></a></li>
+                        <li><a href="product-1.html" title="Dark Stained NY11 Dining Chair" data-toggle="tooltip" data-placement="top"><img src="assets/images/demo/product-2.jpg" alt="Dark Stained NY11 Dining Chair"></a></li>
+                        <li><a href="product-1.html" title="Dark Stained NY11 Dining Chair" data-toggle="tooltip" data-placement="top"><img src="assets/images/demo/product-3.jpg" alt="Dark Stained NY11 Dining Chair"></a></li>
+                    </ul>
+                </div>
+                <div class="card-body">
+                    <ul class="order-meta">
+                        <li>
+                            <h5 class="order-meta-title">Order #</h5>
+                            <span>12339201</span>
+                        </li>
+                        <li>
+                            <h5 class="order-meta-title">Shipped Date</h5>
+                            <span>23 March 2019</span>
+                        </li>
+                        <li>
+                            <h5 class="order-meta-title">Total</h5>
+                            <span>$78.00</span>
+                        </li>
+                        <li>
+                            <h5 class="order-meta-title">Status</h5>
+                            <span class="text-muted">Processing</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="card card-data bordered">
+                <div class="card-header">
+                    <div class="row align-items-center">
+                        <div class="col">
+                            <h2 class="card-title fs-18"><a href="">Order 12339201</a></h2>
+                        </div>
+                        <div class="col text-right">
+                              <span class="dropdown">
+                                <button class="btn btn-lg btn-white btn-ico" id="dropdown-3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" type="button"><i class="icon-more-vertical"></i></button>
+                                <span class="dropdown-menu" aria-labelledby="dropdown-3">
+                                  <a class="dropdown-item" href="#!">Action</a>
+                                  <a class="dropdown-item" href="#!">Another action</a>
+                                  <a class="dropdown-item" href="#!">Something else here</a>
+                                </span>
+                              </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <ul class="order-preview">
+                        <li><a href="product-1.html" title="Fawn Wool / Natural Mammoth Chair" data-toggle="tooltip" data-placement="top"><img src="assets/images/demo/product-1.jpg" alt="Fawn Wool / Natural Mammoth Chair"></a></li>
+                        <li><a href="product-1.html" title="Dark Stained NY11 Dining Chair" data-toggle="tooltip" data-placement="top"><img src="assets/images/demo/product-2.jpg" alt="Dark Stained NY11 Dining Chair"></a></li>
+                        <li><a href="product-1.html" title="Dark Stained NY11 Dining Chair" data-toggle="tooltip" data-placement="top"><img src="assets/images/demo/product-3.jpg" alt="Dark Stained NY11 Dining Chair"></a></li>
+                    </ul>
+                </div>
+                <div class="card-body">
+                    <ul class="order-meta">
+                        <li>
+                            <h5 class="order-meta-title">Order #</h5>
+                            <span>12339201</span>
+                        </li>
+                        <li>
+                            <h5 class="order-meta-title">Shipped Date</h5>
+                            <span>23 March 2019</span>
+                        </li>
+                        <li>
+                            <h5 class="order-meta-title">Total</h5>
+                            <span>$78.00</span>
+                        </li>
+                        <li>
+                            <h5 class="order-meta-title">Status</h5>
+                            <span class="text-muted">Processing</span>
                         </li>
                     </ul>
                 </div>
