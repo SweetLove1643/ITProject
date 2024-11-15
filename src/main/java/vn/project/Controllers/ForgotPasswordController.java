@@ -1,4 +1,4 @@
-package vn.project.Controllers.CustomerControllers;
+package vn.project.Controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,7 +11,7 @@ public class ForgotPasswordController {
 	@GetMapping
 	
 	public String index() {
-		return "customer/forgotpass";
+		return "commons/forgotpass";
 	}
 	
 }

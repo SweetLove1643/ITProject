@@ -2,12 +2,12 @@ package vn.project.Service;
 
 import java.util.List;
 
+
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
 import vn.project.Entity.Users;
-
 @Service
 public interface IUserService {
 
@@ -16,8 +16,6 @@ public interface IUserService {
 	Optional<Users> findById(Integer id);
 
 	List<Users> findAll();
-
-	<S extends Users> S save(S entity);
 
 	Optional<Users> findByUsername(String keyword);
 
@@ -30,6 +28,12 @@ public interface IUserService {
 	void deleteByUsername(String username);
 
 	void deleteById(int id);
+
+	Optional<Users> findByEmail(String email);
+
+	Optional<Users> findByPhonenumber(String phonenumber);
+
+	<S extends Users> S save(S entity);
 
 	
 	

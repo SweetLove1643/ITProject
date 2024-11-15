@@ -18,6 +18,10 @@ public interface IUserRepository extends JpaRepository<Users, Integer>{
 	  
 	  Optional<Users> findByUsername(String keyword);
 	  
+	  Optional<Users> findByPhonenumber(String phonenumber);
+	  
+	  Optional<Users> findByEmail(String email);
+	  
 	  void deleteById(int id);
 	  
 	  void deleteByUsername(String username);

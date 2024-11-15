@@ -33,36 +33,4 @@ public class Order_Products {
 	@Column(name = "Quantity", nullable = false)
 	private int quantity;
 
-	public int getOrder_productid() {
-		return order_productid;
-	}
-
-	public void setOrder_productid(int order_productid) {
-		this.order_productid = order_productid;
-	}
-
-	public int getOrderid() {
-		return orderid;
-	}
-
-	public void setOrderid(int orderid) {
-		this.orderid = orderid;
-	}
-
-	public int getProductid() {
-		return productid;
-	}
-
-	public void setProductid(int productid) {
-		this.productid = productid;
-	}
-
-	public int getQuantity() {
-		return quantity;
-	}
-
-	public void setQuantity(int quantity) {
-		this.quantity = quantity;
-	}
-	
 }

@@ -18,14 +18,12 @@ import vn.project.Service.IUserService;
 @RequestMapping("/login")
 public class LoginController {
 
-	
-
 	@Autowired
 	IUserService userservice;
 	
 	@GetMapping("")
 	public String index() {
-		return "customer/login";
+		return "commons/login";
 	}
 	
 	@PostMapping("")
@@ -33,7 +31,6 @@ public class LoginController {
                         @RequestParam String password, 
                         Model model) {
 		boolean isAuthenticated = false;
-        // Xử lí logic
 		
 		Optional<Users> optinalusers = userservice.findByUsername(email);
 		
@@ -45,10 +42,10 @@ public class LoginController {
         
         if (isAuthenticated) {
             model.addAttribute("message", "Đăng nhập thành công!");
-            return "customer/home";
+            return "commons/home";
         } else {
-            model.addAttribute("error", "Email hoặc mật khẩu không đúng!");
-            return "customer/login";
+            model.addAttribute("message", "Email hoặc mật khẩu không đúng!");
+            return "commons/login";
         }
     }
 	

@@ -1,6 +1,7 @@
 package vn.project.Service.Impl;
 
 import java.util.List;
+
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +39,7 @@ public class UserService implements IUserService {
 
 	@Override
 	public <S extends Users> S save(S entity) {
+		
 		return userRepository.save(entity);
 	}
 
@@ -69,6 +71,16 @@ public class UserService implements IUserService {
 	@Override
 	public void deleteAll() {
 		userRepository.deleteAll();
+	}
+
+	@Override
+	public Optional<Users> findByPhonenumber(String phonenumber) {
+		return userRepository.findByPhonenumber(phonenumber);
+	}
+
+	@Override
+	public Optional<Users> findByEmail(String email) {
+		return userRepository.findByEmail(email);
 	}
 
 	

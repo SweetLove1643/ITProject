@@ -27,21 +27,5 @@ public class Categories {
 	@Column(name = "CategoryName", nullable = true, columnDefinition = "nvarchar(255)")
 	private String categoryname;
 
-	public int getCategoryid() {
-		return categoryid;
-	}
 
-	public void setCategoryid(int categoryid) {
-		this.categoryid = categoryid;
-	}
-
-	public String getCategoryname() {
-		return categoryname;
-	}
-
-	public void setCategoryname(String categoryname) {
-		this.categoryname = categoryname;
-	}
-	
-	
 }

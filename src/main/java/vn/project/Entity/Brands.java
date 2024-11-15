@@ -27,21 +27,5 @@ public class Brands {
 	@Column(name = "BrandName", nullable = false, columnDefinition = "nvarchar(255)")
 	private String brandname;
 
-	public int getBrandid() {
-		return brandid;
-	}
-
-	public void setBrandid(int brandid) {
-		this.brandid = brandid;
-	}
-
-	public String getBrandname() {
-		return brandname;
-	}
-
-	public void setBrandname(String brandname) {
-		this.brandname = brandname;
-	}
-	
 
 }

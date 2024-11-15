@@ -21,7 +21,7 @@
   </head>
   <body>
 
-  <header th:replace="home/topbar&header :: topbar&header"></header>
+  <header th:replace="~{decorator/topbar_header :: topbarheader}"></header>
 
     <!-- swiper -->
     <div class="swiper-container">
@@ -190,7 +190,7 @@
                         <img th:src="@{assets/images/demo/niche1-1.jpg}" height="534" alt="Image">
                       </a>
                     </figure>
-                    <a th:href="@{}" class="card-body">
+                    <a th:href="@{#!}" class="card-body">
                       <h3 class="card-title">Tom Ford Black Orchid Parfum</h3>
                       <span class="price">4.080.000 ₫</span>
                     </a>
@@ -205,7 +205,7 @@
                         <img th:src="@{assets/images/demo/ni2-2.png}" height="534" alt="Image">
                       </a>
                     </figure>
-                    <a th:href="@{}" class="card-body">
+                    <a th:href="@{#!}" class="card-body">
                       <h3 class="card-title">Kilian Angels’ Share</h3>
                       <span class="price">4.280.000 ₫</span>
                     </a>
@@ -220,7 +220,7 @@
                         <img th:src="@{assets/images/demo/niche3-1.jpg}" height="534" alt="Image">
                       </a>
                     </figure>
-                    <a th:href="@{}" class="card-body">
+                    <a th:href="@{#!}" class="card-body">
                       <h3 class="card-title">Kilian Good Girl Gone Bad (with Coffret)</h3>
                       <span class="price">6.080.000 ₫</span>
                     </a>
@@ -241,7 +241,7 @@
                         <img th:src="@{assets/images/demo/mi-2.png}" height="534" alt="Image">
                       </a>
                     </figure>
-                    <a th:href="@{}" class="card-body">
+                    <a th:href="@{#!}" class="card-body">
                       <h3 class="card-title">Versace Pour Homme Mini</h3>
                       <span class="price">280.000 ₫</span>
                     </a>
@@ -256,7 +256,7 @@
                         <img th:src="@{assets/images/demo/mi-2-2.png}" height="534" alt="Image">
                       </a>
                     </figure>
-                    <a th:href="@{}" class="card-body">
+                    <a th:href="@{#!}" class="card-body">
                       <h3 class="card-title">Dior J’Adore Mini</h3>
                       <span class="price">380.000 ₫</span>
                     </a>
@@ -271,7 +271,7 @@
                         <img th:src="@{assets/images/demo/mi3-2.png}" height="534" alt="Image">
                       </a>
                     </figure>
-                    <a th:href="@{}" class="card-body">
+                    <a th:href="@{#!}" class="card-body">
                       <h3 class="card-title">Jean Paul Gaultier Scandal Mini</h3>
                       <span class="price">420.000 ₫</span>
                     </a>
@@ -383,9 +383,9 @@
       </div>
     </section>
 
-  <footer th:replace="home/footer :: footer"></footer>
+  <footer th:replace="~{decorator/footer :: footer}"></footer>
 
-    <script src="assets/js/vendor.min.js"></script>
-    <script src="assets/js/app.js"></script>
+    <!-- <script th:src="~{assets/js/vendor.min.js}"></script> -->
+    <!-- <script th:src="~{assets/js/app.js}"></script> -->
   </body>
 </html>

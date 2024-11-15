@@ -10,7 +10,7 @@
 </head>
 <body class="bg-light">
 
-<div th:replace="~{home/header :: header}"></div>
+<div th:replace="~{decorator/header :: header}"></div>
 
 <!-- login -->
 <section class="sectionlog">
@@ -68,7 +68,7 @@
 </section>
 
 
-<footer th:replace="home/footer :: footer"></footer>
+<footer th:replace="~{decorator/footer :: footer}"></footer>
 
 <script th:src="@{/assets/js/vendor.min.js}"></script>
 <script th:src="@{/assets/js/app.js}"></script>
