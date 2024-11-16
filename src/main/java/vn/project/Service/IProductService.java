@@ -31,4 +31,10 @@ public interface IProductService {
 	public void createProduct(Products product);
 
 	List<ProductsDTO> findbyBrandDTO(String brand);
+
+	List<ProductsDTO> findbyCategoryDTO(String category);
+
+	List<Products> findbyCategory(String category);
+
+	ProductsDTO findbyIdDTO(int id);
 }

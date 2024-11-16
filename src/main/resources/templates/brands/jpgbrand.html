@@ -5,11 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link th:href="@{/assets/css/vendor.css}" rel="stylesheet" />
   <link th:href="@{/assets/css/style.css}" rel="stylesheet" />
-  <title th:text="|Thương hiệu Bvlgari|">Thương hiệu Bvlgari</title>
+  <title th:text="|Thương hiệu Jean Paul Gaultier|">Thương hiệu Jean Paul Gaultier</title>
 </head>
 <body>
 
-<header th:replace="home/header :: header"></header>
+<header th:replace="~{decorator/header :: header}"></header>
 
 <section style="padding: 2.5rem 0;"></section>
 
@@ -21,7 +21,7 @@
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb">
             <li class="breadcrumb-item"><a th:href="@{/home}">Trang chủ</a></li>
-            <li class="breadcrumb-item active" aria-current="page">BVLGARI</li>
+            <li class="breadcrumb-item active" aria-current="page" th:text="|JPG|">JPG</li>
           </ol>
         </nav>
       </div>
@@ -37,14 +37,12 @@
       <!-- sidebar -->
       <aside class="col-lg-3 sidebar" th:fragment="filter">
         <div class="widget">
-          <span class="widget-title">Bộ lọc</span>
+          <span class="widget-title" th:text="|Bộ lọc|">Bộ lọc</span>
           <div class="accordion" id="accordion-1">
             <div class="card">
               <div class="card-header" id="heading-1-4">
                 <h5 class="mb-0">
-                  <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse-1-4" aria-expanded="false" aria-controls="collapse-1-4">
-                    Mức giá
-                  </button>
+                  <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse-1-4" aria-expanded="false" aria-controls="collapse-1-4" th:text="|Mức giá|">Mức giá</button>
                 </h5>
               </div>
               <div id="collapse-1-4" class="collapse" aria-labelledby="heading-1-4">
@@ -61,21 +59,20 @@
       <div class="col-lg-9">
         <div class="row gutter-1 align-items-end">
           <div class="col-md-6">
-            <h1 th:text="BVLGARI">BVLGARI</h1>
+            <h1 th:text="|Jean Paul Gaultier|">Jean Paul Gaultier</h1>
           </div>
-          <div th:replace="home/sortby :: sortby"></div>
+          <div th:replace="~{decorator/sortby :: sortby}"></div>
         </div>
 
-        <div th:replace="home/product-listing :: product-listing"></div>
+        <div th:replace="~{decorator/product-listing :: product-listing}"></div>
 
-        <div th:replace="home/paging :: paging"></div>
-
+        <div th:replace="~{decorator/paging :: paging}"></div>
       </div>
     </div>
   </div>
 </section>
 
-<footer th:replace="home/footer :: footer"></footer>
+<footer th:replace="~{decorator/footer :: footer}"></footer>
 
 <script th:src="@{/assets/js/vendor.min.js}"></script>
 <script th:src="@{/assets/js/app.js}"></script>

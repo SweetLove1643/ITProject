@@ -10,7 +10,7 @@
 </head>
 <body>
 
-<header th:replace="home/header :: header"></header>
+<header th:replace="~{decorator/header :: header}"></header>
 
 <section style="padding: 2.5rem 0;"></section>
 
@@ -137,7 +137,7 @@
     </div>
 </section>
 
-<footer th:replace="home/footer :: footer"></footer>
+<footer th:replace="~{decorator/footer :: footer}"></footer>
 
 <script th:src="@{/assets/js/vendor.min.js}"></script>
 <script th:src="@{/assets/js/app.js}"></script>

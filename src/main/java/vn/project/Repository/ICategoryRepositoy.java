@@ -11,5 +11,7 @@ import java.util.List;
 public interface ICategoryRepositoy extends JpaRepository<Categories, Integer>{
 	
 	List<Categories> findByCategoryname(String categoryname);
+	
+	List<Categories> findByCategorynameContaining(String categoryname);
 
 }
