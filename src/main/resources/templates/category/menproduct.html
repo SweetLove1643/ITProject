@@ -38,7 +38,7 @@
     <div class="row gutter-4">
 
       <!-- sidebar -->
-      <div th:replace="home/filter :: filter"></div>
+      <div th:replace="decorator/filter :: filter"></div>
 
       <!-- content -->
       <div class="col-lg-9">
@@ -46,12 +46,12 @@
           <div class="col-md-6">
             <h1 th:text="|Nước hoa Nam|">Nước hoa Nam</h1>
           </div>
-          <div th:replace="home/sortby :: sortby"></div>
+          <div th:replace="decorator/sortby :: sortby"></div>
         </div>
 
-        <div th:replace="home/product-listing :: product-listing"></div>
+        <div th:replace="decorator/product-listing :: product-listing"></div>
 
-        <div th:replace="home/paging :: paging"></div>
+        <div th:replace="decorator/paging :: paging"></div>
 
       </div>
     </div>

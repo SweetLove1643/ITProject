@@ -1,9 +1,9 @@
 <!-- header -->
-<header class="header header-absolute" th:fragment="header"  xmlns:th="https://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<header class="header header-absolute" th:fragment="topbar&header" xmlns:th="https://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
     <div class="container-fluid">
         <nav class="navbar navbar-expand-lg navbar-light">
             <!-- logo -->
-            <a href="/home" class="navbar-brand order-1 order-lg-2">
+            <a th:href="@{/home}" class="navbar-brand order-1 order-lg-2">
                 <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
                      width="200.000000pt" height="35.000000pt" viewBox="0 0 562.000000 73.000000"
                      preserveAspectRatio="xMidYMid meet">
@@ -51,161 +51,85 @@ m245 91 l0 -30 -72 -3 -73 -3 0 36 0 36 73 -3 72 -3 0 -30z m29 -131 c10 -25
             <div class="collapse navbar-collapse order-4 order-lg-1" id="navbarMenu">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="/home">
+                        <a class="nav-link" th:href="@{/home}">
                             Trang chủ
                         </a>
                     </li>
 
-                     <li class="nav-item dropdown dropdown-lg dropdown-hover">
-                         <a class="nav-link dropdown-toggle" th:href="@{/brand}" id="navbarDropdown-20" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" th:text="|Thương hiệu|">Thương hiệu</a>
-                         <div class="dropdown-menu" aria-labelledby="navbarDropdown-20">
-                             <div class="container-md">
-                                 <div class="row">
-                                     <div class="col">
-                                         <ul class="menu-list">
-                                             <li class="menu-list-item">
-                                                 <a th:href="@{/bvlgari}" th:text="|BVLGARI|" class="menu-list-link">BVLGARI</a>
-                                             </li>
-                                             <li class="menu-list-item">
-                                                 <a th:href="@{/kilian}" th:text="|KILIAN|" class="menu-list-link">KILIAN</a>
-                                             </li>
-                                         </ul>
-                                     </div>
-                                     <div class="col">
-                                         <ul class="menu-list">
-                                             <li class="menu-list-item">
-                                                 <a th:href="@{/ysl}" th:text="|YVES SAINT LAURENT|" class="menu-list-link">YVES SAINT LAURENT</a>
-                                             </li>
-                                             <li class="menu-list-item">
-                                                 <a th:href="@{/versace}" th:text="|VERSACE|" class="menu-list-link">VERSACE</a>
-                                             </li>
-                                         </ul>
-                                     </div>
-                                     <div class="col">
-                                         <ul class="menu-list">
-                                             <li class="menu-list-item">
-                                                 <a th:href="@{/chanel}" th:text="|CHANEL|" class="menu-list-link">CHANEL</a>
-                                             </li>
-                                             <li class="menu-list-item">
-                                                 <a th:href="@{/jpg}" th:text="|JEAN PAUL GAULTIER|" class="menu-list-link">JEAN PAUL GAULTIER</a>
-                                             </li>
-                                         </ul>
-                                     </div>
-                                     <div class="col">
-                                         <ul class="menu-list">
-                                             <li class="menu-list-item">
-                                                 <a th:href="@{/dior}" th:text="|DIOR|" class="menu-list-link">DIOR</a>
-                                             </li>
-                                             <li class="menu-list-item">
-                                                 <a th:href="@{/tomford}" th:text="|TOM FORD|" class="menu-list-link">TOM FORD</a>
-                                             </li>
-                                         </ul>
-                                     </div>
-                                 </div>
-                             </div>
-                         </div>
-                     </li>
+                    <li class="nav-item dropdown dropdown-lg dropdown-hover">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdown-20" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Thương hiệu
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown-20">
 
-                     <li class="nav-item dropdown dropdown-sm dropdown-hover">
-                         <a class="nav-link dropdown-toggle" th:href="@{/product}" id="navbarDropdown-2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" th:text="|Sản phẩm|">Sản phẩm</a>
-                         <div class="dropdown-menu" aria-labelledby="navbarDropdown-2">
-                             <div class="container">
-                                 <div class="row">
-                                     <div class="col">
-                                         <span class="eyebrow text-muted mb-1" th:text="|Nước Hoa|">Nước Hoa</span>
-                                         <ul class="menu-list">
-                                             <li class="menu-list-item">
-                                                 <a th:href="@{/menproduct}" th:text="|Nam|" class="menu-list-link">Nam</a>
-                                             </li>
-                                             <li class="menu-list-item">
-                                                 <a th:href="@{/womenproduct}" th:text="|Nữ|" class="menu-list-link">Nữ</a>
-                                             </li>
-                                             <li class="menu-list-item">
-                                                 <a th:href="@{/unisexproduct}" th:text="|Unisex|" class="menu-list-link">Unisex</a>
-                                             </li>
-                                             <li class="menu-list-item">
-                                                 <a th:href="@{/miniproduct}" th:text="|Mini|" class="menu-list-link">Mini</a>
-                                             </li>
-                                             <li class="menu-list-item">
-                                                 <a th:href="@{/nicheproduct}" th:text="|NICHE|" class="menu-list-link">NICHE</a>
-                                             </li>
-                                         </ul>
-                                     </div>
-                                 </div>
-                             </div>
-                         </div>
-                     </li>
+                            <div class="container-md">
+                                <div class="row ">
+                                    <div class="col">
+                                        <ul class="menu-list">
+                                            <li class="menu-list-item"><a th:href="@{/bvlgari}" class="menu-list-link">BVLGARI	</a>
+                                            <li class="menu-list-item"><a th:href="@{/kilian}" class="menu-list-link">KILIAN	</a>
 
-                     <li class="nav-item dropdown-sm dropdown-hover">
-                         <a class="nav-link dropdown-toggle" th:href="@{#!}" id="navbarDropdown-3" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" th:text="|Liên hệ|">Liên hệ</a>
-                     </li>
-                 </ul>
-             </div>
+                                        </ul>
+                                    </div>
+                                    <div class="col">
+                                        <ul class="menu-list">
+                                            <li class="menu-list-item"><a th:href="@{/ysl}" class="menu-list-link">YVES SAINT LAURENT	</a>
+                                            <li class="menu-list-item"><a th:href="@{/versace}" class="menu-list-link">VERSACE	</a>
 
-                     <!-- users -->
-                     <li class="nav-item dropdown dropdown-sm dropdown-hover">
-                         <a class="nav-icon dropdown-toggle" id="navbarDropdown-6" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                             <i class="icon-user d-none d-lg-inline-block"></i>
-                             <span class="d-inline-block d-lg-none" th:text="|Account|">Account</span>
-                         </a>
-                         <div class="dropdown-menu" aria-labelledby="navbarDropdown-6">
-                             <div class="row gutter-2">
-                                 <div class="col-12">
-                                     <sec:authorize access="anyRole('customer')">
-                                         <ul class="menu-list">
-                                             <li class="menu-list-item">
-                                                 <a th:href="@{/login}" th:text="|Đăng nhập|" class="menu-list-link">Đăng nhập</a>
-                                             </li>
-                                             <li class="menu-list-item">
-                                                 <a th:href="@{/register}" th:text="|Tạo tài khoản|" class="menu-list-link">Tạo tài khoản</a>
-                                             </li>
-                                         </ul>
-                                     </sec:authorize>
-                                     <sec:authorize access="hasRole('user')">
-                                         <ul class="menu-list">
-                                             <li class="menu-list-item">
-                                                 <a th:href="@{/login}" th:text="|Thông tin tài khoản|" class="menu-list-link">Thông tin tài khoản</a>
-                                             </li>
-                                             <li class="menu-list-item">
-                                                 <a th:href="@{/register}" th:text="|Tạo tài khoản|" class="menu-list-link">Tạo tài khoản</a>
-                                             </li>
-                                         </ul>
-                                     </sec:authorize>
-                                     <sec:authorize access="hasRole('admin')">
-                                         <ul class="menu-list">
-                                             <li class="menu-list-item">
-                                                 <a th:href="@{/login}" th:text="|Thông tin tài khoản|" class="menu-list-link">Thông tin tài khoản</a>
-                                             </li>
-                                             <li class="menu-list-item">
-                                                 <a th:href="@{/register}" th:text="|Tạo tài khoản|" class="menu-list-link">Tạo tài khoản</a>
-                                             </li>
-                                         </ul>
-                                     </sec:authorize>
-                                 </div>
-                             </div>
-                         </div>
-                     </li>
+                                        </ul>
+                                    </div>
+                                    <div class="col">
+                                        <ul class="menu-list">
+                                            <li class="menu-list-item"><a th:href="@{/chanel}" class="menu-list-link">CHANEL	</a>
+                                            <li class="menu-list-item"><a th:href="@{/jpg}" class="menu-list-link">JEAN PAUL GAULTIER	</a>
 
-                     <!-- search -->
-                     <li class="nav-item">
-                         <a th:href="@{#!}" class="nav-icon">
-                             <i class="icon-search"></i>
-                         </a>
-                     </li>
+                                        </ul>
+                                    </div>
+                                    <div class="col">
+                                        <ul class="menu-list">
+                                            <li class="menu-list-item"><a th:href="@{/dior}" class="menu-list-link">DIOR	</a>
+                                            <li class="menu-list-item"><a th:href="@{/tomford}" class="menu-list-link">TOM FORD	</a>
 
-                     <!-- cart -->
-                     <li class="nav-item dropdown dropdown-md dropdown-hover">
-                         <a th:href="@{#!}" class="nav-icon">
-                             <i class="icon-shopping-bag"></i>
-                         </a>
-                     </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
 
-                     <!-- menu -->
-                     <li class="nav-item dropdown dropdown-md dropdown-hover">
-                         <a th:href="@{#!}" class="nav-icon" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarMenu" aria-expanded="false" aria-label="Toggle navigation">
-                             <i class="icon-menu"></i>
-                         </a>
-                     </li>
+
+                    <li class="nav-item dropdown dropdown-sm dropdown-hover">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdown-2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                        >Sản phẩm
+                        </a>
+
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown-2">
+                            <div class="container">
+                                <div class="row ">
+                                    <div class="col">
+                                        <span class="eyebrow text-muted mb-1">Nước Hoa</span>
+                                        <ul class="menu-list">
+                                            <li class="menu-list-item"><a th:href="@{/menproduct}" class="menu-list-link">Nam</a>
+                                            <li class="menu-list-item"><a th:href="@{/womenproduct}" class="menu-list-link"> Nữ</a>
+                                            <li class="menu-list-item"><a th:href="@{/unisexproduct}" class="menu-list-link">Unisex</a>
+                                            <li class="menu-list-item"><a th:href="@{/miniproduct}" class="menu-list-link"> Mini</a>
+                                            <li class="menu-list-item"><a th:href="@{/nicheproduct}" class="menu-list-link"> NICHE</a>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="nav-item dropdown-sm dropdown-hover">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdown-3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Liên hệ
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+
             <div class="collapse navbar-collapse order-5 order-lg-3" id="navbarMenu2">
                 <ul class="navbar-nav ml-auto position-relative">
 
@@ -213,7 +137,7 @@ m245 91 l0 -30 -72 -3 -73 -3 0 36 0 36 73 -3 72 -3 0 -30z m29 -131 c10 -25
                     <li class="nav-item dropdown dropdown-md dropdown-hover">
                         <a class="nav-icon dropdown-toggle" id="navbarDropdown-4" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="icon-search d-none d-lg-inline-block"></i>
-                            <span class="d-inline-block d-lg-none">Search</span>
+                            <span class="d-inline-block d-lg-none">Tìm kiếm</span>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown-4">
                             <div class="form-group">
@@ -223,17 +147,36 @@ m245 91 l0 -30 -72 -3 -73 -3 0 36 0 36 73 -3 72 -3 0 -30z m29 -131 c10 -25
                     </li>
 
 
+                    <!-- users -->
+                    <li class="nav-item dropdown dropdown-sm dropdown-hover">
+                        <a class="nav-icon dropdown-toggle" id="navbarDropdown-6" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="icon-user d-none d-lg-inline-block"></i>
+                            <span class="d-inline-block d-lg-none">Tài khoản</span>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown-6">
+                            <div class="row gutter-2">
+                                <div class="col-12">
+                                    <sec:authorize access="hasRole('customer')">
+                                        <ul class="menu-list">
+                                            <li class="menu-list-item"><a th:href="@{/login}" class="menu-list-link">Đăng nhập</a>
+                                            <li class="menu-list-item"><a th:href="@{/register}" class="menu-list-link">Tạo tài khoản</a>
+                                        </ul>
+                                    </sec:authorize>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
 
                     <!-- favourites -->
                     <li class="d-none d-lg-inline nav-item">
-                        <a href="/favourite" class="nav-icon"   role="button"  aria-haspopup="true" aria-expanded="false"><i class="icon-heart"></i></a>
+                        <a th:href="@{/favourite}" class="nav-icon"   role="button"  aria-haspopup="true" aria-expanded="false"><i class="icon-heart"></i></a>
                     </li>
 
                     <!-- cart -->
                     <li class="nav-item dropdown dropdown-md dropdown-hover">
                         <a  class="nav-icon dropdown-toggle" id="navbarDropdown-8" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="icon-shopping-bag d-none d-lg-inline-block"></i>
-                            <span class="d-inline-block d-lg-none">Bag</span>
+                            <span class="d-inline-block d-lg-none">Giỏ hàng</span>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown-8">
                             <div class="row gutter-3">
@@ -254,8 +197,8 @@ m245 91 l0 -30 -72 -3 -73 -3 0 36 0 36 73 -3 72 -3 0 -30z m29 -131 c10 -25
                                     </ul>
                                 </div>
                                 <div class="col-12">
-                                    <a href="/cart" class="btn btn-outline-secondary btn-block">Xem giỏ hàng</a>
-                                    <a href="/checkout" class="btn btn-primary btn-block">Thanh toán</a>
+                                    <a th:href="@{/cart}" class="btn btn-outline-secondary btn-block">Xem giỏ hàng</a>
+                                    <a th:href="@{/checkout}" class="btn btn-primary btn-block">Thanh toán</a>
                                 </div>
                             </div>
                         </div>
@@ -268,24 +211,27 @@ m245 91 l0 -30 -72 -3 -73 -3 0 36 0 36 73 -3 72 -3 0 -30z m29 -131 c10 -25
 
                     <!-- search -->
                     <li class="nav-item">
-                        <a href="" class="nav-icon"><i class="icon-search"></i></a>
+                        <a class="nav-icon">
+                            <i class="icon-search"></i>
+                        </a>
+
                     </li>
 
                     <!-- cart -->
                     <li class="nav-item dropdown dropdown-md dropdown-hover">
-                        <a href="" class="nav-icon"><i class="icon-shopping-bag"></i></a>
+                        <a class="nav-icon">
+                            <i class="icon-shopping-bag"></i>
+                        </a>
                     </li>
 
                     <!-- menu -->
                     <li class="nav-item dropdown dropdown-md dropdown-hover">
-                        <a href="" class="nav-icon" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarMenu" aria-expanded="false" aria-label="Toggle navigation">
+                        <a class="nav-icon" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarMenu" aria-expanded="false" aria-label="Toggle navigation">
                             <i class="icon-menu"></i>
                         </a>
                     </li>
-
                 </ul>
             </div>
-
         </nav>
     </div>
 </header>
