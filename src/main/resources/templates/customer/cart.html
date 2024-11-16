@@ -25,11 +25,12 @@
 
             <!-- content -->
             <div class="col">
-                <div class="bg-white cart-item-list p-2 p-lg-3 mb-1">
-                    <div th:replace="home/order-cart :: order-cart"></div>
-                </div>
 
-                <a th:href="@{/shop}" class="underlined">Tiếp tục mua hàng</a>
+                <!-- order list -->
+                <div class="bg-white cart-item-list p-2 p-lg-3 mb-1">
+                    <div th:replace="~{decorator/order-cart :: order-cart}"></div>
+                </div>
+                <a th:href="@{/home}" class="underlined">Tiếp tục mua hàng</a>
             </div>
 
 
@@ -45,19 +46,19 @@
                     <ul class="list-group list-group-minimal mb-3">
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             Tạm tính
-                            <span th:text="${cart.subtotal}">$84.00</span>
+                            <span>$84.00</span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             Phí vận chuyển
-                            <span th:text="${cart.shippingFee}">$8.00</span>
+                            <span>$8.00</span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center text-red">
                             Giảm giá
-                            <span class="text-red" th:text="${cart.discount}">-$14.00</span>
+                            <span class="text-red">-$14.00</span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center text-uppercase font-weight-bold">
                             Tổng thanh toán
-                            <span th:text="${cart.total}">$78.00</span>
+                            <span>$78.00</span>
                         </li>
                     </ul>
                     <a th:href="@{/checkout}" class="btn btn-primary btn-block">Thanh toán</a>

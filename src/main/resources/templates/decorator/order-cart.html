@@ -1,8 +1,5 @@
 <div class="cart-item" th:fragment="order-cart" xmlns:th="https://www.thymeleaf.org">
-    <div class="custom-control custom-checkbox">
-        <input type="checkbox" class="custom-control-input">
-    </div>
-    <a href="#!" class="cart-item-image"><img src="assets/images/demo/product-1.jpg" alt="Image"></a>
+    <a th:href="@{#!}" class="cart-item-image"><img th:src="@{assets/images/demo/product-1.jpg}" alt="Image"></a>
     <div class="cart-item-body">
         <div class="row">
             <div class="col-10">

@@ -23,12 +23,14 @@
         <div class="row gutter-1">
 
             <div class="col">
-
                 <!-- address -->
                 <div class="bg-white p-2 p-lg-3 mb-1">
                     <div class="row gutter-1 align-items-center">
                         <div class="col-md-6">
                             <h2 class="text-uppercase fs-20" th:text="'Thông Tin Giao Hàng'"></h2>
+                        </div>
+                        <div class="col-md-6 text-md-right">
+                            <a class="underline" data-toggle="modal" data-target="#adresses"><i class="icon-home"></i>Danh sách địa chỉ</a>
                         </div>
                     </div>
 
@@ -36,7 +38,7 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="form-label-group">
-                                    <input type="text" id="inputFullName" class="form-control form-control-lg" th:placeholder="'Họ và Tên'" th:field="*{fullName}" required="">
+                                    <input type="text" id="inputFullName" class="form-control form-control-lg" th:placeholder="'Họ và Tên'" required="">
                                     <label for="inputFullName" th:text="'Họ và Tên'"></label>
                                 </div>
                             </div>
@@ -44,7 +46,7 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="form-label-group">
-                                    <input type="text" id="inputAddress" class="form-control form-control-lg" th:placeholder="'Địa Chỉ'" th:field="*{address}" required="">
+                                    <input type="text" id="inputAddress" class="form-control form-control-lg" th:placeholder="'Địa Chỉ'" required="">
                                     <label for="inputAddress" th:text="'Địa Chỉ'"></label>
                                 </div>
                             </div>
@@ -52,7 +54,7 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="form-label-group">
-                                    <input type="email" id="inputEmail" class="form-control form-control-lg" th:placeholder="'Email'" th:field="*{email}" required="">
+                                    <input type="email" id="inputEmail" class="form-control form-control-lg" th:placeholder="'Email'" required="">
                                     <label for="inputEmail" th:text="'Email'"></label>
                                 </div>
                             </div>
@@ -60,7 +62,7 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="form-label-group">
-                                    <input type="text" id="inputPhoneNumber" class="form-control form-control-lg" th:placeholder="'Số Điện Thoại'" th:field="*{phoneNumber}" required="">
+                                    <input type="text" id="inputPhoneNumber" class="form-control form-control-lg" th:placeholder="'Số Điện Thoại'" required="">
                                     <label for="inputPhoneNumber" th:text="'Số Điện Thoại'"></label>
                                 </div>
                             </div>
@@ -72,7 +74,7 @@
                 <div class="bg-white p-2 p-lg-3 mb-1">
                     <h2 class="mb-3 text-uppercase fs-20" th:text="'Phương Thức Giao Hàng'"></h2>
                     <div class="custom-control custom-choice">
-                        <input type="radio" name="choice-shipping" class="custom-control-input" id="custom-choice-1" th:value="'standard'" th:checked="${shippingOption == 'standard'}">
+                        <input type="radio" name="choice-shipping" class="custom-control-input" id="custom-choice-1" th:value="'standard'" th:checked="true">
                         <label class="custom-control-label text-dark d-flex justify-content-between align-items-center" for="custom-choice-1">
                             <span>
                                 <h4 class="custom-choice-title" th:text="'Tiêu Chuẩn'"></h4>
@@ -81,7 +83,7 @@
                             <span class="text-uppercase" th:text="'Miễn Phí'"></span>
                         </label>
                     </div>
-                    <div class="custom-control custom-choice">
+                   <!-- <div class="custom-control custom-choice">
                         <input type="radio" name="choice-shipping" class="custom-control-input" id="custom-choice-2" th:value="'express'" th:checked="${shippingOption == 'express'}">
                         <label class="custom-control-label text-dark d-flex justify-content-between align-items-center" for="custom-choice-2">
                             <span>
@@ -90,7 +92,7 @@
                             </span>
                             <span class="text-uppercase" th:text="'$8.00'"></span>
                         </label>
-                    </div>
+                    </div>-->
                 </div>
 
 
@@ -154,31 +156,97 @@
                 </div>
             </div>
 
-            <!-- sidebar -->
+            <!-- order total -->
             <aside class="col-lg-5">
                 <div class="bg-white p-2 p-lg-3">
-                    <h2 class="mb-3 text-uppercase fs-20" th:text="'Tổng Đơn Hàng'"></h2>
-                    <div class="cart-item" th:each="item : ${cartItems}">
-                        <a th:href="@{/product/{id}(id=${item.productId})}" class="cart-item-image"><img th:src="${item.image}" th:alt="${item.name}"></a>
+                    <h2 class="mb-3 text-uppercase fs-20">Order total</h2>
+                    <!--order-->
+                    <div class="cart-item">
+                        <a href="#!" class="cart-item-image"><img src="assets/images/demo/product-1.jpg" alt="Image"></a>
                         <div class="cart-item-body">
                             <div class="row">
                                 <div class="col-9">
-                                    <h5 class="cart-item-title" th:text="${item.name}"></h5>
+                                    <h5 class="cart-item-title">Blouse</h5>
                                     <ul class="list list--horizontal fs-14">
-                                        <li><s th:text="${item.originalPrice}"></s></li>
-                                        <li class="text-red" th:text="${item.discountedPrice}"></li>
+                                        <li><s>$29.00</s></li>
+                                        <li class="text-red">$19.00</li>
                                     </ul>
                                 </div>
                                 <div class="col-3 text-right">
                                     <ul class="cart-item-options">
-                                        <li><a th:href="@{/cart/remove/{id}(id=${item.productId})}" class="icon-x"></a></li>
+                                        <li><a href="" class="icon-x"></a></li>
                                     </ul>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <hr class="my-3"/>
+                    <ul class="list-group list-group-minimal">
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Tạm tính
+                            <span>$84.00</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Phí vận chuyển
+                            <span>$8.00</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center text-red">
+                            Giảm giá
+                            <span class="text-red">-$14.00</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center text-uppercase font-weight-bold">
+                            Tổng thanh toán
+                            <span>$78.00</span>
+                        </li>
+                    </ul>
                 </div>
             </aside>
         </div>
     </div>
 </section>
+
+<footer th:replace="~{decorator/footer :: footer}"></footer>
+
+<div class="modal fade" id="adresses" tabindex="-1" role="dialog" aria-labelledby="adressesLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="adressesLabel">Select Address</h5>
+            </div>
+            <div class="modal-body">
+                <div class="custom-control custom-choice">
+                    <input type="radio" name="choice-address" class="custom-control-input" id="custom-address-1">
+                    <label class="custom-control-label text-dark d-flex justify-content-between align-items-center" for="custom-address-1">
+                <span>
+                  <h4 class="d-block eyebrow text-muted">Main Delivery Address</h4>
+                  <span class="fs-14">
+                    Jhon Doe <br/>
+                    1620 East Ayre Str <br/>
+                    Suite M3115662 <br/>
+                    Wilmington, DE 19804 <br/>
+                    United States
+                  </span>
+                </span>
+                    </label>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="container-fluid">
+                    <div class="row gutter-0">
+                        <div class="col">
+                            <button type="button" class="btn btn-block btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+                        <div class="col">
+                            <button type="button" class="btn btn-block btn-primary">Save changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script th:src="@{/assets/js/vendor.min.js}"></script>
+<script th:src="@{/assets/js/app.js}"></script>
+</body>
+</html>
