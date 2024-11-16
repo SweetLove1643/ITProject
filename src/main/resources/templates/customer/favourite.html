@@ -35,8 +35,8 @@
                 <div class="bg-white p-2 p-md-3">
                     <div class="tab-content" id="myTabContent">
 
-                        <div th:replace="home/orders :: orders"></div>
-                        <div th:replace="home/favor :: favor"></div>
+                        <div th:replace="~{decorator/orders :: orders}"></div>
+                        <div th:replace="~{decorator/favor :: favor}"></div>
 
                     </div>
                 </div>

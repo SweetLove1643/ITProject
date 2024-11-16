@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
 import vn.project.Entity.Users;
 @Service
@@ -34,6 +35,10 @@ public interface IUserService {
 	Optional<Users> findByPhonenumber(String phonenumber);
 
 	<S extends Users> S save(S entity);
+
+	String createOTP();
+
+	String sendOTPMail(String toEmail, Model model);
 
 	
 	
