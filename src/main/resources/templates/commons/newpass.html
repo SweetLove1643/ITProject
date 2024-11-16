@@ -6,7 +6,7 @@
   <link th:href="@{/assets/css/vendor.css}" rel="stylesheet" />
   <link th:href="@{/assets/css/style.css}" rel="stylesheet" />
 
-  <title th:text="|Quên mật khẩu|">Quên mật khẩu</title>
+  <title th:text="|Mật khẩu mới|"></title>
 </head>
 <body class="bg-light">
 
@@ -21,7 +21,7 @@
           <div class="card-header">
             <ul class="nav nav-tabs nav-fill card-header-tabs lavalamp" id="component-1" role="tablist">
               <li class="nav-item">
-                <a class="nav-link active" data-toggle="tab" href="#component-1-1" role="tab" aria-controls="component-1-1" aria-selected="true" th:text="|Quên mật khẩu|">Quên mật khẩu</a>
+                <a class="nav-link active" data-toggle="tab" href="#component-1-1" role="tab" aria-controls="component-1-1" aria-selected="true" th:text="|Mật khẩu mới|"></a>
               </li>
             </ul>
           </div>
@@ -34,23 +34,23 @@
                       <div class="row">
                         <div class="col-12">
                           <div class="form-label-group">
-                            <input type="text" id="inputEmail" class="form-control form-control-lg" name ="email" placeholder="Email address" required="" th:value="${useremail}">
-                            <label for="inputEmail">Email</label>
+                            <input type="text" id="inputEmail" class="form-control form-control-lg" name ="email" placeholder="Mật khẩu mới" required="">
+                            <label for="inputEmail" th:text="|Mật khẩu mới|"></label>
                           </div>
                         </div>
                       </div>
                       <div class="row">
                         <div class="col-12">
                           <div class="form-label-group">
-                            <input type="text" id="inputPassword" class="form-control form-control-lg" placeholder="OTP" required="">
-                            <label for="inputPassword" th:text="|Mã OTP|">Mã OTP</label>
+                            <input type="text" id="inputPassword" class="form-control form-control-lg" placeholder="Xác nhận lại mật khẩu mới" required="">
+                            <label for="inputPassword" th:text="|Xác nhận lại mật khẩu mới|"></label>
                           </div>
                         </div>
                       </div>
                     </fieldset>
                   </div>
                   <div class="col-12">
-                    <a th:href="@{/newpass}" class="btn btn-primary btn-block" th:text="|Xác nhận|">Xác nhận</a>
+                    <a  class="btn btn-primary btn-block" th:text="|Xác nhận|"></a>
                   </div>
                 </div>
               </div>
