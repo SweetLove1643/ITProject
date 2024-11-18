@@ -26,6 +26,4 @@ public class Categories {
 	
 	@Column(name = "CategoryName", nullable = true, columnDefinition = "nvarchar(255)")
 	private String categoryname;
-
-
 }

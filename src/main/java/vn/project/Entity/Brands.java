@@ -26,6 +26,4 @@ public class Brands {
 	
 	@Column(name = "BrandName", nullable = false, columnDefinition = "nvarchar(255)")
 	private String brandname;
-
-
 }

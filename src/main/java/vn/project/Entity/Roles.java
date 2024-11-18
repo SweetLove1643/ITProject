@@ -27,5 +27,4 @@ public class Roles {
 	@Column(name = "RoleName", nullable = false)
 	private String rolename;
 
-	
 }

@@ -43,6 +43,5 @@ public class Discounts {
 	
 	@Column(name = "EndDate", nullable = false)
 	private LocalDate enddate;
-
 	
 }
