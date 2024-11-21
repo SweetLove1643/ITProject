@@ -30,7 +30,7 @@ public class Cart {
 	@Column(name = "ProductID")
 	private int productid;
 	
-	@Column(name = "Quantity")
+	@Column(name = "Quantity", nullable = false)
 	private int quantity;
 
 }

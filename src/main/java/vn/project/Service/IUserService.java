@@ -3,10 +3,10 @@ package vn.project.Service;
 import java.util.List;
 
 
+
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
 
 import vn.project.Entity.Users;
 @Service
@@ -38,7 +38,7 @@ public interface IUserService {
 
 	String createOTP();
 
-	String sendOTPMail(String toEmail, Model model);
+	String sendOTPMail(String toEmail);
 
 	
 	

@@ -42,7 +42,7 @@ public class LoginController {
         
         if (isAuthenticated) {
             model.addAttribute("message", "Đăng nhập thành công!");
-            return "commons/home";
+            return "index";
         } else {
             model.addAttribute("message", "Email hoặc mật khẩu không đúng!");
             return "commons/login";

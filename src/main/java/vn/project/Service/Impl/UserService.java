@@ -1,7 +1,7 @@
 package vn.project.Service.Impl;
 
 import java.text.DecimalFormat;
-import java.time.LocalDate;
+
 import java.util.List;
 
 import java.util.Optional;
@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
 
 import vn.project.Entity.Users;
 import vn.project.Repository.IUserRepository;
@@ -93,13 +92,11 @@ public class UserService implements IUserService {
 	}
 
 	@Override
-	public String sendOTPMail(String toEmail, Model model) {
-		
-		model.addAttribute("timeCreateOTP", LocalDate.now());
+	public String sendOTPMail(String toEmail) {
 		String otp = createOTP();
 		
 		SimpleMailMessage message = new SimpleMailMessage();
-		message.setFrom("22110214@student.hcmute.edu.vn");
+		message.setFrom("phanuan028@gmail.com");
 		message.setTo(toEmail);
 		message.setSubject("Mã OTP của bạn là: ");
 		message.setText(otp);

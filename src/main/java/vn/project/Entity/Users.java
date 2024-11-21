@@ -23,13 +23,13 @@ public class Users {
 	@Column(name = "UserID", nullable = false, unique = true)
 	private int id;
 	
-	@Column(name = "Username", nullable = false)
+	@Column(name = "Username", nullable = false, unique = true)
 	private String username;
 	
 	@Column(name = "Password", nullable = false)
 	private String password;
 	
-	@Column(name = "Email")
+	@Column(name = "Email", nullable = false, unique = true)
 	private String email;
 	
 	@Column(name = "Fullname", columnDefinition = "nvarchar(255)")
