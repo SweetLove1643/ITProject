@@ -33,8 +33,8 @@ public class ForgotPasswordController {
 		Optional<Users> u = userService.findByEmail(email);
 		if(u.isPresent()) {
 			otp = userService.sendOTPMail(email, model);
-			
-			return "forgotpass";
+			model.addAttribute("otpcode", otp);
+			return "otp";
 		}else {
 			model.addAttribute("message", "Tài khoản không tồn tại");
 			return "redirect:/forgotpass";
