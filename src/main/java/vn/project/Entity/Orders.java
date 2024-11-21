@@ -47,5 +47,4 @@ public class Orders {
 	@Column(name = "DeliveryStatus", nullable = false, columnDefinition = "nvarchar(255)")
 	private String deliverystatus;
 
-	
 }

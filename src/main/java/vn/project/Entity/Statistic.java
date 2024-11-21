@@ -45,5 +45,4 @@ public class Statistic {
 	@Column(name = "StockRemaining")
 	private int stockremaining;
 
-
 }
