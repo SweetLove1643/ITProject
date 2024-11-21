@@ -34,15 +34,15 @@
                       <div class="row">
                         <div class="col-12">
                           <div class="form-label-group">
-                            <input type="text" id="inputEmail" class="form-control form-control-lg" name ="email" placeholder="Email address" required="" th:value="${useremail}">
-                            <label for="inputEmail">Email</label>
+                            <input type="text" id="inputPassword" class="form-control form-control-lg" placeholder="OTP" required="">
+                            <label for="inputPassword" th:text="|Mã OTP|">Mã OTP</label>
                           </div>
                         </div>
                       </div>
                     </fieldset>
                   </div>
                   <div class="col-12">
-                    <a th:href="@{/otp}" class="btn btn-primary btn-block" th:text="|Xác nhận|">Xác nhận</a>
+                    <a th:href="@{/newpass}" class="btn btn-primary btn-block" th:text="|Xác nhận|">Xác nhận</a>
                   </div>
                 </div>
               </div>
