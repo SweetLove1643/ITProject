@@ -5,12 +5,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/checkout")
-public class CheckoutController {
+@RequestMapping("/orders")
+public class OrderController {
 
-    @GetMapping("")
+    @GetMapping
 
     public String index() {
-        return "customer/checkout";
+        return "customer/orders";
     }
 }
