@@ -35,9 +35,6 @@ public class Discounts {
 	@Column(name = "MaxDiscountAmount")
 	private long maxdiscountamount;
 	
-	@Column(name = "Status")
-	private int status;
-	
 	@Column(name = "StartDate", nullable = false)
 	private LocalDate startdate;
 	

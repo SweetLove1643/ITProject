@@ -1,6 +1,6 @@
 package vn.project.Entity;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -30,7 +30,7 @@ public class Invoices {
 	private int orderid;
 	
 	@Column(name = "InvoiceDate", nullable = false)
-	private LocalDate invoicedate;
+	private LocalDateTime invoicedate;
 	
 	@Column(name = "TotalAmount", nullable = false)
 	private long totalamount;
