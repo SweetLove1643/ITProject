@@ -13,35 +13,44 @@ import vn.project.Entity.Users;
 import vn.project.Service.IUserService;
 
 @Controller
-@RequestMapping
-
+@RequestMapping("/newpass")
 public class NewPasswordController {
 	@Autowired
 	private IUserService userService;
 
-	private String usermail;
+	private String useremail;
 
-	@GetMapping("/newpass")
+	@GetMapping
 	public String index(@ModelAttribute("verifysuccess") String verifysuccess,
 			@ModelAttribute("useremail") String useremail) {
-		if (verifysuccess.equals("true")) {
-			this.usermail = useremail;
-			return "commons/newpass";
-		}else {
-			return "redirect:/forgotpass";
+		if (verifysuccess.equals("true") == true) {
+			this.useremail = useremail;
+			 return "commons/newpass"; 
+		}
+		else{
+			 return "redirect:/forgotpass"; 
 		}
 	}
 
-	@PostMapping("/newpass")
+	@PostMapping
 	public String processNewPassword(@RequestParam String newpass,
 			@RequestParam String renewpass, Model model) {
 
 		if(newpass.equals(renewpass) == false) {
 			model.addAttribute("message", "Vui lòng nhập lại mật khẩu mới!");
+			model.addAttribute("verifysuccess", true);
+			model.addAttribute("useremail", useremail);
 			return "commons/newpass";
+		}else {
+			Users user = userService.findByEmail(useremail).get();
+			user.setPassword(renewpass);
+			
+			userService.save(user);
+			
+			model.addAttribute("message", "Đổi mật khẩu thành công.");
+			
+			return "redirect:/login";
 		}
-
-		return null;
 	}
 
 }

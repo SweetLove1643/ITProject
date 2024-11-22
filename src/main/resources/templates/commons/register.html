@@ -10,7 +10,7 @@
 </head>
 <body class="bg-light">
 
-<div th:replace="decorator/header :: header"></div>
+<div th:replace="~{decorator/header :: header}"></div>
 
 <!-- login -->
 <section class="sectionlog">
@@ -41,7 +41,7 @@
 												<div class="row">
 													<div class="col-12">
 														<div class="form-label-group">
-															<input type="text" id="inputName" name="username" class="form-control form-control-lg" placeholder="Tên tài khoản" required>
+															<input type="text" id="inputName" th:name="username" th:value="${username}" class="form-control form-control-lg" placeholder="Tên tài khoản" required>
 															<label for="inputName" th:text="'Tên tài khoản'"></label>
 														</div>
 													</div>
@@ -49,7 +49,7 @@
 												<div class="row">
 													<div class="col-12">
 														<div class="form-label-group">
-															<input type="password" id="inputPassword" name="password" class="form-control form-control-lg" placeholder="Mật khẩu" required>
+															<input type="password" id="inputPassword" th:name="password" th:value="${password}" class="form-control form-control-lg" placeholder="Mật khẩu" required>
 															<label for="inputPassword" th:text="'Mật khẩu'"></label>
 														</div>
 													</div>
@@ -57,7 +57,7 @@
 												<div class="row">
 													<div class="col-12">
 														<div class="form-label-group">
-															<input type="text" id="inputFullName" name="fullname" class="form-control form-control-lg" placeholder="Họ và tên" required>
+															<input type="text" id="inputFullName" th:name="fullname" th:value="${fullname}" class="form-control form-control-lg" placeholder="Họ và tên" required>
 															<label for="inputFullName" th:text="'Họ và tên'"></label>
 														</div>
 													</div>
@@ -65,7 +65,7 @@
 												<div class="row">
 													<div class="col-12">
 														<div class="form-label-group">
-															<input type="text" id="inputPhone" name="phonenumber" class="form-control form-control-lg" placeholder="Số điện thoại" required>
+															<input type="text" id="inputPhone" th:name="phonenumber" th:value="${phonenumber}" class="form-control form-control-lg" placeholder="Số điện thoại" required>
 															<label for="inputPhone" th:text="'Số điện thoại'"></label>
 														</div>
 													</div>
@@ -73,7 +73,7 @@
 												<div class="row">
 													<div class="col-12">
 														<div class="form-label-group">
-															<input type="email" id="inputEmail" name="email" class="form-control form-control-lg" placeholder="Email" required>
+															<input type="email" id="inputEmail" th:name="email" th:value="${email}" class="form-control form-control-lg" placeholder="Email" required>
 															<label for="inputEmail" th:text="'Email'"></label>
 														</div>
 													</div>
@@ -81,40 +81,20 @@
 												<div class="row">
 													<div class="col-12">
 														<div class="form-label-group">
-															<input type="text" id="inputAddress" name="address" class="form-control form-control-lg" placeholder="Địa chỉ" required>
+															<input type="text" id="inputAddress" th:name="address" th:value="${address}" class="form-control form-control-lg" placeholder="Địa chỉ" required>
 															<label for="inputAddress" th:text="'Địa chỉ'"></label>
 														</div>
 													</div>
 												</div>
-												<!--<div class="row">
-													<div class="col-12">
-														<div class="form-label-group">
-															<input type="date" id="inputBirthday" name="birthday" class="form-control form-control-lg" placeholder="Ngày sinh" required>
-															<label for="inputBirthday" th:text="'Ngày sinh'"></label>
-														</div>
-													</div>
-												</div>-->
 											</fieldset>
 										</div>
 
 										<div class="col-12">
-											<!--<span class="label d-block" th:text="'Giới tính'"></span>
-											<div class="d-block">
-												<div class="custom-control custom-radio custom-control-inline">
-													<input type="radio" id="customRadioInline1" name="sex" value="Nam" class="custom-control-input">
-													<label class="custom-control-label" for="customRadioInline1" th:text="'Nam'"></label>
-												</div>
-												<div class="custom-control custom-radio custom-control-inline">
-													<input type="radio" id="customRadioInline2" name="sex" value="Nữ" class="custom-control-input">
-													<label class="custom-control-label" for="customRadioInline2" th:text="'Nữ'"></label>
-												</div>
-											</div>
-											<small class="text-muted lh-sm" th:text="'We will use this information for tailoring your experience.'"></small>-->
 											<div class="custom-control custom-checkbox mt-1">
-												<input type="checkbox" id="customCheckbox1" name="argeement" class="custom-control-input">
+												<input type="checkbox" id="customCheckbox1" th:name="argeement" th:value="true" class="custom-control-input">
 												<label class="custom-control-label text-muted" for="customCheckbox1">
 													<span th:text="'Yes, I agree to the '"></span>
-													<a th:href="@{/terms}" class="underline" th:text="'Terms and Conditions'"></a>
+													<a th:href="@{#!}" class="underline" th:text="'Terms and Conditions'"></a>
 												</label>
 											</div>
 										</div>

@@ -17,11 +17,13 @@ public class OtpController {
 	private String useremail = null;
 
 	@GetMapping
-	public String view(@ModelAttribute("otpcode") String otpcode, @ModelAttribute("vetifyforgot") String vetifyforgot, 
+	public String view(@ModelAttribute("otpcode") String otpcode, 
+			@ModelAttribute("vetifyforgot") String vetifyforgot, 
 			@ModelAttribute("useremail") String useremail) {
 		if (vetifyforgot.equals("true")) {
 			this.useremail = useremail;
 			this.otpcode = otpcode;
+			
 			return "commons/otp";
 		}else {
 			return "redirect:/forgotpass";

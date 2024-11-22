@@ -21,18 +21,18 @@ public class LoginController {
 	@Autowired
 	IUserService userservice;
 	
-	@GetMapping("")
+	@GetMapping
 	public String index() {
 		return "commons/login";
 	}
 	
-	@PostMapping("")
-    public String login(@RequestParam String email, 
+	@PostMapping
+    public String login(@RequestParam String username, 
                         @RequestParam String password, 
                         Model model) {
 		boolean isAuthenticated = false;
 		
-		Optional<Users> optinalusers = userservice.findByUsername(email);
+		Optional<Users> optinalusers = userservice.findByUsername(username);
 		
 		  if(!optinalusers.isEmpty()) { Users u = optinalusers.get();
 		  
@@ -42,10 +42,10 @@ public class LoginController {
         
         if (isAuthenticated) {
             model.addAttribute("message", "Đăng nhập thành công!");
-            return "index";
+            return "redirect:/home";
         } else {
             model.addAttribute("message", "Email hoặc mật khẩu không đúng!");
-            return "commons/login";
+            return "redirect:/login";
         }
     }
 	
