@@ -9,7 +9,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class ProductsDTO {
+public class CartDTO {
+	
+	private int cartid;
+	private int userid;
 	private int productid;
 	private String productname;
 	private String category;
@@ -18,5 +21,5 @@ public class ProductsDTO {
 	private String price;
 	private String description;
 	private String imageurl;
-	private String stockquantity;
+	private String quantity;
 }

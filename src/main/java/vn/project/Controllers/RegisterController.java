@@ -33,7 +33,7 @@ public class RegisterController {
 			@RequestParam String phonenumber, 
 			@RequestParam String email, 
 			@RequestParam String address,
-			@RequestParam(defaultValue = "false") String agreement, 
+			@RequestParam(name = "argeement", defaultValue = "false") Boolean agreement, 
 			Model model) {
 		System.out.println(agreement);
 		
@@ -55,13 +55,13 @@ public class RegisterController {
 				model.addAttribute("message", "Email này đã được sử dụng");
 				return "commons/register";
 			}
-			if(agreement.equals("false")) {
+			if(agreement.equals(false)) {
 				model.addAttribute("message", "Vui lòng đồng ý với điều khoản");
 				return "commons/register";
 			}
 		}
 		Users newUser = Users.builder().username(username).password(password).fullname(fullname)
-				.phonenumber(phonenumber).email(email).address(address).roleid(1).build();
+				.phonenumber(phonenumber).email(email).address(address).roleid(2).build();
 		userService.save(newUser);
 		model.addAttribute("message", "Tạo tài khoản thành công");
 		return "redirect:/login";

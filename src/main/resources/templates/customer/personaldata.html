@@ -66,9 +66,9 @@
                                                             <i class="icon-more-vertical"></i>
                                                         </button>
                                                         <span class="dropdown-menu" aria-labelledby="dropdown-1">
-                                                            <a class="dropdown-item" th:href="#!">Action</a>
-                                                            <a class="dropdown-item" th:href="#!">Another action</a>
-                                                            <a class="dropdown-item" th:href="#!">Something else here</a>
+                                                            <a class="dropdown-item" th:href="@{#!}">Action</a>
+                                                            <a class="dropdown-item" th:href="@{#!}">Another action</a>
+                                                            <a class="dropdown-item" th:href="@{#!}">Something else here</a>
                                                         </span>
                                                     </span>
                                                 </div>
@@ -87,19 +87,19 @@
                                             <ul class="order-meta">
                                                 <li>
                                                     <h5 class="order-meta-title">Order #</h5>
-                                                    <span th:text=""></span>
+                                                    <span th:text="${null}"></span>
                                                 </li>
                                                 <li>
                                                     <h5 class="order-meta-title">Shipped Date</h5>
-                                                    <span th:text=""></span>
+                                                    <span th:text="${null}"></span>
                                                 </li>
                                                 <li>
                                                     <h5 class="order-meta-title">Total</h5>
-                                                    <span th:text=""></span>
+                                                    <span th:text="${null}"></span>
                                                 </li>
                                                 <li>
                                                     <h5 class="order-meta-title">Status</h5>
-                                                    <span class="text-muted" th:text=""></span>
+                                                    <span class="text-muted" th:text="${null}"></span>
                                                 </li>
                                             </ul>
                                         </div>

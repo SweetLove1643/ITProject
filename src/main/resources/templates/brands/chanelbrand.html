@@ -47,7 +47,7 @@
               </div>
               <div id="collapse-1-4" class="collapse" aria-labelledby="heading-1-4">
                 <div class="card-body">
-                  <input type="text" class="rangeslider" name="Range Slider" th:value="" />
+                  <input type="text" class="rangeslider" name="Range Slider" th:value="${null}" />
                 </div>
               </div>
             </div>
@@ -61,12 +61,12 @@
           <div class="col-md-6">
             <h1 th:text="|CHANEL|">CHANEL</h1>
           </div>
-          <div th:replace="home/sortby :: sortby"></div>
+          <div th:replace="~{decorator/sortby :: sortby}"></div>
         </div>
 
-        <div th:replace="home/product-listing :: product-listing"></div>
+        <div th:replace="~{decorator/product-listing :: product-listing}"></div>
 
-        <div th:replace="home/paging :: paging"></div>
+        <div th:replace="~{decorator/paging :: paging}"></div>
 
       </div>
     </div>

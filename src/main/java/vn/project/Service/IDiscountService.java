@@ -21,8 +21,6 @@ public interface IDiscountService {
 
 	<S extends Discounts> S save(S entity);
 
-	List<Discounts> findByStatus(int status);
-
 	List<Discounts> findByDiscountcode(String discountcode);
 
 	List<Discounts> findByDiscountid(int discountid);

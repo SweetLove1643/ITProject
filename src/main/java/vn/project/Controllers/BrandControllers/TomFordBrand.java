@@ -21,7 +21,7 @@ public class TomFordBrand {
     @GetMapping
     public String index(Model model) {
     	
-    	List<ProductsDTO> list = productservice.findbyBrandDTO("Tomford");
+    	List<ProductsDTO> list = productservice.findbyBrandDTO("Tom Ford");
     	model.addAttribute("products", list);
         return "brands/tomfordbrand";
     }

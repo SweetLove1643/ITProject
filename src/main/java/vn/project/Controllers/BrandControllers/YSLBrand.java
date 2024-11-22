@@ -21,7 +21,7 @@ public class YSLBrand {
     @GetMapping
     public String index(Model model) {
     	
-    	List<ProductsDTO> list = productservice.findbyBrandDTO("Ysl");
+    	List<ProductsDTO> list = productservice.findbyBrandDTO("Yves Saint Laurent");
     	model.addAttribute("products", list);
         return "brands/yslbrand";
     }

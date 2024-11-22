@@ -27,11 +27,6 @@ public class DiscountService implements IDiscountService{
 	}
 
 	@Override
-	public List<Discounts> findByStatus(int status) {
-		return discountRepository.findByStatus(status);
-	}
-
-	@Override
 	public <S extends Discounts> S save(S entity) {
 		return discountRepository.save(entity);
 	}

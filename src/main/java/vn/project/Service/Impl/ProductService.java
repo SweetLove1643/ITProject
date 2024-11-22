@@ -108,45 +108,7 @@ public class ProductService implements IProductService {
 	@Override
 	public List<ProductsDTO> findbyBrandDTO(String brand) {
 		List<Products> products = findbyBrand(brand);
-		List<ProductsDTO> productDTO = new ArrayList<>();
-
-		for (Products product : products) {
-			ProductsDTO productdto = new ProductsDTO();
-			productdto.setProductid(product.getProductid());
-			productdto.setProductname(product.getProductname());
-			productdto.setDescription(product.getDescription());
-			productdto.setImageurl(product.getImageurl());
-			productdto.setPrice(Long.toString(product.getPrice()));
-			productdto.setStockquantity(String.valueOf(product.getPrice()));
-
-			Brands brand1 = brandRepository.findById(product.getBrandid()).isPresent()
-					? brandRepository.findById(product.getBrandid()).get()
-					: null;
-			if (brand1 != null) {
-				productdto.setBrand(brand1.getBrandname());
-			} else {
-				productdto.setBrand("Unknow brand name");
-			}
-
-			Categories cate = categoryRepository.findById(product.getCategoryid()).isPresent()
-					? categoryRepository.findById(product.getCategoryid()).get()
-					: null;
-			if (cate != null) {
-				productdto.setCategory(cate.getCategoryname());
-			} else {
-				productdto.setCategory("Unknow category name");
-			}
-			Suppliers supplier = supplierRepository.findById(product.getSupplierid()).isPresent()
-					? supplierRepository.findById(product.getSupplierid()).get()
-					: null;
-			if (supplier != null) {
-				productdto.setSupplier(supplier.getSuppliername());
-			}else {
-				productdto.setSupplier("Unknow supplier name");
-			}
-			
-			productDTO.add(productdto);
-		}
+		List<ProductsDTO> productDTO = ConvertProductToProductDTO(products);
 		return productDTO;
 	}
 	
@@ -164,45 +126,8 @@ public class ProductService implements IProductService {
 	@Override
 	public List<ProductsDTO> findbyCategoryDTO(String category){
 		List<Products> products = findbyCategory(category);
-		List<ProductsDTO> productDTO = new ArrayList<>();
-
-		for (Products product : products) {
-			ProductsDTO productdto = new ProductsDTO();
-			productdto.setProductid(product.getProductid());
-			productdto.setProductname(product.getProductname());
-			productdto.setDescription(product.getDescription());
-			productdto.setImageurl(product.getImageurl());
-			productdto.setPrice(Long.toString(product.getPrice()));
-			productdto.setStockquantity(String.valueOf(product.getPrice()));
-
-			Brands brand1 = brandRepository.findById(product.getBrandid()).isPresent()
-					? brandRepository.findById(product.getBrandid()).get()
-					: null;
-			if (brand1 != null) {
-				productdto.setBrand(brand1.getBrandname());
-			} else {
-				productdto.setBrand("Unknow brand name");
-			}
-
-			Categories cate = categoryRepository.findById(product.getCategoryid()).isPresent()
-					? categoryRepository.findById(product.getCategoryid()).get()
-					: null;
-			if (cate != null) {
-				productdto.setCategory(cate.getCategoryname());
-			} else {
-				productdto.setCategory("Unknow category name");
-			}
-			Suppliers supplier = supplierRepository.findById(product.getSupplierid()).isPresent()
-					? supplierRepository.findById(product.getSupplierid()).get()
-					: null;
-			if (supplier != null) {
-				productdto.setSupplier(supplier.getSuppliername());
-			}else {
-				productdto.setSupplier("Unknow supplier name");
-			}
-			
-			productDTO.add(productdto);
-		}
+		List<ProductsDTO> productDTO = ConvertProductToProductDTO(products);
+		
 		return productDTO;
 	}
 	
@@ -245,6 +170,50 @@ public class ProductService implements IProductService {
 		}
 		
 		return productdto;
+		
+	}
+	
+	public List<ProductsDTO> ConvertProductToProductDTO(List<Products> products){
+		List<ProductsDTO> productDTO = new ArrayList<>();
+
+		for (Products product : products) {
+			ProductsDTO productdto = new ProductsDTO();
+			productdto.setProductid(product.getProductid());
+			productdto.setProductname(product.getProductname());
+			productdto.setDescription(product.getDescription());
+			productdto.setImageurl(product.getImageurl());
+			productdto.setPrice(Long.toString(product.getPrice()));
+			productdto.setStockquantity(String.valueOf(product.getPrice()));
+
+			Brands brand1 = brandRepository.findById(product.getBrandid()).isPresent()
+					? brandRepository.findById(product.getBrandid()).get()
+					: null;
+			if (brand1 != null) {
+				productdto.setBrand(brand1.getBrandname());
+			} else {
+				productdto.setBrand("Unknow brand name");
+			}
+
+			Categories cate = categoryRepository.findById(product.getCategoryid()).isPresent()
+					? categoryRepository.findById(product.getCategoryid()).get()
+					: null;
+			if (cate != null) {
+				productdto.setCategory(cate.getCategoryname());
+			} else {
+				productdto.setCategory("Unknow category name");
+			}
+			Suppliers supplier = supplierRepository.findById(product.getSupplierid()).isPresent()
+					? supplierRepository.findById(product.getSupplierid()).get()
+					: null;
+			if (supplier != null) {
+				productdto.setSupplier(supplier.getSuppliername());
+			}else {
+				productdto.setSupplier("Unknow supplier name");
+			}
+			
+			productDTO.add(productdto);
+		}
+		return productDTO;
 		
 	}
 
