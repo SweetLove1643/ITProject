@@ -13469,4 +13469,25 @@ div.code-toolbar > .toolbar {
 .status.verified::after {
   background: #28a745; }
 
+  .cart-item-header {
+          display: flex;
+          align-items: center;
+          justify-content: center; /* Đặt checkbox ở giữa */
+          margin-right: 20px; /* Tạo khoảng cách với hình ảnh */
+      }
+
+      .cart-item-header input[type="checkbox"] {
+          appearance: none; /* Ẩn checkbox mặc định */
+          width: 16px;
+          height: 16px;
+          border: 2px solid #4d4646; /* Viền màu đen */
+          border-radius: 10px; /* Góc bo tròn nhẹ */
+          cursor: pointer;
+          display: inline-block;
+      }
+
+      .cart-item-header input[type="checkbox"]:checked {
+          background-color: #4d4646; /* Màu nền đen khi được chọn */
+      }
+
 /*# sourceMappingURL=style.css.map */
