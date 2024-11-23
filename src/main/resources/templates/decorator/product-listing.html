@@ -1,22 +1,21 @@
-
-<div class="row gutter-1">
-	<div class="col-6 col-md-4" th:fragment="product-listing"
-		xmlns:th="https://www.thymeleaf.org" th:each="products : ${products}">
-		<div class="card card-product">
-			<figure class="card-image">
-				<a href="@{#!}" class="action"><i class="icon-heart"></i></a>
-				<a th:href="@{/product/{id}(id=${products.productid})}"> <img
+<div class="col-6 col-md-4" th:fragment="product-listing"
+	 xmlns:th="https://www.thymeleaf.org" th:each="products : ${products}">
+	<div class="card card-product">
+		<figure class="card-image">
+			<a href="@{#!}" class="action"><i class="icon-heart"></i></a>
+			<a th:href="@{/product/{id}(id=${products.productid})}"> <img
 					th:src="@{${products.imageurl}}" alt="Image">
-				</a>
-			</figure>
-			<div class="card-footer">
-				<h3 class="card-title">
-					<a th:href="@{/product/{id}(id=${products.productid})}"
-						th:text="${products.productname}">Product Name</a>
-				</h3>
-				<span class="brand" th:text="${products.brand}">Brand</span> <span
-					class="price" th:text="${products.price}">Price</span>
-			</div>
+			</a>
+		</figure>
+		<div class="card-footer">
+			<h3 class="card-title">
+				<a th:href="@{/product/{id}(id=${products.productid})}"
+				   th:text="${products.productname}">Product Name</a>
+			</h3>
+			<span class="brand" th:text="${products.brand}">Brand</span> <span
+				class="price" th:text="${products.price}">Price</span>
 		</div>
 	</div>
 </div>
+
+
