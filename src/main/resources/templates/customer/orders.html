@@ -23,8 +23,8 @@
                     <h3 class="fs-20 text-uppercase text-muted mb-2">Welcome, John Doe!</h3>
                     <div class="nav nav-menu flex-column lavalamp" id="sidebar-1" role="tablist">
                         <a class="nav-link active" data-toggle="tab"  th:href="@{/orders}" role="tab"  aria-controls="sidebar-1" aria-selected="true"><i class="fs-24 icon-box"></i> Orders</a>
-                        <a class="nav-link" data-toggle="tab" th:href="@{/personalData}" role="tab" aria-controls="sidebar-1-3" aria-selected="false"><i class="fs-24 icon-user"></i> Personal data </a>
-                        <a class="nav-link" data-toggle="tab"  th:href="@{/changePassword}" role="tab" aria-controls="sidebar-1-4" aria-selected="false"><i class="fs-24 icon-lock"></i> Change password</a>
+                        <a class="nav-link" data-toggle="tab" th:href="@{/personaldata}" role="tab" aria-controls="sidebar-1-3" aria-selected="false"><i class="fs-24 icon-user"></i> Personal data </a>
+                        <a class="nav-link" data-toggle="tab"  th:href="@{/changepassword}" role="tab" aria-controls="sidebar-1-4" aria-selected="false"><i class="fs-24 icon-lock"></i> Change password</a>
                         <a class="nav-link" data-toggle="tab"  th:href="@{/addresses}" role="tab" aria-controls="sidebar-1-5" aria-selected="false"><i class="fs-24 icon-home"></i> Addresses</a>
                     </div>
                 </aside>
@@ -192,7 +192,7 @@
                                 </div>
                             </div>
 
-                            <form th:action="@{/users/update}" method="post">
+                            <form th:action="@{/users/update}" method="post" th:if="${user != null}">
                                 <!-- Username -->
                                 <fieldset class="mb-2">
                                     <div class="row">
@@ -350,7 +350,7 @@
                                     <a th:href="@{/addresses/add}" class="underline"><i class="icon-plus"></i> Add New Address</a>
                                 </div>
                             </div>
-                            <div class="row gutter-2">
+                            <div class="row gutter-2" th:if="${user != null}">
                                 <!-- Loop through addresses -->
                                 <div class="col-lg-6" th:each="address : ${user.addresses}">
                                     <div class="card card-data bordered">
