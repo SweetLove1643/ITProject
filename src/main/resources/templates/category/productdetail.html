@@ -40,16 +40,9 @@
                 <div class="row gutter-1 justify-content-between">
                     <div class="col-lg-10 order-lg-2">
                         <div class="owl-carousel owl-carousel--alt gallery" data-margin="0" data-slider-id="1" data-thumbs="true" data-nav="true">
-                            <figure th:each="image : ${product.images}">
-                                <a th:href="${image.largeUrl}"><img th:src="${image.largeUrl}" alt="Image"></a>
-                            </figure>
-                        </div>
-                    </div>
-                    <div class="col-lg-2 text-center text-lg-left order-lg-1">
-                        <div class="owl-thumbs" data-slider-id="1">
-                            <span class="owl-thumb-item" th:each="image : ${product.images}">
-                                <img th:src="${image.thumbUrl}" alt="">
-                            </span>
+
+                            <a th:href="@{#!}" class="cart-item-image"><img
+                                    th:src="${products.imageurl}" alt="Image"></a>
                         </div>
                     </div>
                 </div>
@@ -60,23 +53,13 @@
                 <!-- description -->
                 <div class="row">
                     <div class="col-12">
-                        <span class="eyebrow text-muted" th:text="${product.brand}"></span>
-                        <h1 th:text="${product.name}"></h1>
-                        <span class="price fs-18" th:text="${product.price}"></span>
+                        <span class="eyebrow text-muted" th:text="${products.brand}"></span>
+                        <h1 th:text="${products.productname}"></h1>
+                        <span class="price fs-18" th:text="${products.price}"></span>
                     </div>
                 </div>
 
-                <div class="col-12">
-                    <div class="form-group">
-                        <label>Product code</label>
-                        <small class="d-block text-dark" th:text="${product.code}"></small>
-                    </div>
-                </div>
-                <div class="col-12">
-                    <a th:href="@{/cart/add/{id}(id=${product.id})}" class="btn btn-block btn-primary" th:text="'Thêm vào giỏ hàng'"></a>
-                </div>
-
-                <!-- accordion -->
+                <!-- detail -->
                 <div class="row">
                     <div class="col">
                         <div class="accordion" id="accordion-1">
@@ -91,51 +74,27 @@
 
                                 <div id="collapse-1-1" class="collapse show" aria-labelledby="heading-1-1" data-parent="#accordion-1">
                                     <div class="card-body">
-                                        <ul class="list list--unordered">
-                                            <li th:each="detail : ${product.details}" th:text="${detail}"></li>
-                                        </ul>
-                                        <p th:text="${product.description}"></p>
+
+                                        <p th:text="${products.description}"></p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-        </div>
-    </div>
-</section>
-
-<!-- related -->
-<section class="no-overflow">
-    <div class="container">
-        <div class="row">
-            <div class="col">
-                <h2 th:text="'Recently viewed'"></h2>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                <div class="owl-carousel visible" data-items="[4,3,2,1]" data-margin="10" data-nav="true" data-loop="true">
-                    <div class="card card-product" th:each="relatedProduct : ${relatedProducts}">
-                        <figure class="card-image">
-                            <a href="#" class="action"><i class="icon-heart"></i></a>
-                            <a th:href="@{/product/{id}(id=${relatedProduct.id})}">
-                                <img th:src="${relatedProduct.imageMain}" alt="Image">
-                                <img th:src="${relatedProduct.imageAlt}" alt="Image">
-                            </a>
-                        </figure>
-                        <a th:href="@{/product/{id}(id=${relatedProduct.id})}" class="card-body">
-                            <h3 class="card-title" th:text="${relatedProduct.name}"></h3>
-                            <span class="price" th:text="${relatedProduct.price}"></span>
-                        </a>
-                    </div>
+                <div class="col-12">
+                    <a th:href="@{/cart/add/{id}(id=${products.productid})}" class="btn btn-block btn-primary" th:text="'Thêm vào giỏ hàng'"></a>
                 </div>
+
+
             </div>
+
         </div>
     </div>
 </section>
+
+
 
 <footer th:replace="~{decorator/footer :: footer}"></footer>
 

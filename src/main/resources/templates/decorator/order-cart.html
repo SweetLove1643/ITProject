@@ -1,24 +1,21 @@
-<div class="cart-item" th:fragment="order-cart"
-	xmlns:th="https://www.thymeleaf.org">
+<div class="cart-item" th:fragment="order-cart" xmlns:th="https://www.thymeleaf.org">
 	<div th:if="${usercart != null}">
 		<div th:each="cart : ${usercart}">
 			<div class="cart-item-header">
 				<input type="checkbox" id="checkbox-item-1">
 			</div>
-			<a th:href="@{#!}" class="cart-item-image"><img
-				th:src="${cart.imageurl}" alt="Image"></a>
+			<a th:href="@{#!}" class="cart-item-image"><img th:src="${cart.imageurl}" alt="Image"></a>
 			<div class="cart-item-body">
 				<div class="row">
-
-
 					<div class="col-10">
 						<div class="row">
 							<div class="col-md-6">
 								<h5 class="cart-item-title" th:text="${cart.productname}"></h5>
 								<small class="cart-item-subtitle" th:text="${cart.brand}"></small>
 								<ul class="cart-item-meta">
-									<li class="text-red" th:text="${cart.price}"></li>
+									<li class="text-red" th:text="${cart.price != null ? cart.price + ' ₫' : '0 ₫'}"></li>
 								</ul>
+
 							</div>
 							<div class="col-md-6">
 								<ul class="list list--horizontal">

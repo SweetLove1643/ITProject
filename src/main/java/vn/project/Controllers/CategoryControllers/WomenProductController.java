@@ -22,7 +22,7 @@ public class WomenProductController {
     public String index(Model model) {
     	
     	List<ProductsDTO> list = productservice.findbyCategoryDTO("Nữ");
-    	System.out.println(list);
+    	/*System.out.println(list);*/
     	model.addAttribute("products", list);
 		 return "category/womenproduct"; 
     }
