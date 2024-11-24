@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link th:href="@{/assets/css/vendor.css}" rel="stylesheet" />
+    <link th:href="@{/assets/css/style.css}" rel="stylesheet" />
+
+    <title th:text="'Quản lý tài khoản khách hàng'"></title>
+</head>
+<body>
+<!-- Header -->
+<div th:replace="~{decorator/header :: header}"></div>
+
+<section style="padding: 2.5rem 0;"></section>
+
+<!-- Main Content -->
+<main class="container my-4">
+    <h1 class="text-center mb-4">Quản lý tài khoản khách hàng</h1>
+
+    <!-- Table -->
+    <div class="table-responsive">
+        <table class="table table-bordered">
+            <thead class="bg-light">
+            <tr>
+                <th>#</th>
+                <th>User ID</th>
+                <th>Tên đăng nhập</th>
+                <th>Họ và tên</th>
+                <th>Email</th>
+                <th>Địa chỉ</th>
+                <th>Số điện thoại</th>
+                <th>Vai trò</th>
+                <th>Thao tác</th>
+            </tr>
+            </thead>
+            <!--<tbody>
+            <tr th:each="user, iterStat : ${users}">
+                <td th:text="${iterStat.index + 1}"></td>
+                <td th:text="${user.userID}"></td>
+                <td th:text="${user.username}"></td>
+                <td th:text="${user.fullName}"></td>
+                <td th:text="${user.email}"></td>
+                <td th:text="${user.address}"></td>
+                <td th:text="${user.phoneNumber}"></td>
+                <td th:text="${user.role.roleName}"></td>
+                <td>
+                    <button type="button" class="btn btn-sm btn-primary"
+                            data-bs-toggle="modal"
+                            data-bs-target="#editUserModal"
+                            th:attr="data-user-id=${user.userID},
+                                     data-username=${user.username},
+                                     data-fullname=${user.fullName},
+                                     data-email=${user.email},
+                                     data-address=${user.address},
+                                     data-phonenumber=${user.phoneNumber},
+                                     data-roleid=${user.role.roleID}">
+                        Sửa
+                    </button>
+                </td>
+            </tr>
+            <tr th:if="${users.size() == 0}">
+                <td colspan="9" class="text-center">Không có tài khoản nào</td>
+            </tr>
+            </tbody>-->
+        </table>
+    </div>
+</main>
+
+<!-- Modal: Edit User -->
+<div class="modal fade" id="editUserModal" tabindex="-1" aria-labelledby="editUserModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editUserModalLabel">Chỉnh sửa thông tin tài khoản</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form th:action="@{/admin/users/update}" method="post">
+                    <input type="hidden" id="userID" name="userID">
+
+                    <div class="mb-3">
+                        <label for="username" class="form-label">Tên đăng nhập</label>
+                        <input type="text" id="username" name="username" class="form-control" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="fullName" class="form-label">Họ và tên</label>
+                        <input type="text" id="fullName" name="fullName" class="form-control" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" id="email" name="email" class="form-control" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="address" class="form-label">Địa chỉ</label>
+                        <input type="text" id="address" name="address" class="form-control">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="phoneNumber" class="form-label">Số điện thoại</label>
+                        <input type="text" id="phoneNumber" name="phoneNumber" class="form-control">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="roleID" class="form-label">Vai trò</label>
+                        <select id="roleID" name="roleID" class="form-select">
+                            <option th:each="role : ${roles}" th:value="${role.roleID}" th:text="${role.roleName}"></option>
+                        </select>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Lưu</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section></section>
+
+<footer th:replace="~{decorator/footer :: footer}"></footer>
+
+<script th:src="@{https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js}"></script>
+<script th:src="@{/assets/js/vendor.min.js}"></script>
+<script th:src="@{/assets/js/app.js}"></script>
+</body>
+</html>
