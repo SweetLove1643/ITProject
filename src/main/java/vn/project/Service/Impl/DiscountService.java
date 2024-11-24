@@ -17,12 +17,12 @@ public class DiscountService implements IDiscountService{
 	IDiscountRepository discountRepository;
 
 	@Override
-	public List<Discounts> findByDiscountid(int discountid) {
+	public Optional<Discounts> findByDiscountid(int discountid) {
 		return discountRepository.findByDiscountid(discountid);
 	}
 
 	@Override
-	public List<Discounts> findByDiscountcode(String discountcode) {
+	public Optional<Discounts> findByDiscountcode(String discountcode) {
 		return discountRepository.findByDiscountcode(discountcode);
 	}
 

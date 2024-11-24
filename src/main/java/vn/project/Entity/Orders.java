@@ -1,12 +1,16 @@
 package vn.project.Entity;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -42,9 +46,13 @@ public class Orders {
 	private String paymentmethod;
 	
 	@Column(name = "DiscountID")
-	private int discountid;
+	private Integer discountid;
 	
 	@Column(name = "DeliveryStatus", nullable = false, columnDefinition = "nvarchar(255)")
 	private String deliverystatus;
 
+	@OneToMany(mappedBy = "order", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Order_Products> orderProducts;
+    
+    
 }

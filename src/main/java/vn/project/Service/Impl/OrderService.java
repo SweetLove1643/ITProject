@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.stereotype.Service;
+
 import vn.project.Entity.Discounts;
 import vn.project.Entity.Orders;
 import vn.project.Entity.Users;
@@ -14,6 +16,7 @@ import vn.project.Repository.IOrderRepository;
 import vn.project.Repository.IUserRepository;
 import vn.project.Service.IOrderService;
 
+@Service
 public class OrderService implements IOrderService{
 	
 	@Autowired
@@ -90,10 +93,9 @@ public class OrderService implements IOrderService{
 	}
 	
 	public List<Orders> findbyDiscount(String discount) {
-		List<Discounts> listdiscount = discountRepository.findByDiscountcode(discount);
-		if (!listdiscount.isEmpty()) {
-			Discounts discountpresent = listdiscount.getFirst();
-			return orderRepository.findByDiscountid(discountpresent.getDiscountid());
+		Optional<Discounts> discountoptinal = discountRepository.findByDiscountcode(discount);
+		if (discountoptinal.isPresent()) {
+			return orderRepository.findByDiscountid(discountoptinal.get().getDiscountid());
 		}
 		return null;
 	}

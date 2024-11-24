@@ -2,6 +2,7 @@ package vn.project.Controllers.CustomerControllers;
 
 import java.util.ArrayList;
 
+
 import java.util.List;
 import java.util.Optional;
 
@@ -9,13 +10,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import jakarta.servlet.http.HttpSession;
+import jakarta.transaction.Transactional;
 import vn.project.DTO.CartDTO;
+import vn.project.Entity.Orders;
 import vn.project.Entity.Roles;
 import vn.project.Entity.Users;
 import vn.project.Service.ICartService;
+import vn.project.Service.IOrderService;
 import vn.project.Service.IRoleService;
 import vn.project.Service.IUserService;
 
@@ -31,6 +36,9 @@ public class PersonalDataController {
 
 	@Autowired
 	ICartService cartService;
+	
+	@Autowired
+	IOrderService orderService;
 
 	@GetMapping("/profile")
 	public String profile(HttpSession session, Model model) {
@@ -66,7 +74,6 @@ public class PersonalDataController {
 	        model.addAttribute("user", userPresent);
 	        model.addAttribute("userrole", roleUser);
 	    } else {
-	        // Xử lý trường hợp không tìm thấy user
 	        model.addAttribute("error", "User không tồn tại hoặc không được đăng nhập.");
 	    }
 
@@ -78,6 +85,9 @@ public class PersonalDataController {
 	public String cart(HttpSession session, Model model) {
 		
 		List<CartDTO> cartuser = new ArrayList<>();
+		
+		cartuser = cartService.findByUserid(1);
+
 		
 		Object useridObj = session.getAttribute("userid");
 		if(useridObj != null) {
@@ -102,6 +112,15 @@ public class PersonalDataController {
 
 		return "customer/cart";
 	}
+	
+	@Transactional
+	@GetMapping("/cart/delete/{id}")
+	public String deletecart(@PathVariable("id") int cartid) {
+		
+		cartService.deleteByCartid(cartid);
+
+		return "redirect:/personal/cart";
+	}
 
 	@GetMapping("/changepassword")
 	public String changepassword() {
@@ -109,7 +128,11 @@ public class PersonalDataController {
 	}
 
 	@GetMapping("/orders")
-	public String orders() {
+	public String orders(Model model) {
+		List<Orders> order = orderService.findByUserid(4);
+		
+		
+		model.addAttribute("orders", order);
 		return "customer/orders";
 	}
 }
