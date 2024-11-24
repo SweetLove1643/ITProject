@@ -171,60 +171,45 @@ m245 91 l0 -30 -72 -3 -73 -3 0 36 0 36 73 -3 72 -3 0 -30z m29 -131 c10 -25
 			</div>
 
 
+            <div class="collapse navbar-collapse order-5 order-lg-3" id="navbarMenu2">
+                <ul class="navbar-nav ml-auto position-relative">
 
-
-			<div class="collapse navbar-collapse order-5 order-lg-3"
-				id="navbarMenu2">
-				<ul class="navbar-nav ml-auto position-relative">
-
-					<!-- users -->
-					<li class="nav-item dropdown dropdown-sm dropdown-hover"><a
-						class="nav-icon dropdown-toggle" id="navbarDropdown-6"
-						role="button" data-toggle="dropdown" aria-haspopup="true"
-						aria-expanded="false"> <i
-							class="icon-user d-none d-lg-inline-block"></i> <span
-							class="d-inline-block d-lg-none">Tài khoản</span>
-					</a>
-						<div class="dropdown-menu" aria-labelledby="navbarDropdown-6">
-							<div class="row gutter-2">
-								<div class="col-12">
-									<sec:authorize access="hasRole('customer')">
-										<ul class="menu-list">
-											<li class="menu-list-item"><a th:href="@{/login}"
-												class="menu-list-link">Đăng nhập</a> <li class="menu-list-item"><a th:href="@{/register}"
-												class="menu-list-link">Tạo tài khoản</a>
-                                        
-										</ul>
+                    <!-- users -->
+                    <li class="nav-item dropdown dropdown-sm dropdown-hover">
+                        <a class="nav-icon dropdown-toggle" id="navbarDropdown-6" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="icon-user d-none d-lg-inline-block"></i>
+                            <span class="d-inline-block d-lg-none">Tài khoản</span>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown-6">
+                            <div class="row gutter-2">
+                                <div class="col-12">
+                                    <sec:authorize access="hasRole('customer')">
+                                        <ul class="menu-list">
+                                            <li class="menu-list-item"><a th:href="@{/login}" class="menu-list-link">Đăng nhập</a>
+                                            <li class="menu-list-item"><a th:href="@{/register}" class="menu-list-link">Tạo tài khoản</a>
+                                        </ul>
                                     </sec:authorize>
                                 </div>
                             </div>
                         </div>
                     </li>
                     
-                    <!-- search --><li
-						class="nav-item dr
-											opdown dropdown-md dropdown-hover">
-                        <a class="nav-icon dropdown-toggle"
-						id="navbarDropdown-4" role="button" data-toggle="dropdown"
-						aria-haspopup="true" aria-expanded="false">
-                            <i
-							class="icon-search d-none d-lg-inline-block"></i>
+
+
+                    <!-- search -->
+                    <li class="nav-item dropdown dropdown-md dropdown-hover">
+                        <a class="nav-icon dropdown-toggle" id="navbarDropdown-4" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="icon-search d-none d-lg-inline-block"></i>
                             <span class="d-inline-block d-lg-none">Tìm kiếm</span>
                         </a>
-                        <div class="dropdown-menu"
-							aria-labelledby="navbarDropdown-4">
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown-4">
                             <div class="form-group">
-                                <input type="text" class="form-control"
-									id="searchForm"
-									placeholder="Tìm kiếm sản phẩm hoặc thương hiệu...">
+                                <input type="text" class="form-control" id="searchForm" placeholder="Tìm kiếm sản phẩm hoặc thương hiệu...">
                             </div>
                         </div>
                     </li>
 
 
-                    
-
-                    
 
                     <!-- cart -->
                     <li
@@ -259,10 +244,9 @@ m245 91 l0 -30 -72 -3 -73 -3 0 36 0 36 73 -3 72 -3 0 -30z m29 -131 c10 -25
                                     </ul>
                                 </div>
                                 <div class="col-12">
-                                    <a th:href="@{/cart}"
-										class="btn btn-outline-secondary btn-block">Xem giỏ hàng</a>
-                                    <a th:href="@{/checkout}"
-										class="btn btn-primary btn-block">Thanh toán</a>
+
+                                    <a th:href="@{/personal/cart}" class="btn btn-outline-secondary btn-block">Xem giỏ hàng</a>
+                                    <a th:href="@{/checkout}" class="btn btn-primary btn-block">Thanh toán</a>
                                 </div>
                             </div>
                         </div>

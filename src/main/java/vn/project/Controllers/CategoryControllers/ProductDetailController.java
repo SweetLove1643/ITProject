@@ -18,10 +18,10 @@ public class ProductDetailController {
 	IProductService productService;
 
 	@GetMapping
-	public String index(@RequestParam String productid, Model model) {
+	public String index(/*@RequestParam String productid,*/ Model model) {
 		try {
-			int id = Integer.valueOf(productid);
-			ProductsDTO product = productService.findbyIdDTO(id);
+			/*int id = Integer.valueOf(productid);*/
+			ProductsDTO product = productService.findbyIdDTO(4);
 			model.addAttribute("products", product);
 			return "category/productdetail";
 			
