@@ -49,7 +49,9 @@
           <div th:replace="decorator/sortby :: sortby"></div>
         </div>
 
-        <div th:replace="decorator/product-listing :: product-listing"></div>
+        <div class="row gutter-1">
+          <div th:replace="~{decorator/product-listing :: product-listing}"></div>
+        </div>
 
         <div th:replace="decorator/paging :: paging"></div>
 
