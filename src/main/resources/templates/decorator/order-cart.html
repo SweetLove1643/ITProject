@@ -1,51 +1,52 @@
 <div class="cart-item" th:fragment="order-cart" xmlns:th="https://www.thymeleaf.org">
 	<div th:if="${usercart != null}">
 		<div th:each="cart : ${usercart}">
-			<div class="cart-item-header">
-				<input type="checkbox" id="checkbox-item-1">
-			</div>
-			<a th:href="@{#!}" class="cart-item-image"><img th:src="${cart.imageurl}" alt="Image"></a>
 			<div class="cart-item-body">
-				<div class="row">
-					<div class="col-10">
-						<div class="row">
-							<div class="col-md-6">
-								<h5 class="cart-item-title" th:text="${cart.productname}"></h5>
-								<small class="cart-item-subtitle" th:text="${cart.brand}"></small>
-								<ul class="cart-item-meta">
-									<li class="text-red" th:text="${cart.price != null ? cart.price + ' ₫' : '0 ₫'}"></li>
-								</ul>
+				<div class="row align-items-center">
+					<!-- Checkbox -->
+					<div class="col-auto cart-item-header">
+						<input type="checkbox" id="checkbox-item-1">
+					</div>
 
-							</div>
-							<div class="col-md-6">
-								<ul class="list list--horizontal">
-									<li>
-										<div class="dropdown">
-											<a class="dropdown-toggle" role="button" id="dropdown-2"
-												data-toggle="dropdown" aria-haspopup="true"
-												aria-expanded="false" th:value="${cart.quantity}"> Số
-												lượng <span>1</span>
-											</a>
-											<div class="dropdown-menu" aria-labelledby="dropdown-2">
-												<a class="dropdown-item active" href="#!">1</a> <a
-													class="dropdown-item" href="#!">2</a> <a
-													class="dropdown-item" href="#!">3</a> <a
-													class="dropdown-item" href="#!">4</a> <a
-													class="dropdown-item" href="#!">5</a>
-											</div>
-										</div>
-									</li>
-								</ul>
+					<!-- Hình ảnh -->
+					<div class="col-auto">
+						<a th:href="@{#!}" class="cart-item-image">
+							<img th:src="${cart.imageurl}" alt="Image" class="img-fluid" style="max-width: 80px;">
+						</a>
+					</div>
+
+					<!-- Tên sản phẩm và giá tiền -->
+					<div class="col">
+						<h5 class="cart-item-title" th:text="${cart.productname}"></h5>
+						<small class="cart-item-subtitle" th:text="${cart.brand}"></small>
+						<ul class="cart-item-meta">
+							<li class="text-red" th:text="${cart.price != null ? cart.price + ' ₫' : '0 ₫'}"></li>
+						</ul>
+					</div>
+
+					<!-- Số lượng -->
+					<div class="col-auto">
+						<div class="dropdown">
+							<a class="dropdown-toggle" role="button" id="dropdown-2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+							   th:value="${cart.quantity}">Số lượng: <span th:text="${cart.quantity}">1</span></a>
+							<div class="dropdown-menu" aria-labelledby="dropdown-2">
+								<a class="dropdown-item" href="#!" th:classappend="${cart.quantity == 1 ? 'active' : ''}">1</a>
+								<a class="dropdown-item" href="#!" th:classappend="${cart.quantity == 2 ? 'active' : ''}">2</a>
+								<a class="dropdown-item" href="#!" th:classappend="${cart.quantity == 3 ? 'active' : ''}">3</a>
+								<a class="dropdown-item" href="#!" th:classappend="${cart.quantity == 4 ? 'active' : ''}">4</a>
+								<a class="dropdown-item" href="#!" th:classappend="${cart.quantity == 5 ? 'active' : ''}">5</a>
 							</div>
 						</div>
 					</div>
 
-					<div class="col-2 text-right">
+					<!-- Nút xóa -->
+					<div class="col-auto text-right">
 						<ul class="cart-item-options">
-							<li><a th:href="@{/personal/cart/delete/{id}(id=${cart.cartid})}" class="icon-x"></a></li>
+							<li>
+								<a th:href="@{/personal/cart/delete/{id}(id=${cart.cartid})}" class="icon-x"></a>
+							</li>
 						</ul>
 					</div>
-
 				</div>
 			</div>
 		</div>
