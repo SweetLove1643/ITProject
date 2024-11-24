@@ -1,6 +1,7 @@
 package vn.project.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -21,8 +22,8 @@ public interface IDiscountService {
 
 	<S extends Discounts> S save(S entity);
 
-	List<Discounts> findByDiscountcode(String discountcode);
+	Optional<Discounts> findByDiscountcode(String discountcode);
 
-	List<Discounts> findByDiscountid(int discountid);
+	Optional<Discounts> findByDiscountid(int discountid);
 
 }

@@ -40,6 +40,13 @@ public class CartService implements ICartService {
 	public void deleteByUserid(int userid) {
 		cartRepository.deleteByUserid(userid);
 	}
+	
+	
+
+	@Override
+	public void deleteByCartid(int cartid) {
+		cartRepository.deleteByCartid(cartid);
+	}
 
 	@Override
 	public void deleteByUseridAndProductid(int userid, int productid) {

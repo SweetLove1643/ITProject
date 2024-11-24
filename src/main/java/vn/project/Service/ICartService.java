@@ -19,4 +19,6 @@ public interface ICartService {
 
 	List<CartDTO> findByUserid(int userid);
 
+	void deleteByCartid(int cartid);
+
 }
