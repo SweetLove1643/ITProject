@@ -13490,4 +13490,59 @@ div.code-toolbar > .toolbar {
           background-color: #4d4646; /* Màu nền đen khi được chọn */
       }
 
+    .dYBF91 {
+        display: flex;
+        align-items: center;
+        gap: 4px; /* Khoảng cách giữa các phần tử */
+    }
+
+    .aGq8SN {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: transparent;
+        border: 1px solid rgba(0, 0, 0, 0.09);
+        border-radius: 2px;
+        color: rgba(0, 0, 0, 0.8);
+        cursor: pointer;
+        font-size: 0.875rem;
+        font-weight: 300;
+        height: 32px;
+        width: 32px;
+        outline: none;
+        transition: background-color 0.1s cubic-bezier(0.4, 0, 0.6, 1);
+    }
+
+    .jKOh4z {
+        width: 50px; /* Chiều rộng của ô nhập */
+        text-align: center;
+        font-size: 0.875rem;
+        border: 1px solid rgba(0, 0, 0, 0.09);
+        height: 32px;
+        outline: none;
+        border-radius: 2px;
+        color: rgba(0, 0, 0, 0.8);
+        background: transparent;
+    }
+
+    .aGq8SN:hover {
+        background-color: rgba(0, 0, 0, 0.05);
+    }
+
+    .aGq8SN:active {
+        background-color: rgba(0, 0, 0, 0.1);
+    }
+
+    /* Ẩn các nút tăng/giảm mặc định trên input[type="number"] */
+    input[type="number"]::-webkit-inner-spin-button,
+    input[type="number"]::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    input[type="number"] {
+        -moz-appearance: textfield; /* Loại bỏ nút trên Firefox */
+    }
+
+
 /*# sourceMappingURL=style.css.map */
