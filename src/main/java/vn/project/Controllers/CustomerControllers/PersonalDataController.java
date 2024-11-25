@@ -133,6 +133,6 @@ public class PersonalDataController {
 		
 		
 		model.addAttribute("orders", order);
-		return "customer/orders";
+		return "customer/acc-orders";
 	}
 }

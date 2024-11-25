@@ -114,77 +114,6 @@
                             </div>
                         </div>
 
-
-
-
-                        <!-- favorites -->
-                        <div class="tab-pane fade" id="sidebar-1-2" role="tabpanel" aria-labelledby="sidebar-1-2">
-                            <div class="row align-items-end">
-                                <div class="col">
-                                    <h2>Favorites</h2>
-                                </div>
-                                <div class="col text-right">
-                                    <a th:href="@{/favorites/addAllToBag}" class="underline"><i class="icon-plus"></i> Add all to bag</a>
-                                </div>
-                            </div>
-                            <div class="row gutter-2">
-                                <!-- Check if favorites exist -->
-                                <div th:if="${favorites != null and favorites.size() > 0}" class="col-12">
-                                    <div class="row gutter-2" th:each="favorite : ${favorites}">
-                                        <div class="col-md-6">
-                                            <div class="card card-product">
-                                                <figure class="card-image">
-                                                    <a th:href="@{'/favorites/remove/' + ${favorite.productId}}" class="action"><i class="icon-x"></i></a>
-                                                    <a th:href="@{'/product/' + ${favorite.productId}}">
-                                                        <!-- Hiển thị ảnh sản phẩm -->
-                                                        <img th:src="@{'/assets/images/products/' + ${favorite.imageURL}}" th:alt="${favorite.productName}">
-                                                    </a>
-                                                </figure>
-                                                <div class="card-footer">
-                                                    <!-- Hiển thị tên sản phẩm -->
-                                                    <h3 class="card-title">
-                                                        <a th:href="@{'/product/' + ${favorite.productId}}" th:text="${favorite.productName}">Product Name</a>
-                                                    </h3>
-                                                    <!-- Hiển thị giá sản phẩm -->
-                                                    <span class="price" th:text="'$' + ${favorite.price}">$0</span>
-                                                </div>
-                                            </div>
-                                            <fieldset class="my-1">
-                                                <div class="row">
-                                                    <div class="col-12">
-                                                        <div class="select-frame">
-                                                            <select class="custom-select custom-select-lg" id="custom-select-1" data-placeholder="Select colour">
-                                                                <option label="Color"></option>
-                                                                <option th:each="color : ${favorite.availableColors}" th:value="${color}" th:text="${color}"></option>
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-12">
-                                                        <div class="select-frame">
-                                                            <select class="custom-select custom-select-lg" id="custom-select-1-2" data-placeholder="Size">
-                                                                <option label="Size"></option>
-                                                                <option th:each="size : ${favorite.availableSizes}" th:value="${size}" th:text="${size}"></option>
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </fieldset>
-                                            <!-- Nút thêm sản phẩm vào giỏ hàng -->
-                                            <a th:href="@{'/cart/add/' + ${favorite.productId}}" class="btn btn-block btn-primary">Add to Bag</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- If no favorites -->
-                                <div th:if="${favorites == null or favorites.size() == 0}" class="col-12">
-                                    <p>No favorite items available.</p>
-                                </div>
-                            </div>
-                        </div>
-
-
-
                         <!-- personal data -->
                         <div class="tab-pane fade " id="sidebar-1-3" role="tabpanel" aria-labelledby="sidebar-1-3">
                             <div class="row">
@@ -289,8 +218,6 @@
                             </div>
                         </div>
 
-
-
                         <!-- change password -->
                         <div class="tab-pane fade " id="sidebar-1-4" role="tabpanel" aria-labelledby="sidebar-1-4">
                             <div class="row">
@@ -347,64 +274,7 @@
                                 </div>
                             </form>
                         </div>
-                        >
 
-
-
-                        <div class="tab-pane fade" id="sidebar-1-5" role="tabpanel" aria-labelledby="sidebar-1-5">
-                            <div class="row align-items-center">
-                                <div class="col-md-6">
-                                    <h2>Addresses</h2>
-                                </div>
-                                <div class="col-md-6 text-md-right">
-                                    <a th:href="@{/addresses/add}" class="underline"><i class="icon-plus"></i> Add New Address</a>
-                                </div>
-                            </div>
-                            <div class="row gutter-2" th:if="${user != null}">
-                                <!-- Loop through addresses -->
-                                <div class="col-lg-6" th:each="address : ${user.addresses}">
-                                    <div class="card card-data bordered">
-                                        <div class="card-header">
-                                            <div class="row align-items-center">
-                                                <div class="col-8">
-                                                    <h2 class="card-title eyebrow" th:text="${address.addressLabel != null ? address.addressLabel : 'Delivery Address'}">
-                                                        Delivery Address
-                                                    </h2>
-                                                </div>
-                                                <div class="col text-right">
-                            <span class="dropdown">
-                                <button class="btn btn-lg btn-white btn-ico" id="dropdown-[[${address.addressId}]]"
-                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" type="button">
-                                    <i class="icon-more-vertical"></i>
-                                </button>
-                                <span class="dropdown-menu" th:aria-labelledby="'dropdown-' + ${address.addressId}">
-                                    <a class="dropdown-item" th:href="@{/addresses/edit/{id}(id=${address.addressId})}">Edit</a>
-                                    <a class="dropdown-item" th:href="@{/addresses/delete/{id}(id=${address.addressId})}"
-                                       onclick="return confirm('Are you sure you want to delete this address?');">Delete</a>
-                                </span>
-                            </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="card-body">
-                                            <p>
-                                                <span th:text="${address.fullName}">John Doe</span> <br/>
-                                                <span th:text="${address.street}">123 Main Street</span> <br/>
-                                                <span th:text="${address.city}">City</span>,
-                                                <span th:text="${address.state}">State</span>
-                                                <span th:text="${address.zipCode}">00000</span> <br/>
-                                                <span th:text="${address.country}">Country</span>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- If no addresses -->
-                                <div class="col-12" th:if="${user.addresses == null or user.addresses.size() == 0}">
-                                    <p>No addresses found. Add a new address to manage your deliveries.</p>
-                </div>
-            </div>
-        </div>
         </div>
     </div>
 
