@@ -1,4 +1,4 @@
-package vn.project.Controllers;
+package vn.project.Controllers.Commons;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

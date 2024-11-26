@@ -1,9 +1,10 @@
-package vn.project.Controllers;
+package vn.project.Controllers.Commons;
 
 
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,7 +12,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import vn.project.Entity.Roles;
 import vn.project.Entity.Users;
+import vn.project.Service.IRoleService;
 import vn.project.Service.IUserService;
 
 @Controller
@@ -20,6 +23,12 @@ public class RegisterController {
 
 	@Autowired
 	IUserService userService;
+	
+	@Autowired
+	IRoleService roleService;
+	
+	@Autowired
+	BCryptPasswordEncoder passwordEncoder;
 
 	@GetMapping
 	public String index() {
@@ -60,8 +69,9 @@ public class RegisterController {
 				return "commons/register";
 			}
 		}
-		Users newUser = Users.builder().username(username).password(password).fullname(fullname)
-				.phonenumber(phonenumber).email(email).address(address).roleid(2).build();
+		Roles role = roleService.findById(2).get();
+		Users newUser = Users.builder().username(username).password(passwordEncoder.encode(password)).fullname(fullname)
+				.phonenumber(phonenumber).email(email).address(address).role(role).build();
 		userService.save(newUser);
 		model.addAttribute("message", "Tạo tài khoản thành công");
 		return "redirect:/login";

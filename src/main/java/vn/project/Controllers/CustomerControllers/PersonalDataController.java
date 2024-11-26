@@ -64,7 +64,7 @@ public class PersonalDataController {
 	        String roleUser = "Không xác định";
 
 	        // Lấy role user nếu có
-	        Optional<Roles> role = roleService.findById(userPresent.getRoleid());
+	        Optional<Roles> role = roleService.findById(userPresent.getRole().getRoleid());
 	        if (role.isPresent()) {
 	            Roles rolePresent = role.get();
 	            roleUser = rolePresent.getRolename();

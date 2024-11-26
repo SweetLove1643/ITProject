@@ -155,8 +155,48 @@ m245 91 l0 -30 -72 -3 -73 -3 0 36 0 36 73 -3 72 -3 0 -30z m29 -131 c10 -25
                   <div class="row gutter-2">
                     <div class="col-12">
                     	<ul class="menu-list">
-                      		<li class="menu-list-item"><a th:href="/login" class="menu-list-link">Đăng nhập</a>
-                      		<li class="menu-list-item"><a th:href="/register" class="menu-list-link">Tạo tài khoản</a>
+                      		<div sec:authorize ="!isAuthenticated()">
+									<ul class="menu-list">
+											<li class="menu-list-item"><a th:href="@{/login}"
+												class="menu-list-link">Đăng nhập</a></li>
+											<li class="menu-list-item"><a th:href="@{/register}"
+												class="menu-list-link">Tạo tài khoản</a></li>
+										</ul>
+									</div>
+										
+
+									<div sec:authorize ="isAuthenticated()">
+
+										<div sec:authorize ="hasAuthority('USER')">
+											<ul class="menu-list">
+												<li class="menu-list-item"><a th:href="@{/personal/profile}"
+													class="menu-list-link">Trang cá nhân</a></li>
+													<li class="menu-list-item"><a th:href="@{/personal/cart}"
+													class="menu-list-link">Giỏ hàng</a></li>
+													<li class="menu-list-item"><a th:href="@{/personal/orders}"
+													class="menu-list-link">Đơn hàng</a></li>
+													<li class="menu-list-item"><a th:href="@{/personal/changepass}"
+													class="menu-list-link">Đổi mật khẩu</a></li>
+												<li class="menu-list-item"><a th:href="@{/logout}"
+													class="menu-list-link">Đăng xuất</a></li>
+											</ul>
+										</div>
+
+										<div sec:authorize ="hasAuthority('ADMIN')">
+											<ul class="menu-list">
+												<li class="menu-list-item"><a th:href="@{/personal/profile}"
+													class="menu-list-link">Trang cá nhân</a></li>
+												<li class="menu-list-item"><a th:href="@{/admin/accountmanager}"
+													class="menu-list-link">Quản lý người dùng</a></li>
+												<li class="menu-list-item"><a th:href="@{/admin/ordermanager}"
+													class="menu-list-link">Quản lý đơn hàng</a></li>
+												<li class="menu-list-item"><a th:href="@{/admin/productmanager}"
+													class="menu-list-link">Quản lý sản phẩm</a></li>
+												<li class="menu-list-item"><a th:href="@{/logout}"
+													class="menu-list-link">Đăng xuất</a></li>
+											</ul>
+										</div>
+									</div>
                       	</ul>
                     </div>
                   </div>

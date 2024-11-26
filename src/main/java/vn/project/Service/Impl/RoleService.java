@@ -1,5 +1,7 @@
 package vn.project.Service.Impl;
 
+
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +24,12 @@ public class RoleService implements IRoleService{
 	public Optional<Roles> findById(Integer id) {
 		return roleRepository.findById(id);
 	}
+
+	@Override
+	public List<Roles> findAll() {
+		return roleRepository.findAll();
+	}
+
 	
 	
 }

@@ -1,6 +1,7 @@
-package vn.project.Controllers;
+package vn.project.Controllers.Commons;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,6 +20,9 @@ public class NewPasswordController {
 	private IUserService userService;
 
 	private String useremail;
+	
+	@Autowired
+	BCryptPasswordEncoder passwordEncoder;
 
 	@GetMapping
 	public String index(@ModelAttribute("verifysuccess") String verifysuccess,
@@ -43,7 +47,7 @@ public class NewPasswordController {
 			return "commons/newpass";
 		}else {
 			Users user = userService.findByEmail(useremail).get();
-			user.setPassword(renewpass);
+			user.setPassword(passwordEncoder.encode(newpass));
 			
 			userService.save(user);
 			

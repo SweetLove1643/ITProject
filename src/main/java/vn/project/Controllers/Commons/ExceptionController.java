@@ -1,21 +1,15 @@
-package vn.project.Controllers;
+package vn.project.Controllers.Commons;
 
 import org.springframework.stereotype.Controller;
-
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping
-public class HomeController{
+public class ExceptionController {
 
-	@GetMapping("/home")
-	public String home() {
-		return "index";
-	}
-	
-	@GetMapping
-	public String index() {
-		return "index";
+	@GetMapping("/403")
+	public String view403() {
+		return "commons/403";
 	}
 }

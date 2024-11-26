@@ -23,7 +23,7 @@ public class UserService implements IUserService {
 	@Autowired(required=true)
 	IUserRepository userRepository;
 	
-	@Autowired
+	@Autowired(required=true)
 	private JavaMailSender mailSender;
 
 	public UserService(IUserRepository userRepository) {
