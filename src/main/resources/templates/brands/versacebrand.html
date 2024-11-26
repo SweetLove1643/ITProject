@@ -37,26 +37,8 @@
 
     <div class="row gutter-4">
 
-      <!-- sidebar -->
-      <aside class="col-lg-3 sidebar" th:fragment="filter">
-        <div class="widget">
-          <span class="widget-title" th:text="|Bộ lọc|">Bộ lọc</span>
-          <div class="accordion" id="accordion-1">
-            <div class="card">
-              <div class="card-header" id="heading-1-4">
-                <h5 class="mb-0">
-                  <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse-1-4" aria-expanded="false" aria-controls="collapse-1-4" th:text="|Mức giá|">Mức giá</button>
-                </h5>
-              </div>
-              <div id="collapse-1-4" class="collapse" aria-labelledby="heading-1-4">
-                <div class="card-body">
-                  <input type="text" class="rangeslider" name="Range Slider" th:value="${null}" />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </aside>
+      <!-- bo loc -->
+      <div th:replace="~{decorator/filter :: filter}"></div>
 
       <!-- content -->
       <div class="col-lg-9">

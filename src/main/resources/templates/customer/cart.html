@@ -25,48 +25,57 @@
 
             <!-- content -->
             <div class="col">
-
                 <!-- order list -->
                 <div class="bg-white cart-item-list p-2 p-lg-3 mb-1">
                     <div th:replace="~{decorator/order-cart :: order-cart}"></div>
                 </div>
                 <a th:href="@{/home}" class="underlined">Tiếp tục mua hàng</a>
+                <div class="text-md-right">
+                    <button th:href="@{/personal/cart}" type="button" class=" btn btn-outline-secondary">Cập nhật giỏ hàng</button>
+                </div>
+
             </div>
 
-
-            <!-- order -->
-            <aside class="col-lg-4">
-                <div class="bg-white p-2 p-lg-3">
-                    <h2 class="mb-3 text-uppercase fs-20" th:text="|Tổng hóa đơn|">Tổng hóa đơn</h2>
-                    <div class="input-combined mb-2">
-                        <input type="text" class="form-control" placeholder="Mã giảm giá" aria-label="Promo code" aria-describedby="button-addon2">
-                        <button class="btn btn-white" type="button" id="button-addon2" th:text="|Áp dụng|">Áp dụng</button>
-                        <span class="input-combined_indicator"></span>
-                    </div>
-                    <ul class="list-group list-group-minimal mb-3">
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            Tạm tính
-                            <span>$84.00</span>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            Phí vận chuyển
-                            <span>$8.00</span>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center text-red">
-                            Giảm giá
-                            <span class="text-red">-$14.00</span>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center text-uppercase font-weight-bold">
-                            Tổng thanh toán
-                            <span>$78.00</span>
-                        </li>
-                    </ul>
-                    <a th:href="@{/checkout}" class="btn btn-primary btn-block">Thanh toán</a>
-                </div>
-            </aside>
+            <!-- total order -->
+            <div th:replace="~{decorator/total_order :: total_order}"></div>
         </div>
     </div>
 </section>
+
+<script>
+    function updateCartTotal() {
+        const checkboxes = document.querySelectorAll('.cart-item-checkbox');
+        let subtotal = 0;
+
+        checkboxes.forEach((checkbox) => {
+            if (checkbox.checked) {
+                const item = checkbox.closest('.cart-item');
+                const price = parseInt(item.querySelector('.quantity-input').dataset.price);
+                const quantity = parseInt(item.querySelector('.quantity-input').value);
+                subtotal += price * quantity;
+            }
+        });
+
+        const shipping = 50000; // Phí vận chuyển cố định
+        const discount = 0; // Chưa áp dụng giảm giá
+        const total = subtotal + shipping - discount;
+
+        // Cập nhật hiển thị
+        document.getElementById('subtotal').textContent = subtotal.toLocaleString('vi-VN') + ' ₫';
+        document.getElementById('total').textContent = total.toLocaleString('vi-VN') + ' ₫';
+    }
+
+    function changeQuantity(button, change) {
+        const quantityInput = button.parentElement.querySelector('.quantity-input');
+        let quantity = parseInt(quantityInput.value);
+        quantity = isNaN(quantity) ? 1 : quantity;
+        quantity += change;
+        if (quantity < 1) quantity = 1;
+        quantityInput.value = quantity;
+
+        updateCartTotal();
+    }
+</script>
 
 
 <footer th:replace="~{decorator/footer :: footer}"></footer>
