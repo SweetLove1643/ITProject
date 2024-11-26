@@ -26,4 +26,6 @@ public interface ICategoryService {
 
 	Optional<Categories> findById(Integer id);
 
+	Optional<Integer> findidByCategorynameContaining(String categoryname);
+
 }

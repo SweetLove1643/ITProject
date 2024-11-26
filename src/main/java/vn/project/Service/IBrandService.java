@@ -35,4 +35,6 @@ public interface IBrandService {
 
 	Brands findByBrandname(String brandname);
 
+	Optional<Integer> findIdByBrandnameContaining(String brandname);
+
 }

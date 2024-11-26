@@ -45,6 +45,13 @@ public class ProductService implements IProductService {
 	public List<Products> findAll() {
 		return productRepository.findAll();
 	}
+	
+	@Override
+	public List<ProductsDTO> findAllDTO(){
+		List<Products> list = findAll();
+		
+		return ConvertProductToProductDTO(list);
+	}
 
 	@Override
 	public void deleteById(int id) {
@@ -76,7 +83,7 @@ public class ProductService implements IProductService {
 	}
 
 	@Override
-	public Products findById(int id) {
+	public Optional<Products> findById(int id) {
 		return productRepository.findByProductid(id);
 	}
 
@@ -134,7 +141,7 @@ public class ProductService implements IProductService {
 	
 	@Override
 	public ProductsDTO findbyIdDTO(int id) {
-		Products product = findById(id);
+		Products product = findById(id).get();
 		ProductsDTO productdto = new ProductsDTO();
 		
 		productdto.setProductid(product.getProductid());

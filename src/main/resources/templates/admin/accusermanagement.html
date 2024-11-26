@@ -35,7 +35,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:if="userlist != null" th:each="user, iterStat : ${userlist}">
+            <tr th:if="${userlist != null}" th:each="user, iterStat : ${userlist}">
                 <td th:text="${iterStat.index + 1}"></td>
                 <td th:text="${user.id}"></td>
                 <td th:text="${user.username}"></td>
@@ -77,8 +77,8 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form th:action="@{/admin/accountmanager/update/{id}(id=${userID})}" method="post">
-                    <input type="hidden" id="userID" name="userID">
+                <form th:action="@{/admin/accountmanager/update}" method="post">
+                    <input type="hidden" id="userid" name="userid">
 
                     <div class="mb-3">
                         <label for="username" class="form-label">Tên đăng nhập</label>
@@ -87,7 +87,7 @@
 
                     <div class="mb-3">
                         <label for="fullName" class="form-label">Họ và tên</label>
-                        <input type="text" id="fullName" name="fullName" class="form-control" required>
+                        <input type="text" id="fullname" name="fullname" class="form-control" required>
                     </div>
 
                     <div class="mb-3">
@@ -102,12 +102,12 @@
 
                     <div class="mb-3">
                         <label for="phoneNumber" class="form-label">Số điện thoại</label>
-                        <input type="text" id="phoneNumber" name="phoneNumber" class="form-control">
+                        <input type="text" id="phonenumber" name="phonenumber" class="form-control">
                     </div>
 
                     <div class="mb-3">
-                        <label for="roleID" class="form-label">Vai trò</label>
-                        <select id="roleID" name="roleID" class="form-select">
+                        <label for="roleid" class="form-label">Vai trò</label>
+                        <select id="roleid" name="roleid" class="form-select">
                             <option th:each="role : ${roles}" th:value="${role.roleid}" th:text="${role.rolename}"></option>
                         </select>
                     </div>
@@ -145,13 +145,13 @@
             const roleId = button.getAttribute("data-roleid");
             const roleName = button.getAttribute("data-rolename");
 
-            document.getElementById("userID").value = userId;
+            document.getElementById("userid").value = userId;
             document.getElementById("username").value = username;
-            document.getElementById("fullName").value = fullName;
+            document.getElementById("fullname").value = fullName;
             document.getElementById("email").value = email;
             document.getElementById("address").value = address;
-            document.getElementById("phoneNumber").value = phoneNumber;
-            document.getElementById("roleID").value = roleId;
+            document.getElementById("phonenumber").value = phoneNumber;
+            document.getElementById("roleid").value = roleName;
         });
     });
 </script>

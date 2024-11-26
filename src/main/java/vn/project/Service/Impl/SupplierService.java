@@ -1,6 +1,7 @@
 package vn.project.Service.Impl;
 
 import java.util.List;
+
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+
 import vn.project.Entity.Suppliers;
 import vn.project.Repository.ISupplierRepository;
 import vn.project.Service.ISupplierService;
@@ -75,6 +77,16 @@ public class SupplierService implements ISupplierService {
 	@Override
 	public Optional<Suppliers> findBySuppliername(String keyword) {
 		return supplierRepository.findBySuppliername(keyword);
+	}
+	
+	@Override
+	public Optional<Integer> findidBySuppliernameContaining(String suppliername){
+		List<Suppliers> list = supplierRepository.findBySuppliernameContaining(suppliername);
+	    if (!list.isEmpty()) {
+	        Suppliers supplier = list.getFirst();
+	        return Optional.of(supplier.getSupplierid());
+	    }
+	    return Optional.empty();
 	}
     
 }

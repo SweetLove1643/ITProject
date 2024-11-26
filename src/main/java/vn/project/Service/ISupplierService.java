@@ -32,6 +32,8 @@ public interface ISupplierService {
 	List<Suppliers> findAll(Sort sort);
 
 	<S extends Suppliers> S save(S entity);
+
+	Optional<Integer> findidBySuppliernameContaining(String suppliername);
 	
 	
 }

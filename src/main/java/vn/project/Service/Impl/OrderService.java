@@ -92,6 +92,7 @@ public class OrderService implements IOrderService{
 	    return null;
 	}
 	
+	@Override
 	public List<Orders> findbyDiscount(String discount) {
 		Optional<Discounts> discountoptinal = discountRepository.findByDiscountcode(discount);
 		if (discountoptinal.isPresent()) {
@@ -99,5 +100,14 @@ public class OrderService implements IOrderService{
 		}
 		return null;
 	}
+
+	@Override
+	public <S extends Orders> S save(S entity) {
+		return orderRepository.save(entity);
+	}
+
+	
+	
+	
 	
 }

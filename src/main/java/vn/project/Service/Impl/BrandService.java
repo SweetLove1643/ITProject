@@ -1,6 +1,7 @@
 package vn.project.Service.Impl;
 
 import java.util.List;
+
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -83,5 +84,13 @@ public class BrandService implements IBrandService{
 		brandRepository.deleteAll();
 	}
 	
-	
+	@Override
+	public Optional<Integer> findIdByBrandnameContaining(String brandname) {
+	    List<Brands> list = brandRepository.findByBrandnameContaining(brandname);
+	    if (!list.isEmpty()) {
+	        Brands brand = list.getFirst();
+	        return Optional.of(brand.getBrandid());
+	    }
+	    return Optional.empty();
+	}
 }

@@ -8,6 +8,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import vn.project.Entity.Discounts;
 import vn.project.Entity.Orders;
 
 @Service
@@ -34,5 +35,9 @@ public interface IOrderService {
 	Orders findByOrderid(int orderid);
 
 	List<Orders> findByUser(String user);
+
+	List<Orders> findbyDiscount(String discount);
+
+	<S extends Orders> S save(S entity);
 
 }
