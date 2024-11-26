@@ -34,23 +34,17 @@
 <section class="hero">
     <div class="container">
         <div class="row gutter-2 gutter-md-4 justify-content-between">
-
-            <!-- carousel -->
             <div class="col-lg-7">
                 <div class="row gutter-1 justify-content-between">
                     <div class="col-lg-10 order-lg-2">
                         <div class="owl-carousel owl-carousel--alt gallery" data-margin="0" data-slider-id="1" data-thumbs="true" data-nav="true">
-
-                            <a th:href="@{#!}" class="cart-item-image"><img
-                                    th:src="${products.imageurl}" alt="Image"></a>
+                            <a class="cart-item-image"><img th:src="${products.imageurl}" alt="Image"></a>
                         </div>
                     </div>
                 </div>
             </div>
 
             <div class="col-lg-4 mb-5 mb-lg-0">
-
-                <!-- description -->
                 <div class="row">
                     <div class="col-12">
                         <span class="eyebrow text-muted" th:text="${products.brand}"></span>
@@ -59,7 +53,7 @@
                     </div>
                 </div>
 
-                <!-- detail -->
+                <!-- description -->
                 <div class="row">
                     <div class="col">
                         <div class="accordion" id="accordion-1">
@@ -67,14 +61,12 @@
                                 <div class="card-header" id="heading-1-1">
                                     <h5 class="mb-0">
                                         <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse-1-1" aria-expanded="true" aria-controls="collapse-1-1">
-                                            Details
+                                            Mô tả
                                         </button>
                                     </h5>
                                 </div>
-
                                 <div id="collapse-1-1" class="collapse show" aria-labelledby="heading-1-1" data-parent="#accordion-1">
                                     <div class="card-body">
-
                                         <p th:text="${products.description}"></p>
                                     </div>
                                 </div>
