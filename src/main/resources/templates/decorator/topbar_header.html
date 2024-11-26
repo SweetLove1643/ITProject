@@ -137,11 +137,9 @@ m245 91 l0 -30 -72 -3 -73 -3 0 36 0 36 73 -3 72 -3 0 -30z m29 -131 c10 -25
 						</div></li>
 
 
-					<li class="nav-item dropdown dropdown-sm dropdown-hover"><a
-						class="nav-link dropdown-toggle" id="navbarDropdown-2"
-						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sản
-							phẩm </a>
-
+					<li class="nav-item dropdown dropdown-sm dropdown-hover">
+						<a th:href="@{/allproduct}"  class="nav-link dropdown-toggle" id="navbarDropdown-2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							Sản phẩm </a>
 						<div class="dropdown-menu" aria-labelledby="navbarDropdown-2">
 							<div class="container">
 								<div class="row ">
@@ -165,8 +163,8 @@ m245 91 l0 -30 -72 -3 -73 -3 0 36 0 36 73 -3 72 -3 0 -30z m29 -131 c10 -25
 						</div></li>
 
 					<li class="nav-item dropdown-sm dropdown-hover"><a
-						class="nav-link dropdown-toggle" id="navbarDropdown-3"
-						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						class="nav-link dropdown-toggle" role="button" id="contactLink"
+						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#contactSection">
 							Liên hệ </a></li>
 				</ul>
 			</div>
@@ -230,13 +228,10 @@ m245 91 l0 -30 -72 -3 -73 -3 0 36 0 36 73 -3 72 -3 0 -30z m29 -131 c10 -25
 											</ul>
 										</div>
 									</div>
-
-
-
 								</div>
 							</div>
-						</div></li>
-
+						</div>
+					</li>
 
 
 					<!-- search -->
@@ -249,11 +244,15 @@ m245 91 l0 -30 -72 -3 -73 -3 0 36 0 36 73 -3 72 -3 0 -30z m29 -131 c10 -25
 					</a>
 						<div class="dropdown-menu" aria-labelledby="navbarDropdown-4">
 							<div class="form-group">
-								<input type="text" class="form-control" id="searchForm"
-									placeholder="Tìm kiếm sản phẩm hoặc thương hiệu...">
+								<form class="d-flex align-items-center position-relative">
+									<button type="button" class="btn p-0 position-absolute" style="left: 10px; top: 50%; transform: translateY(-50%); border: none; background: transparent;">
+										<img th:src="@{//theme.hstatic.net/1000340570/1000964732/14/icon-search.svg?v=6611}" alt="Tìm kiếm" style="width: 20px; height: 20px;">
+									</button>
+									<input type="text" class="form-control pl-5" id="searchForm"  placeholder="Tìm kiếm" style="padding-left: 40px;">
+								</form>
 							</div>
-						</div></li>
-
+						</div>
+					</li>
 
 
 					<!-- cart -->
