@@ -20,7 +20,7 @@ public class AllProductController {
     @GetMapping
     public String index(Model model) {
     	
-    	List<ProductsDTO> list = productservice.findbyCategoryDTO("Nam");
+    	List<ProductsDTO> list = productservice.findAllDTO();
     	model.addAttribute("products", list);
         return "category/allproduct";
     }

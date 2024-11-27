@@ -5,11 +5,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/checkout")
+@RequestMapping("/personal")
 public class CheckoutController {
 
-    @GetMapping("")
-
+    @GetMapping("/checkout")
     public String index() {
         return "customer/checkout";
     }

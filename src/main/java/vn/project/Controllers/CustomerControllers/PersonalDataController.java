@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,10 +17,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import jakarta.servlet.http.HttpSession;
 import jakarta.transaction.Transactional;
 import vn.project.DTO.CartDTO;
+import vn.project.Entity.Cart;
 import vn.project.Entity.Orders;
 import vn.project.Entity.Users;
 import vn.project.Service.ICartService;
@@ -42,6 +46,9 @@ public class PersonalDataController {
 
 	@Autowired
 	IOrderService orderService;
+
+	@Autowired
+	BCryptPasswordEncoder passwordEncoder;
 
 	@GetMapping("/profile")
 	public String profile(Model model) {
@@ -89,6 +96,49 @@ public class PersonalDataController {
 
 	}
 
+	@GetMapping("/changepassword")
+	public String changepassword() {
+		return "customer/changepassword";
+	}
+
+	@PostMapping("/changepassword")
+	public String postMethodName(@RequestParam String currentpassword, @RequestParam String newpassword,
+			@RequestParam String confirmpassword, Model model) {
+		try {
+
+			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+			UserDetails userdetail = (UserDetails) auth.getPrincipal();
+
+			if (auth.isAuthenticated()) {
+				Users user = userService.findByUsername(userdetail.getUsername()).get();
+
+				Boolean authentication = passwordEncoder.matches(currentpassword, user.getPassword());
+
+				if (authentication) {
+					if (newpassword.equals(confirmpassword)) {
+
+						user.setPassword(passwordEncoder.encode(newpassword));
+						userService.save(user);
+
+						return "redirect:/personal/changepassword";
+					}
+				} else {
+					model.addAttribute("message", "Sai mật khẩu cu");
+					return "redirect:/personal/changepassword";
+				}
+			} else {
+				return "redirect:/login";
+			}
+
+		} catch (Exception e) {
+			;
+			model.addAttribute("message", "Đã xảy ra lỗi");
+			return "redirect:/anyerror";
+		}
+
+		return null;
+	}
+
 	@GetMapping("/cart")
 	public String cart(HttpSession session, Model model) {
 
@@ -127,10 +177,36 @@ public class PersonalDataController {
 
 		return "redirect:/personal/cart";
 	}
-
-	@GetMapping("/changepassword")
-	public String changepassword() {
-		return "customer/changepassword";
+	
+	@GetMapping("/cart/add/{id}")
+	public String addproduct(@PathVariable String id, RedirectAttributes redirectAttributes) {
+		
+		try {
+			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+			UserDetails userauth = (UserDetails)auth.getPrincipal();
+			Users user = userService.findByUsername(userauth.getUsername()).get();
+			
+			Optional<Cart> cartcheck = cartService.findByUseridAndProductid(user.getId(), Integer.valueOf(id));
+			
+			if(cartcheck.isPresent()) {
+				Cart editcart = cartcheck.get();
+				editcart.setQuantity(editcart.getQuantity() + 1);
+				cartService.save(editcart);
+				redirectAttributes.addFlashAttribute("message", "Thêm sản phẩm thành công");
+				return "redirect:/productdetail/" +  id;
+			}else {
+				Cart newcart = Cart.builder().userid(user.getId()).productid(Integer.valueOf(id)).quantity(1).build();
+				cartService.save(newcart);
+				redirectAttributes.addFlashAttribute("message", "Thêm sản phẩm thành công");
+				return "redirect:/productdetail/" +  id;
+			}
+			
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+			redirectAttributes.addFlashAttribute("message", "Đã xảy ra lỗi");
+			return "redirect:/anyerror";
+		}
 	}
 
 	@GetMapping("/orders")

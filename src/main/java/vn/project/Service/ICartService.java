@@ -1,6 +1,7 @@
 package vn.project.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 import vn.project.DTO.CartDTO;
 import vn.project.Entity.Cart;
@@ -20,5 +21,7 @@ public interface ICartService {
 	List<CartDTO> findByUserid(int userid);
 
 	void deleteByCartid(int cartid);
+
+	Optional<Cart> findByUseridAndProductid(int userid, int productid);
 
 }

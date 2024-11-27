@@ -3,6 +3,7 @@ package vn.project.Service.Impl;
 import java.util.ArrayList;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -95,5 +96,12 @@ public class CartService implements ICartService {
 		}
 
 	}
+
+	@Override
+	public Optional<Cart> findByUseridAndProductid(int userid, int productid) {
+		return cartRepository.findByUseridAndProductid(userid, productid);
+	}
+	
+	
 
 }

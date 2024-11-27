@@ -9,13 +9,13 @@
 			 th:each="product : ${products}">
 			<div class="card card-product">
 				<figure class="card-image">
-					<a th:href="@{/product/{id}(id=${product.productid})}">
+					<a th:href="@{/productdetail/{id}(id=${product.productid})}">
 						<img th:src="@{${product.imageurl}}" alt="Image">
 					</a>
 				</figure>
 				<div class="card-footer">
 					<h3 class="card-title">
-						<a th:href="@{/product/{id}(id=${product.productid})}"
+						<a th:href="@{/productdetail/{id}(id=${product.productid})}"
 						   th:text="${product.productname}">Product Name</a>
 					</h3>
 					<span class="brand" th:text="${product.brand}">Brand</span>
