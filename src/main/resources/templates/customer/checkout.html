@@ -29,9 +29,6 @@
                         <div class="col-md-6">
                             <h2 class="text-uppercase fs-20" th:text="'Thông Tin Giao Hàng'"></h2>
                         </div>
-                        <div class="col-md-6 text-md-right">
-                            <a class="underline" data-toggle="modal" data-target="#adresses"><i class="icon-home"></i>Danh sách địa chỉ</a>
-                        </div>
                     </div>
 
                     <fieldset class="mb-2">
@@ -98,7 +95,7 @@
 
 
                 <!-- payment -->
-                <div class="bg-white p-2 p-lg-3 mb-1">
+                <div>
                     <h2 class="mb-2 text-uppercase fs-20">Thanh Toán</h2>
 
                     <fieldset class="mb-2">
@@ -106,46 +103,14 @@
                             <div class="col">
                                 <div class="select-frame">
                                     <select class="custom-select custom-select-lg" id="customPayment">
-<!--                                        <option value="1">Thẻ Tín Dụng / Ghi Nợ</option>-->
-<!--                                        <option value="2">Paypal</option>-->
                                         <option value="3">Thanh Toán Khi Nhận Hàng</option>
+                                        <option value="3">Thanh Toán Bằng Mã QR</option>
                                     </select>
                                 </div>
                             </div>
                         </div>
                     </fieldset>
 
-                    <fieldset class="mb-3">
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="form-label-group">
-                                    <input type="text" id="inputCardNumber" class="form-control form-control-lg" placeholder="Số Thẻ" required="">
-                                    <label for="inputCardNumber">Số Thẻ</label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-6">
-                                <div class="form-label-group">
-                                    <input type="text" id="inputExpiryDate" class="form-control form-control-lg" placeholder="Ngày Hết Hạn (MM/YY)" required="">
-                                    <label for="inputExpiryDate">Ngày Hết Hạn (MM/YY)</label>
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="form-label-group">
-                                    <input type="text" id="inputCvv" class="form-control form-control-lg" placeholder="CVV" required="">
-                                    <label for="inputCvv">CVV</label>
-                                </div>
-                            </div>
-                        </div>
-                    </fieldset>
-
-
-                    <ul class="list list--horizontal">
-                        <li><img src="assets/images/demo/visa-1.svg" class="payment" alt="Visa"></li>
-                        <li><img src="assets/images/demo/master-card-1.svg" class="payment" alt="MasterCard"></li>
-                        <li><img src="assets/images/demo/amex-1.svg" class="payment" alt="American Express"></li>
-                    </ul>
                 </div>
 
                 <!-- place order -->
@@ -207,8 +172,6 @@
 </section>
 
 <footer th:replace="~{decorator/footer :: footer}"></footer>
-
-<div th:replace="~{decorator/saved_address :: savedaddress}"></div>
 
 <script th:src="@{/assets/js/vendor.min.js}"></script>
 <script th:src="@{/assets/js/app.js}"></script>
