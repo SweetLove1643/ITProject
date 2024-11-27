@@ -214,6 +214,6 @@ public class PersonalDataController {
 		List<Orders> order = orderService.findByUserid(4);
 
 		model.addAttribute("orders", order);
-		return "customer/acc-orders";
+		return "customer/orders";
 	}
 }
