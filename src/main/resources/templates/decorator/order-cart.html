@@ -1,7 +1,7 @@
 <div class="cart-item" th:if="${usercart != null}" th:each="cart : ${usercart}" th:fragment="order-cart" xmlns:th="https://www.thymeleaf.org">
 	<!--checkbox-->
 	<div class="cart-item-header">
-		<input type="checkbox" id="checkbox-item-1">
+		<input type="checkbox"  class="cart-item-checkbox" data-price="100000" data-cart-id="1">
 	</div>
 	<!--hinh anh-->
 	<a th:href="@{#!}" class="cart-item-image"><img th:src="${cart.imageurl}" alt="Image"></a>
