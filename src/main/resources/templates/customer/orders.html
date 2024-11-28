@@ -56,8 +56,8 @@
                                     <i class="icon-more-vertical"></i>
                                 </button>
                                 <span class="dropdown-menu" aria-labelledby="dropdown-1">
-                                    <a class="dropdown-item" th:href="@{'/order/' + ${order.orderid} + '/edit'}">Chỉnh sửa</a>
-                                    <a class="dropdown-item" th:href="@{'/order/' + ${order.orderid} + '/cancel'}">Hủy</a>
+                                    <a class="dropdown-item" >Chỉnh sửa</a>
+                                    <a class="dropdown-item" >Hủy</a>
                                 </span>
                             </span>
                                                 </div>
@@ -67,7 +67,7 @@
                                             <!-- Check if products exist -->
                                             <ul class="order-preview">
                                                 <li th:if="${order.orderProducts != null and order.orderProducts.size() > 0}" th:each="orderProduct : ${order.orderProducts}">
-                                                    <a th:href="@{'/product/' + ${orderProduct.product.productid}}" th:title="${orderProduct.product.productname}">
+                                                    <a th:href="@{'/productdetail/' + ${orderProduct.product.productid}}" th:title="${orderProduct.product.productname}">
                                                         <img th:src="${orderProduct.product.imageurl}" th:alt="${orderProduct.product.productname}">
                                                     </a>
                                                     <p th:text="'Quantity: ' + ${orderProduct.quantity}"></p>

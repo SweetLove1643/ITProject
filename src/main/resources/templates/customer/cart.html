@@ -42,46 +42,57 @@
     </div>
 </section>
 
-<script>
-    function updateCartTotal() {
-        const checkboxes = document.querySelectorAll('.cart-item-checkbox');
-        let subtotal = 0;
 
-        checkboxes.forEach((checkbox) => {
-            if (checkbox.checked) {
-                const item = checkbox.closest('.cart-item');
-                const price = parseInt(item.querySelector('.quantity-input').dataset.price);
-                const quantity = parseInt(item.querySelector('.quantity-input').value);
-                subtotal += price * quantity;
-            }
-        });
-
-        const shipping = 50000; // Phí vận chuyển cố định
-        const discount = 0; // Chưa áp dụng giảm giá
-        const total = subtotal + shipping - discount;
-
-        // Cập nhật hiển thị
-        document.getElementById('subtotal').textContent = subtotal.toLocaleString('vi-VN') + ' ₫';
-        document.getElementById('total').textContent = total.toLocaleString('vi-VN') + ' ₫';
-    }
-
-    function changeQuantity(button, change) {
-        const quantityInput = button.parentElement.querySelector('.quantity-input');
-        let quantity = parseInt(quantityInput.value);
-        quantity = isNaN(quantity) ? 1 : quantity;
-        quantity += change;
-        if (quantity < 1) quantity = 1;
-        quantityInput.value = quantity;
-
-        updateCartTotal();
-    }
-</script>
 
 
 <footer th:replace="~{decorator/footer :: footer}"></footer>
 
 <script th:src="@{/assets/js/vendor.min.js}"></script>
 <script th:src="@{/assets/js/app.js}"></script>
+<script>
+function updateCartTotal() {
+    const checkboxes = document.querySelectorAll('.cart-item-checkbox');
+    let subtotal = 0;
+
+    checkboxes.forEach((checkbox) => {
+        if (checkbox.checked) {
+            const item = checkbox.closest('.cart-item');
+            const price = parseInt(item.querySelector('.quantity-price').dataset.price);
+            const quantity = parseInt(item.querySelector('.quantity-input').value);
+            subtotal += price * quantity;
+            console.log(price);
+            console.log(quantity);
+        }
+    });
+
+    
+    
+    const shipping = 50000; // Phí vận chuyển cố định
+    const discount = 0; // Chưa áp dụng giảm giá
+    const total = subtotal + shipping - discount;
+
+    // Cập nhật hiển thị
+    document.getElementById('subtotal').textContent = subtotal.toLocaleString('vi-VN') + ' ₫';
+    document.getElementById('total').textContent = total.toLocaleString('vi-VN') + ' ₫';
+}
+
+function changeQuantity(button, change) {
+    const quantityInput = button.parentElement.querySelector('.quantity-input');
+    let quantity = parseInt(quantityInput.value);
+    quantity = isNaN(quantity) ? 1 : quantity;
+    quantity += change;
+    if (quantity < 1) quantity = 1;
+    quantityInput.value = quantity;
+
+    updateCartTotal();
+}
+
+// Gọi hàm cập nhật tổng tiền khi trang được tải
+document.addEventListener('DOMContentLoaded', function() {
+    updateCartTotal();
+});
+
+</script>
 
 </body>
 </html>

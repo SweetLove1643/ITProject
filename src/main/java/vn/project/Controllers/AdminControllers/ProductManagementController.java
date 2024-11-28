@@ -11,13 +11,16 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import vn.project.DTO.ProductsDTO;
 import vn.project.Entity.Products;
 import vn.project.Service.IBrandService;
+import vn.project.Service.ICartService;
 import vn.project.Service.ICategoryService;
 import vn.project.Service.IProductService;
 import vn.project.Service.ISupplierService;
+import vn.project.Service.Impl.CartService;
 
 @Controller
 @RequestMapping("/admin")
@@ -34,6 +37,9 @@ public class ProductManagementController {
 	
 	@Autowired
 	ISupplierService supplierService;
+	
+	@Autowired
+	ICartService cartService;
 
 	@GetMapping("/productmanager")
 	public String manageProducts(Model model) {
@@ -61,6 +67,7 @@ public class ProductManagementController {
 			Optional<Products> product = productService.findById(id);
 			
 			if(product.isPresent()) {
+				cartService.deleteAllByproductid(id);
 				productService.delete(product.get());
 			}
 			
@@ -97,23 +104,38 @@ public class ProductManagementController {
 		}
 	}
 	
-	@GetMapping("/productmanager/edit/{id}")
-	public String updateProduct(@PathVariable("id") String idproduct, Model model) {
+	@PostMapping("/productmanager/edit")
+	public String updateProduct(@ModelAttribute ProductsDTO product, RedirectAttributes redirectAttributes) {
 		try {
-			int id = Integer.valueOf(idproduct);
-			
-			ProductsDTO product = productService.findbyIdDTO(id); 
+			System.out.print(product);
 			
 			if(product != null) {
-				model.addAttribute("product", product);
-				return "admin/editproduct";
+				Integer brandid = brandService.findIdByBrandnameContaining(product.getBrand()).get();
+				Integer cateid = cateService.findidByCategorynameContaining(product.getCategory()).get();
+				Integer supplierid = supplierService.findidBySuppliernameContaining(product.getSupplier()).get();
+				
+				Products editproduct = Products.builder()
+						.productid(product.getProductid())
+						.brandid(brandid)
+						.categoryid(cateid)
+						.description(product.getDescription())
+						.imageurl(product.getImageurl())
+						.price(Integer.valueOf(product.getPrice()))
+						.productname(product.getProductname())
+						.stockquantity(Integer.valueOf(product.getStockquantity()))
+						.supplierid(supplierid)
+						.build();
+				
+				productService.save(editproduct);
+				redirectAttributes.addFlashAttribute("message", "Chỉnh sửa thành công");
+				return "redirect:/admin/productmanager";
 			}else {
-				model.addAttribute("message", "Không tìm thấy sản phẩm");
+				redirectAttributes.addFlashAttribute("message", "Không tìm thấy sản phẩm");
 				return "redirect:/admin/productmanager";
 			}
 		}catch (Exception e) {
 			e.printStackTrace();
-			model.addAttribute("message", "Đã xảy ra lỗi");
+			redirectAttributes.addFlashAttribute("message", "Đã xảy ra lỗi");
 			return "redirect:/anyerror";
 		}
 		

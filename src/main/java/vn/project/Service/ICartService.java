@@ -24,4 +24,6 @@ public interface ICartService {
 
 	Optional<Cart> findByUseridAndProductid(int userid, int productid);
 
+	void deleteAllByproductid(int id);
+
 }

@@ -2,6 +2,7 @@ package vn.project.Controllers.CustomerControllers;
 
 import java.util.ArrayList;
 
+
 import java.util.List;
 import java.util.Optional;
 
@@ -20,7 +21,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import jakarta.servlet.http.HttpSession;
 import jakarta.transaction.Transactional;
 import vn.project.DTO.CartDTO;
 import vn.project.Entity.Cart;
@@ -140,33 +140,28 @@ public class PersonalDataController {
 	}
 
 	@GetMapping("/cart")
-	public String cart(HttpSession session, Model model) {
+	public String cart(Model model) {
+		try {
+			List<CartDTO> cartuser = new ArrayList<>();
 
-		List<CartDTO> cartuser = new ArrayList<>();
+			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+			UserDetails userDetails = (UserDetails)auth.getPrincipal();
+			Users user = userService.findByUsername(userDetails.getUsername()).get();
+			
+			cartuser = cartService.findByUserid(user.getId());
 
-		cartuser = cartService.findByUserid(1);
-
-		Object useridObj = session.getAttribute("userid");
-		if (useridObj != null) {
-			String useridString = String.valueOf(useridObj).trim();
-
-			if (!useridString.isEmpty() || !"null".equals(useridString)) {
-				try {
-					int userid = Integer.parseInt(useridString);
-					cartuser = cartService.findByUserid(userid);
-				} catch (NumberFormatException e) {
-					e.printStackTrace();
-				}
+			if (cartuser == null) {
+				model.addAttribute("message", "Không có sản phẩm nào.");
 			}
-		}
 
-		if (cartuser != null) {
 			model.addAttribute("usercart", cartuser);
-		} else {
-			model.addAttribute("message", "Không có sản phẩm nào.");
-		}
 
-		return "customer/cart";
+			return "customer/cart";
+		}catch (Exception e) {
+			e.printStackTrace();
+			return "redirect:/anyerror";
+		}
+		
 	}
 
 	@Transactional
@@ -211,7 +206,12 @@ public class PersonalDataController {
 
 	@GetMapping("/orders")
 	public String orders(Model model) {
-		List<Orders> order = orderService.findByUserid(4);
+		
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		UserDetails userDetails = (UserDetails)auth.getPrincipal();
+		Users user = userService.findByUsername(userDetails.getUsername()).get();
+		
+		List<Orders> order = orderService.findByUserid(user.getId());
 
 		model.addAttribute("orders", order);
 		return "customer/orders";

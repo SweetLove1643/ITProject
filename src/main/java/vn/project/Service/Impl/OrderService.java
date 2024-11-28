@@ -1,6 +1,7 @@
 package vn.project.Service.Impl;
 
 import java.util.List;
+
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -27,6 +28,8 @@ public class OrderService implements IOrderService{
 	
 	@Autowired
 	IDiscountRepository discountRepository;
+	
+	
 
 	public OrderService(IOrderRepository orderRepository) {
 		this.orderRepository = orderRepository;
@@ -105,9 +108,6 @@ public class OrderService implements IOrderService{
 	public <S extends Orders> S save(S entity) {
 		return orderRepository.save(entity);
 	}
-
-	
-	
 	
 	
 }

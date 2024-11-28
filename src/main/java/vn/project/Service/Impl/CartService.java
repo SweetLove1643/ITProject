@@ -102,6 +102,13 @@ public class CartService implements ICartService {
 		return cartRepository.findByUseridAndProductid(userid, productid);
 	}
 	
-	
+	@Override
+	public void deleteAllByproductid(int id){
+		List<Cart> listcart = cartRepository.findByProductid(id);
+		
+		for(Cart cart : listcart) {
+			cartRepository.deleteByProductid(cart.getProductid());
+		}
+	}
 
 }

@@ -1,10 +1,10 @@
 <div class="cart-item" th:if="${usercart != null}" th:each="cart : ${usercart}" th:fragment="order-cart" xmlns:th="https://www.thymeleaf.org">
 	<!--checkbox-->
-	<div class="cart-item-header">
-		<input type="checkbox" id="checkbox-item-1">
+	<div class="cart-item-header ">
+		<input class="cart-item-checkbox" type="checkbox" id="checkbox-item-1" onchange="updateCartTotal()">
 	</div>
 	<!--hinh anh-->
-	<a th:href="@{#!}" class="cart-item-image"><img th:src="${cart.imageurl}" alt="Image"></a>
+	<a th:href="@{/productdetail/{id}(id=${cart.productid})}" class="cart-item-image"><img th:src="${cart.imageurl}" alt="Image"></a>
 	<div class="cart-item-body">
 		<div class="row">
 			<div class="col-10">
@@ -14,7 +14,7 @@
 						<h5 class="cart-item-title" th:text="${cart.productname}"></h5>
 						<small class="cart-item-subtitle" th:text="${cart.brand}"></small>
 						<ul class="cart-item-meta">
-							<li class="text-red" th:text="${cart.price != null ? cart.price + ' ₫' : '0 ₫'}"></li>
+							<li class="text-red quantity-price" data-price="${cart.price}" id="quantity-price" th:text="${cart.price != null ? cart.price + ' ₫' : '0 ₫'}"></li>
 						</ul>
 					</div>
 					<!--so luong-->
@@ -22,9 +22,9 @@
 						<ul class="list list--horizontal">
 							<li>
 								<div class="dYBF91">
-									<button type="button" class="aGq8SN" onclick="document.getElementById('quantity').stepDown()" aria-label="Decrease">-</button>
-									<input id="quantity" class="aGq8SN jKOh4z" type="text" value="1" min="1" max="100" step="1">
-									<button type="button" class="aGq8SN" onclick="document.getElementById('quantity').stepUp()" aria-label="Increase">+</button>
+									<button type="button" class="aGq8SN"  onclick="changeQuantity(this, -1)"  aria-label="Decrease">-</button>
+									<input id="quantity-input"  class="aGq8SN jKOh4z quantity-input" type="text" value="1" min="1" max="100" step="1">
+									<button type="button" class="aGq8SN"  onclick="changeQuantity(this, 1)" aria-label="Increase">+</button>
 								</div>
 							</li>
 						</ul>

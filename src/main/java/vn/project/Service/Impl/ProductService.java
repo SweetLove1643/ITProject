@@ -141,43 +141,47 @@ public class ProductService implements IProductService {
 	
 	@Override
 	public ProductsDTO findbyIdDTO(int id) {
-		Products product = findById(id).get();
-		ProductsDTO productdto = new ProductsDTO();
-		
-		productdto.setProductid(product.getProductid());
-		productdto.setProductname(product.getProductname());
-		productdto.setDescription(product.getDescription());
-		productdto.setImageurl(product.getImageurl());
-		productdto.setPrice(Long.toString(product.getPrice()));
-		productdto.setStockquantity(String.valueOf(product.getPrice()));
-		Brands brand1 = brandRepository.findById(product.getBrandid()).isPresent()
-				? brandRepository.findById(product.getBrandid()).get()
-				: null;
-		if (brand1 != null) {
-			productdto.setBrand(brand1.getBrandname());
-		} else {
-			productdto.setBrand("Unknow brand name");
-		}
+		try {
+			Products product = findById(id).get();
+			ProductsDTO productdto = new ProductsDTO();
+			
+			productdto.setProductid(product.getProductid());
+			productdto.setProductname(product.getProductname());
+			productdto.setDescription(product.getDescription());
+			productdto.setImageurl(product.getImageurl());
+			productdto.setPrice(Long.toString(product.getPrice()));
+			productdto.setStockquantity(String.valueOf(product.getPrice()));
+			Brands brand1 = brandRepository.findById(product.getBrandid()).isPresent()
+					? brandRepository.findById(product.getBrandid()).get()
+					: null;
+			if (brand1 != null) {
+				productdto.setBrand(brand1.getBrandname());
+			} else {
+				productdto.setBrand("Unknow brand name");
+			}
 
-		Categories cate = categoryRepository.findById(product.getCategoryid()).isPresent()
-				? categoryRepository.findById(product.getCategoryid()).get()
-				: null;
-		if (cate != null) {
-			productdto.setCategory(cate.getCategoryname());
-		} else {
-			productdto.setCategory("Unknow category name");
+			Categories cate = categoryRepository.findById(product.getCategoryid()).isPresent()
+					? categoryRepository.findById(product.getCategoryid()).get()
+					: null;
+			if (cate != null) {
+				productdto.setCategory(cate.getCategoryname());
+			} else {
+				productdto.setCategory("Unknow category name");
+			}
+			Suppliers supplier = supplierRepository.findById(product.getSupplierid()).isPresent()
+					? supplierRepository.findById(product.getSupplierid()).get()
+					: null;
+			if (supplier != null) {
+				productdto.setSupplier(supplier.getSuppliername());
+			}else {
+				productdto.setSupplier("Unknow supplier name");
+			}
+			
+			return productdto;
 		}
-		Suppliers supplier = supplierRepository.findById(product.getSupplierid()).isPresent()
-				? supplierRepository.findById(product.getSupplierid()).get()
-				: null;
-		if (supplier != null) {
-			productdto.setSupplier(supplier.getSuppliername());
-		}else {
-			productdto.setSupplier("Unknow supplier name");
+		catch (Exception e) {
+			return null;
 		}
-		
-		return productdto;
-		
 	}
 	
 	public List<ProductsDTO> ConvertProductToProductDTO(List<Products> products){
@@ -190,7 +194,7 @@ public class ProductService implements IProductService {
 			productdto.setDescription(product.getDescription());
 			productdto.setImageurl(product.getImageurl());
 			productdto.setPrice(Long.toString(product.getPrice()));
-			productdto.setStockquantity(String.valueOf(product.getPrice()));
+			productdto.setStockquantity(String.valueOf(product.getStockquantity()));
 
 			Brands brand1 = brandRepository.findById(product.getBrandid()).isPresent()
 					? brandRepository.findById(product.getBrandid()).get()
