@@ -220,6 +220,7 @@ public class PersonalDataController {
 		List<Orders> order = orderService.findByUserid(user.getId());
 
 		model.addAttribute("orders", order);
+		model.addAttribute("user", user);
 		return "customer/orders";
 	}
 }
