@@ -92,8 +92,6 @@
                     </div>-->
                 </div>
 
-
-
                 <!-- payment -->
                 <div class="bg-white p-2 p-lg-3 mb-1">
                     <h2 class="mb-2 text-uppercase fs-20">Thanh Toán</h2>
@@ -127,20 +125,27 @@
                 <div class="bg-white p-2 p-lg-3">
                     <h2 class="mb-3 text-uppercase fs-20">Order total</h2>
                     <!--order-->
-                    <div class="cart-item">
-                        <a href="#!" class="cart-item-image"><img src="assets/images/demo/product-1.jpg" alt="Image"></a>
+                    <div class="cart-item" th:if="${usercart != null}" th:each="cart : ${usercart}" th:fragment="order-cart" xmlns:th="https://www.thymeleaf.org">
+                        <!-- Hình ảnh sản phẩm -->
+                        <a th:href="@{#!}" class="cart-item-image">
+                            <img th:src="${cart.imageurl}" alt="Image">
+                        </a>
                         <div class="cart-item-body">
                             <div class="row">
                                 <div class="col-9">
-                                    <h5 class="cart-item-title">Blouse</h5>
+                                    <!-- Tên sản phẩm và giá -->
+                                    <h5 class="cart-item-title" th:text="${cart.productname}"></h5>
                                     <ul class="list list--horizontal fs-14">
-                                        <li><s>$29.00</s></li>
-                                        <li class="text-red">$19.00</li>
+                                        <li><s th:text="${cart.oldprice != null ? cart.oldprice + ' ₫' : ''}"></s></li>
+                                        <li class="text-red" th:text="${cart.price != null ? cart.price + ' ₫' : '0 ₫'}"></li>
                                     </ul>
                                 </div>
                                 <div class="col-3 text-right">
+                                    <!-- Tùy chọn xóa -->
                                     <ul class="cart-item-options">
-                                        <li><a href="" class="icon-x"></a></li>
+                                        <li>
+                                            <a th:href="@{/personal/cart/delete/{id}(id=${cart.cartid})}" class="icon-x"></a>
+                                        </li>
                                     </ul>
                                 </div>
                             </div>
