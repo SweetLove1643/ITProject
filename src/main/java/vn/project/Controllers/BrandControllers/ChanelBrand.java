@@ -20,7 +20,7 @@ public class ChanelBrand {
 
     @GetMapping
     public String index(Model model) {
-    	
+
     	List<ProductsDTO> list = productservice.findbyBrandDTO("Chanel");
     	model.addAttribute("products", list);
         return "brands/chanelbrand";

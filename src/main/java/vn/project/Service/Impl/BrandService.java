@@ -1,7 +1,6 @@
 package vn.project.Service.Impl;
 
 import java.util.List;
-
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +15,7 @@ import vn.project.Service.IBrandService;
 
 @Service
 public class BrandService implements IBrandService{
-	
+
 	@Autowired
 	IBrandRepository brandRepository;
 	public BrandService(IBrandRepository brandRepository) {
@@ -83,7 +82,7 @@ public class BrandService implements IBrandService{
 	public void deleteAll() {
 		brandRepository.deleteAll();
 	}
-	
+
 	@Override
 	public Optional<Integer> findIdByBrandnameContaining(String brandname) {
 	    List<Brands> list = brandRepository.findByBrandnameContaining(brandname);

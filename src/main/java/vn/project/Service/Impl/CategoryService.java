@@ -1,7 +1,6 @@
 package vn.project.Service.Impl;
 
 import java.util.List;
-
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +12,7 @@ import vn.project.Service.ICategoryService;
 
 @Service
 public class CategoryService implements ICategoryService{
-	
+
 	@Autowired
 	ICategoryRepositoy categoryRepository;
 
@@ -63,7 +62,7 @@ public class CategoryService implements ICategoryService{
 	public void deleteAll() {
 		categoryRepository.deleteAll();
 	}
-	
+
 	@Override
 	public Optional<Integer> findidByCategorynameContaining(String categoryname){
 		List<Categories> list = categoryRepository.findByCategorynameContaining(categoryname);
@@ -74,5 +73,5 @@ public class CategoryService implements ICategoryService{
 	    return Optional.empty();
 	}
 
-	
+
 }

@@ -1,9 +1,7 @@
 package vn.project.Service.Impl;
 
 import java.text.DecimalFormat;
-
 import java.util.List;
-
 import java.util.Optional;
 import java.util.Random;
 
@@ -19,10 +17,10 @@ import vn.project.Service.IUserService;
 @Service
 public class UserService implements IUserService {
 
-	
+
 	@Autowired(required=true)
 	IUserRepository userRepository;
-	
+
 	@Autowired(required=true)
 	private JavaMailSender mailSender;
 
@@ -39,7 +37,7 @@ public class UserService implements IUserService {
 	public List<Users> findByFullnameContaining(String fullname) {
 		return userRepository.findByFullnameContaining(fullname);
 	}
-	
+
 	@Override
 	public Optional<Users> findByUsername(String keyword) {
 		return userRepository.findByUsername(keyword);
@@ -47,7 +45,7 @@ public class UserService implements IUserService {
 
 	@Override
 	public <S extends Users> S save(S entity) {
-		
+
 		return userRepository.save(entity);
 	}
 
@@ -94,15 +92,15 @@ public class UserService implements IUserService {
 	@Override
 	public String sendOTPMail(String toEmail) {
 		String otp = createOTP();
-		
+
 		SimpleMailMessage message = new SimpleMailMessage();
 		message.setFrom("phanuan028@gmail.com");
 		message.setTo(toEmail);
 		message.setSubject("Mã OTP của bạn là: ");
 		message.setText(otp);
-		
+
 		mailSender.send(message);
-		
+
 		return otp;
 	}
 
@@ -112,6 +110,6 @@ public class UserService implements IUserService {
 		return otp;
 	}
 
-	
+
 
 }

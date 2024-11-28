@@ -23,10 +23,10 @@ public class RegisterController {
 
 	@Autowired
 	IUserService userService;
-	
+
 	@Autowired
 	IRoleService roleService;
-	
+
 	@Autowired
 	BCryptPasswordEncoder passwordEncoder;
 
@@ -36,18 +36,18 @@ public class RegisterController {
 	}
 
 	@PostMapping
-	public String register(@RequestParam String username, 
-			@RequestParam String password, 
+	public String register(@RequestParam String username,
+			@RequestParam String password,
 			@RequestParam String fullname,
-			@RequestParam String phonenumber, 
-			@RequestParam String email, 
+			@RequestParam String phonenumber,
+			@RequestParam String email,
 			@RequestParam String address,
-			@RequestParam(name = "argeement", defaultValue = "false") Boolean agreement, 
+			@RequestParam(name = "argeement", defaultValue = "false") Boolean agreement,
 			Model model) {
 		System.out.println(agreement);
-		
+
 		SaveOldInfo(username, password, fullname, phonenumber, email, address, model);
-		
+
 		if (username.isEmpty() || password.isEmpty() || fullname.isEmpty() || phonenumber.isEmpty() || email.isEmpty()
 				|| address.isEmpty()) {
 			model.addAttribute("message", "Vui lòng điền đủ thông tin");
@@ -64,7 +64,7 @@ public class RegisterController {
 				model.addAttribute("message", "Email này đã được sử dụng");
 				return "commons/register";
 			}
-			if(agreement.equals(false)) {
+			if(!agreement) {
 				model.addAttribute("message", "Vui lòng đồng ý với điều khoản");
 				return "commons/register";
 			}
@@ -76,14 +76,14 @@ public class RegisterController {
 		model.addAttribute("message", "Tạo tài khoản thành công");
 		return "redirect:/login";
 	}
-	
+
 	public void SaveOldInfo(String username, String password, String fullname, String phonenumber, String email, String address, Model model) {
-        model.addAttribute("username", username);   
-        model.addAttribute("password", password);   
-        model.addAttribute("fullname", fullname);  
-        model.addAttribute("phonenumber", phonenumber); 
-        model.addAttribute("email", email);  
-        model.addAttribute("address", address);  
+        model.addAttribute("username", username);
+        model.addAttribute("password", password);
+        model.addAttribute("fullname", fullname);
+        model.addAttribute("phonenumber", phonenumber);
+        model.addAttribute("email", email);
+        model.addAttribute("address", address);
 	}
 
 }

@@ -2,7 +2,6 @@ package vn.project.Controllers.BrandControllers;
 
 import java.util.List;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,7 +20,7 @@ public class BvlgariBrand {
 
     @GetMapping
     public String index(Model model) {
-    	
+
     	List<ProductsDTO> list = productservice.findbyBrandDTO("Bvlgari");
     	model.addAttribute("products", list);
         return "brands/bvlgaribrand";

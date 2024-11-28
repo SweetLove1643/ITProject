@@ -39,7 +39,7 @@ public class LoginController {
 			if (!optinalusers.isEmpty()) {
 				Users u = optinalusers.get();
 
-				if (passwordEncoder.matches(u.getPassword(), password)) 
+				if (passwordEncoder.matches(u.getPassword(), password))
 						{
 					isAuthenticated = true;
 				}
@@ -56,7 +56,7 @@ public class LoginController {
 			model.addAttribute("message", "Có lỗi đã xảy ra");
 			return "redirect:/login";
 		}
-		
+
 	}
 
 }

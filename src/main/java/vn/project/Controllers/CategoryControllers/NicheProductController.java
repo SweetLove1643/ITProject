@@ -20,7 +20,7 @@ public class NicheProductController {
 
     @GetMapping
     public String index(Model model) {
-    	
+
     	List<ProductsDTO> list = productservice.findbyCategoryDTO("Niche");
     	model.addAttribute("products", list);
         return "category/nicheproduct";

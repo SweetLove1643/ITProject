@@ -23,13 +23,13 @@ public class Cart {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "CartID", nullable = false, unique = true)
 	private int cartid;
-	
+
 	@Column(name = "UserID", nullable = false)
 	private int userid;
-	
+
 	@Column(name = "ProductID")
 	private int productid;
-	
+
 	@Column(name = "Quantity", nullable = false)
 	private int quantity;
 

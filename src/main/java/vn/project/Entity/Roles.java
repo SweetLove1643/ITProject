@@ -23,7 +23,7 @@ public class Roles {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "RoleID", nullable = false, unique = true)
 	private int roleid;
-	
+
 	@Column(name = "RoleName", nullable = false)
 	private String rolename;
 

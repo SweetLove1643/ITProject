@@ -20,7 +20,7 @@ public class JPGBrand {
 
     @GetMapping
     public String index(Model model) {
-    	
+
     	List<ProductsDTO> list = productservice.findbyBrandDTO("Jean Paul Gaultier");
     	model.addAttribute("products", list);
         return "brands/jpgbrand";

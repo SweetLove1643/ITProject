@@ -1,7 +1,6 @@
 package vn.project.Service.Impl;
 
 import java.util.ArrayList;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -41,8 +40,8 @@ public class CartService implements ICartService {
 	public void deleteByUserid(int userid) {
 		cartRepository.deleteByUserid(userid);
 	}
-	
-	
+
+
 
 	@Override
 	public void deleteByCartid(int cartid) {
@@ -101,11 +100,11 @@ public class CartService implements ICartService {
 	public Optional<Cart> findByUseridAndProductid(int userid, int productid) {
 		return cartRepository.findByUseridAndProductid(userid, productid);
 	}
-	
+
 	@Override
 	public void deleteAllByproductid(int id){
 		List<Cart> listcart = cartRepository.findByProductid(id);
-		
+
 		for(Cart cart : listcart) {
 			cartRepository.deleteByProductid(cart.getProductid());
 		}

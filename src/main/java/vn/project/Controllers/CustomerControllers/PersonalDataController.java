@@ -1,8 +1,6 @@
 package vn.project.Controllers.CustomerControllers;
 
 import java.util.ArrayList;
-
-
 import java.util.List;
 import java.util.Optional;
 
@@ -98,10 +96,10 @@ public class PersonalDataController {
 
 	@GetMapping("/changepassword")
 	public String changepassword(Model model) {
-		
+
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		UserDetails userdetail = (UserDetails)auth.getPrincipal();
-		
+
 		Users user = userService.findByUsername(userdetail.getUsername()).get();
 		model.addAttribute("user", user);
 		return "customer/changepassword";
@@ -137,7 +135,7 @@ public class PersonalDataController {
 			}
 
 		} catch (Exception e) {
-			;
+
 			model.addAttribute("message", "Đã xảy ra lỗi");
 			return "redirect:/anyerror";
 		}
@@ -153,7 +151,7 @@ public class PersonalDataController {
 			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 			UserDetails userDetails = (UserDetails)auth.getPrincipal();
 			Users user = userService.findByUsername(userDetails.getUsername()).get();
-			
+
 			cartuser = cartService.findByUserid(user.getId());
 
 			if (cartuser == null) {
@@ -167,7 +165,7 @@ public class PersonalDataController {
 			e.printStackTrace();
 			return "redirect:/anyerror";
 		}
-		
+
 	}
 
 	@Transactional
@@ -178,17 +176,17 @@ public class PersonalDataController {
 
 		return "redirect:/personal/cart";
 	}
-	
+
 	@GetMapping("/cart/add/{id}")
 	public String addproduct(@PathVariable String id, RedirectAttributes redirectAttributes) {
-		
+
 		try {
 			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 			UserDetails userauth = (UserDetails)auth.getPrincipal();
 			Users user = userService.findByUsername(userauth.getUsername()).get();
-			
+
 			Optional<Cart> cartcheck = cartService.findByUseridAndProductid(user.getId(), Integer.valueOf(id));
-			
+
 			if(cartcheck.isPresent()) {
 				Cart editcart = cartcheck.get();
 				editcart.setQuantity(editcart.getQuantity() + 1);
@@ -201,15 +199,15 @@ public class PersonalDataController {
 				redirectAttributes.addFlashAttribute("message", "Thêm sản phẩm thành công");
 				return "redirect:/productdetail/" +  id;
 			}
-			
-			
+
+
 		}catch (Exception e) {
 			e.printStackTrace();
 			redirectAttributes.addFlashAttribute("message", "Đã xảy ra lỗi");
 			return "redirect:/anyerror";
 		}
 	}
-	
+
 	@PostMapping("/cart/update")
 	public String updatecart(@RequestParam String action, RedirectAttributes redirectAttributes) {
 		if("submit1".equals(action)) {
@@ -220,16 +218,16 @@ public class PersonalDataController {
 			}
 		}
 		return "redirect:/505";
-		
+
 	}
 
 	@GetMapping("/orders")
 	public String orders(Model model) {
-		
+
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		UserDetails userDetails = (UserDetails)auth.getPrincipal();
 		Users user = userService.findByUsername(userDetails.getUsername()).get();
-		
+
 		List<Orders> order = orderService.findByUserid(user.getId());
 
 		model.addAttribute("orders", order);

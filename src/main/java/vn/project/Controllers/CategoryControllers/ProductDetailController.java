@@ -1,7 +1,6 @@
 package vn.project.Controllers.CategoryControllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,7 +24,7 @@ public class ProductDetailController {
 			ProductsDTO product = productService.findbyIdDTO(idproduct);
 			model.addAttribute("products", product);
 			return "category/productdetail";
-			
+
 		} catch (Exception e) {
 			model.addAttribute("message", "Đã xảy ra lỗi");
 			return "redirect:/505";

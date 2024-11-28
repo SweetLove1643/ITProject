@@ -20,7 +20,7 @@ public class DiorBrand {
 
     @GetMapping
     public String index(Model model) {
-    	
+
     	List<ProductsDTO> list = productservice.findbyBrandDTO("dior");
     	model.addAttribute("products", list);
         return "brands/diorbrand";

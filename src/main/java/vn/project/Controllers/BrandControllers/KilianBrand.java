@@ -20,7 +20,7 @@ public class KilianBrand {
 
     @GetMapping
     public String index(Model model) {
-    	
+
     	List<ProductsDTO> list = productservice.findbyBrandDTO("Kilian");
     	model.addAttribute("products", list);
         return "brands/kilianbrand";

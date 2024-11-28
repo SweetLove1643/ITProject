@@ -24,11 +24,11 @@ public interface IProductService {
 	public List<Products> findByName(String name);
 
 	public Optional<Products> findById(int id);
-	
+
 	public List<Products> findbySupplier(String supplier);
-	
+
 	public List<Products> findbyBrand(String brand);
-	
+
 	public void createProduct(Products product);
 
 	List<ProductsDTO> findbyBrandDTO(String brand);

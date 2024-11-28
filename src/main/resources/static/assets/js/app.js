@@ -286,4 +286,15 @@
     fn.Launch();
   });
 
+  document.getElementById('contactLink').addEventListener('click', function(event) {
+              event.preventDefault();
+              const contactSection = document.getElementById('contactSection');
+              if (contactSection) {
+                  contactSection.scrollIntoView({
+                      behavior: 'smooth',
+                      block: 'start'
+                  });
+              }
+          });
+
 })(jQuery);
