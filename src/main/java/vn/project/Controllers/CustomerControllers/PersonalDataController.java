@@ -97,7 +97,13 @@ public class PersonalDataController {
 	}
 
 	@GetMapping("/changepassword")
-	public String changepassword() {
+	public String changepassword(Model model) {
+		
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		UserDetails userdetail = (UserDetails)auth.getPrincipal();
+		
+		Users user = userService.findByUsername(userdetail.getUsername()).get();
+		model.addAttribute("user", user);
 		return "customer/changepassword";
 	}
 
@@ -153,7 +159,7 @@ public class PersonalDataController {
 			if (cartuser == null) {
 				model.addAttribute("message", "Không có sản phẩm nào.");
 			}
-
+			model.addAttribute("user", user);
 			model.addAttribute("usercart", cartuser);
 
 			return "customer/cart";
