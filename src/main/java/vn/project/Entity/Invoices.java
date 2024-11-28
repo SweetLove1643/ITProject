@@ -38,6 +38,4 @@ public class Invoices {
 	@Column(name = "PaymentMethod", nullable = false, columnDefinition = "nvarchar(255)")
 	private String paymentmethod;
 
-	@Column(name = "InvoiceStatus", nullable = false)
-	private int invoicestatus;
 }
