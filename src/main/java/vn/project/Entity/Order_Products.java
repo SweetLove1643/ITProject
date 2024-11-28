@@ -22,12 +22,12 @@ import lombok.ToString;
 @Builder
 @ToString(exclude = "order")
 public class Order_Products {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "Order_ProductID", nullable = false, unique = true)
 	private int order_productid;
-	
+
     @ManyToOne
     @JoinColumn(name = "OrderID", nullable = false)
     private Orders order;

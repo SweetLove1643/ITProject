@@ -20,7 +20,7 @@ public class MiniProductController {
 
     @GetMapping("/miniproduct")
     public String index(Model model) {
-    	
+
     	List<ProductsDTO> list = productservice.findbyCategoryDTO("Mini");
     	model.addAttribute("products", list);
         return "category/miniproduct";

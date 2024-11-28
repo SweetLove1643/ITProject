@@ -10,7 +10,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 public class CustomUserDetail implements UserDetails{
 
-	
+
 	private static final long serialVersionUID = 1L;
 
 	private Users user;
@@ -19,11 +19,11 @@ public class CustomUserDetail implements UserDetails{
 	}
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		
+
 		Roles roles = user.getRole();
-		
+
 		List<GrantedAuthority> authorities = new ArrayList<>();
-	        authorities.add(new SimpleGrantedAuthority("ROLE_" + roles.getRolename())); 
+	        authorities.add(new SimpleGrantedAuthority("ROLE_" + roles.getRolename()));
 	    return authorities;
 
 	}
@@ -31,7 +31,7 @@ public class CustomUserDetail implements UserDetails{
 
 	@Override
 	public String getPassword() {
-		
+
 		return user.getPassword();
 	}
 

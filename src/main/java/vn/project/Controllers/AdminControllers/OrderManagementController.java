@@ -40,7 +40,7 @@ public class OrderManagementController {
 		Orders order = orderService.findById(orderId).get();
 		String status = "Đang xử lí";
 		if (order != null) {
-			
+
 			switch (deliveryStatus) {
 			case "Shipping": {
 				status = "Đang giao hàng";

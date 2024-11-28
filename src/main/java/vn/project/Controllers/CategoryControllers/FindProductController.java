@@ -1,28 +1,27 @@
-package vn.project.Controllers.BrandControllers;
-
-import java.util.List;
+package vn.project.Controllers.CategoryControllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import vn.project.DTO.ProductsDTO;
 import vn.project.Service.IProductService;
 
+import java.util.List;
+
 @Controller
-@RequestMapping("/product")
-public class KilianBrand {
+@RequestMapping("/findproduct")
+public class FindProductController {
 
 	@Autowired(required=true)
 	IProductService productservice;
 
-    @GetMapping("/kilian")
+    @GetMapping
     public String index(Model model) {
 
-    	List<ProductsDTO> list = productservice.findbyBrandDTO("Kilian");
+    	List<ProductsDTO> list = productservice.findbyCategoryDTO("Nam");
     	model.addAttribute("products", list);
-        return "brands/kilianbrand";
+        return "category/findproduct";
     }
 }

@@ -23,7 +23,7 @@ public class Categories {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "Category", nullable = false, unique = true)
 	private int categoryid;
-	
+
 	@Column(name = "CategoryName", nullable = false, columnDefinition = "nvarchar(255)")
 	private String categoryname;
 }

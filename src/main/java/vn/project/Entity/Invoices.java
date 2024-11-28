@@ -25,16 +25,16 @@ public class Invoices {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "InvoiceID", nullable = false, unique = true)
 	private int invoiceid;
-	
+
 	@Column(name = "OrderID", nullable = false)
 	private int orderid;
-	
+
 	@Column(name = "InvoiceDate", nullable = false)
 	private LocalDateTime invoicedate;
-	
+
 	@Column(name = "TotalAmount", nullable = false)
 	private long totalamount;
-	
+
 	@Column(name = "PaymentMethod", nullable = false, columnDefinition = "nvarchar(255)")
 	private String paymentmethod;
 

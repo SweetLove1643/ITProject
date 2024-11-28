@@ -6,6 +6,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import vn.project.DTO.ProductsDTO;
 import vn.project.Entity.Brands;
 import vn.project.Entity.Categories;
@@ -45,11 +46,11 @@ public class ProductService implements IProductService {
 	public List<Products> findAll() {
 		return productRepository.findAll();
 	}
-	
+
 	@Override
 	public List<ProductsDTO> findAllDTO(){
 		List<Products> list = findAll();
-		
+
 		return ConvertProductToProductDTO(list);
 	}
 
@@ -118,7 +119,7 @@ public class ProductService implements IProductService {
 		List<ProductsDTO> productDTO = ConvertProductToProductDTO(products);
 		return productDTO;
 	}
-	
+
 	@Override
 	public List<Products> findbyCategory(String category) {
 		List<Categories> listcategory = categoryRepository.findByCategorynameContaining(category);
@@ -128,23 +129,23 @@ public class ProductService implements IProductService {
 		}
 		return null;
 	}
-	
-	
+
+
 	@Override
 	public List<ProductsDTO> findbyCategoryDTO(String category){
 		List<Products> products = findbyCategory(category);
 		List<ProductsDTO> productDTO = ConvertProductToProductDTO(products);
-		
+
 		return productDTO;
 	}
-	
-	
+
+
 	@Override
 	public ProductsDTO findbyIdDTO(int id) {
 		try {
 			Products product = findById(id).get();
 			ProductsDTO productdto = new ProductsDTO();
-			
+
 			productdto.setProductid(product.getProductid());
 			productdto.setProductname(product.getProductname());
 			productdto.setDescription(product.getDescription());
@@ -176,14 +177,14 @@ public class ProductService implements IProductService {
 			}else {
 				productdto.setSupplier("Unknow supplier name");
 			}
-			
+
 			return productdto;
 		}
 		catch (Exception e) {
 			return null;
 		}
 	}
-	
+
 	public List<ProductsDTO> ConvertProductToProductDTO(List<Products> products){
 		List<ProductsDTO> productDTO = new ArrayList<>();
 
@@ -221,11 +222,11 @@ public class ProductService implements IProductService {
 			}else {
 				productdto.setSupplier("Unknow supplier name");
 			}
-			
+
 			productDTO.add(productdto);
 		}
 		return productDTO;
-		
+
 	}
 
 }

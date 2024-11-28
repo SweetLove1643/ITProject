@@ -12,7 +12,7 @@ import vn.project.Service.IDiscountService;
 
 @Service
 public class DiscountService implements IDiscountService{
-	
+
 	@Autowired
 	IDiscountRepository discountRepository;
 
@@ -63,5 +63,5 @@ public class DiscountService implements IDiscountService{
 		discountRepository.deleteAll();
 	}
 
-	
+
 }

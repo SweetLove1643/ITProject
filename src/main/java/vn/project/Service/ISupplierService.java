@@ -1,13 +1,14 @@
 package vn.project.Service;
 
 
-import vn.project.Entity.Suppliers;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+
+import vn.project.Entity.Suppliers;
 
 public interface ISupplierService {
 
@@ -34,6 +35,6 @@ public interface ISupplierService {
 	<S extends Suppliers> S save(S entity);
 
 	Optional<Integer> findidBySuppliernameContaining(String suppliername);
-	
-	
+
+
 }

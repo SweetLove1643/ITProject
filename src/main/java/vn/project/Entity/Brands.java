@@ -18,12 +18,12 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 public class Brands {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "BrandID", nullable = false, unique = true)
 	private int brandid;
-	
+
 	@Column(name = "BrandName", nullable = false, columnDefinition = "nvarchar(255)")
 	private String brandname;
 }

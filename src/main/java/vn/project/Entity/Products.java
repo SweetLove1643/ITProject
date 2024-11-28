@@ -30,31 +30,31 @@ public class Products {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ProductID", nullable = false, unique = true)
 	private int productid;
-	
+
 	@Column(name = "ProductName", nullable = false, columnDefinition = "nvarchar(255)")
 	private String productname;
-	
+
 	@Column(name = "CategoryID")
 	private int categoryid;
-	
+
 	@Column(name = "SupplierID")
 	private int supplierid;
-	
+
 	@Column(name = "BrandID")
 	private int brandid;
-	
+
 	@Column(name = "Price", nullable = false)
 	private long price;
-	
+
 	@Column(name = "Description", columnDefinition = "nvarchar(1000)")
 	private String description;
-	
+
 	@Column(name = "ImageURL")
 	private String imageurl;
-	
+
 	@Column(name = "StockQuantity", nullable = false)
 	private int stockquantity;
-	
+
 	@OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Order_Products> orderProducts;
 

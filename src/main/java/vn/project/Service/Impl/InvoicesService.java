@@ -12,10 +12,10 @@ import vn.project.Service.IInvoicesService;
 
 @Service
 public class InvoicesService implements IInvoicesService{
-	
+
 	@Autowired
 	IInvoicesRepository invoiceRepository;
-	
+
 	@Override
 	public <S extends Invoices> S save(S entity) {
 		return invoiceRepository.save(entity);
@@ -57,6 +57,6 @@ public class InvoicesService implements IInvoicesService{
 	public void deleteAll() {
 		invoiceRepository.deleteAll();
 	}
-	
+
 
 }

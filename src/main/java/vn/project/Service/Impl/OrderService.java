@@ -1,8 +1,8 @@
 package vn.project.Service.Impl;
 
 import java.util.List;
-
 import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -19,17 +19,17 @@ import vn.project.Service.IOrderService;
 
 @Service
 public class OrderService implements IOrderService{
-	
+
 	@Autowired
 	IOrderRepository orderRepository;
-	
+
 	@Autowired
 	IUserRepository userRepository;
-	
+
 	@Autowired
 	IDiscountRepository discountRepository;
-	
-	
+
+
 
 	public OrderService(IOrderRepository orderRepository) {
 		this.orderRepository = orderRepository;
@@ -84,7 +84,7 @@ public class OrderService implements IOrderService{
 	public void deleteAll() {
 		orderRepository.deleteAll();
 	}
-	
+
 	@Override
 	public List<Orders> findByUser(String user) {
 	    Optional<Users> optionalUser = userRepository.findByUsername(user);
@@ -94,7 +94,7 @@ public class OrderService implements IOrderService{
 	    }
 	    return null;
 	}
-	
+
 	@Override
 	public List<Orders> findbyDiscount(String discount) {
 		Optional<Discounts> discountoptinal = discountRepository.findByDiscountcode(discount);
@@ -108,6 +108,6 @@ public class OrderService implements IOrderService{
 	public <S extends Orders> S save(S entity) {
 		return orderRepository.save(entity);
 	}
-	
-	
+
+
 }

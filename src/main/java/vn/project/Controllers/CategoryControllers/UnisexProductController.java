@@ -20,7 +20,7 @@ public class UnisexProductController {
 
     @GetMapping("/unisexproduct")
     public String index(Model model) {
-    	
+
     	List<ProductsDTO> list = productservice.findbyCategoryDTO("Unisex");
     	model.addAttribute("products", list);
         return "category/unisexproduct";

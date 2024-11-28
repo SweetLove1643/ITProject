@@ -64,6 +64,7 @@ public class SecurityConfig {
 	public AuthenticationManager authenticationManager(AuthenticationConfiguration authConfig) throws Exception {
 		final List<GlobalAuthenticationConfigurerAdapter> configurers = new ArrayList<>();
 		configurers.add(new GlobalAuthenticationConfigurerAdapter() {
+			@Override
 			public void configure(AuthenticationManagerBuilder auth) throws Exception {
 			}
 		});
@@ -74,6 +75,6 @@ public class SecurityConfig {
 	public BCryptPasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
-	
-	
+
+
 }

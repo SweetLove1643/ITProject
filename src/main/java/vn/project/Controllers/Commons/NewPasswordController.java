@@ -20,19 +20,19 @@ public class NewPasswordController {
 	private IUserService userService;
 
 	private String useremail;
-	
+
 	@Autowired
 	BCryptPasswordEncoder passwordEncoder;
 
 	@GetMapping
 	public String index(@ModelAttribute("verifysuccess") String verifysuccess,
 			@ModelAttribute("useremail") String useremail) {
-		if (verifysuccess.equals("true") == true) {
+		if (verifysuccess.equals("true")) {
 			this.useremail = useremail;
-			 return "commons/newpass"; 
+			 return "commons/newpass";
 		}
 		else{
-			 return "redirect:/forgotpass"; 
+			 return "redirect:/forgotpass";
 		}
 	}
 
@@ -40,7 +40,7 @@ public class NewPasswordController {
 	public String processNewPassword(@RequestParam String newpass,
 			@RequestParam String renewpass, Model model) {
 
-		if(newpass.equals(renewpass) == false) {
+		if(!newpass.equals(renewpass)) {
 			model.addAttribute("message", "Vui lòng nhập lại mật khẩu mới!");
 			model.addAttribute("verifysuccess", true);
 			model.addAttribute("useremail", useremail);
@@ -48,11 +48,11 @@ public class NewPasswordController {
 		}else {
 			Users user = userService.findByEmail(useremail).get();
 			user.setPassword(passwordEncoder.encode(newpass));
-			
+
 			userService.save(user);
-			
+
 			model.addAttribute("message", "Đổi mật khẩu thành công.");
-			
+
 			return "redirect:/login";
 		}
 	}

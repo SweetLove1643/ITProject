@@ -1,7 +1,6 @@
 package vn.project.Controllers.AdminControllers;
 
 import java.util.List;
-
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,16 +28,16 @@ public class ProductManagementController {
 
 	@Autowired
 	IProductService productService;
-	
+
 	@Autowired
 	IBrandService brandService;
-	
+
 	@Autowired
 	ICategoryService cateService;
-	
+
 	@Autowired
 	ISupplierService supplierService;
-	
+
 	@Autowired
 	ICartService cartService;
 
@@ -51,7 +50,7 @@ public class ProductManagementController {
 			model.addAttribute("brands", brandService.findAll());
 			model.addAttribute("category", cateService.findAll());
 			model.addAttribute("supplier", supplierService.findAll());
-			
+
 			return "admin/productmanagement";
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -59,30 +58,30 @@ public class ProductManagementController {
 			return "redirect:/403";
 		}
 	}
-	
+
 	@GetMapping("/productmanager/delete/{id}")
 	public String deleteProduct(@PathVariable("id") String idproduct, Model model) {
 		try {
 			int id = Integer.valueOf(idproduct);
-			
+
 			Optional<Products> product = productService.findById(id);
-			
+
 			if(product.isPresent()) {
 				cartService.deleteAllByproductid(id);
 				productService.delete(product.get());
 			}
-			
+
 			return "redirect:/admin/productmanager";
-			
-			
+
+
 		}catch (Exception e) {
 			e.printStackTrace();
 			model.addAttribute("message", "Đã xảy ra lỗi");
 			return "redirect:/anyerror";
 		}
-		
+
 	}
-	
+
 	@PostMapping("/productmanager/add")
 	public String createProduct(@ModelAttribute ProductsDTO productsDTO, Model model) {
 		try {
@@ -104,17 +103,17 @@ public class ProductManagementController {
 			return "redirect:/anyerror";
 		}
 	}
-	
+
 	@PostMapping("/productmanager/edit")
 	public String updateProduct(@ModelAttribute ProductsDTO product, RedirectAttributes redirectAttributes) {
 		try {
 			System.out.print(product);
-			
+
 			if(product != null) {
 				Integer brandid = brandService.findIdByBrandnameContaining(product.getBrand()).get();
 				Integer cateid = cateService.findidByCategorynameContaining(product.getCategory()).get();
 				Integer supplierid = supplierService.findidBySuppliernameContaining(product.getSupplier()).get();
-				
+
 				Products editproduct = Products.builder()
 						.productid(product.getProductid())
 						.brandid(brandid)
@@ -126,7 +125,7 @@ public class ProductManagementController {
 						.stockquantity(Integer.valueOf(product.getStockquantity()))
 						.supplierid(supplierid)
 						.build();
-				
+
 				productService.save(editproduct);
 				redirectAttributes.addFlashAttribute("message", "Chỉnh sửa thành công");
 				return "redirect:/admin/productmanager";
@@ -139,7 +138,7 @@ public class ProductManagementController {
 			redirectAttributes.addFlashAttribute("message", "Đã xảy ra lỗi");
 			return "redirect:/anyerror";
 		}
-		
+
 	}
 
 }

@@ -2,7 +2,6 @@ package vn.project.Controllers.Commons;
 
 import java.util.Optional;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,14 +21,14 @@ public class ForgotPasswordController {
 
 	@Autowired(required = true)
 	IUserService userService;
-	
+
 	private String otp = null;
-	
+
 	@GetMapping
 	public String index() {
 		return "commons/forgotpass";
 	}
-	
+
 	@PostMapping
 	public String inputOTP(@RequestParam String email, RedirectAttributes redirectAttributes, Model model) {
 		Optional<Users> u = userService.findByEmail(email);
@@ -44,5 +43,5 @@ public class ForgotPasswordController {
 			return "commons/forgotpass";
 		}
 	}
-	
+
 }

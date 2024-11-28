@@ -6,7 +6,7 @@
     <link th:href="@{/assets/css/vendor.css}" rel="stylesheet" />
     <link th:href="@{/assets/css/style.css}" rel="stylesheet" />
 
-    <title th:text="|Cart|">Cart</title>
+    <title th:text="|Giỏ hàng|"></title>
 </head>
 <body class="bg-light">
 
@@ -17,7 +17,7 @@
     <div class="container">
         <div class="row">
             <div class="col">
-                <h1 th:text="|Giỏ hàng|">Giỏ hàng</h1>
+                <h1 th:text="|Giỏ hàng|"></h1>
             </div>
         </div>
 
@@ -29,7 +29,7 @@
                 <div class="bg-white cart-item-list p-2 p-lg-3 mb-1">
                     <div th:replace="~{decorator/order-cart :: order-cart}"></div>
                 </div>
-                <a th:href="@{/personal/allproduct}" class="underlined">Tiếp tục mua hàng</a>
+                <a th:href="@{/allproduct}" class="underlined">Tiếp tục mua hàng</a>
                 <div class="text-md-right">
                     <button  type="submit" name="action" value="submit1" class=" btn btn-outline-secondary" >Cập nhật giỏ hàng</button>
                 </div>
@@ -39,8 +39,14 @@
             <!-- total order -->
             <aside class="col-lg-4">
                 <div class="bg-white p-2 p-lg-3">
-                    <h2 class="mb-3 text-uppercase fs-20" th:text="|Tổng hóa đơn|">Tổng hóa đơn</h2>
-                    <div th:replace="~{decorator/total_order :: total_order}"></div>
+                    <h2 class="mb-3 text-uppercase fs-20" th:text="|Tổng hóa đơn|"></h2>
+                    <ul class="list-group list-group-minimal mb-3" th:fragment="total_order" xmlns:th="https://www.thymeleaf.org">
+                        <li class="list-group-item d-flex justify-content-between align-items-center text-uppercase font-weight-bold">
+                            Tổng thanh toán
+                            <span id="total">0 ₫</span>
+                        </li>
+                    </ul>
+
                     <button type="submit" name="action" value="submit2" class="btn btn-primary btn-block">Thanh toán</button>
                 </div>
             </aside>

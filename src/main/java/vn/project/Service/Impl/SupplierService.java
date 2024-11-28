@@ -1,7 +1,6 @@
 package vn.project.Service.Impl;
 
 import java.util.List;
-
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -78,7 +77,7 @@ public class SupplierService implements ISupplierService {
 	public Optional<Suppliers> findBySuppliername(String keyword) {
 		return supplierRepository.findBySuppliername(keyword);
 	}
-	
+
 	@Override
 	public Optional<Integer> findidBySuppliernameContaining(String suppliername){
 		List<Suppliers> list = supplierRepository.findBySuppliernameContaining(suppliername);
@@ -88,5 +87,5 @@ public class SupplierService implements ISupplierService {
 	    }
 	    return Optional.empty();
 	}
-    
+
 }

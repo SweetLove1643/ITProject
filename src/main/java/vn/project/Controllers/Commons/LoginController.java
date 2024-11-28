@@ -34,7 +34,6 @@ public class LoginController {
 	public String login(@RequestParam String username, @RequestParam String password, RedirectAttributes redirectAttributes) {
 	    try {
 	        boolean isAuthenticated = false;
-
 	        Optional<Users> optionalUser = userservice.findByUsername(username);
 	        
 	        if (optionalUser.isPresent()) {

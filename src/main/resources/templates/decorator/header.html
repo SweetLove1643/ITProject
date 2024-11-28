@@ -2,6 +2,7 @@
 <header class="header header-absolute" th:fragment="topbar&header"
         xmlns:th="https://www.thymeleaf.org"
         xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
     <div class="container-fluid">
         <nav class="navbar navbar-expand-lg navbar-light">
             <!-- logo -->
@@ -114,7 +115,7 @@ m245 91 l0 -30 -72 -3 -73 -3 0 36 0 36 73 -3 72 -3 0 -30z m29 -131 c10 -25
 
 
                     <li class="nav-item dropdown dropdown-sm dropdown-hover">
-                        <a th:href="@{/allproduct}"  class="nav-link dropdown-toggle" id="navbarDropdown-2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a th:href="@{/allproduct}"  class="nav-link dropdown-toggle" id="navbarDropdown-2" role="button">
                             Sản phẩm </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown-2">
                             <div class="container">
@@ -138,10 +139,11 @@ m245 91 l0 -30 -72 -3 -73 -3 0 36 0 36 73 -3 72 -3 0 -30z m29 -131 c10 -25
                             </div>
                         </div></li>
 
-                    <li class="nav-item dropdown-sm dropdown-hover"><a
-                            class="nav-link dropdown-toggle" role="button" id="contactLink"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#contactSection">
-                        Liên hệ </a></li>
+                    <li class="nav-item dropdown-sm dropdown-hover">
+                        <a class="nav-link dropdown-toggle" role="button" id="contactLink" href="#contactSection">
+                            Liên hệ
+                        </a>
+                    </li>
                 </ul>
             </div>
 
@@ -167,7 +169,7 @@ m245 91 l0 -30 -72 -3 -73 -3 0 36 0 36 73 -3 72 -3 0 -30z m29 -131 c10 -25
                                             <li class="menu-list-item"><a th:href="@{/login}"
                                                                           class="menu-list-link">Đăng nhập</a></li>
                                             <li class="menu-list-item"><a th:href="@{/register}"
-                                                                          class="menu-list-link">Tạo tài khoản</a></li>
+                                                                          class="menu-list-link">Đăng ký tài khoản</a></li>
                                         </ul>
                                     </div>
 
@@ -177,7 +179,7 @@ m245 91 l0 -30 -72 -3 -73 -3 0 36 0 36 73 -3 72 -3 0 -30z m29 -131 c10 -25
                                         <div sec:authorize ="hasAuthority('USER')">
                                             <ul class="menu-list">
                                                 <li class="menu-list-item"><a th:href="@{/personal/profile}"
-                                                                              class="menu-list-link">Trang cá nhân</a></li>
+                                                                              class="menu-list-link">Thông tin tài khoản</a></li>
                                                 <li class="menu-list-item"><a th:href="@{/personal/cart}"
                                                                               class="menu-list-link">Giỏ hàng</a></li>
                                                 <li class="menu-list-item"><a th:href="@{/personal/orders}"
@@ -192,9 +194,9 @@ m245 91 l0 -30 -72 -3 -73 -3 0 36 0 36 73 -3 72 -3 0 -30z m29 -131 c10 -25
                                         <div sec:authorize ="hasAuthority('ADMIN')">
                                             <ul class="menu-list">
                                                 <li class="menu-list-item"><a th:href="@{/personal/profile}"
-                                                                              class="menu-list-link">Trang cá nhân</a></li>
+                                                                              class="menu-list-link">Thông tin tài khoản</a></li>
                                                 <li class="menu-list-item"><a th:href="@{/admin/accountmanager}"
-                                                                              class="menu-list-link">Quản lý người dùng</a></li>
+                                                                              class="menu-list-link">Quản lý tài khoản khách hàng</a></li>
                                                 <li class="menu-list-item"><a th:href="@{/admin/ordermanager}"
                                                                               class="menu-list-link">Quản lý đơn hàng</a></li>
                                                 <li class="menu-list-item"><a th:href="@{/admin/productmanager}"
@@ -221,9 +223,9 @@ m245 91 l0 -30 -72 -3 -73 -3 0 36 0 36 73 -3 72 -3 0 -30z m29 -131 c10 -25
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown-4">
                             <div class="form-group">
                                 <form class="d-flex align-items-center position-relative">
-                                    <button type="button" class="btn p-0 position-absolute" style="left: 10px; top: 50%; transform: translateY(-50%); border: none; background: transparent;">
+                                    <a th:href="@{/findproduct}" type="button" class="btn p-0 position-absolute" style="left: 10px; top: 50%; transform: translateY(-50%); border: none; background: transparent;">
                                         <img th:src="@{//theme.hstatic.net/1000340570/1000964732/14/icon-search.svg?v=6611}" alt="Tìm kiếm" style="width: 20px; height: 20px;">
-                                    </button>
+                                    </a>
                                     <input type="text" class="form-control pl-5" id="searchForm"  placeholder="Tìm kiếm" style="padding-left: 40px;">
                                 </form>
                             </div>
