@@ -121,6 +121,21 @@
                     <p><strong>Tổng tiền:</strong> <span id="total-amount-detail"></span> VND</p>
                     <p><strong>User ID:</strong> <span id="user-id-detail"></span></p>
                     <p><strong>Discount ID:</strong> <span id="discount-id-detail"></span></p>
+                    <h5>Sản phẩm trong đơn hàng:</h5>
+                    <table class="table table-bordered">
+                        <thead class="bg-light">
+                        <tr>
+                            <th>Hình ảnh</th>
+                            <th>Tên sản phẩm</th>
+                            <th>Số lượng</th>
+                            <th>Giá</th>
+                            <th>Tổng</th>
+                        </tr>
+                        </thead>
+                        <tbody id="order-products-details">
+                        <!-- Product rows will be added here -->
+                        </tbody>
+                    </table>
                 </div>
             </div>
             <div class="modal-footer">
@@ -180,40 +195,42 @@
     document.addEventListener("DOMContentLoaded", function () {
         const orderDetailsModal = document.getElementById("orderDetailsModal");
 
-        // When the View Details button is clicked
         orderDetailsModal.addEventListener("show.bs.modal", function (event) {
-            const button = event.relatedTarget; // The button that triggered the modal
-
-            // Get the order ID and other details from the data attributes
+            const button = event.relatedTarget; // Button that triggered the modal
             const orderId = button.getAttribute("data-order-id");
 
-            // Here, you'd typically retrieve more order details from the server
-            // For now, let's simulate using the orderId (you could fetch this data from the backend or set it directly)
+            // Get order details using an AJAX call or from the Thymeleaf context
+            fetch(`/admin/ordermanager/details/${orderId}`)
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById("order-id-detail").textContent = data.orderid;
+                    document.getElementById("delivery-status-detail").textContent = data.deliverystatus;
+                    document.getElementById("order-date-detail").textContent = data.orderdate;
+                    document.getElementById("payment-method-detail").textContent = data.paymentmethod;
+                    document.getElementById("payment-status-detail").textContent = data.paymentstatus;
+                    document.getElementById("total-amount-detail").textContent = data.totalamount;
+                    document.getElementById("user-id-detail").textContent = data.userid;
+                    document.getElementById("discount-id-detail").textContent = data.discountid || 'Không có';
 
-            const orderDetails = {
-                "orderid": orderId,
-                "deliverystatus": "Đang xử lý",  // Example data, replace with actual data
-                "orderdate": "2024-11-28",  // Example data
-                "paymentmethod": "Thanh toán online",  // Example data
-                "paymentstatus": "Đã thanh toán",  // Example data
-                "totalamount": "500,000",  // Example data
-                "userid": "12345",  // Example data
-                "discountid": "DISCOUNT20"  // Example data
-            };
+                    const productsTableBody = document.getElementById("order-products-details");
+                    productsTableBody.innerHTML = ''; // Clear existing rows
 
-            // Fill the modal with order details
-            document.getElementById("order-id-detail").textContent = orderDetails.orderid;
-            document.getElementById("delivery-status-detail").textContent = orderDetails.deliverystatus;
-            document.getElementById("order-date-detail").textContent = orderDetails.orderdate;
-            document.getElementById("payment-method-detail").textContent = orderDetails.paymentmethod;
-            document.getElementById("payment-status-detail").textContent = orderDetails.paymentstatus;
-            document.getElementById("total-amount-detail").textContent = orderDetails.totalamount;
-            document.getElementById("user-id-detail").textContent = orderDetails.userid;
-            document.getElementById("discount-id-detail").textContent = orderDetails.discountid;
+                    data.products.forEach(product => {
+                        const row = document.createElement("tr");
+                        row.innerHTML = `
+                            <td><img src="${product.imageurl}" alt="Product Image" style="width: 50px; height: 50px;"></td>
+                            <td>${product.productname}</td>
+                            <td>${product.quantity}</td>
+                            <td>${product.price}</td>
+                            <td>${product.total}</td>
+                        `;
+                        productsTableBody.appendChild(row);
+                    });
+                })
+                .catch(error => console.error('Error fetching order details:', error));
         });
     });
 </script>
-
 
 </body>
 </html>
