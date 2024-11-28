@@ -58,10 +58,9 @@
                                      data-rolename=${user.role.rolename}">
                         Sửa
                     </button>
-                    <button type="button" class="btn btn-sm btn-danger"
-                            onclick="confirmDelete(${user.id})">
+                    <a type="button" class="btn btn-sm btn-danger">
                         Xóa
-                    </button>
+                    </a>
                 </td>
             </tr>
             <tr th:if="${userlist == null}">
@@ -110,9 +109,10 @@
                     </div>
 
                     <div class="mb-3">
-                        <label for="roleid" class="form-label">Vai trò</label>
-                        <select id="roleid" name="roleid" class="form-select">
-                            <option th:each="role : ${roles}" th:value="${role.roleid}" th:text="${role.rolename}" th:selected="${role.roleid == user.role.roleid}"></option>
+                        <label for="rolename" class="form-label">Vai trò</label>
+                        <select id="rolename" name="rolename" class="form-select">
+                            <option value="ADMIN">Admin</option>
+                            <option value="USER">User</option>
                         </select>
                     </div>
 
@@ -157,14 +157,13 @@
             document.getElementById("address").value = address;
             document.getElementById("phonenumber").value = phoneNumber;
 
-            const roleSelect = document.getElementById("roleid");
+            const select = document.getElementById("rolename");
+            
+            
+            select.value = roleName;
+            select.dispatchEvent(new Event("change"));
 
-            for (let option of roleSelect.options) {
-            if (option.value == roleId) {
-                option.selected = true;
-                break;
-            }
-        }
+            
         });
     });
 </script>

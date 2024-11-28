@@ -24,6 +24,7 @@ public class OrderManagementController {
 	public String manageProducts(Model model) {
 		try {
 			List<Orders> listorder = orderService.findAll();
+			System.out.print(listorder);
 			model.addAttribute("listorders", listorder);
 			return "admin/ordermanagement";
 		} catch (Exception e) {
