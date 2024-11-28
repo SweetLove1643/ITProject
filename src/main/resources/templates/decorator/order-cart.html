@@ -1,14 +1,11 @@
 <div class="cart-item" th:if="${usercart != null}" th:each="cart : ${usercart}" th:fragment="order-cart" xmlns:th="https://www.thymeleaf.org">
 	<!--checkbox-->
-<<<<<<< HEAD
+
 
 	<div class="cart-item-header ">
 		<input class="cart-item-checkbox" type="checkbox" id="checkbox-item-1" onchange="updateCartTotal()">
 
-=======
-	<div class="cart-item-header">
-		<input type="checkbox"  class="cart-item-checkbox" data-price="100000" data-cart-id="1">
->>>>>>> 98102135b16ad2ddb897d6daf2587bd5bf8f5f3e
+
 	</div>
 	<!--hinh anh-->
 	<a th:href="@{/productdetail/{id}(id=${cart.productid})}" class="cart-item-image"><img th:src="${cart.imageurl}" alt="Image"></a>

@@ -209,6 +209,19 @@ public class PersonalDataController {
 			return "redirect:/anyerror";
 		}
 	}
+	
+	@PostMapping("/cart/update")
+	public String updatecart(@RequestParam String action, RedirectAttributes redirectAttributes) {
+		if("submit1".equals(action)) {
+			return "redirect:/personal/cart";
+		}else {
+			if("submit2".equals(action)) {
+				return "redirect:/personal/checkout";
+			}
+		}
+		return "redirect:/505";
+		
+	}
 
 	@GetMapping("/orders")
 	public String orders(Model model) {

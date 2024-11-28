@@ -21,8 +21,8 @@
             </div>
         </div>
 
+	<form th:action="@{/personal/cart/update}" method="POST">
         <div class="row gutter-3 gutter-lg-1">
-
             <!-- content -->
             <div class="col">
                 <!-- order list -->
@@ -31,7 +31,7 @@
                 </div>
                 <a th:href="@{/personal/allproduct}" class="underlined">Tiếp tục mua hàng</a>
                 <div class="text-md-right">
-                    <button th:href="@{/personal/cart}" type="button" class=" btn btn-outline-secondary" onclick="updateCartTotal()">Cập nhật giỏ hàng</button>
+                    <button  type="submit" name="action" value="submit1" class=" btn btn-outline-secondary" >Cập nhật giỏ hàng</button>
                 </div>
 
             </div>
@@ -41,10 +41,11 @@
                 <div class="bg-white p-2 p-lg-3">
                     <h2 class="mb-3 text-uppercase fs-20" th:text="|Tổng hóa đơn|">Tổng hóa đơn</h2>
                     <div th:replace="~{decorator/total_order :: total_order}"></div>
-                    <a th:href="@{/personal/checkout}" class="btn btn-primary btn-block">Thanh toán</a>
+                    <button type="submit" name="action" value="submit2" class="btn btn-primary btn-block">Thanh toán</button>
                 </div>
             </aside>
         </div>
+        </form>
     </div>
 </section>
 
@@ -97,63 +98,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
 </script>
 
-<script>
-
-
-    // Cập nhật tổng giỏ hàng
-    function updateCartTotal() {
-        subtotal = 0;
-
-        // Tính toán tổng giá trị sản phẩm đã chọn
-        document.querySelectorAll('.cart-item-checkbox').forEach((checkbox) => {
-            if (checkbox.checked) {
-                const quantityInput = checkbox.closest('.cart-item').querySelector('.quantity-input');
-                const price = parseInt(checkbox.dataset.price);
-                const quantity = parseInt(quantityInput.value);
-                subtotal += price * quantity;
-            }
-        });
-
-        // Tính tổng thanh toán
-        const total = subtotal + shipping - discount;
-
-        // Cập nhật giá trị vào UI
-        document.getElementById('subtotal').textContent = subtotal.toLocaleString('vi-VN') + ' ₫';
-        document.getElementById('shipping').textContent = shipping.toLocaleString('vi-VN') + ' ₫';
-        document.getElementById('total').textContent = total.toLocaleString('vi-VN') + ' ₫';
-    }
-
-    // Áp dụng mã giảm giá
-    function applyPromoCode() {
-        const promoCode = document.getElementById('promoCode').value.trim();
-
-        if (promoCode === 'SALE10') {
-            discount = 10000;
-        } else if (promoCode === 'SALE20') {
-            discount = 20000;
-        } else {
-            discount = 0;
-            alert('Mã giảm giá không hợp lệ');
-        }
-
-        // Cập nhật giá trị giảm giá
-        document.getElementById('discount').textContent = discount.toLocaleString('vi-VN') + ' ₫';
-        updateCartTotal(); // Cập nhật lại tổng khi áp dụng mã giảm giá
-    }
-
-    // Lắng nghe sự kiện thay đổi số lượng
-    document.querySelectorAll('.quantity-input').forEach((input) => {
-        input.addEventListener('input', updateCartTotal);
-    });
-
-    // Lắng nghe sự kiện thay đổi checkbox
-    document.querySelectorAll('.cart-item-checkbox').forEach((checkbox) => {
-        checkbox.addEventListener('change', updateCartTotal);
-    });
-
-    // Cập nhật tổng khi trang tải
-    updateCartTotal();
-</script>
 
 </body>
 </html>

@@ -40,9 +40,4 @@ public class Invoices {
 
 	@Column(name = "InvoiceStatus", nullable = false)
 	private int invoicestatus;
-
-	public int getInvoiceid() {
-		return invoiceid;
-	}
-
 }
