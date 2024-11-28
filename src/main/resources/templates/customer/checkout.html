@@ -35,7 +35,7 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="form-label-group">
-                                    <input type="text" id="inputFullName" class="form-control form-control-lg" th:placeholder="'Họ và Tên'" required="">
+                                    <input type="text" id="inputFullName" class="form-control form-control-lg" th:placeholder="'Họ và Tên'" required="" readonly="true">
                                     <label for="inputFullName" th:text="'Họ và Tên'"></label>
                                 </div>
                             </div>
@@ -43,7 +43,7 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="form-label-group">
-                                    <input type="text" id="inputAddress" class="form-control form-control-lg" th:placeholder="'Địa Chỉ'" required="">
+                                    <input type="text" id="inputAddress" class="form-control form-control-lg" th:placeholder="'Địa Chỉ'" required="" readonly="true">
                                     <label for="inputAddress" th:text="'Địa Chỉ'"></label>
                                 </div>
                             </div>
@@ -51,7 +51,7 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="form-label-group">
-                                    <input type="email" id="inputEmail" class="form-control form-control-lg" th:placeholder="'Email'" required="">
+                                    <input type="email" id="inputEmail" class="form-control form-control-lg" th:placeholder="'Email'" required="" readonly="true">
                                     <label for="inputEmail" th:text="'Email'"></label>
                                 </div>
                             </div>
@@ -59,7 +59,7 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="form-label-group">
-                                    <input type="text" id="inputPhoneNumber" class="form-control form-control-lg" th:placeholder="'Số Điện Thoại'" required="">
+                                    <input type="text" id="inputPhoneNumber" class="form-control form-control-lg" th:placeholder="'Số Điện Thoại'" required="" readonly="true">
                                     <label for="inputPhoneNumber" th:text="'Số Điện Thoại'"></label>
                                 </div>
                             </div>
@@ -95,7 +95,7 @@
 
 
                 <!-- payment -->
-                <div>
+                <div class="bg-white p-2 p-lg-3 mb-1">
                     <h2 class="mb-2 text-uppercase fs-20">Thanh Toán</h2>
 
                     <fieldset class="mb-2">
@@ -114,7 +114,7 @@
                 </div>
 
                 <!-- place order -->
-                <div class="bg-white p-2 p-md-3">
+                <div >
                     <button type="submit" class="btn btn-lg btn-primary btn-block mb-2" th:text="'Hoàn Tất Đơn Hàng'"></button>
                     <small class="text-muted" th:text="'Bằng cách đặt hàng, bạn đồng ý với '"></small>
                     <a th:href="@{/terms}" th:text="'Điều Khoản & Điều Kiện'"></a>
@@ -147,24 +147,7 @@
                         </div>
                     </div>
                     <hr class="my-3"/>
-                    <ul class="list-group list-group-minimal">
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            Tạm tính
-                            <span>$84.00</span>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            Phí vận chuyển
-                            <span>$8.00</span>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center text-red">
-                            Giảm giá
-                            <span class="text-red">-$14.00</span>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center text-uppercase font-weight-bold">
-                            Tổng thanh toán
-                            <span>$78.00</span>
-                        </li>
-                    </ul>
+                        <div th:replace="~{decorator/total_order :: total_order}"></div>
                 </div>
             </aside>
         </div>

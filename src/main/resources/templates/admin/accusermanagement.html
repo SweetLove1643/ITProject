@@ -112,7 +112,7 @@
                     <div class="mb-3">
                         <label for="roleid" class="form-label">Vai trò</label>
                         <select id="roleid" name="roleid" class="form-select">
-                            <option th:each="role : ${roles}" th:value="${role.roleid}" th:text="${role.rolename}"></option>
+                            <option th:each="role : ${roles}" th:value="${role.roleid}" th:text="${role.rolename}" ></option>
                         </select>
                     </div>
 
