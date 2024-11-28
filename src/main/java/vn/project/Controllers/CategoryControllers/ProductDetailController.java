@@ -12,7 +12,7 @@ import vn.project.DTO.ProductsDTO;
 import vn.project.Service.IProductService;
 
 @Controller
-@RequestMapping
+@RequestMapping("/product")
 public class ProductDetailController {
 
 	@Autowired(required = true)

@@ -12,13 +12,13 @@ import vn.project.DTO.ProductsDTO;
 import vn.project.Service.IProductService;
 
 @Controller
-@RequestMapping("/jpg")
+@RequestMapping("/product")
 public class JPGBrand {
 
 	@Autowired(required=true)
 	IProductService productservice;
 
-    @GetMapping
+    @GetMapping("/jpg")
     public String index(Model model) {
     	
     	List<ProductsDTO> list = productservice.findbyBrandDTO("Jean Paul Gaultier");

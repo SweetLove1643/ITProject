@@ -13,13 +13,13 @@ import vn.project.DTO.ProductsDTO;
 import vn.project.Service.IProductService;
 
 @Controller
-@RequestMapping("/bvlgari")
+@RequestMapping("/product")
 public class BvlgariBrand {
 
 	@Autowired(required=true)
 	IProductService productservice;
 
-    @GetMapping
+    @GetMapping("/bvlgari")
     public String index(Model model) {
     	
     	List<ProductsDTO> list = productservice.findbyBrandDTO("Bvlgari");

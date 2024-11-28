@@ -30,8 +30,8 @@
 						</div>
 						<div class="card-body">
 							<form th:action="@{/login}" method="POST">
-								<div th:if="${message}" class="alert alert-danger">
-									<span th:text="${message}"></span>
+								<div th:if="${param.error}" class="alert alert-danger">
+									<span>Thông tin đăng nhập không đúng. Vui lòng thử lại.</span>
 								</div>
 								<div class="tab-content" id="component-1-content">
 									<div class="tab-pane fade show active" id="component-1-1"
@@ -73,8 +73,8 @@
 													th:text="|Đăng nhập|"></button>
 											</div>
 											<div class="col-12 text-center mt-1">
-												<span>Chưa có tài khoản? </span> 
-												<a th:href="@{/register}" class="text-decoration-none">Đăng ký</a>
+												<span>Chưa có tài khoản? </span> <a th:href="@{/register}"
+													class="text-decoration-none">Đăng ký</a>
 											</div>
 										</div>
 									</div>

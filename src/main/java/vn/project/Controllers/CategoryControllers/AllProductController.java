@@ -11,13 +11,13 @@ import vn.project.Service.IProductService;
 import java.util.List;
 
 @Controller
-@RequestMapping("/allproduct")
+@RequestMapping("/product")
 public class AllProductController {
 
 	@Autowired(required=true)
 	IProductService productservice;
 
-    @GetMapping
+    @GetMapping("/allproduct")
     public String index(Model model) {
     	
     	List<ProductsDTO> list = productservice.findAllDTO();

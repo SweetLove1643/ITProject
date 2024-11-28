@@ -12,13 +12,13 @@ import vn.project.DTO.ProductsDTO;
 import vn.project.Service.IProductService;
 
 @Controller
-@RequestMapping("/unisexproduct")
+@RequestMapping("/product")
 public class UnisexProductController {
 
 	@Autowired(required=true)
 	IProductService productservice;
 
-    @GetMapping
+    @GetMapping("/unisexproduct")
     public String index(Model model) {
     	
     	List<ProductsDTO> list = productservice.findbyCategoryDTO("Unisex");
