@@ -58,7 +58,7 @@
                                      data-rolename=${user.role.rolename}">
                         Sửa
                     </button>
-                    <a type="button" class="btn btn-sm btn-danger">
+                    <a th:href="@{/admin/accountmanager/delete/{id}(id=${user.id})}" type="button" class="btn btn-sm btn-danger">
                         Xóa
                     </a>
                 </td>
@@ -81,7 +81,7 @@
             </div>
             <div class="modal-body">
                 <form th:action="@{/admin/accountmanager/update}" method="post">
-                    <input type="hidden" id="userid" name="userid">
+                    <input type="hidden" id="id" name="id">
 
                     <div class="mb-3">
                         <label for="username" class="form-label">Tên đăng nhập</label>
@@ -109,7 +109,7 @@
                     </div>
 
                     <div class="mb-3">
-                        <label for="rolename" class="form-label">Vai trò</label>
+                        <label for="role" class="form-label">Vai trò</label>
                         <select id="rolename" name="rolename" class="form-select">
                             <option value="ADMIN">Admin</option>
                             <option value="USER">User</option>
@@ -150,7 +150,7 @@
             const roleName = button.getAttribute("data-rolename");
 
 
-            document.getElementById("userid").value = userId;
+            document.getElementById("id").value = userId;
             document.getElementById("username").value = username;
             document.getElementById("fullname").value = fullName;
             document.getElementById("email").value = email;

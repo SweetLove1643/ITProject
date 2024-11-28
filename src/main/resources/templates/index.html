@@ -36,7 +36,7 @@
 						<div class="col-lg-8 text-white" data-swiper-parallax-x="-100%">
 							<span class="eyebrow">Bộ sưu tập mới</span>
 							<h1 class="mb-3 text-uppercase">MANCERA PARIS</h1>
-							<a th:href="@{/allproduct}" class="btn btn-outline-white">Xem thêm</a>
+							<a th:href="@{/product/allproduct}" class="btn btn-outline-white">Xem thêm</a>
 						</div>
 					</div>
 				</div>
@@ -50,7 +50,7 @@
 						<div class="col-lg-8 text-white" data-swiper-parallax-x="-100%">
 							<span class="eyebrow">Sản phẩm mới</span>
 							<h1>AQVA POUR HOMME</h1>
-							<a th:href="@{/productdetail/1}" class="btn btn-outline-white">Mua ngay</a>
+							<a th:href="@{/product/productdetail/1}" class="btn btn-outline-white">Mua ngay</a>
 						</div>
 					</div>
 				</div>
@@ -84,7 +84,7 @@
 						<div class="card-footer p-lg-5">
 							<div class="bg-white d-inline-block p-1">
 								<h2 class="card-title">Nước Hoa Nam</h2>
-								<a href="/menproduct" class="underlined">Xem thêm</a>
+								<a th:href="@{/product/menproduct}" class="underlined">Xem thêm</a>
 							</div>
 						</div>
 					</div>
@@ -99,7 +99,7 @@
 						<div class="card-footer p-lg-5">
 							<div class="bg-white d-inline-block p-1">
 								<h2 class="card-title">Nước Hoa Nữ</h2>
-								<a href="/womenproduct" class="underlined">Xem thêm</a>
+								<a th:href="@{/product/womenproduct}" class="underlined">Xem thêm</a>
 							</div>
 						</div>
 					</div>
@@ -136,12 +136,12 @@
 								<!-- https://orchard.vn/san-pham/tom-ford-oud-wood/ -->
 								<div class="card card-product">
 									<figure class="card-image">
-										<a th:href="@{/unisexproduct}">
+										<a th:href="@{/product/unisexproduct}">
 											<img th:src="@{assets/images/demo/unisex3.jpg}" height="534" alt="Image">
 											<img th:src="@{assets/images/demo/unisex3-1.jpg}" height="534" alt="Image">
 										</a>
 									</figure>
-									<a th:href="@{/unisexproduct}" class="card-body">
+									<a th:href="@{/product/unisexproduct}" class="card-body">
 										<h3 class="card-title">Tom Ford Oud Wood</h3>
 										<span class="price">6.180.000 ₫</span>
 									</a>
@@ -150,12 +150,12 @@
 								<!--https://orchard.vn/san-pham/tom-ford-lost-cherry/  -->
 								<div class="card card-product">
 									<figure class="card-image">
-										<a th:href="@{/productdetail/19}">
+										<a th:href="@{/product/productdetail/19}">
 											<img th:src="@{assets/images/demo/u2-1.png}" height="534" alt="Image">
 											<img th:src="@{assets/images/demo/u2-2.png}" height="534" alt="Image">
 										</a>
 									</figure>
-									<a th:href="@{/productdetail/19}" class="card-body">
+									<a th:href="@{/product/productdetail/19}" class="card-body">
 										<h3 class="card-title">Tom Ford Lost Cherry</h3>
 										<span class="price">5.980.000 ₫</span>
 									</a>
@@ -164,12 +164,12 @@
 								<!-- https://orchard.vn/san-pham/kilian-black-phantom/ -->
 								<div class="card card-product">
 									<figure class="card-image">
-										<a th:href="@{/productdetail/5}">
+										<a th:href="@{/product/productdetail/5}">
 											<img th:src="@{assets/images/demo/unisex2.jpg}" height="534" alt="Image">
 											<img th:src="@{assets/images/demo/unisex2-1.jpg}" height="534" alt="Image">
 										</a>
 									</figure>
-									<a th:href="@{/productdetail/5}" class="card-body">
+									<a th:href="@{/product/productdetail/5}" class="card-body">
 										<h3 class="card-title">Kilian Black Phantomh</h3>
 										<span class="price">5.780.000 ₫</span>
 									</a>
@@ -187,13 +187,13 @@
 <!-- 								&lt;!&ndash; https://orchard.vn/san-pham/tom-ford-black-orchid-parfum/ &ndash;&gt;
  -->								<div class="card card-product">
 									<figure class="card-image">
-										<a th:href="@{/nicheproduct}"> <img th:src="@{assets/images/demo/niche1.jpg}" height="534"
+										<a th:href="@{/product/nicheproduct}"> <img th:src="@{assets/images/demo/niche1.jpg}" height="534"
 												alt="Image"> <img
 												th:src="@{assets/images/demo/niche1-1.jpg}" height="534"
 												alt="Image">
 										</a>
 									</figure>
-									<a th:href="@{/nicheproduct}" class="card-body">
+									<a th:href="@{/product/nicheproduct}" class="card-body">
 										<h3 class="card-title">Tom Ford Black Orchid Parfum</h3> <span
 											class="price">4.080.000 ₫</span>
 									</a>
@@ -202,14 +202,14 @@
 <!-- 								&lt;!&ndash; https://orchard.vn/san-pham/kilian-angels-share-by-kilian-edp/ &ndash;&gt;
  -->								<div class="card card-product">
 									<figure class="card-image">
-										<a th:href="@{/nicheproduct}"> <img
+										<a th:href="@{/product/nicheproduct}"> <img
 												th:src="@{assets/images/demo/ni2-1.png}" height="534"
 												alt="Image"> <img
 												th:src="@{assets/images/demo/ni2-2.png}" height="534"
 												alt="Image">
 										</a>
 									</figure>
-									<a th:href="@{/nicheproduct}" class="card-body">
+									<a th:href="@{/product/nicheproduct}" class="card-body">
 										<h3 class="card-title">Kilian Angels’ Share</h3> <span
 											class="price">4.280.000 ₫</span>
 									</a>
@@ -218,14 +218,14 @@
 <!-- 								&lt;!&ndash; https://orchard.vn/san-pham/kilian-good-girl-gone-bad/ &ndash;&gt;
  -->								<div class="card card-product">
 									<figure class="card-image">
-										<a th:href="@{/nicheproduct}"> <img
+										<a th:href="@{/product/nicheproduct}"> <img
 												th:src="@{assets/images/demo/niche3.jpg}" height="534"
 												alt="Image"> <img
 												th:src="@{assets/images/demo/niche3-1.jpg}" height="534"
 												alt="Image">
 										</a>
 									</figure>
-									<a th:href="@{/nicheproduct}" class="card-body">
+									<a th:href="@{/product/nicheproduct}" class="card-body">
 										<h3 class="card-title">Kilian Good Girl Gone Bad (with
 											Coffret)</h3> <span class="price">6.080.000 ₫</span>
 									</a>
@@ -243,14 +243,14 @@
 								<!-- &lt;!&ndash; https://orchard.vn/san-pham/versace-pour-homme-mini/ &ndash;&gt; -->
 								<div class="card card-product">
 									<figure class="card-image">
-										<a th:href="@{/miniproduct}"> <img
+										<a th:href="@{/product/miniproduct}"> <img
 												th:src="@{assets/images/demo/mi-1.png}" height="534"
 												alt="Image"> <img
 												th:src="@{assets/images/demo/mi-2.png}" height="534"
 												alt="Image">
 										</a>
 									</figure>
-									<a th:href="@{/miniproduct}" class="card-body">
+									<a th:href="@{/product/miniproduct}" class="card-body">
 										<h3 class="card-title">Versace Pour Homme Mini</h3> <span
 											class="price">280.000 ₫</span>
 									</a>
@@ -259,14 +259,14 @@
 <!-- 								&lt;!&ndash; https://orchard.vn/san-pham/dior-jadore-infinissime-edp-mini/ &ndash;&gt;
  -->								<div class="card card-product">
 									<figure class="card-image">
-										<a th:href="@{/miniproduct}"> <img
+										<a th:href="@{/product/miniproduct}"> <img
 												th:src="@{assets/images/demo/mi2-1.png}" height="534"
 												alt="Image"> <img
 												th:src="@{assets/images/demo/mi-2-2.png}" height="534"
 												alt="Image">
 										</a>
 									</figure>
-									<a th:href="@{/miniproduct}" class="card-body">
+									<a th:href="@{/product/miniproduct}" class="card-body">
 										<h3 class="card-title">Dior J’Adore Mini</h3> <span
 											class="price">380.000 ₫</span>
 									</a>
@@ -275,14 +275,14 @@
 <!-- 								&lt;!&ndash; https://orchard.vn/san-pham/jean-paul-gaultier-scandal-mini/ &ndash;&gt;
  -->								<div class="card card-product">
 									<figure class="card-image">
-										<a th:href="@{/miniproduct}"> <img
+										<a th:href="@{/product/miniproduct}"> <img
 												th:src="@{assets/images/demo/mi3-1.png}" height="534"
 												alt="Image"> <img
 												th:src="@{assets/images/demo/mi3-2.png}" height="534"
 												alt="Image">
 										</a>
 									</figure>
-									<a th:href="@{/miniproduct}" class="card-body">
+									<a th:href="@{/product/miniproduct}" class="card-body">
 										<h3 class="card-title">Jean Paul Gaultier Scandal Mini</h3>
 										<span class="price">420.000 ₫</span>
 									</a>
@@ -308,7 +308,7 @@
 
 				<!-- https://cdn.orchard.vn/wp-content/uploads/2024/06/fragnance-logo-text-bvlgary.webp -->
 				<div class="col-6 col-lg-3 margin-logo">
-					<a th:href="@{/bvlgari}">
+					<a th:href="@{/product/bvlgari}">
 						<figure class="category category--alt">
 							<div class="equal"><span class="background-img-logo" style="background-image: url(assets/images/demo/logo1.png)"></span></div>
 							<figcaption>Bvlgari</figcaption>
@@ -318,7 +318,7 @@
 
 				<!-- https://cdn.orchard.vn/wp-content/uploads/2024/06/fragnance-logo-text-ysl.webp -->
 				<div class="col-6 col-lg-3 margin-logo">
-					<a th:href="@{/ysl}">
+					<a th:href="@{/product/ysl}">
 						<figure class="category category--alt">
 							<div class="equal"><span class="background-img-logo" style="background-image: url(assets/images/demo/logo13.webp)"></span></div>
 							<figcaption>Yves Saint Laurent</figcaption>
@@ -328,7 +328,7 @@
 
 				<!-- https://cdn.orchard.vn/wp-content/uploads/2024/06/fragnance-logo-text-chanel.webp -->
 				<div class="col-6 col-lg-3 margin-logo">
-					<a th:href="@{/chanel}">
+					<a th:href="@{/product/chanel}">
 						<figure class="category category--alt">
 							<div class="equal"><span class="background-img-logo" style="background-image: url(assets/images/demo/logo3.png)"></span></div>
 							<figcaption>Chanel</figcaption>
@@ -338,7 +338,7 @@
 
 				<!-- https://cdn.orchard.vn/wp-content/uploads/2024/06/fragnance-logo-text-dior.webp -->
 				<div class="col-6 col-lg-3 margin-logo">
-					<a th:href="@{/dior}">
+					<a th:href="@{/product/dior}">
 						<figure class="category category--alt">
 							<div class="equal"><span class="background-img-logo" style="background-image: url(assets/images/demo/logo4.png)"></span></div>
 							<figcaption>Dior</figcaption>
@@ -348,7 +348,7 @@
 
 				<!-- https://cdn.orchard.vn/wp-content/uploads/2024/06/fragnance-logo-text-kilian.webp -->
 				<div class="col-6 col-lg-3 margin-logo-bottom">
-					<a th:href="@{/kilian}">
+					<a th:href="@{/product/kilian}">
 						<figure class="category category--alt">
 							<div class="equal"><span class="background-img-logo" style="background-image: url(assets/images/demo/logo11.webp)"></span></div>
 							<figcaption>Kilian</figcaption>
@@ -358,7 +358,7 @@
 
 				<!-- https://cdn.orchard.vn/wp-content/uploads/2024/06/fragnance-logo-text-versace.webp -->
 				<div class="col-6 col-lg-3 margin-logo-bottom">
-					<a th:href="@{/versace}">
+					<a th:href="@{/product/versace}">
 						<figure class="category category--alt">
 							<div class="equal"><span class="background-img-logo" style="background-image: url(assets/images/demo/logo6.png)"></span></div>
 							<figcaption>Versace</figcaption>
@@ -368,7 +368,7 @@
 
 				<!-- https://cdn.orchard.vn/wp-content/uploads/2024/06/fragnance-logo-text-jean-paul-gaultier.webp -->
 				<div class="col-6 col-lg-3 margin-logo-bottom">
-					<a th:href="@{/jpg}">
+					<a th:href="@{/product/jpg}">
 						<figure class="category category--alt">
 							<div class="equal"><span class="background-img-logo" style="background-image: url(assets/images/demo/logo7.png)"></span></div>
 							<figcaption>Jean Paul Gaultier</figcaption>
@@ -378,7 +378,7 @@
 
 				<!-- https://cdn.orchard.vn/wp-content/uploads/2024/06/fragnance-logo-text-tom-ford.webp -->
 				<div class="col-6 col-lg-3  margin-logo-bottom">
-					<a th:href="@{/tomford}">
+					<a th:href="@{/product/tomford}">
 						<figure class="category category--alt">
 							<div class="equal"><span class="background-img-logo" style="background-image: url(assets/images/demo/logo8.png)"></span></div>
 							<figcaption>Tom Ford</figcaption>

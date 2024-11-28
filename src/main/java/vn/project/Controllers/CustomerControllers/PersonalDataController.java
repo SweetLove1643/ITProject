@@ -1,6 +1,7 @@
 package vn.project.Controllers.CustomerControllers;
 
 import java.util.ArrayList;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -71,21 +72,26 @@ public class PersonalDataController {
 	}
 
 	@PostMapping("profile/update")
-	public String updateprofile(@ModelAttribute Users user, Model model) {
+	public String updateprofile(@ModelAttribute Users user, RedirectAttributes redirectAttributes) {
 		try {
-
-			Optional<Users> emailuser = userService.findByEmail(user.getEmail());
-
-			if (emailuser.isPresent() && user.getEmail().equals(emailuser.get().getEmail())) {
-				model.addAttribute("message", "Email đã tồn tại.");
-				return "redirect:/personal/profile";
+			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+			UserDetails userdetail = (UserDetails)auth.getPrincipal();
+			Users userattime = userService.findByUsername(userdetail.getUsername()).get();
+			
+			if(!user.getEmail().equals(userattime.getEmail())) {
+				Optional<Users> emailuser = userService.findByEmail(user.getEmail());
+				if (emailuser.isPresent()) {
+					redirectAttributes.addFlashAttribute("message", "Email đã tồn tại.");
+					return "redirect:/personal/profile";
+				}
 			}
-
 			user.setPassword(userService.findById(user.getId()).get().getPassword());
+			user.setRole(userattime.getRole());
 
-			model.addAttribute("message", "Cập nhật thành công");
+			redirectAttributes.addFlashAttribute("message", "Cập nhật thành công");
 			userService.save(user);
 			return "redirect:/personal/profile";
+			
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -107,7 +113,7 @@ public class PersonalDataController {
 
 	@PostMapping("/changepassword")
 	public String postMethodName(@RequestParam String currentpassword, @RequestParam String newpassword,
-			@RequestParam String confirmpassword, Model model) {
+			@RequestParam String confirmpassword, RedirectAttributes redirectAttributes) {
 		try {
 
 			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -125,9 +131,12 @@ public class PersonalDataController {
 						userService.save(user);
 
 						return "redirect:/personal/changepassword";
+					}else {
+						redirectAttributes.addFlashAttribute("message", "Xác nhận mật khẩu mới chưa đúng");
+						return "redirect:/personal/changepassword";
 					}
 				} else {
-					model.addAttribute("message", "Sai mật khẩu cu");
+					redirectAttributes.addFlashAttribute("message", "Sai mật khẩu cũ");
 					return "redirect:/personal/changepassword";
 				}
 			} else {
@@ -136,11 +145,10 @@ public class PersonalDataController {
 
 		} catch (Exception e) {
 
-			model.addAttribute("message", "Đã xảy ra lỗi");
+			redirectAttributes.addFlashAttribute("message", "Đã xảy ra lỗi");
 			return "redirect:/anyerror";
 		}
 
-		return null;
 	}
 
 	@GetMapping("/cart")
@@ -192,12 +200,12 @@ public class PersonalDataController {
 				editcart.setQuantity(editcart.getQuantity() + 1);
 				cartService.save(editcart);
 				redirectAttributes.addFlashAttribute("message", "Thêm sản phẩm thành công");
-				return "redirect:/productdetail/" +  id;
+				return "redirect:/product/productdetail/" +  id;
 			}else {
 				Cart newcart = Cart.builder().userid(user.getId()).productid(Integer.valueOf(id)).quantity(1).build();
 				cartService.save(newcart);
 				redirectAttributes.addFlashAttribute("message", "Thêm sản phẩm thành công");
-				return "redirect:/productdetail/" +  id;
+				return "redirect:/product/productdetail/" +  id;
 			}
 
 

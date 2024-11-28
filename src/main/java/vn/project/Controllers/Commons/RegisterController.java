@@ -57,7 +57,7 @@ public class RegisterController {
 			Optional<Users> user1 = userService.findByEmail(email);
 
 			if (user.isPresent()) {
-				model.addAttribute("message", "Username này đã tồn tại");
+				model.addAttribute("message", "Tên tài khoản này đã tồn tại");
 				return "commons/register";
 			}
 			if (user1.isPresent()) {

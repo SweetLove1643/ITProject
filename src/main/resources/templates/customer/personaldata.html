@@ -32,9 +32,6 @@
 				<div class="bg-white p-2 p-md-3">
 					<div class="tab-content" id="myTabContent">
 
-						<!-- Orders Tab -->
-						<div th:replace="~{decorator/orders_tab :: orders_tab}"></div>
-
 						<!-- Personal Data Tab -->
 						<div class="tab-pane fade show active" id="sidebar-1-2" role="tabpanel" aria-labelledby="sidebar-1-2">
 							<div class="row">
@@ -42,10 +39,14 @@
 									<h2>Thông tin tài khoản</h2>
 								</div>
 							</div>
+							<div th:if="${message}" class="alert alert-danger">
+									<span th:text="${message}"></span>
+								</div>
 
 							<!-- Check if user data exists -->
 							<div th:if="${user != null}">
-								<form th:action="@{/users/update}" method="post">
+								<form th:action="@{/personal/profile/update}" method="post">
+									<input hidden="true" id="id" name="id" th:value="${user.id}">
 									<!-- Username -->
 									<fieldset class="mb-2">
 										<div class="row">
@@ -63,7 +64,7 @@
 										<div class="row">
 											<div class="col-12">
 												<div class="form-label-group">
-													<input type="text" id="inputFullName" name="fullName" class="form-control form-control-lg" placeholder="Full Name" required th:value="${user.fullname}">
+													<input type="text" id="inputFullName" name="fullname" class="form-control form-control-lg" placeholder="Full Name" required th:value="${user.fullname}">
 													<label for="inputFullName">Họ và tên</label>
 												</div>
 											</div>
@@ -99,7 +100,7 @@
 										<div class="row">
 											<div class="col-12">
 												<div class="form-label-group">
-													<input type="text" id="inputPhoneNumber" name="phoneNumber" class="form-control form-control-lg" placeholder="Phone Number" th:value="${user.phonenumber}">
+													<input type="text" id="inputPhoneNumber" name="phonenumber" class="form-control form-control-lg" placeholder="Phone Number" th:value="${user.phonenumber}">
 													<label for="inputPhoneNumber">Số điện thoại</label>
 												</div>
 											</div>
@@ -132,9 +133,6 @@
 								<p>Chưa có thông tin user</p>
 							</div>
 						</div>
-
-						<!-- Change Password Tab -->
-						<div th:replace="~{decorator/changepass_tab :: changepass_tab}"></div>
 
 					</div>
 				</div>

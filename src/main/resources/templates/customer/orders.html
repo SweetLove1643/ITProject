@@ -109,18 +109,16 @@
                                     </div>
                                 </div>
                             </div>
+							
+							<span th:if="${orders == null or orders.isEmpty()}">Không có đơn hàng</span>
+
+                            
 
                             <!-- No orders message -->
                             <div th:if="${orders == null}">
                                 <p>Không có thông tin đơn hàng</p>
                             </div>
                         </div>
-
-                        <!-- Personal Data Tab -->
-                        <div th:replace="~{decorator/personaldata_tab :: personaldata_tab}"></div>
-
-                        <!-- Change Password Tab -->
-                        <div th:replace="~{decorator/changepass_tab :: changepass_tab}"></div>
 
                     </div>
                 </div>
