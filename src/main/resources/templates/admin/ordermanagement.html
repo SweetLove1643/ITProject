@@ -54,6 +54,12 @@
                             data-delivery-status=${order.deliverystatus}">
                         Sửa
                     </button>
+                    <button type="button" class="btn btn-sm btn-info"
+                            data-bs-toggle="modal"
+                            data-bs-target="#orderDetailsModal"
+                            th:attr="data-order-id=${order.orderid}">
+                        Chi tiết
+                    </button>
                 </td>
             </tr>
             <tr th:if="${listorders == null}">
@@ -92,6 +98,33 @@
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
                     </div>
                 </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal: View Order Details -->
+<div class="modal fade" id="orderDetailsModal" tabindex="-1" aria-labelledby="orderDetailsModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="orderDetailsModalLabel">Chi tiết đơn hàng</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div id="orderDetails">
+                    <p><strong>Order ID:</strong> <span id="order-id-detail"></span></p>
+                    <p><strong>Trạng thái giao hàng:</strong> <span id="delivery-status-detail"></span></p>
+                    <p><strong>Ngày đặt hàng:</strong> <span id="order-date-detail"></span></p>
+                    <p><strong>Phương thức thanh toán:</strong> <span id="payment-method-detail"></span></p>
+                    <p><strong>Trạng thái thanh toán:</strong> <span id="payment-status-detail"></span></p>
+                    <p><strong>Tổng tiền:</strong> <span id="total-amount-detail"></span> VND</p>
+                    <p><strong>User ID:</strong> <span id="user-id-detail"></span></p>
+                    <p><strong>Discount ID:</strong> <span id="discount-id-detail"></span></p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
             </div>
         </div>
     </div>
@@ -142,6 +175,45 @@
         });
     });
 </script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const orderDetailsModal = document.getElementById("orderDetailsModal");
+
+        // When the View Details button is clicked
+        orderDetailsModal.addEventListener("show.bs.modal", function (event) {
+            const button = event.relatedTarget; // The button that triggered the modal
+
+            // Get the order ID and other details from the data attributes
+            const orderId = button.getAttribute("data-order-id");
+
+            // Here, you'd typically retrieve more order details from the server
+            // For now, let's simulate using the orderId (you could fetch this data from the backend or set it directly)
+
+            const orderDetails = {
+                "orderid": orderId,
+                "deliverystatus": "Đang xử lý",  // Example data, replace with actual data
+                "orderdate": "2024-11-28",  // Example data
+                "paymentmethod": "Thanh toán online",  // Example data
+                "paymentstatus": "Đã thanh toán",  // Example data
+                "totalamount": "500,000",  // Example data
+                "userid": "12345",  // Example data
+                "discountid": "DISCOUNT20"  // Example data
+            };
+
+            // Fill the modal with order details
+            document.getElementById("order-id-detail").textContent = orderDetails.orderid;
+            document.getElementById("delivery-status-detail").textContent = orderDetails.deliverystatus;
+            document.getElementById("order-date-detail").textContent = orderDetails.orderdate;
+            document.getElementById("payment-method-detail").textContent = orderDetails.paymentmethod;
+            document.getElementById("payment-status-detail").textContent = orderDetails.paymentstatus;
+            document.getElementById("total-amount-detail").textContent = orderDetails.totalamount;
+            document.getElementById("user-id-detail").textContent = orderDetails.userid;
+            document.getElementById("discount-id-detail").textContent = orderDetails.discountid;
+        });
+    });
+</script>
+
 
 </body>
 </html>

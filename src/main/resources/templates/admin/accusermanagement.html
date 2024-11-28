@@ -112,7 +112,7 @@
                     <div class="mb-3">
                         <label for="roleid" class="form-label">Vai trò</label>
                         <select id="roleid" name="roleid" class="form-select">
-                            <option th:each="role : ${roles}" th:value="${role.roleid}" th:text="${role.rolename}" ></option>
+                            <option th:each="role : ${roles}" th:value="${role.roleid}" th:text="${role.rolename}" th:selected="${role.roleid == user.role.roleid}"></option>
                         </select>
                     </div>
 
@@ -149,13 +149,22 @@
             const roleId = button.getAttribute("data-roleid");
             const roleName = button.getAttribute("data-rolename");
 
+
             document.getElementById("userid").value = userId;
             document.getElementById("username").value = username;
             document.getElementById("fullname").value = fullName;
             document.getElementById("email").value = email;
             document.getElementById("address").value = address;
             document.getElementById("phonenumber").value = phoneNumber;
-            document.getElementById("roleid").value = roleName;
+
+            const roleSelect = document.getElementById("roleid");
+
+            for (let option of roleSelect.options) {
+            if (option.value == roleId) {
+                option.selected = true;
+                break;
+            }
+        }
         });
     });
 </script>
