@@ -1,12 +1,9 @@
 <div xmlns:th="https://www.thymeleaf.org">
-
-
 <div class="row gutter-1" >
 <div class="row">
 	<!-- Kiểm tra nếu products không null hoặc không rỗng -->
 	<th:block th:if="${products != null and !products.isEmpty()}">
-		<div class="col-6 col-md-4" th:fragment="product-listing"
-			 th:each="product : ${products}">
+		<div class="col-6 col-md-4" th:fragment="product-listing" th:each="product : ${products}" >
 			<div class="card card-product">
 				<figure class="card-image">
 					<a th:href="@{/product/productdetail/{id}(id=${product.productid})}">
@@ -16,10 +13,10 @@
 				<div class="card-footer">
 					<h3 class="card-title">
 						<a th:href="@{/product/productdetail/{id}(id=${product.productid})}"
-						   th:text="${product.productname}">Product Name</a>
+						   th:text="${product.productname}"></a>
 					</h3>
-					<span class="brand" th:text="${product.brand}">Brand</span>
-					<span class="price" th:text="${product.price}">Price</span>
+					<span class="brand" th:text="${product.brand}"></span>
+					<span class="price text-red" th:text="${product.price}"></span>
 				</div>
 			</div>
 		</div>

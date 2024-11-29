@@ -297,4 +297,11 @@
               }
           });
 
+  document.querySelectorAll('.price').forEach(function(priceElement) {
+          var price = parseFloat(priceElement.textContent);
+          if (!isNaN(price)) {
+              priceElement.textContent = new Intl.NumberFormat('vi-VN').format(price) + ' ₫';
+          }
+      });
+
 })(jQuery);
