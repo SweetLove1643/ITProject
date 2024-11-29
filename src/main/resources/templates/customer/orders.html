@@ -61,7 +61,7 @@
                                                             <i class="icon-more-vertical"></i>
                                                         </button>
                                                         <span class="dropdown-menu" aria-labelledby="dropdown-1">
-                                                            <a class="dropdown-item" th:href="@{/orderdetail}">Chi tiết đơn hàng</a>
+                                                            <a class="dropdown-item" th:href="@{/personal/orderdetail/{id}(id=${order.orderid})}">Chi tiết đơn hàng</a>
                                                         </span>
                                                     </span>
                                                 </div>
@@ -96,23 +96,23 @@
                                                     <h5 class="order-meta-title">Tổng Số Tiền</h5>
                                                     <span th:text="${order.totalamount}"></span>
                                                 </li>
-                                                <li>
+                                                <!--<li>
                                                     <h5 style="margin-top: 30px;" class="order-meta-title">Phương Thức Thanh Toán</h5>
                                                     <span th:text="${order.paymentmethod}"></span>
                                                 </li>
                                                 <li>
                                                     <h5 style="margin-top: 30px;" class="order-meta-title">Trạng Thái Giao Hàng</h5>
                                                     <span th:text="${order.deliverystatus}"></span>
-                                                </li>
+                                                </li>-->
                                             </ul>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-							
+
 							<span th:if="${orders == null or orders.isEmpty()}">Không có đơn hàng</span>
 
-                            
+
 
                             <!-- No orders message -->
                             <div th:if="${orders == null}">

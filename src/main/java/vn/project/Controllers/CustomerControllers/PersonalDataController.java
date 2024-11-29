@@ -237,7 +237,7 @@ public class PersonalDataController {
 		Users user = userService.findByUsername(userDetails.getUsername()).get();
 
 		List<Orders> order = orderService.findByUserid(user.getId());
-
+		System.out.print(order);
 		model.addAttribute("orders", order);
 		model.addAttribute("user", user);
 		return "customer/orders";
