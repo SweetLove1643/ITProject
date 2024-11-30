@@ -44,7 +44,7 @@
                 <td th:text="${order.orderdate}"></td>
                 <td th:text="${order.paymentmethod}"></td>
                 <td th:text="${order.paymentstatus}"></td>
-                <td th:text="${order.totalamount} + ' VND'"></td>
+                <td class="price "th:text="${order.totalamount}"></td>
                 <td th:text="${order.userid}"></td>
                 <td>
                     <button type="button" class="btn btn-sm btn-primary"

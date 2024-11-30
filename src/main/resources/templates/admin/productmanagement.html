@@ -49,7 +49,7 @@
                 <td th:text="${product.category}"></td>
                 <td th:text="${product.supplier}"></td>
                 <td th:text="${product.brand}"></td>
-                <td th:text="${product.price} + ' VND'"></td>
+                <td th:text="${product.price}" class="price"></td>
                 <td th:text="${product.description}"></td>
                 <td>
                     <img th:src="${product.imageurl}" alt="Product Image" style="width: 50px; height: 50px;">
