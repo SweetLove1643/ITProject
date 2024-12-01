@@ -129,6 +129,8 @@ public class PersonalDataController {
 
 						user.setPassword(passwordEncoder.encode(newpassword));
 						userService.save(user);
+						
+						redirectAttributes.addFlashAttribute("message", "Đổi mật khẩu thành công");
 
 						return "redirect:/personal/changepassword";
 					}else {
