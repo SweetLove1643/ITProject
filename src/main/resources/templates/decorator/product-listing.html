@@ -1,8 +1,7 @@
 <div xmlns:th="https://www.thymeleaf.org">
 <div class="row gutter-1" >
 <div class="row">
-	<!-- Kiểm tra nếu products không null hoặc không rỗng -->
-	<th:block th:if="${products != null and !products.isEmpty()}">
+	<th:block th:if="${products != null or !products.isEmpty()}">
 		<div class="col-6 col-md-4" th:fragment="product-listing" th:each="product : ${products}" >
 			<div class="card card-product">
 				<figure class="card-image">
@@ -21,8 +20,7 @@
 			</div>
 		</div>
 	</th:block>
-	<!-- Hiển thị thông báo khi products rỗng hoặc null -->
-	<th:block th:unless="${products != null and !products.isEmpty()}">
+	<th:block th:if="${products == null or products.isEmpty()}">
 		<div class="col-12">
 			<p class="text-center">Không có sản phẩm nào để hiển thị.</p>
 		</div>

@@ -82,6 +82,13 @@ public class ProductService implements IProductService {
 	public List<Products> findByName(String name) {
 		return productRepository.findByProductname(name);
 	}
+	
+	
+
+	@Override
+	public List<ProductsDTO> findByProductnameContainingDTO(String productname) {
+		return ConvertProductToProductDTO(productRepository.findByProductnameContaining(productname));
+	}
 
 	@Override
 	public Optional<Products> findById(int id) {
@@ -115,9 +122,14 @@ public class ProductService implements IProductService {
 
 	@Override
 	public List<ProductsDTO> findbyBrandDTO(String brand) {
-		List<Products> products = findbyBrand(brand);
-		List<ProductsDTO> productDTO = ConvertProductToProductDTO(products);
-		return productDTO;
+		try {
+			List<Products> products = findbyBrand(brand);
+			List<ProductsDTO> productDTO = ConvertProductToProductDTO(products);
+			return productDTO;
+		}catch (Exception e) {
+			return null;
+		}
+		
 	}
 
 	@Override
@@ -187,6 +199,10 @@ public class ProductService implements IProductService {
 
 	public List<ProductsDTO> ConvertProductToProductDTO(List<Products> products){
 		List<ProductsDTO> productDTO = new ArrayList<>();
+		
+		if(products.isEmpty()) {
+			return null;
+		}
 
 		for (Products product : products) {
 			ProductsDTO productdto = new ProductsDTO();

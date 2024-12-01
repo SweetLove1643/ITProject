@@ -1,6 +1,7 @@
 package vn.project.Service;
 
 import java.util.List;
+
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
@@ -40,4 +41,7 @@ public interface IProductService {
 	ProductsDTO findbyIdDTO(int id);
 
 	List<ProductsDTO> findAllDTO();
+
+	List<ProductsDTO> findByProductnameContainingDTO(String productname);
+
 }

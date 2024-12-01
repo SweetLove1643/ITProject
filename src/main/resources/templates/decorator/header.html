@@ -222,15 +222,20 @@ m245 91 l0 -30 -72 -3 -73 -3 0 36 0 36 73 -3 72 -3 0 -30z m29 -131 c10 -25
 					</a>
 						<div class="dropdown-menu" aria-labelledby="navbarDropdown-4">
 							<div class="form-group">
-								<form class="d-flex align-items-center position-relative">
-									<a th:href="@{/product/findproduct}" type="button" class="btn p-0 position-absolute" style="left: 10px; top: 50%; transform: translateY(-50%); border: none; background: transparent;">
-										<img th:src="@{//theme.hstatic.net/1000340570/1000964732/14/icon-search.svg?v=6611}" alt="Tìm kiếm" style="width: 20px; height: 20px;">
+								<form class="d-flex align-items-center position-relative"
+									method="get" th:action="@{/product/findproduct}">
+									<a href="#" type="button" class="btn p-0 position-absolute"
+										style="left: 10px; top: 50%; transform: translateY(-50%); border: none; background: transparent;">
+										<img
+										th:src="@{//theme.hstatic.net/1000340570/1000964732/14/icon-search.svg?v=6611}"
+										alt="Tìm kiếm" style="width: 20px; height: 20px;">
 									</a>
-									<input type="text" class="form-control pl-5" id="searchForm"  placeholder="Tìm kiếm" style="padding-left: 40px;">
+									<input type="text" name="query" class="form-control pl-5"
+										id="searchForm" placeholder="Tìm kiếm"
+										style="padding-left: 40px;">
 								</form>
 							</div>
-						</div>
-					</li>
+						</div></li>
 
 
 					<!-- cart -->

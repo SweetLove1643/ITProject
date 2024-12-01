@@ -1,27 +1,39 @@
 package vn.project.Controllers.CategoryControllers;
 
+
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 import vn.project.DTO.ProductsDTO;
 import vn.project.Service.IProductService;
 
-import java.util.List;
-
 @Controller
-@RequestMapping("/findproduct")
+@RequestMapping("/product")
 public class FindProductController {
-
-	@Autowired(required=true)
-	IProductService productservice;
-
-    @GetMapping
-    public String index(Model model) {
-
-    	List<ProductsDTO> list = productservice.findbyCategoryDTO("Nam");
-    	model.addAttribute("products", list);
-        return "category/findproduct";
-    }
+	
+	@Autowired
+	IProductService productService;
+	
+	@GetMapping("findproduct")
+	public String findByProductNameContaining(@RequestParam String query, Model model) {
+		try {
+			List<ProductsDTO> products = productService.findByProductnameContainingDTO(query);
+			
+			model.addAttribute("products", products);
+			
+			return "category/findproduct";
+			
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+			model.addAttribute("message", "Đã xảy ra lỗi");
+			return "rediect:/anyerror";
+		}
+	}
 }

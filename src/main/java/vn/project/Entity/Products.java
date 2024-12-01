@@ -46,7 +46,7 @@ public class Products {
 	@Column(name = "Price", nullable = false)
 	private long price;
 
-	@Column(name = "Description", columnDefinition = "nvarchar(1000)")
+	@Column(name = "Description", columnDefinition = "nvarchar(max)")
 	private String description;
 
 	@Column(name = "ImageURL")
