@@ -173,7 +173,6 @@ public class PersonalDataController {
 			e.printStackTrace();
 			return "redirect:/anyerror";
 		}
-
 	}
 
 	@Transactional
