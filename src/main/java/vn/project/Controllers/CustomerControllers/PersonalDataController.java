@@ -81,14 +81,14 @@ public class PersonalDataController {
 			if(!user.getEmail().equals(userattime.getEmail())) {
 				Optional<Users> emailuser = userService.findByEmail(user.getEmail());
 				if (emailuser.isPresent()) {
-					redirectAttributes.addFlashAttribute("message", "Email đã tồn tại.");
+					redirectAttributes.addFlashAttribute("messageDanger", "Email đã tồn tại.");
 					return "redirect:/personal/profile";
 				}
 			}
 			user.setPassword(userService.findById(user.getId()).get().getPassword());
 			user.setRole(userattime.getRole());
 
-			redirectAttributes.addFlashAttribute("message", "Cập nhật thành công");
+			redirectAttributes.addFlashAttribute("messageSuccess", "Cập nhật thành công");
 			userService.save(user);
 			return "redirect:/personal/profile";
 			

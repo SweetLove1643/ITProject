@@ -39,9 +39,12 @@
 									<h2>Thông tin tài khoản</h2>
 								</div>
 							</div>
-							<div th:if="${message}" class="alert alert-success">
-									<span th:text="${message}"></span>
-								</div>
+							<div th:if="${messageDanger}" class="alert alert-danger">
+								<span th:text="${messageDanger}"></span>
+							</div>
+							<div th:if="${messageSuccess}" class="alert alert-success">
+								<span th:text="${messageSuccess}"></span>
+							</div>
 
 							<!-- Check if user data exists -->
 							<div th:if="${user != null}">
