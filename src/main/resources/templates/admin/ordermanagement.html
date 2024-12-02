@@ -44,13 +44,13 @@
                 <td th:text="${order.orderdate}"></td>
                 <td th:text="${order.paymentmethod}"></td>
                 <td th:text="${order.paymentstatus}"></td>
-                <td class="price "th:text="${order.totalamount}"></td>
+                <td class="price" th:text="${order.totalamount}"></td>
                 <td th:text="${order.userid}"></td>
                 <td>
                     <button type="button" class="btn btn-sm btn-primary"
                             data-bs-toggle="modal"
                             data-bs-target="#editOrderModal"
-                            th:attr="data-order-id=${order.orderid}, 
+                            th:attr="data-order-id=${order.orderid},
                             data-delivery-status=${order.deliverystatus}">
                         Sửa
                     </button>
@@ -83,7 +83,6 @@
                     <input type="hidden" id="orderid" name="orderid">
 
                     <div class="mb-3">
-                    
                         <label for="deliverystatus" class="form-label">Trạng thái giao hàng</label>
                         <select id="deliverystatus" name="deliverystatus" class="form-select" required>
                             <option value="Pending">Đang xử lý</option>
@@ -113,6 +112,7 @@
             </div>
             <div class="modal-body">
                 <div id="orderDetails">
+                    <!-- Order details -->
                     <p><strong>Order ID:</strong> <span id="order-id-detail"></span></p>
                     <p><strong>Trạng thái giao hàng:</strong> <span id="delivery-status-detail"></span></p>
                     <p><strong>Ngày đặt hàng:</strong> <span id="order-date-detail"></span></p>
@@ -121,6 +121,7 @@
                     <p><strong>Tổng tiền:</strong> <span id="total-amount-detail"></span> VND</p>
                     <p><strong>User ID:</strong> <span id="user-id-detail"></span></p>
                     <p><strong>Discount ID:</strong> <span id="discount-id-detail"></span></p>
+
                     <h5>Sản phẩm trong đơn hàng:</h5>
                     <table class="table table-bordered">
                         <thead class="bg-light">
@@ -133,7 +134,7 @@
                         </tr>
                         </thead>
                         <tbody id="order-products-details">
-                        <!-- Product rows will be added here -->
+                        <!-- Duyệt qua các sản phẩm trong đơn hàng -->
                         </tbody>
                     </table>
                 </div>
@@ -155,51 +156,38 @@
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         const editOrderModal = document.getElementById("editOrderModal");
-
-        
         const deliveryStatusMapping = {
-                "Đang xử lí": "Pending",
-                "Đang giao hàng": "Shipping",
-                "Đã giao": "Delivered",
-                "Đã hủy": "Cancelled"
-            };
-        
+            "Đang xử lí": "Pending",
+            "Đang giao hàng": "Shipping",
+            "Đã giao": "Delivered",
+            "Đã hủy": "Cancelled"
+        };
+
         editOrderModal.addEventListener("show.bs.modal", function (event) {
-            
             const button = event.relatedTarget;
 
-            
             const orderId = button.getAttribute("data-order-id");
             const deliveryStatus = button.getAttribute("data-delivery-status");
-            
 
-            
             document.getElementById("orderid").value = orderId;
-            
-            const mappedValue = deliveryStatusMapping[deliveryStatus];
 
+            const mappedValue = deliveryStatusMapping[deliveryStatus];
             if (mappedValue) {
                 const select = document.getElementById("deliverystatus");
                 select.value = mappedValue;
-
                 select.dispatchEvent(new Event("change"));
             } else {
                 console.warn(`Không tìm thấy giá trị ánh xạ cho trạng thái: ${deliveryStatus}`);
             }
-            
         });
-    });
-</script>
 
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
         const orderDetailsModal = document.getElementById("orderDetailsModal");
 
         orderDetailsModal.addEventListener("show.bs.modal", function (event) {
-            const button = event.relatedTarget; // Button that triggered the modal
+            const button = event.relatedTarget;
             const orderId = button.getAttribute("data-order-id");
 
-            // Get order details using an AJAX call or from the Thymeleaf context
+            // Get order details using an AJAX call
             fetch(`/admin/ordermanager/details/${orderId}`)
                 .then(response => response.json())
                 .then(data => {

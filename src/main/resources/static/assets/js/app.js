@@ -308,6 +308,26 @@
 
 
 
+        // Lấy phần tử mũi tên
+        const scrollToTopButton = document.getElementById('scroll-to-top');
+
+        // Lắng nghe sự kiện cuộn trang
+        window.addEventListener('scroll', () => {
+          // Kiểm tra nếu người dùng đã cuộn xuống 200px
+          if (window.scrollY > 200) {
+            scrollToTopButton.style.display = 'flex';  // Hiển thị mũi tên
+          } else {
+            scrollToTopButton.style.display = 'none';  // Ẩn mũi tên khi cuộn lên
+          }
+        });
+
+        // Lắng nghe sự kiện khi click vào mũi tên
+        scrollToTopButton.addEventListener('click', () => {
+          // Cuộn về đầu trang
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+
 
 
 

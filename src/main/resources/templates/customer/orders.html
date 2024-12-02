@@ -74,7 +74,6 @@
                                                     <a th:href="@{'/productdetail/' + ${orderProduct.product.productid}}" th:title="${orderProduct.product.productname}">
                                                         <img th:src="${orderProduct.product.imageurl}" th:alt="${orderProduct.product.productname}">
                                                     </a>
-                                                    <p th:text="'Quantity: ' + ${orderProduct.quantity}"></p>
                                                 </li>
                                                 <li th:if="${order.orderProducts == null or order.orderProducts.size() == 0}">
                                                     <p>Không có thông tin sản phẩm</p>
