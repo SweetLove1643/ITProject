@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link th:href="@{/assets/css/vendor.css}" rel="stylesheet" />
     <link th:href="@{/assets/css/style.css}" rel="stylesheet" />
-
     <title th:text="'Quản lý đơn hàng'"></title>
 </head>
 <body>
@@ -57,7 +56,14 @@
                     <button type="button" class="btn btn-sm btn-info"
                             data-bs-toggle="modal"
                             data-bs-target="#orderDetailsModal"
-                            th:attr="data-order-id=${order.orderid}">
+                            th:attr="data-order-id=${order.orderid},
+                                     data-delivery-status=${order.deliverystatus},
+                                     data-order-date=${order.orderdate},
+                                     data-payment-method=${order.paymentmethod},
+                                     data-payment-status=${order.paymentstatus},
+                                     data-total-amount=${order.totalamount},
+                                     data-user-id=${order.userid},
+                                     data-discount-id=${order.discountid}">
                         Chi tiết
                     </button>
                 </td>
@@ -118,7 +124,7 @@
                     <p><strong>Ngày đặt hàng:</strong> <span id="order-date-detail"></span></p>
                     <p><strong>Phương thức thanh toán:</strong> <span id="payment-method-detail"></span></p>
                     <p><strong>Trạng thái thanh toán:</strong> <span id="payment-status-detail"></span></p>
-                    <p><strong>Tổng tiền:</strong> <span id="total-amount-detail"></span> VND</p>
+                    <p><strong>Tổng tiền:</strong> <span class="price" id="total-amount-detail"></span></p>
                     <p><strong>User ID:</strong> <span id="user-id-detail"></span></p>
                     <p><strong>Discount ID:</strong> <span id="discount-id-detail"></span></p>
 
@@ -155,51 +161,35 @@
 <script th:src="@{/assets/js/app.js}"></script>
 <script>
     document.addEventListener("DOMContentLoaded", function () {
-        const editOrderModal = document.getElementById("editOrderModal");
-        const deliveryStatusMapping = {
-            "Đang xử lí": "Pending",
-            "Đang giao hàng": "Shipping",
-            "Đã giao": "Delivered",
-            "Đã hủy": "Cancelled"
-        };
-
-        editOrderModal.addEventListener("show.bs.modal", function (event) {
-            const button = event.relatedTarget;
-
-            const orderId = button.getAttribute("data-order-id");
-            const deliveryStatus = button.getAttribute("data-delivery-status");
-
-            document.getElementById("orderid").value = orderId;
-
-            const mappedValue = deliveryStatusMapping[deliveryStatus];
-            if (mappedValue) {
-                const select = document.getElementById("deliverystatus");
-                select.value = mappedValue;
-                select.dispatchEvent(new Event("change"));
-            } else {
-                console.warn(`Không tìm thấy giá trị ánh xạ cho trạng thái: ${deliveryStatus}`);
-            }
-        });
-
         const orderDetailsModal = document.getElementById("orderDetailsModal");
 
         orderDetailsModal.addEventListener("show.bs.modal", function (event) {
-            const button = event.relatedTarget;
-            const orderId = button.getAttribute("data-order-id");
+            const button = event.relatedTarget; // Nút đã được nhấn
 
-            // Get order details using an AJAX call
+            // Lấy các giá trị từ data-* attributes
+            const orderId = button.getAttribute("data-order-id");
+            const deliveryStatus = button.getAttribute("data-delivery-status");
+            const orderDate = button.getAttribute("data-order-date");
+            const paymentMethod = button.getAttribute("data-payment-method");
+            const paymentStatus = button.getAttribute("data-payment-status");
+            const totalAmount = button.getAttribute("data-total-amount");
+            const userId = button.getAttribute("data-user-id");
+            const discountId = button.getAttribute("data-discount-id");
+
+            // Gán các giá trị vào các phần tử trong modal
+            document.getElementById("order-id-detail").textContent = orderId;
+            document.getElementById("delivery-status-detail").textContent = deliveryStatus;
+            document.getElementById("order-date-detail").textContent = orderDate;
+            document.getElementById("payment-method-detail").textContent = paymentMethod;
+            document.getElementById("payment-status-detail").textContent = paymentStatus;
+            document.getElementById("total-amount-detail").textContent = totalAmount;
+            document.getElementById("user-id-detail").textContent = userId;
+            document.getElementById("discount-id-detail").textContent = discountId || 'Không có';
+
+            // Lấy thông tin sản phẩm và hiển thị
             fetch(`/admin/ordermanager/details/${orderId}`)
                 .then(response => response.json())
                 .then(data => {
-                    document.getElementById("order-id-detail").textContent = data.orderid;
-                    document.getElementById("delivery-status-detail").textContent = data.deliverystatus;
-                    document.getElementById("order-date-detail").textContent = data.orderdate;
-                    document.getElementById("payment-method-detail").textContent = data.paymentmethod;
-                    document.getElementById("payment-status-detail").textContent = data.paymentstatus;
-                    document.getElementById("total-amount-detail").textContent = data.totalamount;
-                    document.getElementById("user-id-detail").textContent = data.userid;
-                    document.getElementById("discount-id-detail").textContent = data.discountid || 'Không có';
-
                     const productsTableBody = document.getElementById("order-products-details");
                     productsTableBody.innerHTML = ''; // Clear existing rows
 
