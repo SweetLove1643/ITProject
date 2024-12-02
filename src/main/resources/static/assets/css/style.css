@@ -13562,4 +13562,51 @@ div.code-toolbar > .toolbar {
             margin-left: 8px;
         }
 
+
+
+
+
+
+    /* Mũi tên đi lên */
+    #scroll-to-top {
+      position: fixed;
+      bottom: 10px;        /* Khoảng cách từ dưới lên */
+      right: 20px;
+      width: 3rem;         /* Kích thước chiều rộng */
+      height: 3rem;        /* Kích thước chiều cao */
+      cursor: pointer;
+      display: none;       /* Ẩn mũi tên khi không cuộn xuống */
+      justify-content: center; /* Căn giữa theo chiều ngang */
+      align-items: center;     /* Căn giữa theo chiều dọc */
+      z-index: 9999;       /* Đảm bảo mũi tên nằm trên footer */
+      border: none;        /* Không có viền */
+      background-color: #222; /* Nền xám tối */
+      border-radius: 50%;   /* Làm cho ô bao quanh mũi tên thành hình tròn */
+      padding: 0;           /* Bỏ padding */
+    }
+
+    /* SVG mũi tên */
+    #scroll-to-top svg {
+      width: 2rem;          /* Kích thước mũi tên */
+      height: 2rem;         /* Kích thước mũi tên */
+      fill: white;          /* Màu mũi tên trắng */
+      stroke: white;         /* Không có đường viền */
+    }
+
+    /* Đảm bảo rằng khi bạn di chuyển chuột qua, mũi tên sẽ không đổi màu */
+    #scroll-to-top:hover {
+      background-color: #222;  /* Màu nền không thay đổi khi hover */
+    }
+
+
+
+
+
+
+        footer {
+          position: relative;  /* Đảm bảo footer có vị trí để mũi tên có thể đè lên */
+          z-index: 1;  /* Đảm bảo footer nằm dưới mũi tên */
+        }
+
+
 /*# sourceMappingURL=style.css.map */

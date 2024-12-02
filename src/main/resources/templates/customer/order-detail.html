@@ -58,23 +58,23 @@
                                 <div class="col">
                                     <div class="bordered p-3">
                                         <ul class="order-meta">
-                                            <li>
-                                                <h5 class="order-meta-title">Mã Đơn Hàng</h5>
+                                            <li style="margin-bottom: 30px;">
+                                                <h5  class="order-meta-title">Mã Đơn Hàng</h5>
                                                 <span th:text="${order.orderid}"></span>
-                                            </li>
-                                            <li>
+                                            </li >
+                                            <li style="margin-bottom: 30px;">
                                                 <h5 class="order-meta-title">Ngày Đặt Hàng</h5>
                                                 <span th:text="${#temporals.format(order.orderdate, 'yyyy-MM-dd HH:mm:ss')}"></span>
                                             </li>
-                                            <li>
+                                            <li style="margin-bottom: 30px;">
                                                 <h5 class="order-meta-title">Tổng Số Tiền</h5>
                                                 <span th:text="${order.totalamount}" class="price"></span>
                                             </li>
-                                            <li>
+                                            <li >
                                                 <h5 style="margin-top: 30px;" class="order-meta-title">Phương Thức Thanh Toán</h5>
                                                 <span th:text="${order.paymentmethod}"></span>
                                             </li>
-                                            <li>
+                                            <li >
                                                 <h5 style="margin-top: 30px;" class="order-meta-title">Trạng Thái Giao Hàng</h5>
                                                 <span th:text="${order.deliverystatus}"></span>
                                             </li>
@@ -109,7 +109,7 @@
                                                         </div>
                                                         <div class="col text-right">
                                                             <ul class="cart-item-meta">
-                                                                <li class="text-red quantity-price" data-price="${cart.price}" id="quantity-price" th:text="${cart.price != null ? cart.price + ' ₫' : '0 ₫'}"></li>
+                                                                <li class="text-red quantity-price" th:data-price="${cart.price}" id="quantity-price" th:text="${cart.price != null ? cart.price + ' ₫' : '0 ₫'}"></li>
                                                             </ul>
                                                         </div>
                                                     </div>
