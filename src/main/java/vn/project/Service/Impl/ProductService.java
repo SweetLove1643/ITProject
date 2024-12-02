@@ -163,7 +163,7 @@ public class ProductService implements IProductService {
 			productdto.setDescription(product.getDescription());
 			productdto.setImageurl(product.getImageurl());
 			productdto.setPrice(Long.toString(product.getPrice()));
-			productdto.setStockquantity(String.valueOf(product.getPrice()));
+			productdto.setStockquantity(String.valueOf(product.getStockquantity()));
 			Brands brand1 = brandRepository.findById(product.getBrandid()).isPresent()
 					? brandRepository.findById(product.getBrandid()).get()
 					: null;

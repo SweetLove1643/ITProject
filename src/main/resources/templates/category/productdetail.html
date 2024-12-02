@@ -43,60 +43,94 @@
                     </div>
                 </div>
             </div>
-
+            <div th:if="${messageDanger}" class="alert alert-danger">
+                <span th:text="${messageDanger}"></span>
+            </div>
+            <div th:if="${messageSuccess}" class="alert alert-success">
+                <span th:text="${messageSuccess}"></span>
+            </div>
             <div class="col-lg-4 mb-5 mb-lg-0">
                 <div class="row">
                     <div class="col-12">
                         <span class="eyebrow text-muted" th:text="${products.brand}"></span>
                         <h1 th:text="${products.productname}"></h1>
-                        <strong>Tình trạng :
-                            <span style="color: #3eb846;">Còn hàng </span>
-                        </strong>
                     </div>
                 </div>
 
                 <!-- description -->
-                <div class="row">
+                <div class="row gutter-2">
                     <div class="col-12">
                         <div class="accordion" id="accordion-1">
-                            <div class="card active">
+                            <div class="card">
                                 <div class="card-header" id="heading-1-1">
                                     <h5 class="mb-0">
-                                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse-1-1" aria-expanded="true" aria-controls="collapse-1-1">
+                                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse-1-1" aria-expanded="false" aria-controls="collapse-1-1">
                                             Mô tả
                                         </button>
                                     </h5>
                                 </div>
-                                <div id="collapse-1-1" class="collapse show" aria-labelledby="heading-1-1" data-parent="#accordion-1">
+                                <div id="collapse-1-1" class="collapse" aria-labelledby="heading-1-1" data-parent="#accordion-1">
                                     <div class="card-body">
                                         <p th:text="${products.description}"></p>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        <div class="accordion" id="accordion-2">
+                            <div class="card active">
+                                <div class="card-header" id="heading-1-2">
+                                    <h5 class="mb-0">
+                                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse-1-2" aria-expanded="true" aria-controls="collapse-1-2">
+                                            Chi tiết sản phẩm
+                                        </button>
+                                    </h5>
+                                </div>
+                                <div id="collapse-1-2" class="collapse show" aria-labelledby="heading-1-2" data-parent="#accordion-2">
+                                    <div class="card-body">
+                                        <p class="product-info">
+                                            <strong>Mã sản phẩm : </strong><span th:text="${products.productid}"></span>
+                                        </p>
+                                        <p class="product-info">
+                                            <strong>Danh mục : </strong><span th:text="${products.category}"></span>
+                                        </p>
+                                        <p class="product-info">
+                                            <strong>Nhà cung cấp : </strong><span th:text="${products.supplier}"></span>
+                                        </p>
+                                        <p class="product-info">
+                                            <strong>Thương hiệu : </strong><span th:text="${products.brand}"></span>
+                                        </p>
+                                        <p class="product-info">
+                                            <strong>Số lượng trong kho : </strong><span th:text="${products.stockquantity}"></span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="row gutter-2">
+                    <div class="col-12">
+                        <strong>Tình trạng :
+                            <span style="color: #3eb846;">Còn hàng </span>
+                        </strong>
+                    </div>
+                    <div class="col-12">
+                        <strong>Số lượng :
+                            <span class="dYBF91" style="display: inline-flex; align-items: center;">
+                                <button type="button" class="aGq8SN" onclick="changeQuantity(this, -1)" aria-label="Decrease">-</button>
+                                <input class="aGq8SN jKOh4z quantity-input" type="number" value="1" min="1" max="100" step="1" style="width: 50px; text-align: center;">
+                                <button type="button" class="aGq8SN" onclick="changeQuantity(this, 1)" aria-label="Increase">+</button>
+                            </span>
+                        </strong>
+                    </div>
                     <div class="col-12">
                          <span class="price text-red" style="font-size: 20px; color: red; font-weight: bold;" >
                              <bdi th:text="${products.price}"></bdi>
                          </span>
-                     </div>
-                    <div class="col-12">
-                        <strong>Số lượng :
-                            <span class="dYBF91">
-                                <button type="button" class="aGq8SN" onclick="changeQuantity(this, -1); updateCartTotal();" aria-label="Decrease">-</button>
-                                <input class="aGq8SN jKOh4z quantity-input" type="number" value="1" min="1" max="100" step="1" onchange="updateCartTotal()">
-                                <button type="button" class="aGq8SN" onclick="changeQuantity(this, 1); updateCartTotal();" aria-label="Increase">+</button>
-                            </span>
-                        </strong>
                     </div>
                     <div class="col-12">
                         <a th:href="@{/personal/cart/add/{id}(id=${products.productid})}" class="btn btn-block btn-primary" th:text="'Thêm vào giỏ hàng'"></a>
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 </section>

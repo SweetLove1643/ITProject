@@ -52,7 +52,8 @@ public class SecurityConfig {
 				.authorizeHttpRequests((authorize) -> authorize
 						.requestMatchers("/login", "/register", "/forgotpass", "/authenticationotp", "/newpass", "/exception/**", "/assets/css/**", "/assets/js/**", "/assets/images/**", "/assets/fonts/**").permitAll()
 						.requestMatchers("/product/**", "/home", "/").permitAll()
-						.requestMatchers("/personal/**").hasAnyAuthority("USER", "ADMIN")
+						.requestMatchers("/personal/**").permitAll()
+								//.hasAnyAuthority("USER", "ADMIN")
 						.requestMatchers("/admin/**").hasAnyAuthority("ADMIN")
 						)
 				.formLogin(login -> login.loginPage("/login").permitAll())
