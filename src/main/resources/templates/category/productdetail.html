@@ -6,7 +6,7 @@
     <link rel="stylesheet" th:href="@{/assets/css/vendor.css}" />
     <link rel="stylesheet" th:href="@{/assets/css/style.css}" />
 
-    <title th:text="'Product'"></title>
+    <title th:text="${products.productname}"></title>
 </head>
 <body>
 
@@ -22,7 +22,7 @@
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a th:href="@{/home}" th:text="'Trang chủ'"></a></li>
-                        <li class="breadcrumb-item active" aria-current="page" th:text="'Blouses'"></li>
+                        <li class="breadcrumb-item active" aria-current="page"  th:text="${products.productname}"></li>
                     </ol>
                 </nav>
             </div>
@@ -49,13 +49,15 @@
                     <div class="col-12">
                         <span class="eyebrow text-muted" th:text="${products.brand}"></span>
                         <h1 th:text="${products.productname}"></h1>
-                        <span class="price fs-18 text-red" th:text="${products.price}"></span>
+                        <strong>Tình trạng :
+                            <span style="color: #3eb846;">Còn hàng </span>
+                        </strong>
                     </div>
                 </div>
 
                 <!-- description -->
                 <div class="row">
-                    <div class="col">
+                    <div class="col-12">
                         <div class="accordion" id="accordion-1">
                             <div class="card active">
                                 <div class="card-header" id="heading-1-1">
@@ -74,12 +76,25 @@
                         </div>
                     </div>
                 </div>
-
-                <div class="col-12">
-                    <a th:href="@{/personal/cart/add/{id}(id=${products.productid})}" class="btn btn-block btn-primary" th:text="'Thêm vào giỏ hàng'"></a>
+                <div class="row gutter-2">
+                    <div class="col-12">
+                         <span class="price text-red" style="font-size: 20px; color: red; font-weight: bold;" >
+                             <bdi th:text="${products.price}"></bdi>
+                         </span>
+                     </div>
+                    <div class="col-12">
+                        <strong>Số lượng :
+                            <span class="dYBF91">
+                                <button type="button" class="aGq8SN" onclick="changeQuantity(this, -1); updateCartTotal();" aria-label="Decrease">-</button>
+                                <input class="aGq8SN jKOh4z quantity-input" type="number" value="1" min="1" max="100" step="1" onchange="updateCartTotal()">
+                                <button type="button" class="aGq8SN" onclick="changeQuantity(this, 1); updateCartTotal();" aria-label="Increase">+</button>
+                            </span>
+                        </strong>
+                    </div>
+                    <div class="col-12">
+                        <a th:href="@{/personal/cart/add/{id}(id=${products.productid})}" class="btn btn-block btn-primary" th:text="'Thêm vào giỏ hàng'"></a>
+                    </div>
                 </div>
-
-
             </div>
 
         </div>
