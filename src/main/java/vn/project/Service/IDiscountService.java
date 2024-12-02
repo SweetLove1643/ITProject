@@ -1,5 +1,6 @@
 package vn.project.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -25,5 +26,9 @@ public interface IDiscountService {
 	Optional<Discounts> findByDiscountcode(String discountcode);
 
 	Optional<Discounts> findByDiscountid(int discountid);
+
+	boolean existsByStartdateAndEnddate(LocalDate startdate, LocalDate enddate);
+
+	boolean isDiscountActiveToday(String discountCode);
 
 }

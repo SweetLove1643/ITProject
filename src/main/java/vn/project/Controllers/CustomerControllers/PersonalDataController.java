@@ -3,6 +3,7 @@ package vn.project.Controllers.CustomerControllers;
 import java.util.ArrayList;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,14 +22,17 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import jakarta.servlet.http.HttpSession;
 import jakarta.transaction.Transactional;
 import vn.project.DTO.CartDTO;
 import vn.project.DTO.ProductsDTO;
 import vn.project.Entity.Cart;
 import vn.project.Entity.Orders;
+import vn.project.Entity.Products;
 import vn.project.Entity.Users;
 import vn.project.Service.ICartService;
 import vn.project.Service.IOrderService;
+import vn.project.Service.IProductService;
 import vn.project.Service.IRoleService;
 import vn.project.Service.IUserService;
 
@@ -47,6 +51,9 @@ public class PersonalDataController {
 
 	@Autowired
 	IOrderService orderService;
+	
+	@Autowired
+	IProductService productService;
 
 	@Autowired
 	BCryptPasswordEncoder passwordEncoder;
@@ -219,16 +226,34 @@ public class PersonalDataController {
 		}
 	}
 
-	@ResponseBody
 	@PostMapping("/cart/update")
 	public String updatecart(@RequestParam String action, 
 			@RequestParam(required = false) List<String> selectedProduct,
-			@RequestParam(required = false) String totalamout,
-			RedirectAttributes redirectAttributes) {
+			@RequestParam(name = "totalamount") String totalamount,
+			@RequestParam Map<String, String> quantities,
+			RedirectAttributes redirectAttributes,
+			HttpSession session) {
 	    if ("submit1".equals(action)) {
 	        return "redirect:/personal/cart";
 	    } else {
 	        if ("submit2".equals(action)) {
+	   
+	        	List<Products> productcheckout = new ArrayList<>();
+	        	
+	        	for(String idproduct : selectedProduct) {
+	        		int id = Integer.parseInt(idproduct);
+	        		Optional<Products> optional = productService.findById(id);
+	        		Products product = optional.isPresent() ? optional.get() : null;
+	        		
+	        		productcheckout.add(product);
+	        	}
+	        	
+	        	redirectAttributes.addFlashAttribute("selectedProduct", productcheckout);
+	        	redirectAttributes.addFlashAttribute("totalamount", totalamount);
+	        	redirectAttributes.addFlashAttribute("previosprice", totalamount);
+//	        	redirectAttributes.addFlashAttribute("quantities", quantities);
+	        	session.setAttribute("quantities", quantities);
+	        	
 	            return "redirect:/personal/checkout";
 	        }
 	    }

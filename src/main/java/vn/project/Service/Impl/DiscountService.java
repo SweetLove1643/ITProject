@@ -1,5 +1,6 @@
 package vn.project.Service.Impl;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -63,5 +64,16 @@ public class DiscountService implements IDiscountService{
 		discountRepository.deleteAll();
 	}
 
+	@Override
+	public boolean existsByStartdateAndEnddate(LocalDate startdate, LocalDate enddate) {
+		return discountRepository.existsByStartdateAndEnddate(startdate, enddate);
+	}
+
+	@Override
+	public boolean isDiscountActiveToday(String discountCode) {
+        LocalDate today = LocalDate.now(); // Lấy ngày hôm nay
+        Optional<Discounts> discount = discountRepository.findDiscountByCodeAndToday(discountCode, today);
+        return discount.isPresent(); // Nếu có discount trong ngày hôm nay, trả về true
+    }
 
 }

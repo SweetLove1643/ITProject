@@ -44,4 +44,6 @@ public interface IProductService {
 
 	List<ProductsDTO> findByProductnameContainingDTO(String productname);
 
+	List<ProductsDTO> ConvertProductToProductDTO(List<Products> products);
+
 }

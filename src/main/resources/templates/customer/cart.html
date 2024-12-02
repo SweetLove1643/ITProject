@@ -23,6 +23,9 @@
 		</div>
 
 		<form th:action="@{/personal/cart/update}" method="POST">
+		<div th:if="${message}" class="alert alert-info">
+								<span th:text="${message}"></span>
+							</div>
 			<div class="row gutter-3 gutter-lg-1">
 				<!-- content -->
 				<div class="col">
@@ -44,7 +47,8 @@
 						<ul class="list-group list-group-minimal mb-3">
 							<li class="list-group-item d-flex justify-content-between align-items-center text-uppercase font-weight-bold">
 								Tổng thanh toán
-								<span id="total" name="totalamout" class="price text-red">0 ₫</span>
+								<span th:id="total" th:name="total" class="price text-red">0 ₫</span>
+								<input type="hidden" id="totalamount" name="totalamount" value="0">
 							</li>
 						</ul>
 						<button type="submit" name="action" value="submit2" class="btn btn-primary btn-block">
@@ -63,6 +67,11 @@
 <script th:src="@{/assets/js/app.js}"></script>
 
 <script>
+	function getQuantityByProductId(productId) {
+	    var quantityInput = document.getElementById('quantity-' + productId);
+	    return quantityInput ? quantityInput.value : 1; // Nếu không có input, trả về giá trị mặc định 1
+	}
+
 	function updateCartTotal() {
     let total = 0;
 
@@ -84,6 +93,7 @@
         }
     });
 
+    document.getElementById('totalamount').value = total;
     document.getElementById('total').textContent = total.toLocaleString() + ' ₫';
 }
 

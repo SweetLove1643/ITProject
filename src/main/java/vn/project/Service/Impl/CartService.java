@@ -7,6 +7,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import jakarta.transaction.Transactional;
 import vn.project.DTO.CartDTO;
 import vn.project.DTO.ProductsDTO;
 import vn.project.Entity.Cart;
@@ -48,6 +49,7 @@ public class CartService implements ICartService {
 		cartRepository.deleteByCartid(cartid);
 	}
 
+	@Transactional
 	@Override
 	public void deleteByUseridAndProductid(int userid, int productid) {
 		cartRepository.deleteByUseridAndProductid(userid, productid);

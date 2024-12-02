@@ -51,14 +51,13 @@ public class SecurityConfig {
 		return http.csrf(csrf -> csrf.disable())
 				.authorizeHttpRequests((authorize) -> authorize
 						.requestMatchers("/login", "/register", "/forgotpass", "/authenticationotp", "/newpass", "/exception/**", "/assets/css/**", "/assets/js/**", "/assets/images/**", "/assets/fonts/**").permitAll()
-						.requestMatchers("/product/**", "/home", "/").permitAll()
-						.requestMatchers("/personal/**").permitAll()
-								//.hasAnyAuthority("USER", "ADMIN")
+						.requestMatchers("/product/**", "/home", "/", "/exception/**").permitAll()
+						.requestMatchers("/personal/**").hasAnyAuthority("USER", "ADMIN")
 						.requestMatchers("/admin/**").hasAnyAuthority("ADMIN")
 						)
 				.formLogin(login -> login.loginPage("/login").permitAll())
 				.logout(logout -> logout.permitAll())
-				.exceptionHandling(handling -> handling.accessDeniedPage("/403")).build();
+				.exceptionHandling(handling -> handling.accessDeniedPage("/exception/anyerror")).build();
 	}
 
 	@Bean
