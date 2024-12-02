@@ -198,7 +198,9 @@ public class PersonalDataController {
 	}
 
 	@GetMapping("/cart/add/{id}")
-	public String addproduct(@PathVariable String id, RedirectAttributes redirectAttributes) {
+	public String addproduct(@PathVariable String id, 
+			@RequestParam("quantity") String quantity,
+			RedirectAttributes redirectAttributes) {
 
 		try {
 			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -209,12 +211,14 @@ public class PersonalDataController {
 
 			if(cartcheck.isPresent()) {
 				Cart editcart = cartcheck.get();
-				editcart.setQuantity(editcart.getQuantity() + 1);
+				int increase = Integer.parseInt(quantity);
+				editcart.setQuantity(editcart.getQuantity() + increase);
 				cartService.save(editcart);
 				redirectAttributes.addFlashAttribute("messageSuccess", "Thêm sản phẩm thành công");
 				return "redirect:/product/productdetail/" +  id;
 			}else {
-				Cart newcart = Cart.builder().userid(user.getId()).productid(Integer.valueOf(id)).quantity(1).build();
+				int increase = Integer.parseInt(quantity);
+				Cart newcart = Cart.builder().userid(user.getId()).productid(Integer.valueOf(id)).quantity(increase).build();
 				cartService.save(newcart);
 				redirectAttributes.addFlashAttribute("messageSuccess", "Thêm sản phẩm thành công");
 				return "redirect:/product/productdetail/" +  id;

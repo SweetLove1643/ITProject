@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import jakarta.servlet.http.HttpSession;
+import vn.project.DTO.CartDTO;
 import vn.project.DTO.ProductsDTO;
 import vn.project.Entity.Cart;
 import vn.project.Entity.Discounts;
@@ -57,6 +58,40 @@ public class CheckoutController {
 
 	@Autowired
 	ICartService cartService;
+	
+	@GetMapping("/checkoutall")
+	public String checkall(Model model) {
+		try {
+			// Hien thi thong tin khach hang
+			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+			UserDetails userDetail = (UserDetails) auth.getPrincipal();
+			Optional<Users> optinal = userService.findByUsername(userDetail.getUsername());
+			Users user = optinal.isPresent() ? optinal.get() : null;
+			
+			if (user == null) {
+				return "redirect:/exception/403";
+			}
+			
+			List<CartDTO> usercart = cartService.findByUserid(user.getId());
+			long totalamount = 0;
+			for(CartDTO cart : usercart) {
+				totalamount = totalamount + Integer.parseInt(cart.getPrice()) * Integer.parseInt(cart.getQuantity());
+			}
+			
+			
+			model.addAttribute("user", user);
+			model.addAttribute("usercart", usercart);
+			model.addAttribute("totalamount", totalamount);
+			model.addAttribute("previosprice", totalamount);
+			
+			return "customer/checkout";
+			
+		}catch (Exception e) {
+			// TODO: handle exception
+			return "redirect:/exception/anyerror";
+		}
+		
+	}
 
 	@GetMapping("/checkout")
 	public String index(Model model, @ModelAttribute(name = "selectedProduct") List<Products> productcheckout,
