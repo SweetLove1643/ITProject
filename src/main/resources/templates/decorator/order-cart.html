@@ -26,7 +26,7 @@
 							<li>
 								<div class="dYBF91">
 									<button type="button" class="aGq8SN" onclick="changeQuantity(this, -1); updateCartTotal();" aria-label="Decrease">-</button>
-									<input class="aGq8SN jKOh4z quantity-input" type="number" value="1" min="1" max="100" step="1" th:name="'quantity-'+${cart.productid}" 
+									<input class="aGq8SN jKOh4z quantity-input" type="number" th:value="${cart.quantity}" min="1" max="100" step="1" th:name="'quantity-'+${cart.productid}" 
                th:id="'quantity-' + ${cart.productid}" data-productid="${cart.productid}" onchange="updateCartTotal()">
 									<button type="button" class="aGq8SN" onclick="changeQuantity(this, 1); updateCartTotal();" aria-label="Increase">+</button>
 								</div>

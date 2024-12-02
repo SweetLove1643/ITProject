@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -163,7 +164,7 @@ public class PersonalDataController {
 	}
 
 	@GetMapping("/cart")
-	public String cart(Model model) {
+	public String cart(Model model, @ModelAttribute("message") String message) {
 		try {
 			List<CartDTO> cartuser = new ArrayList<>();
 
@@ -176,6 +177,7 @@ public class PersonalDataController {
 			if (cartuser == null) {
 				model.addAttribute("message", "Không có sản phẩm nào.");
 			}
+			model.addAttribute("message", message);
 			model.addAttribute("user", user);
 			model.addAttribute("usercart", cartuser);
 
@@ -233,31 +235,52 @@ public class PersonalDataController {
 			@RequestParam Map<String, String> quantities,
 			RedirectAttributes redirectAttributes,
 			HttpSession session) {
-	    if ("submit1".equals(action)) {
-	        return "redirect:/personal/cart";
-	    } else {
-	        if ("submit2".equals(action)) {
-	   
-	        	List<Products> productcheckout = new ArrayList<>();
-	        	
-	        	for(String idproduct : selectedProduct) {
-	        		int id = Integer.parseInt(idproduct);
-	        		Optional<Products> optional = productService.findById(id);
-	        		Products product = optional.isPresent() ? optional.get() : null;
-	        		
-	        		productcheckout.add(product);
-	        	}
-	        	
-	        	redirectAttributes.addFlashAttribute("selectedProduct", productcheckout);
-	        	redirectAttributes.addFlashAttribute("totalamount", totalamount);
-	        	redirectAttributes.addFlashAttribute("previosprice", totalamount);
-//	        	redirectAttributes.addFlashAttribute("quantities", quantities);
-	        	session.setAttribute("quantities", quantities);
-	        	
-	            return "redirect:/personal/checkout";
-	        }
-	    }
-	    return "redirect:/505";
+		try {
+			 if ("submit1".equals(action)) { // Cap nhat gio hang
+			    	Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+			    	if(auth.isAuthenticated()) {
+			    		UserDetails userDetail = (UserDetails)auth.getPrincipal();
+			    		Optional<Users> present = userService.findByUsername(userDetail.getUsername());
+			    		if(present.isPresent()) {
+			    			Users user = present.get();
+			    			List<Cart> usercart = cartService.findbyuserid(user.getId());
+			    			
+			    			for(Cart cart : usercart) {
+			    				int newquantity = Integer.parseInt(quantities.get("quantity-"+String.valueOf(cart.getProductid())));
+			    				cart.setQuantity(newquantity);
+			    				cartService.save(cart);
+			    			}
+			    			
+			    			
+			    		}
+			    	}
+			        return "redirect:/personal/cart";
+			    } else {
+			        if ("submit2".equals(action)) { // Thanh toan
+			   
+			        	List<Products> productcheckout = new ArrayList<>();
+			        	
+			        	for(String idproduct : selectedProduct) {
+			        		int id = Integer.parseInt(idproduct);
+			        		Optional<Products> optional = productService.findById(id);
+			        		Products product = optional.isPresent() ? optional.get() : null;
+			        		
+			        		productcheckout.add(product);
+			        	}
+			        	
+			        	redirectAttributes.addFlashAttribute("selectedProduct", productcheckout);
+			        	redirectAttributes.addFlashAttribute("totalamount", totalamount);
+			        	redirectAttributes.addFlashAttribute("previosprice", totalamount);
+			        	session.setAttribute("quantities", quantities);
+			        	
+			            return "redirect:/personal/checkout";
+			        }
+			    }
+			 return "redirect:/505";
+		}catch (Exception e) {
+			// TODO: handle exception
+			return "redirect:/exception/anyerror";
+		}
 	}
 
 

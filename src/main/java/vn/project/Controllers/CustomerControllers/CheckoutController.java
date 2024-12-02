@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import jakarta.servlet.http.HttpSession;
 import vn.project.DTO.ProductsDTO;
@@ -27,7 +28,7 @@ import vn.project.Entity.Order_Products;
 import vn.project.Entity.Orders;
 import vn.project.Entity.Products;
 import vn.project.Entity.Users;
-import vn.project.Repository.IOrder_Products;
+import vn.project.Repository.IOrder_ProductsRepository;
 import vn.project.Service.ICartService;
 import vn.project.Service.IDiscountService;
 import vn.project.Service.IOrderService;
@@ -47,21 +48,20 @@ public class CheckoutController {
 
 	@Autowired
 	IDiscountService discountService;
-	
+
 	@Autowired
 	IOrderService orderService;
-	
+
 	@Autowired
-	IOrder_Products orderproductService;
-	
+	IOrder_ProductsRepository orderproductService;
+
 	@Autowired
 	ICartService cartService;
 
 	@GetMapping("/checkout")
 	public String index(Model model, @ModelAttribute(name = "selectedProduct") List<Products> productcheckout,
 			@ModelAttribute(name = "totalamount") String totalamount,
-			@ModelAttribute(name = "quantities") Map<String, String> quantities, 
-			HttpSession sesstion) {
+			@ModelAttribute(name = "quantities") Map<String, String> quantities, HttpSession sesstion) {
 
 		// Hien thi thong tin khach hang
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -87,14 +87,10 @@ public class CheckoutController {
 
 	@PostMapping("/checkout")
 	public String applyVoucher(@RequestParam List<String> listcheckout, @RequestParam String voucher,
-			@RequestParam("totalamount") String tongtien, 
-			Model model, 
-			@RequestParam("submit") String submit,
-			@RequestParam("paymentmethod") String paymentmethod,
-			HttpSession session) {
+			@RequestParam("totalamount") String tongtien, Model model, @RequestParam("submit") String submit,
+			@RequestParam("paymentmethod") String paymentmethod, HttpSession session, RedirectAttributes redirectAttributes) {
 		try {
 
-			
 			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 			UserDetails userDetail = (UserDetails) auth.getPrincipal();
 			Optional<Users> optinal = userService.findByUsername(userDetail.getUsername());
@@ -103,7 +99,7 @@ public class CheckoutController {
 			if (user == null) {
 				return "redirect:/exception/403";
 			}
-			
+
 			if ("voucher".equals(submit)) {
 				List<ProductsDTO> productcheckout = new ArrayList<>();
 
@@ -133,10 +129,10 @@ public class CheckoutController {
 							model.addAttribute("message", "Áp dụng thành công");
 						}
 					} else {
-						model.addAttribute("message", "Mã giảm giá đã quá hạn");
+						model.addAttribute("messageDanger", "Mã giảm giá đã quá hạn");
 					}
 				} else {
-					model.addAttribute("message", "Mã giảm giá không tồn tại.");
+					model.addAttribute("messageDanger", "Mã giảm giá không tồn tại.");
 				}
 
 				model.addAttribute("voucher", voucher);
@@ -145,70 +141,57 @@ public class CheckoutController {
 
 				return "customer/checkout";
 			} else {
-				if((Map<String, String>)session.getAttribute("quantities") instanceof Map<String, String> && listcheckout != null) {
+				if ((Map<String, String>) session.getAttribute("quantities") instanceof Map<String, String>
+						&& listcheckout != null) {
 					Map<String, String> quantities = (Map<String, String>) session.getAttribute("quantities");
-					
+
 					Optional<Discounts> discount = discountService.findByDiscountcode(voucher);
-					if(discount.isPresent()) {
+					if (discount.isPresent()) {
 						Long amount = Long.valueOf(tongtien);
 						Orders order = Orders.builder().deliverystatus("Đang xử li")
-								.discountid(discount.get().getDiscountid())
-								.orderdate(LocalDateTime.now())
-								.paymentmethod(paymentmethod)
-								.paymentstatus("Đã thanh toán")
-								.totalamount(amount)
-								.userid(user.getId())
-								.build();
+								.discountid(discount.get().getDiscountid()).orderdate(LocalDateTime.now())
+								.paymentmethod(paymentmethod).paymentstatus("Đã thanh toán").totalamount(amount)
+								.userid(user.getId()).build();
 
 						orderService.save(order);
-						
-						for(String idproduct : listcheckout) {
+
+						for (String idproduct : listcheckout) {
 							int id = Integer.parseInt(idproduct);
 							int quantity = Integer.parseInt(quantities.get("quantity-" + idproduct));
 							Products product = productService.findById(id).get();
-							Order_Products orderproduct = Order_Products.builder()
-									.order(order)
-									.product(product)
-									.quantity(quantity)
-									.build();
+							Order_Products orderproduct = Order_Products.builder().order(order).product(product)
+									.quantity(quantity).build();
 							orderproductService.save(orderproduct);
 							cartService.deleteByUseridAndProductid(user.getId(), Integer.parseInt(idproduct));
 						}
-						
+
 						session.removeAttribute("quantities");
 						model.addAttribute("message", "Đặt hàng thành công");
 						return "customer/cart";
-					
-					}else {
+
+					} else {
 						Long amount = Long.valueOf(tongtien);
-						Orders order = Orders.builder().deliverystatus("Đang xử li")
-								.orderdate(LocalDateTime.now())
-								.paymentmethod(paymentmethod)
-								.paymentstatus("Đã thanh toán")
-								.totalamount(amount)
-								.userid(user.getId())
-								.build();
+						Orders order = Orders.builder().deliverystatus("Đang xử li").orderdate(LocalDateTime.now())
+								.paymentmethod(paymentmethod).paymentstatus("Đã thanh toán").totalamount(amount)
+								.userid(user.getId()).build();
 
 						orderService.save(order);
-						
-						for(String idproduct : listcheckout) {
+
+						for (String idproduct : listcheckout) {
 							int quantity = Integer.parseInt(quantities.get("quantity-" + idproduct));
 							int id = Integer.parseInt(idproduct);
 							Products product = productService.findById(id).get();
-							Order_Products orderproduct = Order_Products.builder()
-									.order(order)
-									.product(product)
-									.quantity(quantity)
-									.build();
+							Order_Products orderproduct = Order_Products.builder().order(order).product(product)
+									.quantity(quantity).build();
 							orderproductService.save(orderproduct);
 							cartService.deleteByUseridAndProductid(user.getId(), Integer.parseInt(idproduct));
 						}
-						
-						model.addAttribute("message", "Đặt hàng thành công");
+
+						redirectAttributes.addFlashAttribute("message", "Đặt hàng thành công");
 						session.removeAttribute("quantities");
-						return "customer/cart";
+						return "redirect:/personal/cart";
 					}
-				}else {
+				} else {
 					return "redirect:/exception/anyerror";
 				}
 			}

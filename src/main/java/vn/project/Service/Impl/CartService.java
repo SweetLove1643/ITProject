@@ -112,4 +112,8 @@ public class CartService implements ICartService {
 		}
 	}
 
+	@Override
+	public List<Cart> findbyuserid(int id){
+		return cartRepository.findByUserid(id);
+	}
 }

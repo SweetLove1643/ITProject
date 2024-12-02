@@ -8,7 +8,7 @@ import vn.project.Entity.Products;
 
 
 @Repository
-public interface IOrder_Products extends JpaRepository<Order_Products, Integer>{
+public interface IOrder_ProductsRepository extends JpaRepository<Order_Products, Integer>{
 
 	void deleteByProduct(Products product);
 }

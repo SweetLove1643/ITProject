@@ -122,6 +122,12 @@
 				<div th:if="${message}" class="alert alert-info">
 									<span th:text="${message}"></span>
 								</div>
+								
+								<div th:if="${messageDanger}" class="alert alert-danger">
+									<span th:text="${messageDanger}"></span>
+								</div>
+								
+								
                     <!-- Duyệt qua các sản phẩm trong giỏ hàng -->
                     <div class="cart-item" th:if="${usercart != null}" th:each="cart : ${usercart}">
                         <a th:href="@{#!}" class="cart-item-image">
@@ -133,7 +139,7 @@
                                 	<input th:value="${cart.productid}" hidden="true" name="listcheckout">
                                     <h5 class="cart-item-title" th:text="${cart.productname}"></h5>
                                     <ul class="list list--horizontal fs-14">
-                                        <li class="text-red" th:text="${cart.price != null ? cart.price + ' ₫' : '0 ₫'}"></li>
+                                        <li class="text-red price" th:text="${cart.price != null ? cart.price + ' ₫' : '0 ₫'}"></li>
                                     </ul>
                                 </div>
                                </div>
@@ -152,19 +158,19 @@
                     <ul class="list-group list-group-minimal mb-3" th:fragment="total_order">
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             Tạm tính
-                            <span id="subtotal" th:text="${previosprice}">0 ₫</span>
+                            <span id="subtotal" class="price" th:text="${previosprice}">0 ₫</span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             Phí vận chuyển
-                            <span id="shipping" th:text="${shipping}">0 ₫</span>
+                            <span id="shipping" class="price" >0 ₫</span>
                         </li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center text-red">
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
                             Giảm giá
-                            <span id="discount" th:text="${discount}">0 ₫</span>
+                            <span id="discount" class="price" th:text="${discount}">0 ₫</span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center text-uppercase font-weight-bold">
                             Tổng thanh toán
-                            <span id="total" th:text="${totalamount}">0 ₫</span>
+                            <span id="total" class="price text-red" th:text="${totalamount}">0 ₫</span>
                             <input id="totalamount" hidden="true" name= "totalamount" th:value="${totalamount}">
                         </li>
                     </ul>
