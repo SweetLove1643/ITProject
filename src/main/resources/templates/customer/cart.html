@@ -66,18 +66,15 @@
 	function updateCartTotal() {
     let total = 0;
 
-    // Lặp qua tất cả các checkbox để tính tổng
     document.querySelectorAll('.cart-item-checkbox').forEach((checkbox, index) => {
         let priceElement = document.querySelectorAll('.quantity-price')[index];
         let priceString = priceElement.dataset.price;
 
-        // Xử lý loại bỏ dấu phân cách số
         let price = parseFloat(priceString.replace(/[^\d.-]/g, ''));
 
         let quantityInput = document.querySelectorAll('.quantity-input')[index];
         let quantity = parseInt(quantityInput.value);
 
-        // Kiểm tra giá trị hợp lệ của price và quantity
         if (!isNaN(price) && !isNaN(quantity)) {
             if (checkbox.checked) {
                 total += price * quantity;
@@ -87,13 +84,24 @@
         }
     });
 
-    // Cập nhật tổng thanh toán
     document.getElementById('total').textContent = total.toLocaleString() + ' ₫';
 }
 
-document.addEventListener('DOMContentLoaded', updateCartTotal);
-document.querySelectorAll('.quantity-input').forEach(input => {
-    input.addEventListener('change', updateCartTotal);
+	function changeQuantity(button, delta) {
+    // Tìm ô nhập liệu gần nút bấm
+    var input = button.closest('div').querySelector('input[type="number"]');
+    var currentValue = parseInt(input.value);  // Lấy giá trị hiện tại
+    var newValue = currentValue + delta;       // Cộng hoặc trừ 1
+
+    // Đảm bảo giá trị nằm trong phạm vi min và max
+    if (newValue >= input.min && newValue <= input.max) {
+        input.value = newValue; // Cập nhật giá trị trong ô nhập liệu
+    }
+}
+
+	document.addEventListener('DOMContentLoaded', updateCartTotal);
+	document.querySelectorAll('.quantity-input').forEach(input => {
+    	input.addEventListener('change', updateCartTotal);
 });
 
 </script>

@@ -112,19 +112,19 @@
             </div>
 
             <!-- order total -->
+            <!-- order total -->
             <aside class="col-lg-5">
                 <div class="bg-white p-2 p-lg-3">
                     <h2 class="mb-3 text-uppercase fs-20">Order total</h2>
-                    <!--order-->
-                    <div class="cart-item" th:if="${usercart != null}" th:each="cart : ${usercart}" th:fragment="order-cart" xmlns:th="https://www.thymeleaf.org">
-                        <!-- Hình ảnh sản phẩm -->
+
+                    <!-- Duyệt qua các sản phẩm trong giỏ hàng -->
+                    <div class="cart-item" th:if="${usercart != null}" th:each="cart : ${usercart}">
                         <a th:href="@{#!}" class="cart-item-image">
                             <img th:src="${cart.imageurl}" alt="Image">
                         </a>
                         <div class="cart-item-body">
                             <div class="row">
                                 <div class="col-9">
-                                    <!-- Tên sản phẩm và giá -->
                                     <h5 class="cart-item-title" th:text="${cart.productname}"></h5>
                                     <ul class="list list--horizontal fs-14">
                                         <li><s th:text="${cart.oldprice != null ? cart.oldprice + ' ₫' : ''}"></s></li>
@@ -132,7 +132,6 @@
                                     </ul>
                                 </div>
                                 <div class="col-3 text-right">
-                                    <!-- Tùy chọn xóa -->
                                     <ul class="cart-item-options">
                                         <li>
                                             <a th:href="@{/personal/cart/delete/{id}(id=${cart.cartid})}" class="icon-x"></a>
@@ -142,8 +141,35 @@
                             </div>
                         </div>
                     </div>
+
                     <hr class="my-3"/>
-                        <div th:replace="~{decorator/total_order :: total_order}"></div>
+
+                    <!-- Áp dụng mã giảm giá -->
+                    <div class="input-combined mb-2" th:fragment="total_order">
+                        <input type="text" class="form-control" placeholder="Mã giảm giá" id="promoCode" aria-label="Promo code" aria-describedby="button-addon2">
+                        <button class="btn btn-white" type="button" id="button-addon2" onclick="applyPromoCode()" th:text="|Áp dụng|">Áp dụng</button>
+                        <span class="input-combined_indicator"></span>
+                    </div>
+
+                    <!-- Hiển thị các giá trị tổng đơn hàng -->
+                    <ul class="list-group list-group-minimal mb-3" th:fragment="total_order">
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Tạm tính
+                            <span id="subtotal" th:text="${subtotal}">0 ₫</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Phí vận chuyển
+                            <span id="shipping" th:text="${shipping}">0 ₫</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center text-red">
+                            Giảm giá
+                            <span id="discount" th:text="${discount}">0 ₫</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center text-uppercase font-weight-bold">
+                            Tổng thanh toán
+                            <span id="total" th:text="${total}">0 ₫</span>
+                        </li>
+                    </ul>
                 </div>
             </aside>
         </div>
@@ -154,5 +180,41 @@
 
 <script th:src="@{/assets/js/vendor.min.js}"></script>
 <script th:src="@{/assets/js/app.js}"></script>
+
+function updateCartTotal() {
+let subtotal = 0;
+let shipping = 0;  // Bạn có thể thay đổi để tính phí vận chuyển dựa trên địa chỉ
+let discount = 0;  // Giảm giá có thể được tính từ mã giảm giá hoặc chương trình khuyến mãi
+
+document.querySelectorAll('.cart-item').forEach((item, index) => {
+let priceElement = item.querySelector('.text-red');
+let price = parseFloat(priceElement.innerText.replace(' ₫', '').replace(/,/g, ''));
+
+let quantityInput = item.querySelector('.quantity-input');
+let quantity = parseInt(quantityInput.value);
+
+if (!isNaN(price) && !isNaN(quantity)) {
+subtotal += price * quantity;
+}
+});
+
+// Cập nhật phí vận chuyển (có thể lấy từ địa chỉ hoặc chính sách)
+shipping = 0;  // Ví dụ, bạn có thể thay đổi đây nếu có phí vận chuyển
+
+// Cập nhật tổng thanh toán
+let total = subtotal + shipping - discount;
+
+// Cập nhật lại thông tin trên giao diện
+document.getElementById('subtotal').innerText = subtotal.toLocaleString() + ' ₫';
+document.getElementById('shipping').innerText = shipping.toLocaleString() + ' ₫';
+document.getElementById('discount').innerText = discount.toLocaleString() + ' ₫';
+document.getElementById('total').innerText = total.toLocaleString() + ' ₫';
+}
+
+document.addEventListener('DOMContentLoaded', updateCartTotal);
+document.querySelectorAll('.quantity-input').forEach(input => {
+input.addEventListener('change', updateCartTotal);
+});
+
 </body>
 </html>
