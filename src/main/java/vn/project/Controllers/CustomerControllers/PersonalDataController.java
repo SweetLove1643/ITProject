@@ -18,10 +18,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import jakarta.transaction.Transactional;
 import vn.project.DTO.CartDTO;
+import vn.project.DTO.ProductsDTO;
 import vn.project.Entity.Cart;
 import vn.project.Entity.Orders;
 import vn.project.Entity.Users;
@@ -217,18 +219,22 @@ public class PersonalDataController {
 		}
 	}
 
+	@ResponseBody
 	@PostMapping("/cart/update")
-	public String updatecart(@RequestParam String action, RedirectAttributes redirectAttributes) {
-		if("submit1".equals(action)) {
-			return "redirect:/personal/cart";
-		}else {
-			if("submit2".equals(action)) {
-				return "redirect:/personal/checkout";
-			}
-		}
-		return "redirect:/505";
-
+	public String updatecart(@RequestParam String action, 
+			@RequestParam(required = false) List<String> selectedProduct,
+			@RequestParam(required = false) String totalamout,
+			RedirectAttributes redirectAttributes) {
+	    if ("submit1".equals(action)) {
+	        return "redirect:/personal/cart";
+	    } else {
+	        if ("submit2".equals(action)) {
+	            return "redirect:/personal/checkout";
+	        }
+	    }
+	    return "redirect:/505";
 	}
+
 
 	@GetMapping("/orders")
 	public String orders(Model model) {

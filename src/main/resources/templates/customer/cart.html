@@ -44,7 +44,7 @@
 						<ul class="list-group list-group-minimal mb-3">
 							<li class="list-group-item d-flex justify-content-between align-items-center text-uppercase font-weight-bold">
 								Tổng thanh toán
-								<span id="total" class="price text-red">0 ₫</span>
+								<span id="total" name="totalamout" class="price text-red">0 ₫</span>
 							</li>
 						</ul>
 						<button type="submit" name="action" value="submit2" class="btn btn-primary btn-block">
@@ -70,8 +70,8 @@
     document.querySelectorAll('.cart-item-checkbox').forEach((checkbox, index) => {
         let priceElement = document.querySelectorAll('.quantity-price')[index];
         let priceString = priceElement.dataset.price;
-
-        // Xử lý loại bỏ dấu phân cách số
+        
+        // Xử lý loại bỏ dấu phân cách số 
         let price = parseFloat(priceString.replace(/[^\d.-]/g, ''));
 
         let quantityInput = document.querySelectorAll('.quantity-input')[index];

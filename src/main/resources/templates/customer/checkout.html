@@ -35,7 +35,7 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="form-label-group">
-                                    <input type="text" id="inputFullName" class="form-control form-control-lg" th:placeholder="'Họ và Tên'" required="" readonly="true">
+                                    <input type="text" id="inputFullName" th:value="${user.fullname}" class="form-control form-control-lg" th:placeholder="'Họ và Tên'" required="" readonly="true">
                                     <label for="inputFullName" th:text="'Họ và Tên'"></label>
                                 </div>
                             </div>
@@ -43,7 +43,7 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="form-label-group">
-                                    <input type="text" id="inputAddress" class="form-control form-control-lg" th:placeholder="'Địa Chỉ'" required="" readonly="true">
+                                    <input type="text" id="inputAddress" th:value="${user.address}" class="form-control form-control-lg" th:placeholder="'Địa Chỉ'" required="" readonly="true">
                                     <label for="inputAddress" th:text="'Địa Chỉ'"></label>
                                 </div>
                             </div>
@@ -51,7 +51,7 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="form-label-group">
-                                    <input type="email" id="inputEmail" class="form-control form-control-lg" th:placeholder="'Email'" required="" readonly="true">
+                                    <input type="email" id="inputEmail" th:value="${user.email}" class="form-control form-control-lg" th:placeholder="'Email'" required="" readonly="true">
                                     <label for="inputEmail" th:text="'Email'"></label>
                                 </div>
                             </div>
@@ -59,7 +59,7 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="form-label-group">
-                                    <input type="text" id="inputPhoneNumber" class="form-control form-control-lg" th:placeholder="'Số Điện Thoại'" required="" readonly="true">
+                                    <input type="text" id="inputPhoneNumber" th:value="${user.phonenumber}" class="form-control form-control-lg" th:placeholder="'Số Điện Thoại'" required="" readonly="true">
                                     <label for="inputPhoneNumber" th:text="'Số Điện Thoại'"></label>
                                 </div>
                             </div>
