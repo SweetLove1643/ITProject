@@ -209,12 +209,12 @@ public class PersonalDataController {
 				Cart editcart = cartcheck.get();
 				editcart.setQuantity(editcart.getQuantity() + 1);
 				cartService.save(editcart);
-				redirectAttributes.addFlashAttribute("message", "Thêm sản phẩm thành công");
+				redirectAttributes.addFlashAttribute("messageSuccess", "Thêm sản phẩm thành công");
 				return "redirect:/product/productdetail/" +  id;
 			}else {
 				Cart newcart = Cart.builder().userid(user.getId()).productid(Integer.valueOf(id)).quantity(1).build();
 				cartService.save(newcart);
-				redirectAttributes.addFlashAttribute("message", "Thêm sản phẩm thành công");
+				redirectAttributes.addFlashAttribute("messageSuccess", "Thêm sản phẩm thành công");
 				return "redirect:/product/productdetail/" +  id;
 			}
 
