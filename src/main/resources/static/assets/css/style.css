@@ -13598,15 +13598,39 @@ div.code-toolbar > .toolbar {
       background-color: #222;  /* Màu nền không thay đổi khi hover */
     }
 
-
-
-
-
-
         footer {
           position: relative;  /* Đảm bảo footer có vị trí để mũi tên có thể đè lên */
           z-index: 1;  /* Đảm bảo footer nằm dưới mũi tên */
         }
+
+
+
+
+
+
+
+    /* Đảm bảo badge nằm đúng vị trí trên icon giỏ hàng */
+    .nav-icon {
+        position: relative;
+
+    }
+
+    .badge {
+        position: absolute;
+        top: 15px;
+        right: 5px;
+        padding: 3px;
+        border-radius:100%;
+        padding-left:0.5em;
+        padding-right:0.5em;
+    }
+
+    .badge-span {
+        font-size: 0.6rem;
+        color: white;
+    }
+
+
 
 
 /*# sourceMappingURL=style.css.map */

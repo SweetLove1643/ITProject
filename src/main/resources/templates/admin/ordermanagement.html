@@ -63,7 +63,8 @@
                                      data-payment-status=${order.paymentstatus},
                                      data-total-amount=${order.totalamount},
                                      data-user-id=${order.userid},
-                                     data-discount-id=${order.discountid}">
+                                     data-discount-id=${order.discountid},
+                                     data-list-product=${order.orderProducts}">
                         Chi tiết
                     </button>
                 </td>
@@ -140,7 +141,7 @@
                         </tr>
                         </thead>
                         <tbody id="order-products-details">
-                        <!-- Duyệt qua các sản phẩm trong đơn hàng -->
+                        <!-- Duyệt qua các sản phẩm trong đơn hàng bằng script ở dưới -->
                         </tbody>
                     </table>
                 </div>
@@ -182,32 +183,38 @@
             document.getElementById("order-date-detail").textContent = orderDate;
             document.getElementById("payment-method-detail").textContent = paymentMethod;
             document.getElementById("payment-status-detail").textContent = paymentStatus;
-            document.getElementById("total-amount-detail").textContent = totalAmount;
+            document.getElementById("total-amount-detail").textContent = new Intl.NumberFormat('vi-VN').format(totalAmount) + ' ₫';
             document.getElementById("user-id-detail").textContent = userId;
-            document.getElementById("discount-id-detail").textContent = discountId || 'Không có';
+            document.getElementById("discount-id-detail").textContent = discountId;
 
-            // Lấy thông tin sản phẩm và hiển thị
-            fetch(`/admin/ordermanager/details/${orderId}`)
-                .then(response => response.json())
-                .then(data => {
-                    const productsTableBody = document.getElementById("order-products-details");
-                    productsTableBody.innerHTML = ''; // Clear existing rows
+             // Kiểm tra xem orderProducts có phải là mảng không
+        console.log(orderProducts);
 
-                    data.products.forEach(product => {
-                        const row = document.createElement("tr");
-                        row.innerHTML = `
-                            <td><img src="${product.imageurl}" alt="Product Image" style="width: 50px; height: 50px;"></td>
-                            <td>${product.productname}</td>
-                            <td>${product.quantity}</td>
-                            <td>${product.price}</td>
-                            <td>${product.total}</td>
-                        `;
-                        productsTableBody.appendChild(row);
-                    });
-                })
-                .catch(error => console.error('Error fetching order details:', error));
-        });
+        // Hiển thị thông tin sản phẩm trong bảng
+        const productsTableBody = document.getElementById("order-products-details");
+        productsTableBody.innerHTML = ''; // Xóa các dòng cũ trong bảng
+
+        // Kiểm tra nếu orderProducts không trống
+        if (Array.isArray(orderProducts) && orderProducts.length > 0) {
+            orderProducts.forEach(product => {
+                const row = document.createElement("tr");
+                row.innerHTML = `
+                    <td><img src="${product.imageurl}" alt="Product Image" style="width: 50px; height: 50px;"></td>
+                    <td>${product.productname}</td>
+                    <td>${product.quantity}</td>
+                    <td>${new Intl.NumberFormat('vi-VN').format(product.price)} ₫</td>
+                    <td>${new Intl.NumberFormat('vi-VN').format(product.total)} ₫</td>
+                `;
+                productsTableBody.appendChild(row);
+            });
+        } else {
+            // Nếu không có sản phẩm, hiển thị thông báo
+            const noProductRow = document.createElement("tr");
+            noProductRow.innerHTML = "<td colspan='5'>Không có sản phẩm trong đơn hàng</td>";
+            productsTableBody.appendChild(noProductRow);
+        }
     });
+});
 </script>
 
 </body>

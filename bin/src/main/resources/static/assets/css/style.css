@@ -3440,8 +3440,8 @@ input[type="button"].btn-block {
   top: -1px; }
 
 .badge-pill {
-  padding-right: 0.6em;
-  padding-left: 0.6em; }
+  padding-right: 0.5em;
+  padding-left: 0.5em; }
 
 .badge-primary {
   color: #fff;
@@ -3494,8 +3494,9 @@ input[type="button"].btn-block {
     box-shadow: 0 0 0 0 rgba(255, 193, 7, 0.5); }
 
 .badge-danger {
-  color: #fff;
-  background-color: #dc3545; }
+  background-color: red;
+  border-radius:100%;
+   }
   a.badge-danger:hover, a.badge-danger:focus {
     color: #fff;
     background-color: #bd2130; }
