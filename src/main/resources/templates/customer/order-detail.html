@@ -89,10 +89,8 @@
                                     <h2 class="mb-1 text-uppercase fs-20" th:text="${order.orderProducts.size()} + ' Items'"></h2>
                                 </div>
                                 <div class="col-12">
-                                    <div class="bordered cart-item-list p-3">
-                                        <!-- Loop through products in the order -->
-                                        <div th:each="orderProduct : ${order.orderProducts}">
-                                            <div class="cart-item">
+                                    <div class="bordered cart-item-list p-3" th:if="${order.orderProducts != null and order.orderProducts.size() > 0}">
+                                            <div class="cart-item" th:each="orderProduct : ${order.orderProducts}">
                                                 <a th:href="@{'/productdetail/' + ${orderProduct.product.productid}}" class="cart-item-image">
                                                     <img th:src="${orderProduct.product.imageurl}" alt="Product Image">
                                                 </a>
@@ -119,6 +117,9 @@
                                     </div>
                                 </div>
                             </div>
+                        <div th:if="${order.orderProducts == null or order.orderProducts.size() == 0}">
+                            <p>Không có sản phẩm trong giỏ hàng.</p>
+                        </div>
 
                             <!-- order total -->
                             <div class="row">
