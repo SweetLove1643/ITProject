@@ -15,5 +15,6 @@ public interface IOrderRepository extends JpaRepository<Orders,Integer>{
 	List<Orders> findByUserid(int userid);
 
 	List<Orders> findByDiscountid(int discountid);
+	
 
 }

@@ -1,5 +1,6 @@
 package vn.project.Service.Impl;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -9,9 +10,13 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import vn.project.Entity.Cart;
 import vn.project.Entity.Discounts;
+import vn.project.Entity.Order_Products;
 import vn.project.Entity.Orders;
+import vn.project.Entity.Products;
 import vn.project.Entity.Users;
+import vn.project.Repository.ICartRepository;
 import vn.project.Repository.IDiscountRepository;
 import vn.project.Repository.IOrderRepository;
 import vn.project.Repository.IUserRepository;
@@ -109,5 +114,15 @@ public class OrderService implements IOrderService{
 		return orderRepository.save(entity);
 	}
 
+	@Override
+	public List<Products> findAllProductByOrderId(int id){
+		Orders order = orderRepository.findByOrderid(id);
+		List<Products> listproduct = new ArrayList();
+		
+		for(Order_Products index : order.getOrderProducts()) {
+			listproduct.add(index.getProduct());
+		}
+		return listproduct;
+	}
 
 }

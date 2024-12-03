@@ -10,6 +10,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import vn.project.Entity.Orders;
+import vn.project.Entity.Products;
 
 @Service
 public interface IOrderService {
@@ -39,5 +40,7 @@ public interface IOrderService {
 	List<Orders> findbyDiscount(String discount);
 
 	<S extends Orders> S save(S entity);
+
+	List<Products> findAllProductByOrderId(int id);
 
 }

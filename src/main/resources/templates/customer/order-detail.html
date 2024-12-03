@@ -86,28 +86,28 @@
                             <!-- san pham -->
                             <div class="row">
                                 <div class="col-12">
-                                    <h2 class="mb-1 text-uppercase fs-20" th:text="${order.orderProducts.size()} + ' Items'"></h2>
+                                    <h2 class="mb-1 text-uppercase fs-20" th:text="${listproduct.size()} + ' Items'"></h2>
                                 </div>
                                 <div class="col-12">
-                                    <div class="bordered cart-item-list p-3" th:if="${order.orderProducts != null and order.orderProducts.size() > 0}">
-                                            <div class="cart-item" th:each="orderProduct : ${order.orderProducts}">
-                                                <a th:href="@{'/productdetail/' + ${orderProduct.product.productid}}" class="cart-item-image">
-                                                    <img th:src="${orderProduct.product.imageurl}" alt="Product Image">
+                                    <div class="bordered cart-item-list p-3" th:if="${listproduct != null and listproduct.size() > 0}">
+                                            <div class="cart-item" th:each="product : ${listproduct}">
+                                                <a th:href="@{'/productdetail/' + ${product.productid}}" class="cart-item-image">
+                                                    <img th:src="${product.imageurl}" alt="Product Image">
                                                 </a>
                                                 <div class="cart-item-body">
                                                     <div class="row">
                                                         <div class="col">
-                                                            <h5 class="cart-item-title" th:text="${orderProduct.product.productname}"></h5>
-                                                            <small class="cart-item-subtitle" th:text="${orderProduct.product.brand}"></small>
+                                                            <h5 class="cart-item-title" th:text="${product.productname}"></h5>
+                                                            <small class="cart-item-subtitle" th:text="${product.brand}"></small>
                                                             <div>
                                                                 <ul class="list list--horizontal list--separated fs-14 text-muted mt-1">
-                                                                    <li>Số lượng<span th:text="${orderProduct.quantity}"></span></li>
+                                                                    <li>Số lượng  <span th:text="${product.stockquantity}"></span></li>
                                                                 </ul>
                                                             </div>
                                                         </div>
                                                         <div class="col text-right">
                                                             <ul class="cart-item-meta">
-                                                                <li class="text-red quantity-price" th:data-price="${cart.price}" id="quantity-price" th:text="${cart.price != null ? cart.price + ' ₫' : '0 ₫'}"></li>
+                                                                <li class="text-red quantity-price" th:data-price="${product.price}" id="quantity-price" th:text="${product.price != null ? product.price + ' ₫' : '0 ₫'}"></li>
                                                             </ul>
                                                         </div>
                                                     </div>
@@ -122,7 +122,7 @@
                         </div>
 
                             <!-- order total -->
-                            <div class="row">
+<!--                             <div class="row">
                                 <div class="col-12">
                                     <h2 class="text-uppercase fs-20 mb-1">Tổng Đơn Hàng</h2>
                                 </div>
@@ -144,17 +144,25 @@
                                         </ul>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
 
                             <!-- delivery details -->
                             <div class="row">
                                 <div class="col-12">
-                                    <h2 class="mb-1 text-uppercase fs-20">Chi Tiết Giao Hàng</h2>
+                                    <h2 class="mb-1 text-uppercase fs-20">Chi Tiết</h2>
                                 </div>
                                 <div class="col-12">
                                     <div class="bordered p-3">
-                                        <h5 class="eyebrow text-muted">Phương Thức Giao Hàng</h5>
-                                        <p class="card-text" th:text="${order.deliveryMethod}"></p>
+                                        <h5 class="eyebrow text-muted">Phương Thức Thanh Toán</h5>
+                                        <p class="card-text" th:text="${order.paymentmethod}"></p>
+                                    </div>
+                                    <div class="bordered p-3">
+                                        <h5 class="eyebrow text-muted">Trạng thái thanh toán</h5>
+                                        <p class="card-text" th:text="${order.paymentstatus}"></p>
+                                    </div>
+                                    <div class="bordered p-3">
+                                        <h5 class="eyebrow text-muted">Trạng thái vận chuyển</h5>
+                                        <p class="card-text" th:text="${order.deliverystatus}"></p>
                                     </div>
                                 </div>
                             </div>
