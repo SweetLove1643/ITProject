@@ -51,17 +51,19 @@
 						</div>
 					</div>
 				</div>
-				<div th:if="${messageDanger}" class="alert alert-danger">
-					<span th:text="${messageDanger}"></span>
-				</div>
-				<div th:if="${messageSuccess}" class="alert alert-success">
-					<span th:text="${messageSuccess}"></span>
-				</div>
 				<div class="col-lg-4 mb-5 mb-lg-0">
 					<div class="row">
 						<div class="col-12">
 							<span class="eyebrow text-muted" th:text="${products.brand}"></span>
 							<h1 th:text="${products.productname}"></h1>
+						</div>
+						<div class="col-12">
+							<div th:if="${messageDanger}" class="alert alert-danger">
+								<span th:text="${messageDanger}"></span>
+							</div>
+							<div th:if="${messageSuccess}" class="alert alert-success">
+								<span th:text="${messageSuccess}"></span>
+							</div>
 						</div>
 					</div>
 
