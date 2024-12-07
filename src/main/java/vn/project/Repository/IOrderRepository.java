@@ -1,5 +1,6 @@
 package vn.project.Repository;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -16,5 +17,6 @@ public interface IOrderRepository extends JpaRepository<Orders,Integer>{
 
 	List<Orders> findByDiscountid(int discountid);
 	
-
+	List<Orders> findByOrderdateBetween(LocalDateTime startdate, LocalDateTime enddate);
+	
 }

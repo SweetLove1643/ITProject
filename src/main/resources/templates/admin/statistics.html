@@ -120,9 +120,9 @@
 
 <!-- Phần thống kê -->
 <div class="statistics">
-    <h2>Tổng Số Bán: <span>3500</span> sản phẩm</h2>
-    <h2>Tổng Doanh Thu: <span>2,500,000</span> VND</h2>
-    <h2>Tổng Số Khách Hàng: <span>1200</span></h2>
+    <h2>Tổng Số Bán: <span th:text = ${saleproduct}></span> sản phẩm</h2>
+    <h2>Tổng Doanh Thu: <span th:text = ${revenue}></span> VND</h2>
+    <h2>Tổng Số Khách Hàng: <span th:text = ${guestquantity}></span></h2>
 </div>
 
 <!-- Dùng Flexbox để hiển thị các biểu đồ -->
@@ -146,27 +146,30 @@
         <h3>Doanh Thu Theo Quý</h3>
         <canvas id="quarterlyRevenueChart"></canvas>
     </div>
-
-    <!-- Biểu đồ Hóa Đơn Gần Đây -->
-    <div class="chart-container">
-        <h3>Hóa Đơn Gần Đây</h3>
-        <canvas class="canvas-2" id="recentInvoicesChart"></canvas>
-    </div>
 </div>
 
 
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script>
+<script th:inline="javascript">
     // Biểu đồ Doanh Thu Theo Tháng
+    var monthlyRevenue = [[${RevenueForMonth}]];
+    var months = [];
+    var revenues = [];
+    for (var key in monthlyRevenue) {
+        if (monthlyRevenue.hasOwnProperty(key)) {
+            months.push(key);  // Tháng
+            revenues.push(monthlyRevenue[key]);  // Doanh thu
+        }
+    }
     var ctx1 = document.getElementById('revenueChart').getContext('2d');
     var revenueChart = new Chart(ctx1, {
         type: 'line',
         data: {
-            labels: ['Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 4', 'Tháng 5', 'Tháng 6'],
+            labels: months,
             datasets: [{
                 label: 'Doanh Thu (VND)',
-                data: [1000000, 1500000, 1200000, 1800000, 2200000, 2500000],
+                data: revenues,
                 borderColor: 'rgba(75, 192, 192, 1)',
                 backgroundColor: 'rgba(75, 192, 192, 0.2)',
                 fill: true,
@@ -183,14 +186,23 @@
     });
 
     // Biểu đồ Doanh Thu Theo Ngày
+    var weekRevenue = [[${RevenueForWeek}]];
+    var day = [];
+    var revenuesday = [];
+    for (var key in weekRevenue) {
+        if (weekRevenue.hasOwnProperty(key)) {
+            day.push(key);  // Ngày
+            revenuesday.push(weekRevenue[key]);  // Doanh thu
+        }
+    }
     var ctx2 = document.getElementById('dailyRevenueChart').getContext('2d');
     var dailyRevenueChart = new Chart(ctx2, {
         type: 'bar',
         data: {
-            labels: ['Ngày 1', 'Ngày 2', 'Ngày 3', 'Ngày 4', 'Ngày 5', 'Ngày 6', 'Ngày 7'],
+            labels: day,
             datasets: [{
                 label: 'Doanh Thu (VND)',
-                data: [200000, 150000, 300000, 250000, 400000, 350000, 500000],
+                data: revenuesday,
                 backgroundColor: 'rgba(54, 162, 235, 0.2)',
                 borderColor: 'rgba(54, 162, 235, 1)',
                 borderWidth: 1
@@ -206,14 +218,24 @@
     });
 
     // Biểu đồ Doanh Thu Theo Quý
+    
+    var quarterRevenue = [[${RevenueForQuarter}]];
+    var quarter = [];
+    var revenuesquarter = [];
+    for (var key in quarterRevenue) {
+        if (quarterRevenue.hasOwnProperty(key)) {
+        	quarter.push(key);  // Ngày
+            revenuesquarter.push(quarterRevenue[key]);  // Doanh thu
+        }
+    }
     var ctx3 = document.getElementById('quarterlyRevenueChart').getContext('2d');
     var quarterlyRevenueChart = new Chart(ctx3, {
         type: 'line',
         data: {
-            labels: ['Quý 1', 'Quý 2', 'Quý 3', 'Quý 4'],
+            labels: quarter,
             datasets: [{
                 label: 'Doanh Thu (VND)',
-                data: [5000000, 6000000, 4500000, 7000000],
+                data: revenuesquarter,
                 borderColor: 'rgba(255, 159, 64, 1)',
                 backgroundColor: 'rgba(255, 159, 64, 0.2)',
                 fill: true,
@@ -229,20 +251,7 @@
         }
     });
 
-    // Biểu đồ Hóa Đơn Gần Đây
-    var ctx4 = document.getElementById('recentInvoicesChart').getContext('2d');
-    var recentInvoicesChart = new Chart(ctx4, {
-        type: 'pie',
-        data: {
-            labels: ['2024-12-01', '2024-11-30'],
-            datasets: [{
-                label: 'Hóa Đơn',
-                data: [2, 2],
-                backgroundColor: ['#FF6384', '#36A2EB'],
-                hoverOffset: 4
-            }]
-        }
-    });
+    
 </script>
 
 <footer th:replace="~{decorator/footer :: footer}"></footer>

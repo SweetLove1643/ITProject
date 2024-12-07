@@ -1,5 +1,6 @@
 package vn.project.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
@@ -18,5 +19,7 @@ public interface IOrder_ProductService {
 	Optional<Order_Products> findById(Integer id);
 
 	<S extends Order_Products> S save(S entity);
+
+	List<Order_Products> findAll();
 
 }

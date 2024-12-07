@@ -1,5 +1,6 @@
 package vn.project.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import java.util.Optional;
@@ -42,5 +43,7 @@ public interface IOrderService {
 	<S extends Orders> S save(S entity);
 
 	List<Products> findAllProductByOrderId(int id);
+
+	List<Orders> findByOrderdateBetween(LocalDateTime startdate, LocalDateTime enddate);
 
 }

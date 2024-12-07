@@ -1,5 +1,6 @@
 package vn.project.Service.Impl;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +39,11 @@ public class Order_ProductService implements IOrder_ProductService{
 	@Override
 	public void deleteById(Integer id) {
 		iOrder_ProductsRepository.deleteById(id);
+	}
+
+	@Override
+	public List<Order_Products> findAll() {
+		return iOrder_ProductsRepository.findAll();
 	}
 	
 	
