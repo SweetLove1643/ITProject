@@ -60,6 +60,10 @@ public class RegisterController {
 				model.addAttribute("message", "Tên tài khoản này đã tồn tại");
 				return "commons/register";
 			}
+			if(isValidPassword(password) == false) {
+				model.addAttribute("message", "Mật khẩu quá đơn giản");
+				return "commons/register";
+			}
 			if (user1.isPresent()) {
 				model.addAttribute("message", "Email này đã được sử dụng");
 				return "commons/register";
@@ -84,6 +88,14 @@ public class RegisterController {
         model.addAttribute("phonenumber", phonenumber);
         model.addAttribute("email", email);
         model.addAttribute("address", address);
+	}
+	public boolean isValidPassword(String password) {
+        if (password == null || password.isEmpty()) {
+            return false;
+        }
+
+        String passwordRegex = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}$";
+        return password.matches(passwordRegex);
 	}
 
 }
