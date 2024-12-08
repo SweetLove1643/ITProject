@@ -2,6 +2,7 @@ package vn.project.Controllers.CustomerControllers;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -60,7 +61,7 @@ public class CheckoutController {
 	ICartService cartService;
 	
 	@GetMapping("/checkoutall")
-	public String checkall(Model model) {
+	public String checkall(Model model, HttpSession session) {
 		try {
 			// Hien thi thong tin khach hang
 			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -71,13 +72,16 @@ public class CheckoutController {
 			if (user == null) {
 				return "redirect:/exception/403";
 			}
-			
+			Map<String, String> quantities = new HashMap<>();
 			List<CartDTO> usercart = cartService.findByUserid(user.getId());
 			long totalamount = 0;
 			for(CartDTO cart : usercart) {
+				quantities.put("quantity-" + String.valueOf(cart.getProductid()), cart.getQuantity());
 				totalamount = totalamount + Integer.parseInt(cart.getPrice()) * Integer.parseInt(cart.getQuantity());
 			}
 			
+			
+			session.setAttribute("quantities", quantities);
 			
 			model.addAttribute("user", user);
 			model.addAttribute("usercart", usercart);
@@ -93,9 +97,11 @@ public class CheckoutController {
 	}
 
 	@GetMapping("/checkout")
-	public String index(Model model, @ModelAttribute(name = "selectedProduct") List<Products> productcheckout,
+	public String index(Model model, 
+			@ModelAttribute(name = "selectedProduct") List<Products> productcheckout,
 			@ModelAttribute(name = "totalamount") String totalamount,
-			@ModelAttribute(name = "quantities") Map<String, String> quantities, HttpSession sesstion) {
+			@ModelAttribute(name = "quantities") Map<String, String> quantities, 
+			HttpSession sesstion) {
 
 		// Hien thi thong tin khach hang
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
