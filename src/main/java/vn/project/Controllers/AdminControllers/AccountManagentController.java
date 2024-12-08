@@ -36,7 +36,7 @@ public class AccountManagentController {
     	List<Users> accountlist = userService.findAll();
     	model.addAttribute("userlist", accountlist);
     	model.addAttribute("roles", roleService.findAll());
-        return "admin/accusermanagement";
+        return "admin/accountmanagement";
     }
 
     @PostMapping("/accountmanager/update")

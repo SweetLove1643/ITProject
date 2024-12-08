@@ -139,6 +139,8 @@ public class PaymentController {
 					orderproductService.save(order_Products);
 					cartService.deleteByUseridAndProductid(user.getId(), order_Products.getProduct().getProductid());
 				}
+				session.removeAttribute("listorderproduct");
+				session.removeAttribute("order");
 				
 				return "commons/checkoutsuccess";
 			}else
