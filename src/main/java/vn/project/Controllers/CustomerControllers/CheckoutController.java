@@ -87,7 +87,6 @@ public class CheckoutController {
 			return "customer/checkout";
 			
 		}catch (Exception e) {
-			// TODO: handle exception
 			return "redirect:/exception/anyerror";
 		}
 		
@@ -152,7 +151,7 @@ public class CheckoutController {
 				}
 
 				Optional<Discounts> discounts = discountService.findByDiscountcode(voucher);
-				if (discounts.isPresent()) {
+				if (discounts.isPresent()) { // ap ma giam gia
 					if (discountService.isDiscountActiveToday(voucher)) {
 						Optional<Discounts> present = discountService.findByDiscountcode(voucher);
 						Discounts discount = present.isPresent() ? present.get() : null;
@@ -210,15 +209,27 @@ public class CheckoutController {
 									.product(product)
 									.quantity(quantity)
 									.build();
-							listorderproduct.add(orderproduct); // luu session
-//							cartService.deleteByUseridAndProductid(user.getId(), Integer.parseInt(idproduct));
+							listorderproduct.add(orderproduct); // luu session					
 						}
 						
+						if("Tiền mặt".equals(paymentmethod)) {// neu chon tien mat thi truc tiep luu vao db va thong baos
+							order.setPaymentstatus("Chưa thanh toán");
+							orderService.save(order);
+							for(Order_Products order_Products : listorderproduct) {
+								orderproductService.save(order_Products);
+								cartService.deleteByUseridAndProductid(user.getId(), order_Products.getProduct().getProductid());
+							}
+							session.removeAttribute("quantities");
+							return "commons/checkoutconfirmsuccess";
+						}
+						
+						
+						session.removeAttribute("quantities");
+						// chuyen du lieuj qua check de xử lí
 						session.setAttribute("order", order); //
 						session.setAttribute("listorderproduct", listorderproduct);
 						redirectAttributes.addFlashAttribute("totalamount", amount); // gui so tien qua vnpay
 
-						session.removeAttribute("quantities");
 						
 						return "redirect:/personal/create_payment";
 
@@ -246,7 +257,17 @@ public class CheckoutController {
 									.quantity(quantity)
 									.build();
 							listorderproduct.add(orderproduct);
-//							cartService.deleteByUseridAndProductid(user.getId(), Integer.parseInt(idproduct));
+						}
+						
+						if("Tiền mặt".equals(paymentmethod)) {// neu chon tien mat thi truc tiep luu vao db va thong baos
+							order.setPaymentstatus("Chưa thanh toán");
+							orderService.save(order);
+							for(Order_Products order_Products : listorderproduct) {
+								orderproductService.save(order_Products);
+								cartService.deleteByUseridAndProductid(user.getId(), order_Products.getProduct().getProductid());
+							}
+							session.removeAttribute("quantities");
+							return "commons/checkoutconfirmsuccess";
 						}
 
 						session.setAttribute("order", order); //

@@ -11,24 +11,49 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.TimeZone;
 
 import org.eclipse.tags.shaded.org.apache.xalan.xsltc.compiler.sym;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import vn.project.Controllers.Config.VNPayConfig;
 import vn.project.Entity.Order_Products;
 import vn.project.Entity.Orders;
+import vn.project.Entity.Users;
+import vn.project.Service.ICartService;
+import vn.project.Service.IOrderService;
+import vn.project.Service.IOrder_ProductService;
+import vn.project.Service.IUserService;
 
 
 @Controller
 @RequestMapping("/personal")
 public class PaymentController {
+	
+	@Autowired
+	IUserService userService;
+	
+	@Autowired
+	ICartService cartService;
+	
+	@Autowired
+	IOrder_ProductService orderproductService;
+	
+	@Autowired
+	IOrderService orderService;
+	
+	
 	
 	@GetMapping("/create_payment") // xu li truyen qua vnpay de thanh toan
 	public String payment(@ModelAttribute("totalamount") String totalamount ,
@@ -97,14 +122,27 @@ public class PaymentController {
 	
 	
 	@GetMapping("/payment_return")
-	public String paymentreturn(HttpSession session) {
+	public String paymentreturn(HttpSession session,
+			@RequestParam String vnp_ResponseCode) {
 		try {
-			List<Order_Products> listOrder_Products = (List<Order_Products>)session.getAttribute("listorderproduct");
-			Orders order = (Orders) session.getAttribute("order");
+			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+			UserDetails userDetail = (UserDetails) auth.getPrincipal();
+			Optional<Users> optinal = userService.findByUsername(userDetail.getUsername());
+			Users user = optinal.isPresent() ? optinal.get() : null;
 			
-			System.out.println(listOrder_Products.toString());
-			System.out.println(order.toString());	
-			return "commons/checkoutsuccess";
+			if("00".equals(vnp_ResponseCode)) {
+				List<Order_Products> listOrder_Products = (List<Order_Products>)session.getAttribute("listorderproduct");
+				Orders order = (Orders) session.getAttribute("order");
+				
+				orderService.save(order);
+				for(Order_Products order_Products : listOrder_Products) {
+					orderproductService.save(order_Products);
+					cartService.deleteByUseridAndProductid(user.getId(), order_Products.getProduct().getProductid());
+				}
+				
+				return "commons/checkoutsuccess";
+			}else
+				return "commons/checkoutfalure";
 		}catch (Exception e) {
 			return "redirect:/exception/anyerror";
 		}
