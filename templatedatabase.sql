@@ -255,7 +255,8 @@ Hương cuối của Bvlgari Eau Parfumee au The Blanc là sự kết hợp đ�
 
 INSERT INTO roles (role_name) VALUES
 	('ADMIN'),
-	(N'USER');
+	(N'USER'),
+	(N'VENDOR');
 GO
 
 INSERT INTO discounts (discount_code, discount_percentage, max_discount_amount, start_date, end_date) VALUES

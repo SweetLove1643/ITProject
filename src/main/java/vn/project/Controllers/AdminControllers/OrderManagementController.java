@@ -17,7 +17,7 @@ import vn.project.Entity.Orders;
 import vn.project.Service.IOrderService;
 
 @Controller
-@RequestMapping("/admin")
+@RequestMapping("/vendor")
 public class OrderManagementController {
 
 	@Autowired
@@ -35,8 +35,8 @@ public class OrderManagementController {
 				orderdata.put("orderdate", order.getOrderdate());//
 				orderdata.put("discountid", order.getDiscountid());//
 				orderdata.put("totalamount", order.getTotalamount());
-				orderdata.put("paymentmethod", order.getUserid());//
-				orderdata.put("userid", order.getPaymentmethod());//
+				orderdata.put("paymentmethod", order.getPaymentmethod());//
+				orderdata.put("userid", order.getUserid());//
 				orderdata.put("paymentstatus", order.getPaymentstatus());
 				orderdata.put("deliverystatus", order.getDeliverystatus());
 				orderdata.put("products", order.getOrderProducts().stream().map(op -> {

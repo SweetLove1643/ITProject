@@ -71,7 +71,7 @@
                                             <!-- Check if products exist -->
                                             <ul class="order-preview">
                                                 <li th:if="${order.orderProducts != null and order.orderProducts.size() > 0}" th:each="orderProduct : ${order.orderProducts}">
-                                                    <a th:href="@{'/productdetail/' + ${orderProduct.product.productid}}" th:title="${orderProduct.product.productname}">
+                                                    <a th:href="@{'/product/productdetail/' + ${orderProduct.product.productid}}" th:title="${orderProduct.product.productname}">
                                                         <img th:src="${orderProduct.product.imageurl}" th:alt="${orderProduct.product.productname}">
                                                     </a>
                                                 </li>

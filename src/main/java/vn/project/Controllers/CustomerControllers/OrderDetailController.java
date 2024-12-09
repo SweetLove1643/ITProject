@@ -3,7 +3,9 @@ package vn.project.Controllers.CustomerControllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,8 +15,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import vn.project.DTO.ProductsDTO;
 import vn.project.Entity.Orders;
 import vn.project.Entity.Products;
+import vn.project.Entity.Users;
 import vn.project.Service.IOrderService;
 import vn.project.Service.IProductService;
+import vn.project.Service.IUserService;
 
 @Controller
 @RequestMapping("/personal")
@@ -26,6 +30,9 @@ public class OrderDetailController {
     @Autowired
     IProductService productService;
     
+    @Autowired
+    IUserService userService;
+    
     @GetMapping("/orderdetail/{id}")
     public String index(@PathVariable("id") String id, Model model) {
 
@@ -34,8 +41,16 @@ public class OrderDetailController {
         List<Products> listProducts = orderService.findAllProductByOrderId(orderid);
         List<ProductsDTO> listproduct = productService.ConvertProductToProductDTO(listProducts);
         
+        System.out.println(order);
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.println(listproduct);
+        
         model.addAttribute("listproduct", listproduct);
         model.addAttribute("order", order);
         return "customer/order-detail";
     }
+    
 }

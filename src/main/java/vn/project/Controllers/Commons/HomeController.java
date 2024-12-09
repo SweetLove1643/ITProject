@@ -40,6 +40,8 @@ public class HomeController{
 	public void cartheader(HttpSession session) {
 	    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 	    if (auth != null && auth.isAuthenticated() && auth.getPrincipal() instanceof UserDetails) {
+	    	session.removeAttribute("usercart");
+	    	session.removeAttribute("totalprice");
 	        UserDetails userDetail = (UserDetails) auth.getPrincipal();
 	        Optional<Users> present = userservice.findByUsername(userDetail.getUsername());
 	        if (present.isPresent()) {

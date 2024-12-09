@@ -86,28 +86,28 @@
                             <!-- san pham -->
                             <div class="row">
                                 <div class="col-12">
-                                    <h2 class="mb-1 text-uppercase fs-20" th:text="${listproduct.size()} + ' Items'"></h2>
+                                    <h2 class="mb-1 text-uppercase fs-20" th:text="${order.orderProducts.size()} + ' Items'"></h2>
                                 </div>
                                 <div class="col-12">
-                                    <div class="bordered cart-item-list p-3" th:if="${listproduct != null and listproduct.size() > 0}">
-                                            <div class="cart-item" th:each="product : ${listproduct}">
-                                                <a th:href="@{'/productdetail/' + ${product.productid}}" class="cart-item-image">
-                                                    <img th:src="${product.imageurl}" alt="Product Image">
+                                    <div class="bordered cart-item-list p-3" th:if="${order.orderProducts != null and order.orderProducts.size() > 0}">
+                                            <div class="cart-item" th:each="product : ${order.orderProducts}">
+                                                <a th:href="@{'/product/productdetail/' + ${product.product.productid}}" class="cart-item-image">
+                                                    <img th:src="${product.product.imageurl}" alt="Product Image">
                                                 </a>
                                                 <div class="cart-item-body">
                                                     <div class="row">
                                                         <div class="col">
-                                                            <h5 class="cart-item-title" th:text="${product.productname}"></h5>
-                                                            <small class="cart-item-subtitle" th:text="${product.brand}"></small>
+                                                            <h5 class="cart-item-title" th:text="${product.product.productname}"></h5>
+                                                            <!-- <small class="cart-item-subtitle" th:text="'ID Brand: ' + ${product.product.brandid}"></small> -->
                                                             <div>
                                                                 <ul class="list list--horizontal list--separated fs-14 text-muted mt-1">
-                                                                    <li>Số lượng  <span th:text="${product.stockquantity}"></span></li>
+                                                                    <li>Số lượng  <span th:text="${product.quantity}"></span></li>
                                                                 </ul>
                                                             </div>
                                                         </div>
                                                         <div class="col text-right">
                                                             <ul class="cart-item-meta">
-                                                                <li class="text-red price quantity-price" th:data-price="${product.price}" id="quantity-price" th:text="${product.price != null ? product.price + ' ₫' : '0 ₫'}"></li>
+                                                                <li class="text-red price quantity-price" th:data-price="${product.product.price}" id="quantity-price" th:text="${product.product.price != null ? product.product.price + ' ₫' : '0 ₫'}"></li>
                                                             </ul>
                                                         </div>
                                                     </div>

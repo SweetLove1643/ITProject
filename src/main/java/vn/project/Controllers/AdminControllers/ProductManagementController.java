@@ -23,7 +23,7 @@ import vn.project.Service.ISupplierService;
 
 
 @Controller
-@RequestMapping("/admin")
+@RequestMapping("/vendor")
 public class ProductManagementController {
 
 	@Autowired

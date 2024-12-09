@@ -28,6 +28,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import vn.project.Controllers.Config.VNPayConfig;
+import vn.project.DTO.CartDTO;
 import vn.project.Entity.Order_Products;
 import vn.project.Entity.Orders;
 import vn.project.Entity.Users;
@@ -141,14 +142,35 @@ public class PaymentController {
 				}
 				session.removeAttribute("listorderproduct");
 				session.removeAttribute("order");
-				
+				cartheader(session);
 				return "commons/checkoutsuccess";
-			}else
+			}else {
+				cartheader(session);
 				return "commons/checkoutfalure";
+			}
+				
 		}catch (Exception e) {
 			return "redirect:/exception/anyerror";
 		}
 		
+	}
+	
+	public void cartheader(HttpSession session) {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		if(auth.isAuthenticated()) {
+			UserDetails userDetail = (UserDetails)auth.getPrincipal();
+			Optional<Users> present = userService.findByUsername(userDetail.getUsername());
+			if(present.isPresent()) {
+				Users user = present.get();
+				List<CartDTO> usercart = cartService.findByUserid(user.getId());
+				long totalprice = 0;
+				for(CartDTO cart : usercart) {
+					totalprice = totalprice + (Integer.parseInt(cart.getPrice()) * Integer.parseInt(cart.getQuantity()));
+				}
+				session.setAttribute("usercart", usercart);
+				session.setAttribute("totalprice", totalprice);
+			}
+		}
 	}
 	
 }

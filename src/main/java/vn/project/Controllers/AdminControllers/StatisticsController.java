@@ -28,7 +28,7 @@ import vn.project.Service.IOrder_ProductService;
 import vn.project.Service.IUserService;
 
 @Controller
-@RequestMapping("/admin")
+@RequestMapping("/vendor")
 public class StatisticsController {
 	
 	@Autowired

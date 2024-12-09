@@ -190,17 +190,18 @@ public class PersonalDataController {
 
 	@Transactional
 	@GetMapping("/cart/delete/{id}")
-	public String deletecart(@PathVariable("id") int cartid) {
+	public String deletecart(@PathVariable("id") int cartid, HttpSession session) {
 
 		cartService.deleteByCartid(cartid);
-
+		cartheader(session);
 		return "redirect:/personal/cart";
 	}
 
 	@GetMapping("/cart/add/{id}")
 	public String addproduct(@PathVariable String id, 
 			@RequestParam("quantity") String quantity,
-			RedirectAttributes redirectAttributes) {
+			RedirectAttributes redirectAttributes,
+			HttpSession session) {
 
 		try {
 			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -215,12 +216,14 @@ public class PersonalDataController {
 				editcart.setQuantity(editcart.getQuantity() + increase);
 				cartService.save(editcart);
 				redirectAttributes.addFlashAttribute("messageSuccess", "Thêm sản phẩm thành công");
+				cartheader(session);
 				return "redirect:/product/productdetail/" +  id;
 			}else {
 				int increase = Integer.parseInt(quantity);
 				Cart newcart = Cart.builder().userid(user.getId()).productid(Integer.valueOf(id)).quantity(increase).build();
 				cartService.save(newcart);
 				redirectAttributes.addFlashAttribute("messageSuccess", "Thêm sản phẩm thành công");
+				cartheader(session);
 				return "redirect:/product/productdetail/" +  id;
 			}
 
@@ -240,6 +243,10 @@ public class PersonalDataController {
 			RedirectAttributes redirectAttributes,
 			HttpSession session) {
 		try {
+			if(selectedProduct == null && "submit2".equals(action)) {
+        		redirectAttributes.addFlashAttribute("message", "Vui lòng chọn sản phẩm");
+        		return "redirect:/personal/cart";
+        	}
 			 if ("submit1".equals(action)) { // Cap nhat gio hang
 			    	Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 			    	if(auth.isAuthenticated()) {
@@ -261,7 +268,6 @@ public class PersonalDataController {
 			        return "redirect:/personal/cart";
 			    } else {
 			        if ("submit2".equals(action)) { // Thanh toan
-			   
 			        	List<Products> productcheckout = new ArrayList<>();
 			        	
 			        	for(String idproduct : selectedProduct) {
@@ -287,7 +293,6 @@ public class PersonalDataController {
 		}
 	}
 
-
 	@GetMapping("/orders")
 	public String orders(Model model) {
 
@@ -296,9 +301,31 @@ public class PersonalDataController {
 		Users user = userService.findByUsername(userDetails.getUsername()).get();
 
 		List<Orders> order = orderService.findByUserid(user.getId());
-		System.out.print(order);
+	
 		model.addAttribute("orders", order);
 		model.addAttribute("user", user);
 		return "customer/orders";
 	}
+	
+	
+	public void cartheader(HttpSession session) {
+	    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    if (auth != null && auth.isAuthenticated() && auth.getPrincipal() instanceof UserDetails) {
+	    	session.removeAttribute("usercart");
+	    	session.removeAttribute("totalprice");
+	        UserDetails userDetail = (UserDetails) auth.getPrincipal();
+	        Optional<Users> present = userService.findByUsername(userDetail.getUsername());
+	        if (present.isPresent()) {
+	            Users user = present.get();
+	            List<CartDTO> usercart = cartService.findByUserid(user.getId());
+	            long totalprice = 0;
+	            for (CartDTO cart : usercart) {
+	                totalprice += Integer.parseInt(cart.getPrice()) * Integer.parseInt(cart.getQuantity());
+	            }
+	            session.setAttribute("usercart", usercart);
+	            session.setAttribute("totalprice", totalprice);
+	        }
+	    }
+	}
+	
 }

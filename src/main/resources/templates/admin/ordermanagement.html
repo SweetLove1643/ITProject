@@ -94,8 +94,7 @@
 
 						<div class="mb-3">
 							<label for="deliverystatus" class="form-label">Trạng thái
-								giao hàng</label> 
-								<select id="deliverystatus" name="deliverystatus"
+								giao hàng</label> <select id="deliverystatus" name="deliverystatus"
 								class="form-select" required>
 								<option value="Pending">Đang xử lý</option>
 								<option value="Shipping">Đang giao hàng</option>
@@ -191,86 +190,126 @@
 	<script th:src="@{/assets/js/vendor.min.js}"></script>
 	<script th:src="@{/assets/js/app.js}"></script>
 	<script>
-		document
-				.addEventListener(
-						"DOMContentLoaded",
-						function() {
-							const orderDetailsModal = document
-									.getElementById("orderDetailsModal");
+	document.addEventListener("DOMContentLoaded", function () {
+	    const orderDetailsModal = document.getElementById("orderDetailsModal");
 
-							orderDetailsModal
-									.addEventListener(
-											"show.bs.modal",
-											function(event) {
-												const button = event.relatedTarget; // Nút đã được nhấn
+	    orderDetailsModal.addEventListener("show.bs.modal", function (event) {
+	        const button = event.relatedTarget;
 
-												// Lấy các giá trị từ data-* attributes
-												const orderId = button
-														.getAttribute("data-order-id");
-												const deliveryStatus = button
-														.getAttribute("data-delivery-status");
-												const orderDate = button
-														.getAttribute("data-order-date");
-												const paymentMethod = button
-														.getAttribute("data-payment-method");
-												const paymentStatus = button
-														.getAttribute("data-payment-status");
-												const totalAmount = button
-														.getAttribute("data-total-amount");
-												const userId = button
-														.getAttribute("data-user-id");
-												const discountId = button
-														.getAttribute("data-discount-id");
+	        // Lấy dữ liệu từ các thuộc tính data-* attributes
+	        const orderId = button.getAttribute("data-order-id");
+	        const deliveryStatus = button.getAttribute("data-delivery-status");
+	        const orderDate = button.getAttribute("data-order-date");
+	        const paymentMethod = button.getAttribute("data-payment-method");
+	        const paymentStatus = button.getAttribute("data-payment-status");
+	        const totalAmount = button.getAttribute("data-total-amount");
+	        const userId = button.getAttribute("data-user-id");
+	        const discountId = button.getAttribute("data-discount-id");
 
-												// Gán các giá trị vào các phần tử trong modal
-												document
-														.getElementById("order-id-detail").textContent = orderId;
-												document
-														.getElementById("delivery-status-detail").textContent = deliveryStatus;
-												document
-														.getElementById("order-date-detail").textContent = orderDate;
-												document
-														.getElementById("payment-method-detail").textContent = paymentMethod;
-												document
-														.getElementById("payment-status-detail").textContent = paymentStatus;
-												document
-														.getElementById("total-amount-detail").textContent = new Intl.NumberFormat(
-														'vi-VN')
-														.format(totalAmount)
-														+ ' ₫';
-												document
-														.getElementById("user-id-detail").textContent = userId;
-												document
-														.getElementById("discount-id-detail").textContent = discountId;
+	        // Gán giá trị vào các phần tử trong modal
+	        document.getElementById("order-id-detail").textContent = orderId;
+	        document.getElementById("delivery-status-detail").textContent = deliveryStatus;
+	        document.getElementById("order-date-detail").textContent = orderDate;
+	        document.getElementById("payment-method-detail").textContent = paymentMethod;
+	        document.getElementById("payment-status-detail").textContent = paymentStatus;
+	        document.getElementById("total-amount-detail").textContent = new Intl.NumberFormat('vi-VN').format(totalAmount) + ' ₫';
+	        document.getElementById("user-id-detail").textContent = userId;
+	        document.getElementById("discount-id-detail").textContent = discountId;
 
-												const orderProductsdraw = button
-														.getAttribute("data-list-product");
-												
-												try {
-										            const orderProducts = JSON.parse(orderProductsdraw);
-										            if (Array.isArray(orderProducts)) {
-										                const orderProductsTable = document.getElementById("order-products-details");
-										                orderProductsTable.innerHTML = "";
+	        // Xử lý sản phẩm trong đơn hàng
+	        const orderProducts = button.getAttribute("data-list-product");
+	        console.log(orderProducts);
+	        
+	        function convertToJSON(data) {
+	            // Bước 1: Thay dấu "=" bằng ":"
+	            data = data.replace(/=/g, ":");
 
-										                orderProducts.forEach(product => {
-										                    const row = document.createElement("tr");
-										                    row.innerHTML = `
-										                        <td><img src="${product.product.imageurl}" alt="${product.product.productname}" style="width: 50px; height: 50px;"></td>
-										                        <td>${product.product.productname}</td>
-										                        <td>${product.quantity}</td>
-										                        <td>${new Intl.NumberFormat('vi-VN').format(product.product.price)} ₫</td>
-										                        <td>${new Intl.NumberFormat('vi-VN').format(product.quantity * product.product.price)} ₫</td>
-										                    `;
-										                    orderProductsTable.appendChild(row);
-										                });
-										            } else {
-										                console.error("Dữ liệu không phải là mảng:", orderProducts);
-										            }
-										        } catch (error) {
-										            console.error("Lỗi khi parse JSON:", error);
-										        }
-						});
-						});
+	            // Bước 2: Đảm bảo các key có dấu ngoặc kép
+	            data = data.replace(/([a-zA-Z0-9_]+):/g, '"$1":');
+
+	            // Bước 3: Thêm dấu ngoặc kép cho giá trị không phải số và không phải URL
+	            data = data.replace(/:([^",{}\[\]]+)/g, (match, value) => {
+	                if (!isNaN(value) || value.match(/^https?:\/\//)) {
+	                    return `:${value}`; // Nếu là số hoặc URL thì không thay đổi
+	                }
+	                return `:"${value}"`; // Nếu là chuỗi thì thêm dấu ngoặc kép
+	            });
+
+	            // Bước 4: Xử lý imageurl và loại bỏ ký tự thứ 1 và thứ 3 sau https:// hoặc http://
+	            data = data.replace(/imageurl:"(https?:\/\/[^"]+)"/g, (match, url) => {
+	                // Kiểm tra nếu URL bắt đầu với http:// hoặc https://
+	                if (url.startsWith("http://")) {
+	                    // Loại bỏ ký tự thứ 1 và thứ 3 sau http://
+	                    url = url.slice(0, 7) + url[8] + url.slice(9);  // Xử lý cho http://
+	                } else if (url.startsWith("https://")) {
+	                    // Loại bỏ ký tự thứ 1 và thứ 3 sau https://
+	                    url = url.slice(0, 8) + url[9] + url.slice(10);  // Xử lý cho https://
+	                }
+	                return `imageurl:"${url}"`;  // Đảm bảo URL được bao quanh bởi dấu ngoặc kép
+	            });
+
+	            while (data.includes('https":"') || data.includes('http":"')) {
+	                data = data.replace('https":"', 'https:');
+	                data = data.replace('http":"', 'http:');
+	            }
+
+	            return data;
+	        }
+
+
+
+
+	        let jsonData = convertToJSON(orderProducts);
+	        console.log(jsonData);
+	     // Chuyển đổi chuỗi JSON thành đối tượng JavaScript
+	        try {
+	            let parsedData = JSON.parse(jsonData);
+	            console.log(parsedData);
+
+	            // Lặp qua các sản phẩm và thêm vào bảng chi tiết
+	            const productTableBody = document.getElementById("order-products-details");
+	            productTableBody.innerHTML = ""; // Xóa các dòng cũ trong bảng
+	            parsedData.forEach(product => {
+	                const row = document.createElement("tr");
+
+	                // Tạo các ô cho từng cột
+	                const imageCell = document.createElement("td");
+	                const image = document.createElement("img");
+	                image.src = product.imageurl;
+	                image.alt = product.name;
+	                image.style.width = "50px"; // Điều chỉnh kích thước hình ảnh nếu cần
+	                imageCell.appendChild(image);
+	                row.appendChild(imageCell);
+
+	                const nameCell = document.createElement("td");
+	                nameCell.textContent = product.productname;
+	                row.appendChild(nameCell);
+
+	                const quantityCell = document.createElement("td");
+	                quantityCell.textContent = product.quantity;
+	                row.appendChild(quantityCell);
+
+	                const priceCell = document.createElement("td");
+	                priceCell.textContent = new Intl.NumberFormat('vi-VN').format(product.price) + ' ₫';
+	                row.appendChild(priceCell);
+
+	                const totalCell = document.createElement("td");
+	                totalCell.textContent = new Intl.NumberFormat('vi-VN').format(product.price * product.quantity) + ' ₫';
+	                row.appendChild(totalCell);
+
+	                // Thêm dòng vào bảng
+	                productTableBody.appendChild(row);
+	            });
+	        } catch (error) {
+	            console.error("Lỗi khi phân tích JSON:", error);
+	        }
+
+	    });
+	});
+	
+	
+	
+		//Sự kiện sửa trạng thái đơn hàng
 		document.addEventListener("DOMContentLoaded", function () {
 	        const editOrderModal = document.getElementById("editOrderModal");
 
