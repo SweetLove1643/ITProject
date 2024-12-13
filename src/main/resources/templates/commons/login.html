@@ -76,6 +76,12 @@
 												<span>Chưa có tài khoản? </span> <a th:href="@{/register}"
 													class="text-decoration-none">Đăng ký</a>
 											</div>
+											<div class="col-12 mt-2">
+  												<a class="social-btn" th:href="@{https://accounts.google.com/o/oauth2/auth?scope=email&redirect_uri=http://localhost:8082/login/login-google&response_type=code&client_id=726840502405-ku83nqlkgai2spfavg4e6oeu6k57cnur.apps.googleusercontent.com&approval_prompt=force}">
+													<img th:src="@{https://auth.openai.com/assets/google-logo-NePEveMl.svg}" class="google-logo" th:alt="'Google logo'" />
+													<span style="margin-left: -40px;" th:text="'Đăng nhập với Google'"></span>
+												</a>
+											</div>
 										</div>
 									</div>
 								</div>

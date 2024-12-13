@@ -2,6 +2,7 @@ package vn.project.Controllers.AdminControllers;
 
 import java.util.List;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -32,16 +33,16 @@ public class AccountManagentController {
 
     @GetMapping("/accountmanager")
     public String manageProducts(Model model) {
-    	List<Users> accountlist = userService.findAll();
+    	List<Users> accountlist = userService.findUsersAndVendorsExcludingAdmins();
     	model.addAttribute("userlist", accountlist);
     	model.addAttribute("roles", roleService.findAll());
-        return "admin/accusermanagement";
+        return "admin/accountmanagement";
     }
 
     @PostMapping("/accountmanager/update")
     public String accountupdate(@ModelAttribute Users user,@RequestParam String rolename, Model model) {
     	try {
-    		int id = Integer.valueOf(user.getId());
+    		String id = String.valueOf(user.getId());
     		Users u = userService.findById(id).get();
     		user.setPassword(u.getPassword());
     		user.setRole(roleService.findByRolename(rolename));
@@ -56,13 +57,13 @@ public class AccountManagentController {
     }
     
     @GetMapping("/accountmanager/delete/{id}")
-    public String deleteaccount(@PathVariable int id, RedirectAttributes redirectAttributes) {
+    public String deleteaccount(@PathVariable String id, RedirectAttributes redirectAttributes) {
     	try {
     		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
     		UserDetails userdetail = (UserDetails)auth.getPrincipal();
     		Users userattime = userService.findByUsername(userdetail.getUsername()).get();
     		
-    		if(id == Integer.valueOf(userattime.getId())) {
+    		if(id == String.valueOf(userattime.getId())) {
     			redirectAttributes.addFlashAttribute("message", "Không thể thực hiện");
     			return "redirect:/exception/400";
     		}

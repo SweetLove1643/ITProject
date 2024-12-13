@@ -1,6 +1,9 @@
 package vn.project.Service.Impl;
 
+import java.math.BigInteger;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -10,13 +13,12 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import vn.project.Entity.Cart;
+
 import vn.project.Entity.Discounts;
 import vn.project.Entity.Order_Products;
 import vn.project.Entity.Orders;
 import vn.project.Entity.Products;
 import vn.project.Entity.Users;
-import vn.project.Repository.ICartRepository;
 import vn.project.Repository.IDiscountRepository;
 import vn.project.Repository.IOrderRepository;
 import vn.project.Repository.IUserRepository;
@@ -46,7 +48,7 @@ public class OrderService implements IOrderService{
 	}
 
 	@Override
-	public List<Orders> findByUserid(int userid) {
+	public List<Orders> findByUserid(String userid) {
 		return orderRepository.findByUserid(userid);
 	}
 
@@ -125,4 +127,10 @@ public class OrderService implements IOrderService{
 		return listproduct;
 	}
 
+	@Override
+	public List<Orders> findByOrderdateBetween(LocalDateTime startdate, LocalDateTime enddate) {
+		return orderRepository.findByOrderdateBetween(startdate, enddate);
+	}
+
+	
 }

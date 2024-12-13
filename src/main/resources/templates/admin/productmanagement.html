@@ -56,7 +56,7 @@
                 </td>
                 <td th:text="${product.stockquantity}"></td>
                 <td>
-                    <a th:href="@{/admin/productmanager/edit/{id}(id=${product.productid})}"
+                    <a th:href="@{/vendor/productmanager/edit/{id}(id=${product.productid})}"
                        class="btn btn-sm btn-warning"
                        data-bs-toggle="modal"
                        data-bs-target="#editProductModal"
@@ -70,7 +70,7 @@
                                 data-imageurl=${product.imageurl},
                                 data-stockquantity=${product.stockquantity}">Sửa
                     </a>
-                    <a th:href="@{/admin/productmanager/delete/{id}(id=${product.productid})}"
+                    <a th:href="@{/vendor/productmanager/delete/{id}(id=${product.productid})}"
                        class="btn btn-sm btn-danger"
                        onclick="return confirm('Bạn có chắc chắn muốn xóa sản phẩm này?');">
                         Xóa
@@ -93,7 +93,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="/admin/productmanager/add" method="post" enctype="multipart/form-data">
+                <form action="/vendor/productmanager/add" method="post" enctype="multipart/form-data">
                     <div class="row">
                         <div class="col-md-6 mb-3">
                             <label for="productname" class="form-label">Tên sản phẩm</label>
@@ -159,7 +159,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="/admin/productmanager/edit" method="post">
+                <form action="/vendor/productmanager/edit" method="post">
                     <input type="hidden" id="editProductId" name="productid">
                     <div class="row">
                         <div class="col-md-6 mb-3">

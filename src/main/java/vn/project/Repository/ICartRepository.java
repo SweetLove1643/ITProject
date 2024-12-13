@@ -11,18 +11,18 @@ import vn.project.Entity.Cart;
 @Repository
 public interface ICartRepository extends JpaRepository<Cart, Integer> {
 
-    List<Cart> findByUserid(int userid);
+    List<Cart> findByUserid(String userid);
 
     List<Cart> findByProductid(int productid);
 
-    void deleteByUserid(int userid);
+    void deleteByUserid(String userid);
 
-    void deleteByUseridAndProductid(int userid, int productid);
+    void deleteByUseridAndProductid(String userid, int productid);
 
     void deleteByCartid(int cartid);
 
     void deleteByProductid(int productid);
 
-    Optional<Cart> findByUseridAndProductid(int userid, int productid);
+    Optional<Cart> findByUseridAndProductid(String userid, int productid);
 
 }

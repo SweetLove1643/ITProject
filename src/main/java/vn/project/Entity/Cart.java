@@ -25,7 +25,7 @@ public class Cart {
 	private int cartid;
 
 	@Column(name = "UserID", nullable = false)
-	private int userid;
+	private String userid;
 
 	@Column(name = "ProductID")
 	private int productid;

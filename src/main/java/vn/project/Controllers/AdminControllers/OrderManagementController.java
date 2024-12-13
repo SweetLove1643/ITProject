@@ -1,6 +1,9 @@
 package vn.project.Controllers.AdminControllers;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,7 +17,7 @@ import vn.project.Entity.Orders;
 import vn.project.Service.IOrderService;
 
 @Controller
-@RequestMapping("/admin")
+@RequestMapping("/vendor")
 public class OrderManagementController {
 
 	@Autowired
@@ -24,8 +27,32 @@ public class OrderManagementController {
 	public String manageProducts(Model model) {
 		try {
 			List<Orders> listorder = orderService.findAll();
-			System.out.print(listorder);
-			model.addAttribute("listorders", listorder);
+			
+			// chuyen dư liệu dễ show
+			List<Map<String, Object>> listOrderViewData = listorder.stream().map(order ->{
+				Map<String, Object> orderdata = new HashMap<>();
+				orderdata.put("orderid", order.getOrderid());//
+				orderdata.put("orderdate", order.getOrderdate());//
+				orderdata.put("discountid", order.getDiscountid());//
+				orderdata.put("totalamount", order.getTotalamount());
+				orderdata.put("paymentmethod", order.getPaymentmethod());//
+				orderdata.put("userid", order.getUserid());//
+				orderdata.put("paymentstatus", order.getPaymentstatus());
+				orderdata.put("deliverystatus", order.getDeliverystatus());
+				orderdata.put("products", order.getOrderProducts().stream().map(op -> {
+					Map<String, Object> productData = new HashMap<>();
+					productData.put("productname", op.getProduct().getProductname());
+		            productData.put("price", op.getProduct().getPrice());
+		            productData.put("quantity", op.getQuantity());
+		            productData.put("imageurl", op.getProduct().getImageurl());
+		            return productData;
+				}).collect(Collectors.toList()));
+				return orderdata;
+			}).collect(Collectors.toList());
+			
+			
+//			System.out.print(listorder);
+			model.addAttribute("listorders", listOrderViewData);
 			return "admin/ordermanagement";
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -60,13 +87,13 @@ public class OrderManagementController {
 			}
 			default:
 				model.addAttribute("Message", "Chỉnh sửa thất bại");
-				return "redirect:/admin/ordermanager";
+				return "redirect:/vendor/ordermanager";
 			}
 			order.setDeliverystatus(status);
 			orderService.save(order);
 		}
 
-		return "redirect:/admin/ordermanager";
+		return "redirect:/vendor/ordermanager";
 	}
 
 }

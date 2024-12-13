@@ -233,11 +233,30 @@ m245 91 l0 -30 -72 -3 -73 -3 0 36 0 36 73 -3 72 -3 0 -30z m29 -131 c10 -25
 													th:href="@{/admin/accountmanager}" class="menu-list-link">Quản
 														lý tài khoản khách hàng</a></li>
 												<li class="menu-list-item"><a
-													th:href="@{/admin/ordermanager}" class="menu-list-link">Quản
+													th:href="@{/vendor/ordermanager}" class="menu-list-link">Quản
 														lý đơn hàng</a></li>
 												<li class="menu-list-item"><a
-													th:href="@{/admin/productmanager}" class="menu-list-link">Quản
+													th:href="@{/vendor/productmanager}" class="menu-list-link">Quản
 														lý sản phẩm</a></li>
+														<li class="menu-list-item"><a
+													th:href="@{/vendor/statistics}" class="menu-list-link">Thống kê</a></li>
+												<li class="menu-list-item"><a th:href="@{/logout}"
+													class="menu-list-link">Đăng xuất</a></li>
+											</ul>
+										</div>
+										<div sec:authorize="hasAuthority('VENDOR')">
+											<ul class="menu-list">
+												<li class="menu-list-item"><a
+													th:href="@{/personal/profile}" class="menu-list-link">Thông
+														tin tài khoản</a></li>
+												<li class="menu-list-item"><a
+													th:href="@{/vendor/ordermanager}" class="menu-list-link">Quản
+														lý đơn hàng</a></li>
+												<li class="menu-list-item"><a
+													th:href="@{/vendor/productmanager}" class="menu-list-link">Quản
+														lý sản phẩm</a></li>
+														<li class="menu-list-item"><a
+													th:href="@{/vendor/statistics}" class="menu-list-link">Thống kê</a></li>
 												<li class="menu-list-item"><a th:href="@{/logout}"
 													class="menu-list-link">Đăng xuất</a></li>
 											</ul>

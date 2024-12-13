@@ -1,5 +1,6 @@
 package vn.project.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 
 import jakarta.persistence.Column;
@@ -22,16 +23,16 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Users {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "UserID", nullable = false, unique = true)
-	private int id;
+	private String id;
 
-	@Column(name = "Username", nullable = false, unique = true)
+	@Column(name = "Username", nullable = true, unique = true)
 	private String username;
 
-	@Column(name = "Password", nullable = false)
+	@Column(name = "Password", nullable = true)
 	private String password;
 
 	@Column(name = "Email", nullable = false, unique = true)
@@ -49,5 +50,6 @@ public class Users {
 	@ManyToOne(fetch =FetchType.EAGER)
 	@JoinColumn(name = "roleid")
 	private Roles role;
+
 
 }

@@ -14,18 +14,18 @@ public interface ICartService {
 
 	<S extends Cart> S save(S entity);
 
-	void deleteByUseridAndProductid(int userid, int productid);
+	void deleteByUseridAndProductid(String string, int productid);
 
-	void deleteByUserid(int userid);
+	void deleteByUserid(String userid);
 
-	List<CartDTO> findByUserid(int userid);
+	List<CartDTO> findByUserid(String string);
 
 	void deleteByCartid(int cartid);
 
-	Optional<Cart> findByUseridAndProductid(int userid, int productid);
+	Optional<Cart> findByUseridAndProductid(String string, int long2);
 
 	void deleteAllByproductid(int id);
 
-	List<Cart> findbyuserid(int id);
+	List<Cart> findbyuserid(String string);
 
 }

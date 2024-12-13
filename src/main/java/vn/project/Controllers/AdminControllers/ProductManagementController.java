@@ -23,7 +23,7 @@ import vn.project.Service.ISupplierService;
 
 
 @Controller
-@RequestMapping("/admin")
+@RequestMapping("/vendor")
 public class ProductManagementController {
 
 	@Autowired
@@ -71,7 +71,7 @@ public class ProductManagementController {
 				productService.delete(product.get());
 			}
 
-			return "redirect:/admin/productmanager";
+			return "redirect:/vendor/productmanager";
 
 
 		}catch (Exception e) {
@@ -96,7 +96,7 @@ public class ProductManagementController {
 			newproduct.setPrice(Long.valueOf(productsDTO.getPrice()));
 			newproduct.setStockquantity(Integer.valueOf(productsDTO.getStockquantity()));
 			productService.save(newproduct);
-			return "redirect:/admin/productmanager";
+			return "redirect:/vendor/productmanager";
 		}catch(Exception e) {
 			e.printStackTrace();
 			model.addAttribute("message", "Đã xảy ra lỗi");
@@ -128,10 +128,10 @@ public class ProductManagementController {
 
 				productService.save(editproduct);
 				redirectAttributes.addFlashAttribute("message", "Chỉnh sửa thành công");
-				return "redirect:/admin/productmanager";
+				return "redirect:/vendor/productmanager";
 			}else {
 				redirectAttributes.addFlashAttribute("message", "Không tìm thấy sản phẩm");
-				return "redirect:/admin/productmanager";
+				return "redirect:/vendor/productmanager";
 			}
 		}catch (Exception e) {
 			e.printStackTrace();

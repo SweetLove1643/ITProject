@@ -29,7 +29,7 @@ public class UserService implements IUserService {
 	}
 
 	@Override
-	public Optional<Users> findByIdOrUsername(Integer id, String name) {
+	public Optional<Users> findByIdOrUsername(String id, String name) {
 		return userRepository.findByIdOrUsername(id, name);
 	}
 
@@ -53,9 +53,14 @@ public class UserService implements IUserService {
 	public List<Users> findAll() {
 		return userRepository.findAll();
 	}
+	
+	@Override
+	public List<Users> findUsersAndVendorsExcludingAdmins(){
+		return userRepository.findUsersAndVendorsExcludingAdmins();
+	}
 
 	@Override
-	public Optional<Users> findById(Integer id) {
+	public Optional<Users> findById(String id) {
 		return userRepository.findById(id);
 	}
 
@@ -65,7 +70,7 @@ public class UserService implements IUserService {
 	}
 
 	@Override
-	public void deleteById(int id) {
+	public void deleteById(String id) {
 		userRepository.deleteById(id);
 	}
 

@@ -31,7 +31,7 @@ public class Orders {
 	private int orderid;
 
 	@Column(name = "UserID", nullable = false)
-	private int userid;
+	private String userid;
 
 	@Column(name = "OrderDate", nullable = false)
 	private LocalDateTime orderdate;

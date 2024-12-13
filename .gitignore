@@ -31,3 +31,8 @@ build/
 
 ### VS Code ###
 .vscode/
+
+## Config
+src\main\java\vn\project\Controllers\Config\Config.java
+##Properties
+src/main/resources/application.properties

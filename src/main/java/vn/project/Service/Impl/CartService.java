@@ -25,7 +25,7 @@ public class CartService implements ICartService {
 	IProductService productService;
 
 	@Override
-	public List<CartDTO> findByUserid(int userid) {
+	public List<CartDTO> findByUserid(String userid) {
 		try {
 			List<Cart> usercart = cartRepository.findByUserid(userid);
 
@@ -38,7 +38,7 @@ public class CartService implements ICartService {
 	}
 
 	@Override
-	public void deleteByUserid(int userid) {
+	public void deleteByUserid(String userid) {
 		cartRepository.deleteByUserid(userid);
 	}
 
@@ -51,7 +51,7 @@ public class CartService implements ICartService {
 
 	@Transactional
 	@Override
-	public void deleteByUseridAndProductid(int userid, int productid) {
+	public void deleteByUseridAndProductid(String userid, int productid) {
 		cartRepository.deleteByUseridAndProductid(userid, productid);
 	}
 
@@ -99,7 +99,7 @@ public class CartService implements ICartService {
 	}
 
 	@Override
-	public Optional<Cart> findByUseridAndProductid(int userid, int productid) {
+	public Optional<Cart> findByUseridAndProductid(String userid, int productid) {
 		return cartRepository.findByUseridAndProductid(userid, productid);
 	}
 
@@ -113,7 +113,7 @@ public class CartService implements ICartService {
 	}
 
 	@Override
-	public List<Cart> findbyuserid(int id){
+	public List<Cart> findbyuserid(String id){
 		return cartRepository.findByUserid(id);
 	}
 }

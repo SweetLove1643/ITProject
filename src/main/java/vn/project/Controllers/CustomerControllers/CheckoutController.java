@@ -2,6 +2,7 @@ package vn.project.Controllers.CustomerControllers;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -60,7 +61,7 @@ public class CheckoutController {
 	ICartService cartService;
 	
 	@GetMapping("/checkoutall")
-	public String checkall(Model model) {
+	public String checkall(Model model, HttpSession session) {
 		try {
 			// Hien thi thong tin khach hang
 			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -71,13 +72,16 @@ public class CheckoutController {
 			if (user == null) {
 				return "redirect:/exception/403";
 			}
-			
+			Map<String, String> quantities = new HashMap<>();
 			List<CartDTO> usercart = cartService.findByUserid(user.getId());
 			long totalamount = 0;
 			for(CartDTO cart : usercart) {
+				quantities.put("quantity-" + String.valueOf(cart.getProductid()), cart.getQuantity());
 				totalamount = totalamount + Integer.parseInt(cart.getPrice()) * Integer.parseInt(cart.getQuantity());
 			}
 			
+			
+			session.setAttribute("quantities", quantities);
 			
 			model.addAttribute("user", user);
 			model.addAttribute("usercart", usercart);
@@ -87,16 +91,17 @@ public class CheckoutController {
 			return "customer/checkout";
 			
 		}catch (Exception e) {
-			// TODO: handle exception
 			return "redirect:/exception/anyerror";
 		}
 		
 	}
 
 	@GetMapping("/checkout")
-	public String index(Model model, @ModelAttribute(name = "selectedProduct") List<Products> productcheckout,
+	public String index(Model model, 
+			@ModelAttribute(name = "selectedProduct") List<Products> productcheckout,
 			@ModelAttribute(name = "totalamount") String totalamount,
-			@ModelAttribute(name = "quantities") Map<String, String> quantities, HttpSession sesstion) {
+			@ModelAttribute(name = "quantities") Map<String, String> quantities, 
+			HttpSession sesstion) {
 
 		// Hien thi thong tin khach hang
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -121,9 +126,14 @@ public class CheckoutController {
 	}
 
 	@PostMapping("/checkout")
-	public String applyVoucher(@RequestParam List<String> listcheckout, @RequestParam String voucher,
-			@RequestParam("totalamount") String tongtien, Model model, @RequestParam("submit") String submit,
-			@RequestParam("paymentmethod") String paymentmethod, HttpSession session, RedirectAttributes redirectAttributes) {
+	public String applyVoucher(@RequestParam List<String> listcheckout, 
+			@RequestParam String voucher,
+			@RequestParam("totalamount") String tongtien, 
+			Model model, 
+			@RequestParam("submit") String submit,
+			@RequestParam("paymentmethod") String paymentmethod, 
+			HttpSession session, 
+			RedirectAttributes redirectAttributes) {
 		try {
 
 			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -135,7 +145,7 @@ public class CheckoutController {
 				return "redirect:/exception/403";
 			}
 
-			if ("voucher".equals(submit)) {
+			if ("voucher".equals(submit)) { // xử lí áp voucher
 				List<ProductsDTO> productcheckout = new ArrayList<>();
 
 				for (String idproduct : listcheckout) {
@@ -147,7 +157,7 @@ public class CheckoutController {
 				}
 
 				Optional<Discounts> discounts = discountService.findByDiscountcode(voucher);
-				if (discounts.isPresent()) {
+				if (discounts.isPresent()) { // ap ma giam gia
 					if (discountService.isDiscountActiveToday(voucher)) {
 						Optional<Discounts> present = discountService.findByDiscountcode(voucher);
 						Discounts discount = present.isPresent() ? present.get() : null;
@@ -175,56 +185,103 @@ public class CheckoutController {
 				model.addAttribute("usercart", productcheckout);
 
 				return "customer/checkout";
-			} else {
+			} else {// nguoc lại thi thanh toan
 				if ((Map<String, String>) session.getAttribute("quantities") instanceof Map<String, String>
 						&& listcheckout != null) {
 					Map<String, String> quantities = (Map<String, String>) session.getAttribute("quantities");
 
 					Optional<Discounts> discount = discountService.findByDiscountcode(voucher);
-					if (discount.isPresent()) {
+					if (discount.isPresent()) { // truong hợp có voucher thì them vô order
+						Long amount = Long.valueOf(tongtien);
+						
+						List<Order_Products> listorderproduct = new ArrayList<>(); // tao de luu session, insert khi da thanh toan
+						
+						Orders order = Orders.builder() // tạo đơn, luu session su dung sau thanh toans
+								.deliverystatus("Đang xử li") // Mac dinh là dang xư lí
+								.discountid(discount.get().getDiscountid()) // mac dinh
+								.orderdate(LocalDateTime.now()) // lấy time hienj tại
+								.paymentmethod(paymentmethod) 
+								.paymentstatus("Đã thanh toán")
+								.totalamount(amount)
+								.userid(user.getId())
+								.build();
+
+						for (String idproduct : listcheckout) {
+							int id = Integer.parseInt(idproduct);
+							int quantity = Integer.parseInt(quantities.get("quantity-" + idproduct)); // lay so luong theo id product
+							Products product = productService.findById(id).get();
+							Order_Products orderproduct = Order_Products.builder() // tao lien ket order
+									.order(order)
+									.product(product)
+									.quantity(quantity)
+									.build();
+							listorderproduct.add(orderproduct); // luu session					
+						}
+						
+						if("Tiền mặt".equals(paymentmethod)) {// neu chon tien mat thi truc tiep luu vao db va thong baos
+							order.setPaymentstatus("Chưa thanh toán");
+							orderService.save(order);
+							for(Order_Products order_Products : listorderproduct) {
+								orderproductService.save(order_Products);
+								cartService.deleteByUseridAndProductid(user.getId(), order_Products.getProduct().getProductid());
+							}
+							session.removeAttribute("quantities");
+							return "commons/checkoutconfirmsuccess";
+						}
+						
+						
+						session.removeAttribute("quantities");
+						// chuyen du lieuj qua check de xử lí
+						session.setAttribute("order", order); //
+						session.setAttribute("listorderproduct", listorderproduct);
+						redirectAttributes.addFlashAttribute("totalamount", amount); // gui so tien qua vnpay
+
+						
+						return "redirect:/personal/create_payment";
+
+					} else { // không có voucher thì bỏ id voucher
+						
+						List<Order_Products> listorderproduct = new ArrayList<>(); // tao de luu session, insert khi da thanh toan
+						
 						Long amount = Long.valueOf(tongtien);
 						Orders order = Orders.builder().deliverystatus("Đang xử li")
-								.discountid(discount.get().getDiscountid()).orderdate(LocalDateTime.now())
-								.paymentmethod(paymentmethod).paymentstatus("Đã thanh toán").totalamount(amount)
+								.orderdate(LocalDateTime.now())
+								.paymentmethod(paymentmethod)
+								.paymentstatus("Đã thanh toán")
+								.totalamount(amount)
 								.userid(user.getId()).build();
 
-						orderService.save(order);
-
-						for (String idproduct : listcheckout) {
-							int id = Integer.parseInt(idproduct);
-							int quantity = Integer.parseInt(quantities.get("quantity-" + idproduct));
-							Products product = productService.findById(id).get();
-							Order_Products orderproduct = Order_Products.builder().order(order).product(product)
-									.quantity(quantity).build();
-							orderproductService.save(orderproduct);
-							cartService.deleteByUseridAndProductid(user.getId(), Integer.parseInt(idproduct));
-						}
-
-						session.removeAttribute("quantities");
-						model.addAttribute("message", "Đặt hàng thành công");
-						return "customer/cart";
-
-					} else {
-						Long amount = Long.valueOf(tongtien);
-						Orders order = Orders.builder().deliverystatus("Đang xử li").orderdate(LocalDateTime.now())
-								.paymentmethod(paymentmethod).paymentstatus("Đã thanh toán").totalamount(amount)
-								.userid(user.getId()).build();
-
-						orderService.save(order);
+						
 
 						for (String idproduct : listcheckout) {
 							int quantity = Integer.parseInt(quantities.get("quantity-" + idproduct));
 							int id = Integer.parseInt(idproduct);
 							Products product = productService.findById(id).get();
-							Order_Products orderproduct = Order_Products.builder().order(order).product(product)
-									.quantity(quantity).build();
-							orderproductService.save(orderproduct);
-							cartService.deleteByUseridAndProductid(user.getId(), Integer.parseInt(idproduct));
+							Order_Products orderproduct = Order_Products.builder()
+									.order(order)
+									.product(product)
+									.quantity(quantity)
+									.build();
+							listorderproduct.add(orderproduct);
+						}
+						
+						if("Tiền mặt".equals(paymentmethod)) {// neu chon tien mat thi truc tiep luu vao db va thong baos
+							order.setPaymentstatus("Chưa thanh toán");
+							orderService.save(order);
+							for(Order_Products order_Products : listorderproduct) {
+								orderproductService.save(order_Products);
+								cartService.deleteByUseridAndProductid(user.getId(), order_Products.getProduct().getProductid());
+							}
+							session.removeAttribute("quantities");
+							return "commons/checkoutconfirmsuccess";
 						}
 
-						redirectAttributes.addFlashAttribute("message", "Đặt hàng thành công");
+						session.setAttribute("order", order); //
+						session.setAttribute("listorderproduct", listorderproduct);
+						redirectAttributes.addFlashAttribute("totalamount", amount);
+						
 						session.removeAttribute("quantities");
-						return "redirect:/personal/cart";
+						return "redirect:/personal/create_payment";
 					}
 				} else {
 					return "redirect:/exception/anyerror";

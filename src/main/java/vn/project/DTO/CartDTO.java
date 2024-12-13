@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 public class CartDTO {
 
 	private int cartid;
-	private int userid;
+	private String userid;
 	private int productid;
 	private String productname;
 	private String category;

@@ -11,7 +11,7 @@ public interface IUserService {
 
 	long count();
 
-	Optional<Users> findById(Integer id);
+	Optional<Users> findById(String id);
 
 	List<Users> findAll();
 
@@ -19,13 +19,13 @@ public interface IUserService {
 
 	List<Users> findByFullnameContaining(String fullname);
 
-	Optional<Users> findByIdOrUsername(Integer id, String name);
+	Optional<Users> findByIdOrUsername(String id, String name);
 
 	void deleteAll();
 
 	void deleteByUsername(String username);
 
-	void deleteById(int id);
+	void deleteById(String id);
 
 	Optional<Users> findByEmail(String email);
 
@@ -36,6 +36,8 @@ public interface IUserService {
 	String createOTP();
 
 	String sendOTPMail(String toEmail);
+
+	List<Users> findUsersAndVendorsExcludingAdmins();
 
 
 

@@ -39,6 +39,12 @@ public class NewPasswordController {
 	@PostMapping
 	public String processNewPassword(@RequestParam String newpass,
 			@RequestParam String renewpass, Model model) {
+		if(isValidPassword(renewpass) == false) {
+			model.addAttribute("message", "Mật khẩu quá đơn giản!");
+			model.addAttribute("verifysuccess", true);
+			model.addAttribute("useremail", useremail);
+			return "commons/newpass";
+		}
 
 		if(!newpass.equals(renewpass)) {
 			model.addAttribute("message", "Vui lòng nhập lại mật khẩu mới!");
@@ -55,6 +61,15 @@ public class NewPasswordController {
 
 			return "redirect:/login";
 		}
+	}
+	
+	public boolean isValidPassword(String password) {
+        if (password == null || password.isEmpty()) {
+            return false;
+        }
+
+        String passwordRegex = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}$";
+        return password.matches(passwordRegex);
 	}
 
 }
