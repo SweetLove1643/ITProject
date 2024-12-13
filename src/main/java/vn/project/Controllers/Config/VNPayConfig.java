@@ -19,12 +19,6 @@ import jakarta.servlet.http.HttpServletRequest;
 public class VNPayConfig {
 	public static String vnp_PayUrl = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
     public static String vnp_ReturnUrl = "http://localhost:8082/personal/payment_return";
-<<<<<<< HEAD
-    
-=======
-    public static String vnp_TmnCode = "2E4JPTLD";
-    public static String secretKey = "L2VVI5QTN5C0ILSGE8ZPFZO8DBLS8VUK";
->>>>>>> bdd794faf60c68e6e49a477e52e40c6331a65ab9
     public static String vnp_ApiUrl = "https://sandbox.vnpayment.vn/merchant_webapi/api/transaction";
     public static String vnp_Version = "2.1.0";
     public static String vnp_Command = "pay";
@@ -84,11 +78,7 @@ public class VNPayConfig {
                 sb.append("&");
             }
         }
-<<<<<<< HEAD
         return hmacSHA512(Config.secretKey,sb.toString());
-=======
-        return hmacSHA512(secretKey,sb.toString());
->>>>>>> bdd794faf60c68e6e49a477e52e40c6331a65ab9
     }
     
     public static String hmacSHA512(final String key, final String data) {

@@ -2,10 +2,6 @@ package vn.project.Controllers.Commons;
 
 import java.io.UnsupportedEncodingException;
 
-<<<<<<< HEAD
-
-=======
->>>>>>> bdd794faf60c68e6e49a477e52e40c6331a65ab9
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
@@ -18,10 +14,6 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.TimeZone;
 
-<<<<<<< HEAD
-=======
-import org.eclipse.tags.shaded.org.apache.xalan.xsltc.compiler.sym;
->>>>>>> bdd794faf60c68e6e49a477e52e40c6331a65ab9
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -34,10 +26,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
-<<<<<<< HEAD
 import vn.project.Controllers.Config.Config;
-=======
->>>>>>> bdd794faf60c68e6e49a477e52e40c6331a65ab9
 import vn.project.Controllers.Config.VNPayConfig;
 import vn.project.DTO.CartDTO;
 import vn.project.Entity.Order_Products;
@@ -75,11 +64,7 @@ public class PaymentController {
 
         String vnp_TxnRef = VNPayConfig.getRandomNumber(8);
         String vnp_IpAddr = VNPayConfig.getIpAddress(request);
-<<<<<<< HEAD
         String vnp_TmnCode = Config.vnp_TmnCode;
-=======
-        String vnp_TmnCode = VNPayConfig.vnp_TmnCode;
->>>>>>> bdd794faf60c68e6e49a477e52e40c6331a65ab9
 
         Map<String, String> vnp_Params = new HashMap<>();
         vnp_Params.put("vnp_Version", VNPayConfig.vnp_Version);
@@ -120,11 +105,7 @@ public class PaymentController {
             }
         }
 
-<<<<<<< HEAD
         String vnp_SecureHash = VNPayConfig.hmacSHA512(Config.secretKey, hashData.toString());
-=======
-        String vnp_SecureHash = VNPayConfig.hmacSHA512(VNPayConfig.secretKey, hashData.toString());
->>>>>>> bdd794faf60c68e6e49a477e52e40c6331a65ab9
         query.append("&vnp_SecureHash=").append(vnp_SecureHash);
         String paymentUrl = VNPayConfig.vnp_PayUrl + "?" + query.toString();
 

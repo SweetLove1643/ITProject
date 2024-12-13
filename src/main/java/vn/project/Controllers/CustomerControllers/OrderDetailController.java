@@ -68,6 +68,13 @@ public class OrderDetailController {
         System.out.println();
         System.out.println(listproduct);
         
+        System.out.println(order);
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.println(listproduct);
+        
         model.addAttribute("listproduct", listproduct);
         model.addAttribute("user", user);
         model.addAttribute("order", order);

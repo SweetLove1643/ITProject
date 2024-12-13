@@ -35,7 +35,7 @@ public class HomeController{
 	    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 	    System.out.println("Current user: " + auth.getName());
 	    System.out.println("Authorities: " + auth.getAuthorities());
-	    
+
 	    if (SecurityContextHolder.getContext() != null 
 	            && SecurityContextHolder.getContext().getAuthentication() != null 
 	            && SecurityContextHolder.getContext().getAuthentication().isAuthenticated()) {
