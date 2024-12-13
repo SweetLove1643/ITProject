@@ -46,17 +46,5 @@ Mở trình duyệt web và truy cập: http://localhost:8080
 🚀 Sử Dụng
 Sau khi chạy ứng dụng, bạn sẽ thấy giao diện chính hiển thị trên trình duyệt.
 Sử dụng thanh điều hướng để khám phá các tính năng của dự án.
-📂 Cấu Trúc Dự Án
-css
-Sao chép mã
-ITProject/
-├── src/
-│   ├── main/
-│   │   ├── java/          # Mã nguồn Java
-│   │   ├── resources/     # Tệp cấu hình & giao diện
-│   └── test/              # Các bài kiểm thử
-├── pom.xml     
-📜 Giấy Phép
-Dự án này được cấp phép theo giấy phép MIT. Xem thêm trong tệp LICENSE để biết chi tiết.
 
 
